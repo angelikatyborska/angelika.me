@@ -1,4 +1,5 @@
 nav {
+  margin-top: $big-gap;
   text-align: center;
 
   ul {
@@ -7,6 +8,26 @@ nav {
 
     li {
       display: inline-block;
+
+      &:before {
+        margin: 0 $small-gap;
+      }
+
+      &:first-child {
+        &:before {
+          content: none;
+        }
+      }
+
+      a {
+        padding: $tiny-gap;
+        color: inherit;
+
+        &:hover,
+        &:active {
+          border-bottom: rem-calc(3) solid $white;
+        }
+      }
     }
   }
 }

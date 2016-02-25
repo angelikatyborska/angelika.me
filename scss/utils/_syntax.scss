@@ -4,19 +4,23 @@ code {
   font-family: $code-font-family;
 }
 
+*:not(.highlight) {
+  > code {
+    border: rem-calc(1) solid darken($background-color, 5);
+    background-color: $white;
+  }
+}
+
 .highlight {
   overflow: hidden;
   margin: rem-calc(20) 0;
   padding: rem-calc(10);
   border: rem-calc(1) solid darken($background-color, 5);
-  background-color: lighten($background-color, 5);
-  -moz-box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  background-color: $white;
 }
 
 .highlight {
-  .c { color: lighten($black, 50) } // Comment
+  .c { color: $medium-gray } // Comment
   .err { color: $black } // Error
   .g { color: $black } // Generic
   .k { color: $black; font-weight: bold; } // Keyword
@@ -25,10 +29,10 @@ code {
   .o { color: $black } // Operator
   .x { color: $pink } // Other
   .p { color: $black } // Punctuation
-  .cm { color: lighten($black, 50); } // Comment.Multiline
-  .cp { color: lighten($black, 50); } // Comment.Preproc
-  .c1 { color: lighten($black, 50); } // Comment.Single
-  .cs { color: lighten($black, 50); } // Comment.Special
+  .cm { color: $medium-gray; } // Comment.Multiline
+  .cp { color: $medium-gray; } // Comment.Preproc
+  .c1 { color: $medium-gray; } // Comment.Single
+  .cs { color: $medium-gray; } // Comment.Special
   .gd { color: $teal } // Generic.Deleted
   .ge { color: $black; font-style: italic } // Generic.Emph
   .gr { color: $pink } // Generic.Error
@@ -71,13 +75,13 @@ code {
   .sb { color: $teal } // Literal.String.Backtick
   .sc { color: $teal } // Literal.String.Char
   .sd { color: $black } // Literal.String.Doc
-  .s2 { color: lighten($black, 50) } // Literal.String.Double
-  .se { color: lighten($black, 50) } // Literal.String.Escape
+  .s2 { color: $medium-gray } // Literal.String.Double
+  .se { color: $medium-gray } // Literal.String.Escape
   .sh { color: $black } // Literal.String.Heredoc
-  .si { color: lighten($black, 50) } // Literal.String.Interpol
-  .sx { color: lighten($black, 50) } // Literal.String.Other
+  .si { color: $medium-gray } // Literal.String.Interpol
+  .sx { color: $medium-gray } // Literal.String.Other
   .sr { color: $teal } // Literal.String.Regex
-  .s1 { color: lighten($black, 50) } // Literal.String.Single
+  .s1 { color: $medium-gray } // Literal.String.Single
   .ss { color: $teal } // Literal.String.Symbol
   .bp { color: $pink } // Name.Builtin.Pseudo
   .vc { color: $pink } // Name.Variable.Class
