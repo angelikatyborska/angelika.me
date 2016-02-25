@@ -1,19 +1,16 @@
 ---
 layout: default
 ---
+
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  <div class="post-meta">
-    <span class="date">{{ page.date | date: '%d %B %Y' }}</span>
-    <span class="tags">{{ page || tags }}</span>
-  </div>
+  <header>
+    <div class="post-meta">
+      <div class="date">{{ page.date | date: '%d %B %Y' }}</div>
+      <div class="tags">{{ page || tags }}</div>
+    </div>
+    <h1>{{ page.title }}</h1>
+  </header>
 
   {{ content }}
 
-  Tags:
-  <ul>
-    {% for tag in page.tags %}
-    <li>{{ tag }}</li>
-    {% endfor %}
-  </ul>
 </article>

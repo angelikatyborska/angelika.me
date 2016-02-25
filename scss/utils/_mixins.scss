@@ -7,3 +7,11 @@
   border-radius: 50%;
   background-color: $blue;
 }
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

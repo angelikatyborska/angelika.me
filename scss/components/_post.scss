@@ -1,5 +1,29 @@
 .post {
-  h1 {
-    text-align: center;
+  header {
+    margin-bottom: $big-gap;
+
+    h1 {
+      margin-bottom: $small-gap;
+      text-align: center;
+    }
+
+    .post-meta {
+      @include clearfix;
+
+      margin-bottom: $small-gap;
+      font-size: rem-calc(14);
+
+      .date {
+        float: left;
+        width: 50%;
+        text-align: left;
+      }
+
+      .tags {
+        float: right;
+        width: 50%;
+        text-align: right;
+      }
+    }
   }
 }

@@ -1,4 +1,4 @@
-$page-max-width: rem-calc(768);
+$page-max-width: rem-calc(700);
 
 body {
   overflow-y: scroll;
@@ -13,4 +13,5 @@ a {
 .page-wrapper {
   max-width: $page-max-width;
   margin: 0 auto;
+  padding: 0 $small-gap;
 }
