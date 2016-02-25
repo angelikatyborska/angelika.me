@@ -1,8 +1,10 @@
 nav {
   margin-top: $big-gap;
+  margin-bottom: $huge-gap;
   text-align: center;
 
   ul {
+    margin: 0;
     padding: 0;
     list-style: none;
 
