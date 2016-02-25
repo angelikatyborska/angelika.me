@@ -1,0 +1,20 @@
+$header-font-family: 'Droid Serif', serif;
+$paragraph-font-family: 'Roboto', sans-serif;
+
+html {
+  font-size: $rem-base;
+}
+
+body {
+  font-family: $paragraph-font-family;
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  font-weight: 400;
+}

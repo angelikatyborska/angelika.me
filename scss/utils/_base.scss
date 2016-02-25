@@ -1,0 +1,16 @@
+$page-max-width: rem-calc(768);
+
+body {
+  overflow-y: scroll;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+a {
+  color: $anchor-color;
+}
+
+.page-wrapper {
+  max-width: $page-max-width;
+  margin: 0 auto;
+}
