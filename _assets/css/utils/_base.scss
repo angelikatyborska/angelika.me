@@ -1,5 +1,11 @@
 $page-max-width: rem-calc(700);
 
+* {
+  &, &:before, &:after {
+    box-sizing: border-box;
+  }
+}
+
 body {
   overflow-y: scroll;
   color: $text-color;
