@@ -1,5 +1,4 @@
-@import
-'utils/reset',
+@import 'utils/reset',
 'utils/functions',
 'utils/colors',
 'utils/variables',
@@ -7,7 +6,10 @@
 'utils/typography',
 'utils/base',
 'utils/syntax',
-
 'components/header',
 'components/nav',
 'components/post';
+
+a {
+  display: flex
+}

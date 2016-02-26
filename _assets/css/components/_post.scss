@@ -23,6 +23,10 @@
         float: right;
         width: 50%;
         text-align: right;
+
+        a:not(:first-child) {
+          margin-left: $tiny-gap;
+        }
       }
     }
   }

@@ -1,7 +1,17 @@
-exclude: [scss]
+exclude: [scss, Gemfile]
 
 tag_page_layout: tag_page
 tag_page_dir: tag
+
+sass:
+  sass_dir: _assets/css
+
+assets:
+  assets:
+    - "*.png"
+    - "screen.scss"
+  compress:
+    css: true
 
 defaults:
   -
