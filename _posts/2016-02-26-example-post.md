@@ -1,7 +1,7 @@
 ---
-title: Test post, title should be a little longer
-description: Quisque porta cursus malesuada. Proin sed sapien felis. Pellentesque tristique rutrum nunc, ut volutpat massa vulputate eu. Fusce semper at leo at congue. In vel sapien condimentum, mattis nisi quis, cursus tortor. Nulla facilisi.
-tags: [ruby, rails]
+title: Example post, this is a really long title, because I need to check how it will look like when the title is over one line long
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id sollicitudin mi, eu mollis orci. Pellentesque a justo nibh. Nulla congue lacus arcu, `at viverra nisl` condimentum ac.
+tags: [ruby, gems]
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id sollicitudin mi, eu mollis orci. Pellentesque a justo nibh. Nulla congue lacus arcu, `at viverra nisl` condimentum ac. Etiam in sollicitudin neque. Morbi pellentesque enim magna, et eleifend ante consequat at. Sed mi risus, imperdiet eget laoreet sed, commodo quis risus. Praesent finibus ante nisl, id vehicula ipsum imperdiet eget. Nam vestibulum justo quis suscipit bibendum. Proin arcu urna, consequat non augue at, cursus sodales lacus. Quisque lacinia et nunc sit amet gravida. Vivamus consequat convallis risus et sagittis.

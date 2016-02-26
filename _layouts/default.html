@@ -2,7 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+  {% comment %}
+  The logic below is needed because jekyll-tagging doesn't use the title set in tag_page.html
+  {% endcomment %}
+  {% if page.title %}
+    {% assign title = page.title %}
+  {% else %}
+    {% if page.tag %}
+      {% assign title = page.tag %}
+    {% else %}
+      {% assign title = 'Blog' %}
+    {% endif %}
+  {% endif %}
+  <title>{{ title | capitalize }} | Angelika Tyborska</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -20,13 +32,13 @@
   <nav>
     <ul>
       <li>
-        <a href="">Blog</a>
+        <a href="/">Blog</a>
       </li>
       <li>
-        <a href="">About</a>
+        <a href="/tags">Topics</a>
       </li>
       <li>
-        <a href="">Contact</a>
+        <a href="/about">About</a>
       </li>
     </ul>
   </nav>

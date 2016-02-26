@@ -11,19 +11,9 @@
       @include clearfix;
 
       margin-bottom: $small-gap;
-      font-size: rem-calc(14);
-
-      .date {
-        float: left;
-        width: 50%;
-        text-align: left;
-      }
+      font-size: $small-font-size;
 
       .tags {
-        float: right;
-        width: 50%;
-        text-align: right;
-
         a:not(:first-child) {
           margin-left: $tiny-gap;
         }

@@ -41,12 +41,12 @@ h1, h2, h3, h4, h5, h6 {
   color: $pink;
 }
 
-h1 { font-size: rem-calc(30); }
-h2 { font-size: rem-calc(24); }
-h3 { font-size: rem-calc(20); }
-h4 { font-size: rem-calc(18); }
-h5 { font-size: rem-calc(16); }
-h6 { font-size: rem-calc(14); }
+h1 { font-size: $h1-font-size; }
+h2 { font-size: $h2-font-size; }
+h3 { font-size: $h3-font-size; }
+h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+h6 { font-size: $h6-font-size; }
 
 ul {
   padding-left: 1em;

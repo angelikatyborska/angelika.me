@@ -1,0 +1,31 @@
+.tag-cloud {
+  text-align: center;
+
+  a {
+    margin: 0 $tiny-gap;
+  }
+
+  .set-1 {
+    font-size: $h6-font-size;
+  }
+
+  .set-2 {
+    font-size: $h4-font-size;
+  }
+
+  .set-3 {
+    font-size: $h3-font-size;
+  }
+
+  .set-4 {
+    font-size: $h2-font-size;
+  }
+
+  .set-5 {
+    font-size: $h1-font-size;
+  }
+}
+
+.tag-header {
+  text-align: center;
+}
