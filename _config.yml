@@ -1,7 +1,25 @@
-exclude: [scss, Gemfile]
+exclude: [scss, Gemfile, bower.json, Rakefile]
 
 tag_page_layout: tag_page
 tag_page_dir: tag
+
+about:
+  repo: https://github.com/angelikatyborska/blog
+  linkedin: https://linkedin.com/in/angelika-tyborska-330a6bb0
+  github: https://github.com/angelikatyborska
+
+assets:
+  assets:
+    - "*.otf"
+    - "*.eot"
+    - "*.svg"
+    - "*.ttf"
+    - "*.woff"
+    - "*.woff2"
+  sources:
+    - _assets/css
+    - _assets/images
+    - _assets/bower
 
 defaults:
   -

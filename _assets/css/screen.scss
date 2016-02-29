@@ -1,4 +1,8 @@
-@import 'utils/reset',
+$fa-font-path: 'font-awesome/fonts';
+
+@import 'font-awesome/scss/font-awesome',
+
+'utils/reset',
 'utils/functions',
 'utils/colors',
 'utils/variables',
@@ -11,5 +15,8 @@
 'components/footer',
 'components/nav',
 'components/tags',
+'components/social_links',
 'components/post_preview',
-'components/post';
+'components/post',
+
+'pages/about';

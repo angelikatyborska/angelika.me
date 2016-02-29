@@ -32,21 +32,22 @@
   <nav>
     <ul>
       <li>
-        <a href="/">Blog</a>
+        <a href="/" title="Blog">Blog</a>
       </li>
       <li>
-        <a href="/tags">Topics</a>
+        <a href="/topics" title="Topics">Topics</a>
       </li>
       <li>
-        <a href="/about">About</a>
+        <a href="/about" title="About me and this blog">About</a>
       </li>
     </ul>
   </nav>
-  <div class="page-content">
+  <div class="page-content {{ page.title | downcase | escape }}">
     {{ content }}
   </div>
   <footer>
     &copy; 2016 Angelika Tyborska
+    {% include social_links.html %}
   </footer>
 </div>
 </body>

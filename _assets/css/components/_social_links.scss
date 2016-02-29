@@ -1,0 +1,36 @@
+.social-links {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+  li {
+    display: inline-block;
+
+    &:before {
+      content: none;
+    }
+  }
+
+  a {
+    font-size: 0;
+    &:before {
+      @include fa-icon;
+
+      padding: $tiny-gap;
+      font-size: $h3-font-size;
+    }
+  }
+
+  .github {
+    &:before {
+      content: $fa-var-github;
+    }
+  }
+
+  .linkedin {
+    &:before {
+      content: $fa-var-linkedin;
+    }
+  }
+}

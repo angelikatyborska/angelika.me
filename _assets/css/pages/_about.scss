@@ -1,0 +1,12 @@
+.about {
+  .social-links {
+    display: block;
+    margin-bottom: $small-gap;
+    text-align: center;
+
+    a:before {
+      padding: 0 $small-gap;
+      font-size: $h1-font-size;
+    }
+  }
+}

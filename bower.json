@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "homepage": "https://github.com/angelikatyborska/blog",
+  "authors": [
+    "Angelika Tyborska <atyborska93@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "_assets/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.5.0"
+  }
+}
