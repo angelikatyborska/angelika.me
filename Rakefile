@@ -1,4 +1,4 @@
 desc 'run jekyll server'
 task :jekyll_dev do
-  system 'bundle exec jekyll serve'
+  system 'bundle exec jekyll serve --drafts'
 end
