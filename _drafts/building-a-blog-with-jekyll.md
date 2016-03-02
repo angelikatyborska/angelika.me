@@ -3,7 +3,7 @@ title: Building a blog with Jekyll
 description: A basic introduction to Jekyll based on my own experience with building this blog.
 tags: [ruby, blogging, jekyll]
 ---
-When I first got the idea to start blogging, I asked my boyfriend if he could spare me some storage space on his server. He agreed under one condition - no PHP. He swore not to ever install PHP on his server. That meant no WordPress, the only blogging tool I was familiar with. After a few minutes of googling 'ruby blogging' I decided on using [Jekyll](http://jekyllrb.com/). It was completely unfamiliar to me at that time and now I want to share with you what I had to learn to start this blog.
+When I first got the idea to start blogging, I asked my boyfriend if he could spare me some storage space on his server. He agreed under one condition - no PHP. He swore to himself not to ever install PHP on his server. That meant no WordPress, the only blogging tool I was familiar with. After a few minutes of googling 'ruby blogging' I decided on using [Jekyll](http://jekyllrb.com/). It was completely unfamiliar to me at that time and now I want to share with you what I had to learn to start this blog.
 
 Please note that at the time of writing this post, the latest version of Jekyll is 3.1.2.
 
@@ -268,7 +268,7 @@ You can include the main Sass stylesheet in your layout just like before:
 
 ### 3. `jekyll-assets`
 
-[`jekyll-assets`](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through the [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (scss/less files instead of css files), you should use the Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but `jekyll-assets` will do it for you automagically. 
+[`jekyll-assets`](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (scss/less files instead of css files), you should use Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but `jekyll-assets` will do it for you automagically. 
 
 To use the asset pipeline, add `jekyll-assets` to your blog's Gemfile:
 
@@ -347,7 +347,7 @@ Now you can include anything inside `_assets/packages` just like all the other a
 
 ## How can I get this cool syntax highlighting?
 
-Syntax highlighting is a not part of Markdown, but Jekyll uses [Rogue](https://github.com/jneen/rouge) to get it done. In your post, include a code block (specifying the desired language) like this:
+Syntax highlighting is not a part of Markdown, but Jekyll uses [Rogue](https://github.com/jneen/rouge) to get it done. In your post, include a code block (specifying the desired language) like this:
 
 ````md
 ```ruby
@@ -355,8 +355,50 @@ puts 'Hello, World!'
 ```
 ````
 
-If you inspect the HTML generated from your Markdown source, you will notice that the code is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme]` and you will find what you're looking for.
+If you inspect the HTML generated from your Markdown source, you will notice that this code block is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme]` and you will find what you're looking for.
 
 ## Comments
 
-You probably noticed that I keep talking about a static site, but there is a comments section. I added comments to my posts using [Disqus](https://disqus.com/). It's really simple. All you need to do is create a Disqus account and add a new site to it. You will be given a snippet of HTML and JavaScript ([Universal Embeded Code](https://disqus.com/admin/universalcode/)) that you have to append to your `_layouts/post.html` layout. There will be some JavaScript variables to configure, one of them being an unique identifier of a post.
+Even though Jekyll is for building static sites, it's possible to include a comments section in your blog. I added comments to my posts using [Disqus](https://disqus.com/). It's really simple. All you need to do is create a Disqus account and add a new site to it. You will be given a snippet of HTML and JavaScript ([Universal Embeded Code](https://disqus.com/admin/universalcode/)) that you have to append to `_layouts/post.html`. There will be some JavaScript variables to configure, one of them being an unique identifier of a post.
+
+```html
+<!-- _layouts/post.html -->
+<div id="disqus_thread"></div>
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: 
+   *  EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT
+   *  DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
+   *  https://disqus.com/admin/universalcode/#configuration-variables
+   */
+
+  var disqus_config = function () {
+    this.page.url = "{% raw %}{{ site.url }}{{ page.url }}{% endraw %}";
+    this.page.identifier = "{% raw %}{{ page.id }}{% endraw %}";
+  };
+
+  (function() {  // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//YOUR-DISQUS-SITE.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript" rel="nofollow">
+  comments powered by Disqus.
+</a>
+</noscript>
+```
+
+```yml
+# _config.yml
+site:
+  url: http://your-blog.com
+```
+
+## Conclusion
+
+I hope I convinced you that Jekyll is really simple to use and there is no need for WordPress when it comes to small personal blogs. Remember, whenever you're in doubt, take a look at the [official Jekyll documentation](http://jekyllrb.com/docs/home/). You can also search for Github repositories with sites developed using Jekyll. Mine is [here]({{ site.about.repo }}).
