@@ -6,18 +6,55 @@
       margin-bottom: $small-gap;
       text-align: center;
     }
+  }
 
-    .post-meta {
-      @include clearfix;
+  #disqus_thread {
+    margin-top: $huge-gap;
+  }
+}
 
-      margin-bottom: $small-gap;
-      font-size: $small-font-size;
+.post-meta {
+  @include clearfix;
 
-      .tags {
-        a:not(:first-child) {
-          margin-left: $tiny-gap;
-        }
-      }
+  margin-bottom: $small-gap;
+  font-size: $small-font-size;
+  color: $medium-gray;
+
+  > span {
+    margin-right: $medium-gap;
+    white-space: nowrap;
+
+    &:before {
+      @include fa-icon;
+
+      margin-right: $small-gap;
+    }
+  }
+
+  > span:last-child {
+    margin-right: 0;
+  }
+
+
+  .date {
+    &:before {
+      content: $fa-var-calendar;
+    }
+  }
+
+  .comment-count {
+    &:before {
+      content: $fa-var-comment;
+    }
+  }
+
+  .tags {
+    &:before {
+      content: $fa-var-tags;
+    }
+
+    a:not(:first-child) {
+      margin-left: $tiny-gap;
     }
   }
 }

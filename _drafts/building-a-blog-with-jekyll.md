@@ -359,4 +359,4 @@ If you inspect the HTML generated from your Markdown source, you will notice tha
 
 ## Comments
 
-You probably noticed that I keep talking about a static site, but there is a comments section. I added comments to my posts using [Disqus](https://disqus.com/). It's really simple. All you need to to is create a Disqus account and add a new site to it. You will be given a snippet of HTML and JavaScript ([Universal Embeded Code](https://disqus.com/admin/universalcode/)) that you have to append to your `_layouts/post.html` layout. There will be some JavaScript variables to configure, one of them being an unique identifier of a post.
+You probably noticed that I keep talking about a static site, but there is a comments section. I added comments to my posts using [Disqus](https://disqus.com/). It's really simple. All you need to do is create a Disqus account and add a new site to it. You will be given a snippet of HTML and JavaScript ([Universal Embeded Code](https://disqus.com/admin/universalcode/)) that you have to append to your `_layouts/post.html` layout. There will be some JavaScript variables to configure, one of them being an unique identifier of a post.

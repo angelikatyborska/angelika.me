@@ -1,0 +1,21 @@
+table {
+  margin: 0 auto $medium-gap;
+  font-family: $code-font-family;
+  background-color: $white;
+
+  th {
+    font-weight: bold;
+  }
+
+  td, th {
+    padding: $tiny-gap;
+  }
+
+  &, td, th {
+    border: 1px solid darken($light-gray, 10);
+  }
+
+  tbody tr:nth-child(2n + 1) {
+    background-color: darken($white, 3);
+  }
+}

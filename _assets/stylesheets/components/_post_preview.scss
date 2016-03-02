@@ -6,19 +6,6 @@
   }
 
   .post-preview-meta {
-    @include clearfix;
-
-    margin-bottom: $small-gap;
-    font-size: rem-calc(14);
-
-    > span:not(:last-child){
-      margin-right: $big-gap;
-    }
-
-    .tags {
-      a:not(:first-child) {
-        margin-left: $tiny-gap;
-      }
-    }
+    @extend .post-meta;
   }
 }
