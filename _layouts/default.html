@@ -42,7 +42,7 @@
       </li>
     </ul>
   </nav>
-  <div class="page-content {{ page.title | downcase | escape }}">
+  <div class="page-content {{ page.title | slugify }}">
     {{ content }}
   </div>
   <footer>
@@ -50,5 +50,8 @@
     {% include social_links.html %}
   </footer>
 </div>
+
+<script id="dsq-count-scr" src="//angelikatyborska.disqus.com/count.js" async></script>
+
 </body>
 </html>

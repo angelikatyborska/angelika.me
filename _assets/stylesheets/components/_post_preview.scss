@@ -11,7 +11,7 @@
     margin-bottom: $small-gap;
     font-size: rem-calc(14);
 
-    .date {
+    > span:not(:last-child){
       margin-right: $big-gap;
     }
 

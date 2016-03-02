@@ -347,7 +347,7 @@ Now you can include anything inside `_assets/packages` just like all the other a
 
 ## How can I get this cool syntax highlighting?
 
-Syntax highlighting is not part of Markdown, but Jekyll uses [Rogue](https://github.com/jneen/rouge) to get it done. In your post, include a code block (specifying the desired language) like this:
+Syntax highlighting is a not part of Markdown, but Jekyll uses [Rogue](https://github.com/jneen/rouge) to get it done. In your post, include a code block (specifying the desired language) like this:
 
 ````md
 ```ruby
@@ -355,8 +355,8 @@ puts 'Hello, World!'
 ```
 ````
 
-If you inspect the HTML generated from your Markdown source, you will notice that the code is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme here]` and you will find what you're looking for.
-
-
+If you inspect the HTML generated from your Markdown source, you will notice that the code is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme]` and you will find what you're looking for.
 
 ## Comments
+
+You probably noticed that I keep talking about a static site, but there is a comments section. I added comments to my posts using [Disqus](https://disqus.com/). It's really simple. All you need to to is create a Disqus account and add a new site to it. You will be given a snippet of HTML and JavaScript ([Universal Embeded Code](https://disqus.com/admin/universalcode/)) that you have to append to your `_layouts/post.html` layout. There will be some JavaScript variables to configure, one of them being an unique identifier of a post.
