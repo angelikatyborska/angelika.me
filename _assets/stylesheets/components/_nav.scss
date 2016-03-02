@@ -10,10 +10,7 @@ nav {
 
     li {
       display: inline-block;
-
-      &:before {
-        margin: 0 $small-gap;
-      }
+      margin: 0 $small-gap;
 
       &:first-child {
         &:before {
@@ -22,13 +19,9 @@ nav {
       }
 
       a {
+        position: relative;
         padding: $tiny-gap;
-        color: inherit;
-
-        &:hover,
-        &:active {
-          border-bottom: rem-calc(2) solid $white;
-        }
+        color: $medium-gray;
       }
     }
   }

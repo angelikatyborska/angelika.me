@@ -6,7 +6,7 @@
     <div class="post-preview-meta">
       <span class="date">{{ post.date | date: '%d %B %Y' }}</span>
       <span class="comment-count">
-        <a href="{{ post.url }}#disqus_thread">0 Comments</a>
+        <a href="{{ post.url }}#disqus_thread" data-disqus-identifier="{{ post.id }}">0 Comments</a>
       </span>
       <span class="tags">{{ post || tags }}</span>
     </div>

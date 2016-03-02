@@ -1,7 +1,7 @@
 ---
 title: Building a blog with Jekyll
 description: A basic introduction to Jekyll based on my own experience with building this blog.
-tags: [ruby, blogging, jekyll]
+tags: [gem, blogging, jekyll]
 ---
 When I first got the idea to start blogging, I asked my boyfriend if he could spare me some storage space on his server. He agreed under one condition - no PHP. He swore to himself not to ever install PHP on his server. That meant no WordPress, the only blogging tool I was familiar with. After a few minutes of googling 'ruby blogging' I decided on using [Jekyll](http://jekyllrb.com/). It was completely unfamiliar to me at that time and now I want to share with you what I had to learn to start this blog.
 
@@ -191,6 +191,12 @@ defaults:
 
 Now you can skip specifying a layout in a post's YAML Front Matter.
 
+### URLs without `.html`
+
+```yml
+permalink: pretty
+```
+
 ### Anything you want
 
 ```yml
@@ -203,6 +209,8 @@ You can use it in a post, a page or a layout like this:
 ```
 My favorite color is {% raw %}{{ site.favorites.color }}{% endraw %}.
 ```
+
+Remember that every time you edit configuration, you have to restart Jekyll's server.
 
 ## Assets
 
