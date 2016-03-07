@@ -4,7 +4,7 @@ description: In you're on your first job hunt and losing sleep over it because i
 tags: [job hunt]
 ---
 
-I would like to share with you my experience with looking for my first Ruby job. I want to focus mainly on the timeline of the whole process. Before I started, I was under the impression that everyone would answer my emails within 24 hours. Boy was I wrong... This post is to let you know how long the recruitment process can be. To calm your nerves.
+I would like to share with you my experience with looking for my first Ruby job. I want to focus mainly on the timeline of the whole process. Before I started, I was under the impression that everyone would answer my emails within 24 hours. Boy was I wrong... This post is to let you know how redious the recruitment process can be. To calm your nerves.
 
 ## Prologue - a kick in the butt
 
@@ -20,8 +20,21 @@ I was not prepared for a failure. In fact, I haven't experienced many big failur
 
 ## Part I
 
+**04 February 2016:** I applied for an internship at Company A in a response to a job offer.
+
+**09 February 2016:** I applied for a junior position at Company B in a response to a job offer that has been on their website forever.
+
+**16 February 2015:** I applied for a position (level not specified) at Company C in a response to a job offer with a deadline.
+
 ## Part II - lost hope
+
+I have been gradually going crazy. Why isn't anyone replying? I triple-checked my resume, the email address was correct, my phone number was correct. I triple-checked my sent mailbox. I did in fact sent my applications.
+
+
 
 ## Part III - a spark of hope
 
 ## Epilogue
+
+## Conclusion
+Be patient. Don't obsess over one application. Keep learning.

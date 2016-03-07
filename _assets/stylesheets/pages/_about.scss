@@ -4,9 +4,17 @@
     margin-bottom: $small-gap;
     text-align: center;
 
-    a:before {
+    a {
       padding: 0 $small-gap;
-      font-size: $h1-font-size;
+
+      &:before {
+        font-size: $h1-font-size;
+      }
+    }
+
+    svg {
+      height: $h1-font-size;
+      width: 0.8 * $h1-font-size;
     }
   }
 }

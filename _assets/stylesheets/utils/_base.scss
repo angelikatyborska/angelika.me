@@ -13,8 +13,9 @@ body {
 }
 
 a {
+  @include transition;
+
   color: $pink;
-  transition: all 0.3s ease;
 
   &:active,
   &:hover {
