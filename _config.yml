@@ -1,4 +1,4 @@
-exclude: [Gemfile, bower.json, Rakefile]
+exclude: [Gemfile, bower.json, Rakefile, README]
 
 name: Angelika.me
 description: A blog about Ruby, Rails, JavaScript and web development in general.
@@ -10,7 +10,7 @@ tag_page_layout: tag_page
 tag_page_dir: tag
 
 about:
-  repo: https://github.com/angelikatyborska/blog
+  repo: https://github.com/angelikatyborska/angelika.me
   linkedin: https://linkedin.com/in/angelika-tyborska-330a6bb0
   github: https://github.com/angelikatyborska
   exercism: http://exercism.io/angelikatyborska
