@@ -40,7 +40,7 @@ This is where your HTML will reside.
 
 ### Layouts
 
-A layout can be used by a page, a post or another layout. Every layout should include the tag {% raw %}`{{ content }}`{% endraw %}, this is where a file that uses this layout will be rendered. Every website needs at least one layout with `<html>`, `<head>` and `<body>` elements. I will call that layout a default one (you can call it whatever you want).
+A layout can be used by a page, a post or another layout. Every layout should include the tag {% raw %}`{{ content }}`{% endraw %}. This is where a file that uses this layout will be rendered. Every website needs at least one layout with `<html>`, `<head>` and `<body>` elements. I will call that layout a default one (you can call it whatever you want).
 
 ```html
 <!-- _layouts/default.html -->
@@ -91,13 +91,13 @@ We can then include it in `_layouts/default.html` by adding a line like this:
 We can pass parameters to an include:
 
 ```html
-{% raw %}{% include heart.html name="Angelika" %}{% endraw %}
+{% raw %}{% include love.html name="Angelika" %}{% endraw %}
 ```
 
 Partials can use those parameters:
 
 ```html
-<!-- _includes/heart.html -->
+<!-- _includes/love.html -->
 I &hearts; {% raw %}{{ include.name }}{% endraw %}!
 ```
 
@@ -107,7 +107,7 @@ Those are [Liquid](https://github.com/Shopify/liquid) tags. Liquid is a templati
 
 ### What's up with `---`?
 
-It's a [Front Matter](https://jekyllrb.com/docs/frontmatter/). It has to be a valid YAML preceded and followed by a line of three dashes. It's optional, but if you want to include it, it has to be the first thing in the file. It's where we can specify a layout for a page, a permalink and tags for a post, and even our own variables that we can later use inside Liquid tags.
+It's a [Front Matter](https://jekyllrb.com/docs/frontmatter/). It has to be a valid YAML preceded and followed by a line of three dashes. It's optional, but if you want to include it, it has to be the first thing in the file. It's where we can specify a layout for a page, tags for a post, and even our own variables that we can later use inside Liquid tags.
 
 ## Posts and drafts
 
@@ -143,11 +143,11 @@ By default, drafts will not be included in `_site`. To see drafts on your blog, 
 A post will look something like this:
 
 ```html
-<!-- _posts/building-a-blog-with-jekyll.md -->
+<!-- _posts/2016-02-29-an-example-post.md -->
 ---
 layout: post
-title: Building a blog with Jekyll
-tags: [ruby, blogging, jekyll]
+title: An example post
+tags: [blogging, jekyll]
 ---
 # This is a header
 
@@ -256,7 +256,6 @@ If you want to use Sass for your stylesheets (and you should!), you can use Jeky
 @import
 'utils/colors',
 'components/header';
-
 ```
 
 Those two lines of triple dashes are necessary and they should be the first thing in the file! The comments with the filenames are here only to make it easier to read this post, you don't want to include them in your code.
@@ -279,11 +278,11 @@ You can include the main Sass stylesheet in your layout just like before:
 <link href='/css/screen.css' rel='stylesheet' type='text/css'>
 ```
 
-### 3. `jekyll-assets`
+### 3. Jekyll-assets
 
-[`jekyll-assets`](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (`.scss`/`.less` files instead of `.css` files), you should use Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but `jekyll-assets` will do it for you automagically. 
+[Jekyll-assets](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (`.scss`/`.less` files instead of `.css` files), you should use Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but jekyll-assets will do it for you automagically. 
 
-To use the asset pipeline, add `jekyll-assets` to your blog's Gemfile:
+To use the asset pipeline, add jekyll-assets to your blog's Gemfile:
 
 ```ruby
 # Gemfile
@@ -299,7 +298,7 @@ group :jekyll_plugins do
 end
 ```
 
-In order to play nice with `jekyll-assets`, your assets directory structure should look like this:
+In order to play nice with jekyll-assets, your assets directory structure should look like this:
 
 ```
 my_blog
@@ -324,7 +323,7 @@ To include a stylesheet in your layout use:
 To include a JavaScript file use:
 
 ```html
-{% raw %}{% javscript tooltip %}{% endraw %}
+{% raw %}{% javascript tooltip %}{% endraw %}
 ```
 
 To include an image use:
