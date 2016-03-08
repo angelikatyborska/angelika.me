@@ -1,6 +1,8 @@
 exclude: [Gemfile, bower.json, Rakefile]
 
-url: http://localhost:4000
+name: Angelika Tyborska
+description:
+url: http://angelika.me
 
 permalink: pretty
 

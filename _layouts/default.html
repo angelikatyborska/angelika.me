@@ -3,11 +3,8 @@
 {% include head.html title=page.title %}
 <body>
 <div class="page-wrapper">
-  <header>
-    <a href="{{ site.url }}" title="Angelika Tyborska">
-      {% img logo alt:'Angelika Tyborska Logo' class:'logo' %}
-    </a>
-  </header>
+ {% include header.html %}
+
   <nav>
     <ul>
       <li>
@@ -21,12 +18,12 @@
       </li>
     </ul>
   </nav>
+
   <div class="page-content {{ page.title | slugify }}">
     {{ content }}
   </div>
-  <footer>
-    &copy; 2016 Angelika Tyborska
-  </footer>
+
+  {% include footer.html %}
 </div>
 
 <script id="dsq-count-scr" src="//angelikatyborska.disqus.com/count.js" async></script>

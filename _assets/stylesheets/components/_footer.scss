@@ -3,4 +3,18 @@ footer {
   padding: $medium-gap 0;
   font-size: $small-font-size;
   text-align: center;
+
+  .rss {
+    float: right;
+    font-size: 0;
+
+    &:before {
+      @include fa-icon;
+
+      content: $fa-var-rss;
+      padding: 0 $small-gap;
+      vertical-align: middle;
+      font-size: $h4-font-size;
+    }
+  }
 }

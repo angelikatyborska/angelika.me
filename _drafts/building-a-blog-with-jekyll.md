@@ -1,6 +1,6 @@
 ---
 title: Building a blog with Jekyll
-description: A basic introduction to Jekyll based on my own experience with building this blog.
+excerpt: A basic introduction to Jekyll based on my own experience with building this blog.
 tags: [gem, blogging, jekyll]
 ---
 When I first got the idea to start blogging, I asked my boyfriend if he could spare me some storage space on his server. He agreed under one condition - no PHP. He swore to himself not to ever install PHP on his server. That meant no WordPress, the only blogging tool I was familiar with. After a few minutes of googling 'ruby blogging' I decided on using [Jekyll](http://jekyllrb.com/). It was completely unfamiliar to me at that time and now I want to share with you what I had to learn to start this blog.
