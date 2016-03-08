@@ -8,13 +8,10 @@
   {% else %}
   {% if include.tag %}
   {% assign title = include.tag %}
-  {% else %}
-  {% assign title = 'Blog' %}
   {% endif %}
   {% endif %}
-  <title>{{ title | capitalize }} | Angelika Tyborska</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title | capitalize }} | {% endif %}{{ site.name }}</title>
 
   <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="Latest 10 blog posts (atom)" />
 
@@ -22,5 +19,22 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700' rel='stylesheet' type='text/css'>
 
+  <link rel="shortcut icon" type="image/png" href="{% asset_path logo.png %}">
+
   {% stylesheet screen %}
+
+  {% if page.excerpt %}
+  {% assign description = page.excerpt %}
+  {% else %}
+  {% assign description = site.description %}
+  {% endif %}
+
+  <meta name="author" content="Angelika Tyborska">
+  <meta name="description" content="{{ description | strip_html }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="{{ title | capitalize }} | {{ site.name }}" />
+  <meta property="og:description" content="{{ description | strip_html }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="{{ site.url }}{% asset_path logo %}" />
 </head>

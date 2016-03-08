@@ -1,7 +1,7 @@
 exclude: [Gemfile, bower.json, Rakefile]
 
-name: Angelika Tyborska
-description:
+name: Angelika.me
+description: A blog about Ruby, Rails, JavaScript and web development in general.
 url: http://angelika.me
 
 permalink: pretty

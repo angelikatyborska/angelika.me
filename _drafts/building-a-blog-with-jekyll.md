@@ -9,11 +9,9 @@ Please note that at the time of writing this post, the latest version of Jekyll 
 
 ## What is Jekyll?
 
-Jekyll is a command-line tool (distributed as a Ruby gem) for generating static websites. It allows you to divide your static HTML pages into layouts and partials, and to write your content using your favorite markup language. Jekyll understands blogging - it creates a static page for your every post and allows you to display all posts on a single page. Jekyll is awesome for programming-related blogs, because it has syntax highlighting built-in. Because all your content is static, there is no need for a database and it is very easy to keep your blog (along with all the content) under version control.
+Jekyll is a command-line tool (distributed as a Ruby gem) for generating static websites. It allows you to divide your static HTML pages into layouts and partials, and to write your content using your favorite markup language. Jekyll understands blogging - it creates a static page for every post and allows you to display all posts on a single page. Jekyll is awesome for programming-related blogs, because it has syntax highlighting built-in. Because the site content is static, there is no need for a database and it is very easy to keep your blog (along with the content) under version control.
 
-All you need to do is organize your files using a directory structure Jekyll understands.
-
-To generate your website, run `jekyll build`. This command will create a `_site` directory, with all the files your website needs. To watch for changes, add a `--watch` flag. To build, watch for changes and serve the contents of `_site` on `http://localhost:4000` simultaneously, run `jekyll serve`.
+All you need to do is organize your files using a directory structure Jekyll understands and run Jekyll in the root directory. To generate your website, run `jekyll build`. This command will create a `_site` directory, with all the files your website needs. To watch for changes, add a `--watch` flag. To build, watch for changes and serve the contents of `_site` on `http://localhost:4000` simultaneously, run `jekyll serve`.
 
 Since `_site` is an auto-generated directory, you probably want to ignore it in your VCS. When you're ready to deploy, it's as easy as copying everything from `_site` to your server's public directory.
 
@@ -50,7 +48,7 @@ A layout can be used by a page, a post or another layout. Every layout should in
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>You Blog</title>
+  <title>My Blog</title>
 </head>
 <body>
   {% raw %}{{ content }}{% endraw %}
@@ -121,7 +119,7 @@ yyy-mm-dd-title.md
 
 The extension `.md` means it's a Markdown file (like a typical README file in a GitHub repository). You can write posts in plain HTML as well. To use some other markup language, you have to install an appropriate plugin.
 
-Jekyll will create this directory structure with your posts:
+Jekyll, when building your site, will create this directory structure for your posts:
 
 ```
 my_blog
@@ -129,7 +127,8 @@ my_blog
     yyyy
       mm
         dd
-          title.html
+          title
+            index.html
 ```
 
 Files inside `_drafts` are posts without a date (since you're currently working on them and you don't know when they will be finished):
@@ -138,11 +137,12 @@ Files inside `_drafts` are posts without a date (since you're currently working 
 a-post-im-currently-working-on.md
 ```
 
-By default, drafts will not be included in `_site`. To see drafts on your blog, run `jekyll serve --drafts`.
+By default, drafts will not be included in `_site`. To see drafts on your blog, run `serve` or `build` with the flag `--drafts`.
 
 A post will look something like this:
 
-```md
+```html
+<!-- _posts/building-a-blog-with-jekyll.md -->
 ---
 layout: post
 title: Building a blog with Jekyll
