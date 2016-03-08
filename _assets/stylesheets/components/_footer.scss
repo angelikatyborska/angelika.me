@@ -1,11 +1,22 @@
 footer {
+  position: relative;
   margin-top: $huge-gap;
   padding: $medium-gap 0;
   font-size: $small-font-size;
   text-align: center;
 
+  .copyright {
+    margin: 0 $huge-gap;
+  }
+
+  .side-links {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
   .rss {
-    float: right;
     font-size: 0;
 
     &:before {
