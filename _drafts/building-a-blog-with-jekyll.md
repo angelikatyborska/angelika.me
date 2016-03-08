@@ -11,7 +11,7 @@ Please note that at the time of writing this post, the latest version of Jekyll 
 
 Jekyll is a command-line tool (distributed as a Ruby gem) for generating static websites. It allows you to divide your static HTML pages into layouts and partials, and to write your content using your favorite markup language. Jekyll understands blogging - it creates a static page for every post and allows you to display all posts on a single page. Jekyll is awesome for programming-related blogs, because it has syntax highlighting built-in. Because the site content is static, there is no need for a database and it is very easy to keep your blog (along with the content) under version control.
 
-All you need to do is organize your files using a directory structure Jekyll understands and run Jekyll in the root directory. To generate your website, run `jekyll build`. This command will create a `_site` directory, with all the files your website needs. To watch for changes, add a `--watch` flag. To build, watch for changes and serve the contents of `_site` on `http://localhost:4000` simultaneously, run `jekyll serve`.
+All you need to do is organize your files using a directory structure Jekyll understands and run Jekyll in the root directory. To generate your website, run `jekyll build`. This command will create a `_site` directory, with all the files your website needs. To watch for changes, add the `--watch` flag. To build, watch for changes and serve the contents of `_site` on `http://localhost:4000` simultaneously, run `jekyll serve`.
 
 Since `_site` is an auto-generated directory, you probably want to ignore it in your VCS. When you're ready to deploy, it's as easy as copying everything from `_site` to your server's public directory.
 
@@ -19,19 +19,19 @@ Since `_site` is an auto-generated directory, you probably want to ignore it in 
 
 ```
 my_blog
-  _drafts
-    a-post-im-currently-working-on.md
-  _includes
-    header.html
-  _layouts
-    default.html
-    post.html
-  _posts
-    2016-02-29-an-example-post.md
-  _config.yml
-  Gemfile
-  index.html
-  some-other-page.html
+├── _drafts
+|   └── a-post-im-currently-working-on.md
+├── _includes
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   └── 2016-02-29-an-example-post.md
+├── _config.yml
+├── Gemfile
+├── index.html
+└── some-other-page.html
 ```
 
 ## Layouts and includes
@@ -107,11 +107,11 @@ Those are [Liquid](https://github.com/Shopify/liquid) tags. Liquid is a templati
 
 ### What's up with `---`?
 
-It's a [Front Matter](https://jekyllrb.com/docs/frontmatter/). It has to be a valid YAML preceded and followed by a line of three dashes. It's optional, but if you want to include it, it has to be the first thing in the file. It's where we can specify a layout for a page, a permalink and tags for a post and even our own variables that we can later use inside Liquid tags.
+It's a [Front Matter](https://jekyllrb.com/docs/frontmatter/). It has to be a valid YAML preceded and followed by a line of three dashes. It's optional, but if you want to include it, it has to be the first thing in the file. It's where we can specify a layout for a page, a permalink and tags for a post, and even our own variables that we can later use inside Liquid tags.
 
 ## Posts and drafts
 
-That's the heart of your blog. Every file inside `_posts` has to follow this naming convention:
+This is the heart of your blog. Every file inside `_posts` has to follow this naming convention:
 
 ```
 yyy-mm-dd-title.md
@@ -123,13 +123,14 @@ Jekyll, when building your site, will create this directory structure for your p
 
 ```
 my_blog
-  _site
-    yyyy
-      mm
-        dd
-          title
-            index.html
+└── _site
+    └── yyyy
+        └── mm
+            └── dd
+                └── title.html
 ```
+
+Note that if you enable [pretty permalinks](#urls-without-html), you will get a `title/index.html` file instead of `title.html`.
 
 Files inside `_drafts` are posts without a date (since you're currently working on them and you don't know when they will be finished):
 
@@ -157,7 +158,7 @@ Every post must begin with the YAML Front Matter.
 
 ## Adding pages
 
-By default, Jekyll copies all files and directories whose names do not begin with a dot or an underscore to `_site`, so adding pages is as simple as adding a HTML file to the root directory of your blog:
+By default, Jekyll copies all files and directories whose names do not begin with a dot or an underscore to `_site`, so adding pages is as simple as adding a new `.html` file:
 
 ```html
 <!-- about.html -->
@@ -166,6 +167,8 @@ layout: default
 ---
 <h1>About this blog</h1>
 ```
+
+If you're using [pretty permalinks](#urls-without-html), you probably want to move that file to a separate directory (`about/index.html`) to be consistent.
 
 ## Configuration
 
@@ -189,9 +192,9 @@ defaults:
       layout: "post"
 ```
 
-Now you can skip specifying a layout in a post's YAML Front Matter.
+Now you can skip specifying the layout in a post's YAML Front Matter.
 
-### URLs without `.html`
+### URLs without `.html` {#urls-without-html}
 
 ```yml
 permalink: pretty
@@ -220,23 +223,24 @@ Now that you're done with markup, you need some color. There are several ways to
 
 As you already know, Jekyll copies (almost) everything from your root directory to `_site`, so you can just use that. Create any directory structure for your assets that you want (do not prefix directory names with a dot or an underscore) and use them in your default layout like you would with any static site:
 
+
 ```
 my_blog
-  assets
-    css
-      screen.css
-    images
-      my_logo.png
+└── assets
+    ├── css
+    |   └── screen.css
+    └── images
+        └── my_logo.png
 ```
 
 ```html
 <!-- _layouts/default.html -->
-<link href='assets/css/screen.css' rel='stylesheet' type='text/css'>
+<link href='/assets/css/screen.css' rel='stylesheet' type='text/css'>
 ```
 
 ```html
 <!-- _includes/header.html -->
-<img src='assets/images/my_logo.png' alt='My Logo'>
+<img src='/assets/images/my_logo.png' alt='My Logo'>
 ```
 
 This way you can use your favorite front-end tools in a Jekyll agnostic way.
@@ -260,23 +264,24 @@ Those two lines of triple dashes are necessary and they should be the first thin
 The files you want to import in your main Sass file should be inside `_sass`:
 
 ```
-_sass
-  utils
-    _colors.scss
-  components
-    _header.scss
+my_blog
+└── _sass
+    ├── utils
+    |   └── _colors.scss
+    └── components
+        └── _header.scss
 ```
 
 You can include the main Sass stylesheet in your layout just like before:
 
 ```html
 <!-- _layouts/default.html -->
-<link href='css/screen.css' rel='stylesheet' type='text/css'>
+<link href='/css/screen.css' rel='stylesheet' type='text/css'>
 ```
 
 ### 3. `jekyll-assets`
 
-[`jekyll-assets`](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (scss/less files instead of css files), you should use Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but `jekyll-assets` will do it for you automagically. 
+[`jekyll-assets`](https://github.com/jekyll/jekyll-assets) is an asset pipeline for Jekyll. I decided on using it because I wanted to pass my stylesheet through [Autoprefixer](https://github.com/postcss/autoprefixer). Remember that if you're using Bootstrap's or Foundation's source files (`.scss`/`.less` files instead of `.css` files), you should use Autoprefixer. You can always set it up with your front-end build tool of choice (like Grunt, Gulp, Broccoli or even npm scripts), but `jekyll-assets` will do it for you automagically. 
 
 To use the asset pipeline, add `jekyll-assets` to your blog's Gemfile:
 
@@ -298,16 +303,16 @@ In order to play nice with `jekyll-assets`, your assets directory structure shou
 
 ```
 my_blog
-  _assets
-    fonts
-    images
-      my_logo.png
-    javascripts
-      tooltip.js
-    stylesheets
-      components
-        _header.scss
-      screen.scss
+└── _assets
+    ├── fonts
+    ├── images
+    |   └── my_logo.png
+    ├── javascripts
+    |   └── tooltip.js
+    └── stylesheets
+        ├── components
+        |   └── _header.scss
+        └── screen.scss
 ```
 
 To include a stylesheet in your layout use:
@@ -328,7 +333,13 @@ To include an image use:
 {% raw %}{% img my_logo alt:'My Logo' class:'logo' %}{% endraw %}
 ```
 
-By default, Jekyll will only copy those assets that have been included with the tags above. If you wish to copy some other files, let's say all fonts, you have to add this to your configuration:
+If you want to include a svg file as an inline `<svg>`, not `<img>`, use:
+
+```html
+{% raw %}{% asset my_svg_file %}{% endraw %}
+```
+
+By default, Jekyll will copy into `_site/assets` only those assets that have been included with the tags above. If you wish to copy some other files, let's say all fonts, you have to add this to your configuration:
 
 ```yml
 # _config.yml
@@ -358,12 +369,20 @@ Now you can include anything inside `_assets/packages` just like all the other a
 Syntax highlighting is not a part of Markdown, but Jekyll uses [Rogue](https://github.com/jneen/rouge) to get it done. In your post, include a code block (specifying the desired language) like this:
 
 ````md
+{% raw %}{% highlight ruby %}
+puts 'Hello, World!'
+{% endhighlight %}{% endraw %}
+````
+
+Or like this in Markdown:
+
+````md
 ```ruby
 puts 'Hello, World!'
 ```
 ````
 
-If you inspect the HTML generated from your Markdown source, you will notice that this code block is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme]` and you will find what you're looking for.
+If you inspect the HTML generated from this source, you will notice that this code block is surrounded with a `pre.highlight` element, and separate expressions are surrounded with `span` elements with weird classes like `nb` and `s1`. This is the doing of Rogue, and Rogue's HTML output is compatible with [Pygments](http://pygments.org/). Just google `pygments stylesheet [your favorite color scheme]` and you will find what you're looking for.
 
 ## Comments
 

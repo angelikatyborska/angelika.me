@@ -3,11 +3,11 @@
   {% comment %}
   The logic below is needed because jekyll-tagging doesn't use the title set in tag_include.html
   {% endcomment %}
-  {% if include.title %}
-  {% assign title = include.title %}
+  {% if page.title %}
+  {% assign title = page.title %}
   {% else %}
-  {% if include.tag %}
-  {% assign title = include.tag %}
+  {% if page.tag %}
+  {% assign title = "Topic: " | append:page.tag %}
   {% endif %}
   {% endif %}
 
