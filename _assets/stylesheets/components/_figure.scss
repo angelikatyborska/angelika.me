@@ -1,0 +1,14 @@
+figure {
+  margin-bottom: $medium-gap;
+  text-align: center;
+
+  figcaption {
+    color: $medium-gray;
+    font-size: $small-font-size;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
