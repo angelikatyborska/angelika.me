@@ -25,6 +25,10 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+
+  <!--Text Fallback-->
+    Exercism
+
   <defs
      id="defs6" />
   <sodipodi:namedview
