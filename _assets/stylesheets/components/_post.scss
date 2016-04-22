@@ -22,7 +22,6 @@
 
   > span {
     margin-right: $medium-gap;
-    white-space: nowrap;
 
     &:before {
       @include fa-icon;
