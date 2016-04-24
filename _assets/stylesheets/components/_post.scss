@@ -11,6 +11,20 @@
   #disqus_thread {
     margin-top: $huge-gap;
   }
+
+  .header-link {
+    position: relative;
+    left: 0.5em;
+    opacity: 0;
+    font-size: 0.8em;
+    color: $medium-gray;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    &:hover .header-link {
+      opacity: 1;
+    }
+  }
 }
 
 .post-meta {
