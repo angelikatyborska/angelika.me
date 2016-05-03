@@ -1,0 +1,49 @@
+.post {
+  + aside {
+    display: none;
+  }
+}
+
+@media #{$big} {
+  .post {
+    + aside {
+      display: block;
+      position: fixed;
+      top: 0;
+      width: calc(50% - #{$page-max-width/2});
+      transform: translateX(-100%);
+      text-align: right;
+      padding: $small-gap $small-gap 0 0;
+      font-family: $header-font-family;
+
+      a {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        transition: none;
+        padding: $tiny-gap $small-gap $tiny-gap 0;
+        color: $medium-gray;
+
+        &.h2 {
+          font-size: rem-calc(18);
+        }
+
+        &.h3 {
+          font-size: rem-calc(16);
+        }
+
+        &.h4 {
+          font-size: rem-calc(14);
+        }
+
+        &.h5 {
+          font-size: rem-calc(12);
+        }
+
+        &.h6 {
+          font-size: rem-calc(10);
+        }
+      }
+    }
+  }
+}
