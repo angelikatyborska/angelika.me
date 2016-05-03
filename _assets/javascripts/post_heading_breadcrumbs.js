@@ -37,12 +37,12 @@ function headingBreadcrumbs(article, breadcrumbsContainer, options) {
     return headingsPerLevel;
   }
 
-  function getBreadcrumbs(headingsPerLevel, offset) {
+  function getBreadcrumbs(headingsPerLevel, scrollTop) {
     var breadcrumbs = [];
-    var headingsInScope = findHeadingsInScope(headingsPerLevel, offset);
+    var headingsInScope = findHeadingsInScope(headingsPerLevel, scrollTop);
 
     headingsInScope.forEach(function(heading) {
-      var opacity = calculateOpacity(heading.beginningOfScope, heading.endOfScope, offset);
+      var opacity = calculateOpacity(heading.beginningOfScope, heading.endOfScope, scrollTop);
 
       var html = '<a href="#' + heading.id
         + '" class="' + heading.tag
@@ -112,11 +112,11 @@ function headingBreadcrumbs(article, breadcrumbsContainer, options) {
     return endOfScope;
   }
 
-  function calculateOpacity(top, bottom, offset) {
-    var diffTop = offset - top;
+  function calculateOpacity(top, bottom, scrollTop) {
+    var diffTop = scrollTop - top;
     var opacityTop = diffTop > FADING_DISTANCE ? 1 : diffTop / FADING_DISTANCE;
 
-    var diffBottom = bottom - offset - OFFSET_END_OF_SCOPE;
+    var diffBottom = bottom - scrollTop - OFFSET_END_OF_SCOPE;
     var opacityBottom = diffBottom > FADING_DISTANCE ? 1 : diffBottom / FADING_DISTANCE;
 
     return Math.min(opacityTop, opacityBottom);
