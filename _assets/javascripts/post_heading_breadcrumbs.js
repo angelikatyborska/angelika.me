@@ -18,10 +18,10 @@ function headingBreadcrumbs(article, breadcrumbsContainer, options) {
   }
 
   function makeBreadcrumbs(headingsPerLevel) {
-    CONTAINER.innerHTML = getBreadcrumbs(headingsPerLevel, offsetTop());
+    CONTAINER.innerHTML = getBreadcrumbs(headingsPerLevel, scrollTop());
   }
 
-  function offsetTop() {
+  function scrollTop() {
     return window.scrollY;
   }
 
