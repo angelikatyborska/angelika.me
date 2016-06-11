@@ -1,7 +1,7 @@
 ---
 title: Looking for my first Ruby job&nbsp;- a&nbsp;timeline
 excerpt: If you're on your first job hunt and losing sleep over it because it's been 3 days since you've sent your resume and nobody answered, read this. 
-tags: [job hunt]
+tags: [job hunt, first job]
 date: 2016-03-14 21:03:00 +0100
 ---
 
