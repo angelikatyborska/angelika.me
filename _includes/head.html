@@ -29,11 +29,11 @@
   {% assign description = site.description %}
   {% endif %}
 
-  <meta name="author" content="Angelika Tyborska">
-  <meta name="description" content="{{ description | strip_html }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Angelika Tyborska" />
+  <meta name="description" content="{{ description | strip_html }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta property="og:title" content="{{ title | capitalize }} | {{ site.name }}" />
+  <meta property="og:title" content="{{ title }} | {{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="{{ site.url }}{% asset_path logo %}" />
