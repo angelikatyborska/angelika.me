@@ -112,7 +112,7 @@ It's not the devices fault, the device only collects readings, but Garmin's app 
 If the phone is within Bluetooth's range, I can use the band to make my phone blink the screen and ring (even when it's silenced), and a proximity meter is shown. I have missed the info about this feature when making my decision to buy Vivosmart HR, so I was ecstatic to discover it. It's a really simple feature goes unused, but when it's needed, it's a lifesaver.
 
 <figure>
-<video src='{% asset_path posts/garmin-vivosmart-hr/find-my-phone %}' type='video/mp4' controls></video>
+<video src='{% asset_path posts/garmin-vivosmart-hr/find-my-phone %}' controls></video>
 <figcaption>I don't have to ask anyone to call me to find my phone</figcaption>
 </figure>
 
