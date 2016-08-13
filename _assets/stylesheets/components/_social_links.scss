@@ -29,6 +29,12 @@
     }
   }
 
+  .twitter {
+    &:before {
+      content: $fa-var-twitter;
+    }
+  }
+
   .linkedin {
     &:before {
       content: $fa-var-linkedin;
