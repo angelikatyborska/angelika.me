@@ -12,11 +12,23 @@ code {
 }
 
 .highlight {
-  overflow-x: auto;
-  margin: rem-calc(20) 0;
-  padding: rem-calc(10);
-  border: rem-calc(1) solid darken($background-color, 5);
-  background-color: $white;
+  table {
+    overflow-x: auto;
+    width: 100%;
+    margin: rem-calc(20) 0;
+    padding: rem-calc(10);
+    border: rem-calc(1) solid darken($background-color, 5);
+  }
+
+  .code {
+    background-color: $white;
+  }
+
+  .gutter {
+    width: 42px;
+    text-align: right;
+    background-color: lighten($background-color, 1);
+  }
 }
 
 .highlight {
