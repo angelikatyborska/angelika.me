@@ -37,7 +37,13 @@
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="{{ site.url }}{% asset_path logo-short-hair %}" />
-  <meta property="og:image:width" content="{{ assets['logo.png'].width }}" />
-  <meta property="og:image:height" content="{{ assets['logo.png'].height }}" />
+  <meta property="og:image:width" content="{{ assets['logo-short-hair.png'].width }}" />
+  <meta property="og:image:height" content="{{ assets['logo-short-hair.png'].height }}" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="{{ site.twitter_handler }}" />
+  <meta name="twitter:title" content="{{ title }} | {{ site.name }}" />
+  <meta name="twitter:description" content="{{ description | strip_html }}" />
+  <meta name="twitter:image" content="{{ site.url }}{% asset_path logo-short-hair %}" />
 
 </head>

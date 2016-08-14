@@ -3,7 +3,7 @@ exclude: [Gemfile, bower.json, Rakefile, README]
 name: Angelika.me
 description: Angelika Tyborska's personal blog about Ruby, JavaScript and web development in general.
 url: http://angelika.me
-
+twitter_handler: "@atyborska93"
 permalink: pretty
 
 tag_page_layout: tag_page
