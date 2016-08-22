@@ -17,7 +17,7 @@ Ever since I first started learning about software development, I have had exact
 
 Studying computer science at the university fulfilled those expectations. It was a bunch of teachers asking questions about stuff they knew all about expecting to hear all the correct answers. If I didn't know the answers, they would just tell me and I would learn that way. Just like in high school, and middle school, and primary school (I don't remember much of my life before that).
 
-When I was learning something at home, beyond the curriculum, I needed to know all the *best practices* and *conventions*. I was terrified to make a fool out myself by breaking a rule that I didn't know existed. It didn't help that I started learning backend development with Rails. Because of Rails, I had an expectation that every framework and every library would make all the decisions for me. And I was frustrated when it didn't. What do you mean *I* have to come up with the directory structure of *my* project *myself*? Surely there must be a *convention* for that. Teacher, what am I supposed to do? Oh, wait...
+When I was learning something at home, beyond the curriculum, I needed to know all the *best practices* and *conventions*. I was terrified to make a fool out of myself by breaking a rule that I didn't know existed. It didn't help that I started learning backend development with Rails. Because of Rails, I had an expectation that every framework and every library would make all the decisions for me. And I was frustrated when it didn't. What do you mean *I* have to come up with the directory structure of *my* project *myself*? Surely there must be a *convention* for that. Teacher, what am I supposed to do? Oh, wait...
 
 Well, working as a software developer (fortunately!) is nothing like being a student. Here is a brief reality check for a 3 months younger me:
 
@@ -47,7 +47,7 @@ There are many books, and blog posts, and Stack Overflow answers. And they somet
 
 ### *Good practices* matter only if you *practice* at all
 
-It's awesome that you want to keep your work tidy and well-structured, the world needs more juniors like you, but the fear of failure is not an excuse to refrain from writing code at all! You will make mistakes. Your code will make somebody cringe at some point. Most importantly, you code will make you cringe in just a few months, of that I am 100% sure. Now stop worrying about that so much and write something. Learning good practices makes the most sense when you have actually encountered (and probably caused) the problems with badly structured code that the practices aim at solving.
+It's awesome that you want to keep your work tidy and well-structured, the world needs more juniors like you, but the fear of failure is not an excuse to refrain from writing code at all! You will make mistakes. Your code will make somebody cringe at some point. Most importantly, you code will make you cringe in just a few months, of that I am 100% sure. Now stop worrying about that so much and write something. Learning good practices makes the most sense when you have actually encountered (and probably caused) the problems with badly structured code that the practices aim to solve.
 
 That being said, I still can't help but be super excited about [Katrina Owen and Sandi Metz witting a book together](http://signup.99bottlesbook.com/)!
 
