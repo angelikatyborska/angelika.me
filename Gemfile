@@ -9,4 +9,5 @@ group :jekyll_plugins do
   gem 'sass'
   gem 'uglifier'
   gem 'autoprefixer-rails'
+  gem 'jemoji'
 end
