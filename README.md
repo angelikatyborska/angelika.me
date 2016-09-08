@@ -1,2 +1,4 @@
 # angelika.me
-Jekyll source for [my personal blog](http://angelika.me).
+[My personal blog](http://angelika.me).
+
+Using Jekyll.

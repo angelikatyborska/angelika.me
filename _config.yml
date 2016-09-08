@@ -1,4 +1,4 @@
-exclude: [Gemfile, bower.json, Rakefile, README]
+exclude: [Gemfile, bower.json, Rakefile, README, vendor]
 
 name: Angelika.me
 description: Angelika Tyborska's personal blog about Ruby, JavaScript and web development in general.
