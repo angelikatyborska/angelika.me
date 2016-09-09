@@ -353,7 +353,7 @@ New command:
 $ launchctl bootstrap gui/$UID /Users/angelika/Library/LaunchAgents/me.angelika.work.plist
 ```
 
-:tada: Viola! :tada:
+:tada: Voila! :tada:
 
 Please note, again, that *loading*/*bootstrapping* usually does not mean *starting*, except that in this case it does - I defined the agent to run at load.
 
