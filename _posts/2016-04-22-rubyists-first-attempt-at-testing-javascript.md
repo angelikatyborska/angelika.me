@@ -615,7 +615,7 @@ it('will not wait the callback', () => {
 
 We can, however, force Mocha to wait. The `it` function can take an argument, usually called `done`, which is a method. Mocha will wait for the test suite to call this method before finishing running the example. We should call it inside the callback.
 
-```
+```js
 // test/lib/generic_test.js
 import '../test_helper'
 
@@ -638,7 +638,7 @@ ding!
 
 ### Manually moving time forward with Sinon
 
-```
+```js
 // test/lib/bomb_test.js
 import '../test_helper'
 import Bomb from '../../lib/bomb'
