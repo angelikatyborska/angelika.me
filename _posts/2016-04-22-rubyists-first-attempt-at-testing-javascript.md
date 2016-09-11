@@ -134,7 +134,7 @@ gem 'timecop'
 - [Proxyquire](https://github.com/thlorenz/proxyquire) - a tool for messing with the way modules get imported, allows us to swap some dependencies of a module we want to test to mocks without changing anything in the module's source code, works with ES6 modules and Babel,
 - [Timekeeper](https://github.com/vesln/timekeeper) - a library for testing time-dependent code.
 
-```js
+```json
 // package.json
 {
   "scripts": {
@@ -150,7 +150,7 @@ gem 'timecop'
     "mocha": "^2.4.5",
     "proxyquire": "^1.7.4",
     "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
     "timekeeper": "0.0.5"
   }
 }

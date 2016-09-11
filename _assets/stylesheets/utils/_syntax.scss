@@ -47,38 +47,38 @@ code {
   }
 
   .c {
-    color: #228B22;
+    color: $syntax-green;
   }
 
   .err {
-    color: #a61717;
+    color: $syntax-red-error;
     background-color: #e3d2d2;
   }
 
   .k {
-    color: #8B008B;
+    color: $syntax-purple;
     font-weight: bold;
   }
 
   .ch, .cm {
-    color: #228B22;
+    color: $syntax-green;
   }
 
   .cp {
-    color: #1e889b;
+    color: $syntax-teal;
   }
 
   .cpf, .c1 {
-    color: #228B22;
+    color: $syntax-green;
   }
 
   .cs {
-    color: #8B008B;
+    color: $syntax-purple;
     font-weight: bold;
   }
 
   .gd {
-    color: #aa0000;
+    color: $syntax-red;
   }
 
   .ge {
@@ -86,7 +86,7 @@ code {
   }
 
   .gr {
-    color: #aa0000;
+    color: $syntax-red;
   }
 
   .gh {
@@ -116,11 +116,11 @@ code {
   }
 
   .gt {
-    color: #aa0000;
+    color: $syntax-red;
   }
 
   .kc, .kd, .kn, .kp, .kr {
-    color: #8B008B;
+    color: $syntax-purple;
     font-weight: bold;
   }
 
@@ -134,7 +134,7 @@ code {
   }
 
   .s {
-    color: #CD5555;
+    color: $syntax-salmon;
   }
 
   .na, .nb {
@@ -147,7 +147,7 @@ code {
   }
 
   .no {
-    color: #00688B;
+    color: $syntax-teal-dark;
   }
 
   .nd {
@@ -169,16 +169,16 @@ code {
   }
 
   .nt {
-    color: #8B008B;
+    color: $syntax-purple;
     font-weight: bold;
   }
 
   .nv {
-    color: #00688B;
+    color: $syntax-teal-dark;
   }
 
   .ow {
-    color: #8B008B;
+    color: $syntax-purple;
   }
 
   .w {
@@ -190,7 +190,7 @@ code {
   }
 
   .sb, .sc, .sd, .s2, .se {
-    color: #CD5555;
+    color: $syntax-salmon;
   }
 
   .sh {
@@ -199,7 +199,7 @@ code {
   }
 
   .si {
-    color: #CD5555;
+    color: $syntax-salmon;
   }
 
   .sx {
@@ -211,7 +211,7 @@ code {
   }
 
   .s1, .ss {
-    color: #CD5555;
+    color: $syntax-salmon;
   }
 
   .bp {
@@ -219,7 +219,7 @@ code {
   }
 
   .vc, .vg, .vi {
-    color: #00688B;
+    color: $syntax-teal-dark;
   }
 
   .il {

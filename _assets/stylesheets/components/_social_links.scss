@@ -50,7 +50,7 @@
       path {
         @include transition;
 
-        fill: $pink;
+        fill: $text-color;
       }
     }
 
@@ -58,7 +58,7 @@
     &:active {
       svg {
         path {
-          fill: $purple-pink;
+          fill: $accent-color;
         }
       }
     }

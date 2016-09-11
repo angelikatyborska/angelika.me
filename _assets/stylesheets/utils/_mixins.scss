@@ -3,7 +3,6 @@
   display: inline-block;
   width: 0.5em;
   height: 0.5em;
-  border: rem-calc(1.5) solid $black;
   border-radius: 50%;
   background-color: $medium-gray;
 }
@@ -17,5 +16,5 @@
 }
 
 @mixin transition {
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
