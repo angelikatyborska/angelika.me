@@ -19,11 +19,19 @@ table {
     padding: $tiny-gap $small-gap;
   }
 
-  &, td, th {
-    border: 1px solid darken($light-gray, 10);
-  }
-
   tbody tr:nth-child(2n + 1) {
-    background-color: darken($white, 3);
+    td {
+      background: $light-gray;
+
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
   }
 }
