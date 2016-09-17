@@ -34,16 +34,16 @@
   <meta name="description" content="{{ description | strip_html }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta property="og:title" content="{{ title }} | {{ site.name }}" />
+  <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="{{ site.url }}{% asset_path avatar %}" />
-  <meta property="og:image:width" content="{{ assets['avatar.png'].width }}" />
-  <meta property="og:image:height" content="{{ assets['avatar.png'].height }}" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="300" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="{{ site.twitter_handler }}" />
-  <meta name="twitter:title" content="{{ title }} | {{ site.name }}" />
+  <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta name="twitter:description" content="{{ description | strip_html }}" />
   <meta name="twitter:image" content="{{ site.url }}{% asset_path avatar %}" />
 </head>
