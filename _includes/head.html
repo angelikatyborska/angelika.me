@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
 
-  <link rel="shortcut icon" type="image/png" href="{% asset_path logo-short-hair-padding.png %}">
+  <link rel="shortcut icon" type="image/png" href="{% asset_path icon %}">
 
   {% stylesheet screen %}
 
@@ -37,16 +37,13 @@
   <meta property="og:title" content="{{ title }} | {{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="{{ site.url }}{% asset_path logo-short-hair-padding %}" />
-  <meta property="og:image:width" content="{{ assets['logo-short-hair-padding.png'].width }}" />
-  <meta property="og:image:height" content="{{ assets['logo-short-hair-padding.png'].height }}" />
+  <meta property="og:image" content="{{ site.url }}{% asset_path avatar %}" />
+  <meta property="og:image:width" content="{{ assets['avatar.png'].width }}" />
+  <meta property="og:image:height" content="{{ assets['avatar.png'].height }}" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="{{ site.twitter_handler }}" />
   <meta name="twitter:title" content="{{ title }} | {{ site.name }}" />
   <meta name="twitter:description" content="{{ description | strip_html }}" />
-  <meta name="twitter:image" content="{{ site.url }}{% asset_path logo-short-hair-padding %}" />
-
-
-  <!--TODO: change logo, remove deprecated images-->
+  <meta name="twitter:image" content="{{ site.url }}{% asset_path avatar %}" />
 </head>

@@ -1,7 +1,7 @@
 ---
  title: That one process that wouldn't stay dead
  excerpt: The discovery of a process that would keep coming back after being killed forced me to find out what's up with that "launchctl load" command many tutorials tell me to run when installing something.
- tags: [os x, launchd, launchctl, plist]
+ tags: [os x, launchd, plist]
  date: 2016-09-08 20:57:00 +0200
 ---
 

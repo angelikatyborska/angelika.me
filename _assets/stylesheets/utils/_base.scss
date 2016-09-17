@@ -30,5 +30,9 @@ a {
   position: relative;
   max-width: $page-max-width;
   margin: 0 auto;
-  padding: $huge-gap $small-gap 0 $small-gap;
+  padding: $huge-gap $small-gap 0;
+
+  @media #{$small} {
+    padding: $huge-gap $medium-gap 0;
+  }
 }

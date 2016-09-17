@@ -2,18 +2,36 @@ nav {
   @include delicate;
 
   margin-top: $medium-gap;
-  margin-bottom: 2 * $huge-gap;
+  margin-bottom: $huge-gap;
   text-align: right;
 
-  .header {
-    float: left;
+  @media #{$small} {
+    margin-bottom: 2 * $huge-gap;
+  }
+
+  header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: $medium-gap;
+
+    @media #{$small} {
+      float: left;
+      text-align: left;
+      margin-bottom: 0;
+    }
   }
 
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    float: right;
+    display: block;
+    text-align: center;
+
+    @media #{$small} {
+      float: right;
+      text-align: right;
+    }
 
     li {
       display: inline-block;

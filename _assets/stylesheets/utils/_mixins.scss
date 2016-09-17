@@ -21,3 +21,24 @@
   margin: 0 $big-gap;
   content: '\00b7';
 }
+
+@mixin post-meta {
+  @include clearfix;
+  @include delicate;
+
+  margin-bottom: $small-gap;
+  font-size: $small-font-size;
+  text-align: center;
+
+  .date {
+    &:after {
+      @include dot;
+    }
+  }
+
+  .tags {
+    a:not(:first-child) {
+      margin-left: $tiny-gap;
+    }
+  }
+}

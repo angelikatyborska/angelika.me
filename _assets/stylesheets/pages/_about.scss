@@ -25,4 +25,22 @@
     margin: $huge-gap auto;
     border-radius: 50%;
   }
+
+  h3 {
+    text-align: center;
+  }
+
+  .contact {
+    text-align: center;
+
+    svg {
+      path {
+        fill: $text-color;
+
+        &.at {
+          fill: $accent-color;
+        }
+      }
+    }
+  }
 }

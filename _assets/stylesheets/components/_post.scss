@@ -28,21 +28,5 @@
 }
 
 .post-meta {
-  @include clearfix;
-  @include delicate;
-
-  margin-bottom: $small-gap;
-  font-size: $small-font-size;
-
-  .date {
-    &:after {
-      @include dot;
-    }
-  }
-
-  .tags {
-    a:not(:first-child) {
-      margin-left: $tiny-gap;
-    }
-  }
+  @include post-meta;
 }
