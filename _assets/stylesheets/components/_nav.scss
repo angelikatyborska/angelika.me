@@ -1,16 +1,22 @@
 nav {
+  @include delicate;
+
   margin-top: $medium-gap;
-  margin-bottom: $huge-gap;
-  text-align: center;
+  margin-bottom: 2 * $huge-gap;
+  text-align: right;
+
+  .header {
+    float: left;
+  }
 
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    float: right;
 
     li {
       display: inline-block;
-      margin: 0 $small-gap;
 
       &:first-child {
         &:before {

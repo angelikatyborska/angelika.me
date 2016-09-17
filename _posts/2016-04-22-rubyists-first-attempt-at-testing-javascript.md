@@ -1,7 +1,7 @@
 ---
 title: Rubyist's first attempt at testing JavaScript
 excerpt: How to do everything that RSpec can do, but with Mocha, Chai, Sinon, and Proxyquire.
-tags: [testing, ruby, javascript, rspec, mocha, sinon, chai, proxyquire]
+tags: [testing, ruby, javascript, rspec, mocha, sinon]
 date: 2016-04-22 20:29:00 +0200
 ---
 
