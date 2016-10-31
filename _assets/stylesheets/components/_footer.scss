@@ -6,6 +6,8 @@ footer {
   text-align: center;
 
   .copyright {
+    @include delicate;
+
     margin: 0 $huge-gap;
   }
 

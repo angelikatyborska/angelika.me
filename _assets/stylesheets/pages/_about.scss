@@ -17,4 +17,30 @@
       width: 0.8 * $h1-font-size;
     }
   }
+
+  .avatar {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: $huge-gap auto;
+    border-radius: 50%;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .contact {
+    text-align: center;
+
+    svg {
+      path {
+        fill: $text-color;
+
+        &.at {
+          fill: $accent-color;
+        }
+      }
+    }
+  }
 }

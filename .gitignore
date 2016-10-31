@@ -4,3 +4,4 @@ _site/
 .asset-cache/
 .jekyll-metadata
 .idea/
+.DS_Store

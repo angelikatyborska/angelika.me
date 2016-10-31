@@ -1,16 +1,40 @@
 nav {
+  @include delicate;
+
   margin-top: $medium-gap;
   margin-bottom: $huge-gap;
-  text-align: center;
+  text-align: right;
+
+  @media #{$small} {
+    margin-bottom: 2 * $huge-gap;
+  }
+
+  header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: $medium-gap;
+
+    @media #{$small} {
+      float: left;
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
 
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: block;
+    text-align: center;
+
+    @media #{$small} {
+      float: right;
+      text-align: right;
+    }
 
     li {
       display: inline-block;
-      margin: 0 $small-gap;
 
       &:first-child {
         &:before {

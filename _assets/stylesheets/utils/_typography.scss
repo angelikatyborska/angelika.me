@@ -1,5 +1,5 @@
-$header-font-family: 'Lora', serif;
-$paragraph-font-family: 'Source Sans Pro', sans-serif;
+$header-font-family: 'Montserrat', sans-serif;
+$paragraph-font-family: 'Open Sans', sans-serif;
 $code-font-family: 'Roboto Mono', Courier, monospace;
 
 html {
@@ -8,7 +8,7 @@ html {
 
 body {
   font-family: $paragraph-font-family;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
 a {
@@ -17,7 +17,6 @@ a {
 
 em {
   font-style: italic;
-  color: $navy;
 }
 
 q {
@@ -26,7 +25,6 @@ q {
 
 strong {
   font-weight: bold;
-  color: $navy;
 }
 
 p, ul, ol {
@@ -42,9 +40,11 @@ li {
 h1, h2, h3, h4, h5, h6 {
   margin: $big-gap 0 $medium-gap;
   font-family: $header-font-family;
-  font-weight: 400;  }
+  font-weight: 400;
+  overflow-wrap: break-word;
+}
 
-h1 { font-size: $h1-font-size; text-align: center; color: $pink; }
+h1 { font-size: $h1-font-size; text-align: center; }
 h2 { font-size: $h2-font-size; }
 h3 { font-size: $h3-font-size; }
 h4 { font-size: $h4-font-size; }
@@ -56,9 +56,9 @@ ul {
 
   li {
     &:before {
-      @include bullet;
+      @include dot;
 
-      margin-right: 0.5em;
+      margin: 0 0.5em;
     }
   }
 }

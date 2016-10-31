@@ -2,9 +2,15 @@
 layout: default
 title: About
 ---
+
+{% img avatar alt:"Angelika" class:avatar%}
+
 {% include social_links.html %}
 
-<h1>Hello! My name is Angelika.</h1>
-<p>I'm a junior web developer located in Poznan, Poland. I work with Ruby and JavaScript and enjoy them both. Writing this blog is a means of organizing my thoughts about new concepts, problems, and tools that I encounter while learning software development.</p>
+<h1>Hi! My name is Angelika.</h1>
 
-<p>Found a bug? Please let me know by <a href="{{ site.about.repo }}/issues">creating an issue on GitHub</a>.</p>
+<p>I'm a junior web developer located in Poznan, Poland. I work with Ruby, Elixir and JavaScript and enjoy them all. Writing this blog is a means of organizing my thoughts about new concepts, problems, and tools that I encounter while learning software development.</p>
+
+<h3>Want to chat?</h3>
+
+<p class="contact">{% asset hello %}</p>

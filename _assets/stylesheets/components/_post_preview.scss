@@ -1,9 +1,9 @@
 .post-preview {
-  &:not(:last-child) {
-    margin-bottom: $huge-gap;
-  }
+  margin: $huge-gap auto;
 
   .post-preview-meta {
-    @extend .post-meta;
+    @include post-meta;
+
+    text-align: left;
   }
 }

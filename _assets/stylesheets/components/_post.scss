@@ -28,46 +28,5 @@
 }
 
 .post-meta {
-  @include clearfix;
-
-  margin-bottom: $small-gap;
-  font-size: $small-font-size;
-  color: $medium-gray;
-
-  > span {
-    margin-right: $medium-gap;
-
-    &:before {
-      @include fa-icon;
-
-      margin-right: 0.5em;
-    }
-  }
-
-  > span:last-child {
-    margin-right: 0;
-  }
-
-
-  .date {
-    &:before {
-      content: $fa-var-calendar;
-    }
-  }
-
-  .comment-count {
-    &:before {
-      content: $fa-var-comment;
-    }
-  }
-
-  .tags {
-    &:before {
-      content: $fa-var-tags;
-    }
-
-    a:not(:first-child) {
-      margin-left: $tiny-gap;
-    }
-  }
+  @include post-meta;
 }
