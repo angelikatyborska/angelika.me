@@ -1,0 +1,13 @@
+kbd {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 2px $tiny-gap;
+  font-family: $code-font-family;
+  font-size: 0.75em;
+  text-shadow: 0 1px 0 $white;
+  background-color: darken($light-gray, 2);
+  border: 1px solid darken($light-gray, 8);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 0 0 2px $white inset;
+  white-space: nowrap;
+}
