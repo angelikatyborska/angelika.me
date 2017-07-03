@@ -1,0 +1,234 @@
+---
+title: Colorizing Names
+excerpt: How I figured out how to assign colors to branch names - deterministically, but seemingly random to a human.
+tags: [javascript, ui/ux]
+date: 2017-07-03 20:41:00 +0200
+---
+
+I am building an app where the user can work on multiple projects, on multiple branches per project. The UI displays the name of the current branch in small white letters in the top left corner of the app, next to the project's name and the project's icon. Except for that, there is no quick and obvious way to tell on which branch the user is working, save for thinking long and hard about the actual contents of the project.
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/app %}'>
+{% img posts/colorizing-names/app alt:'Hard-to-notice branch name'%}
+</a>
+<figcaption>Easy to notice the wrong project - not so easy to notice the wrong branch.</figcaption>
+</figure>
+
+That's a quick recipe for an [Oscar-style mix-up caused by a poor visual representation of data](https://www.youtube.com/watch?v=eZSe4xVXHhI). Especially on a Monday morning.
+
+And said mix-up already happened. Pre-first-coffee-of-the-day, I was greeted by a panicked user that thought all of her work from the day before was gone. It turned out she was just looking at a different branch.
+
+Before that ever happens again, I decided to make it easier to notice the user is editing the project on the wrong branch. Since I do not have enough space to spare in the UI of that application to enlarge fonts, I chose to differentiate branches by assigning colors to them.
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/app-colors %}'>
+{% img posts/colorizing-names/app-colors alt:'easier-to-notice branch name'%}
+</a>
+<figcaption>Colorizing branch names to the rescue!</figcaption>
+</figure>
+
+## Requirements
+
+1. The same branch name needs to always have the same color.
+2. The color should not be predictable in any obvious way (by the first letter, by the color of a similar phrase etc.)
+3. The colors for anagrams should differ.
+4. The colors for potential typos should differ.
+5. The colors should vary in hue but have more-or-less the same perceived lightness as they would be always displayed on a dark background.
+
+## Solution
+
+I chose to operate on colors using [HSL](https://developer.mozilla.org/en/docs/Web/CSS/color_value#hsl()_and_hsla()) as I find it a more human-friendly way to think about colors.
+
+Hue is a value ranging from `0` to `360`. `0` is red, `120` is green, `180` is cyan, `270` is purple, and `360` is again red.
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/hues %}'>
+{% img posts/colorizing-names/hues alt:'Hue range'%}
+</a>
+<figcaption>Hue (from <a href="https://en.wikipedia.org/wiki/Hue">Wikipedia</a>)</figcaption>
+</figure>
+
+Saturation and lightness are values from `0%` to `100%`.
+
+I created a small project to be able to see the generated colors as I work on the code. Link [at the end of this post](#source).
+
+### Convert a string to a number
+
+Converting a single character to a number is straight-forward. Every Unicode character has a decimal number assigned and it's easily retrievable in JavaScript with `'a'.charCodeAt(0)`.
+
+What I need now is to use that to get a single number for the whole string. That is a task for a hash function. "Hash function" sounds like a fancy complicated term if you don't think about it, but if you do think about it, it is just a function that can take data of any size (say, strings with branch names that will differ in length) and transform it to data of fixed size (say, integers in a known range).
+
+I tried a few different approaches to converting a string to a (positive) number. I then used that number to form a color.
+ 
+To get hue:
+
+```javascript
+const maxHue = 360;
+const hue = x % maxHue;
+```
+
+To get saturation:
+
+```javascript
+const baseSaturation = 70;
+const saturation = baseSaturation + (x % 30);
+```
+
+Values chosen randomly because they looked good.
+
+To get lightness:
+
+```javascript
+const baseLightness = 65;
+const lightnessDelta = 10;
+const lightnessHueCorrection = Math.sin(Math.PI * hue / (maxHue / 2));
+const lightness = baseLightness + (
+  -1 * Math.round(lightnessDelta * lightnessHueCorrection)
+);
+```
+
+Notice that I am not randomizing the lightness. Instead, I am using the `sine` function to correct the lightness so that it is lower for hues that seem light (yellow - hue `60`) and higher for hues that seem dark (purple - hue `270`). Doing that simply with the `sine` function is not ideal (notice yellow is not `90`...), but it is good enough for my use case.
+
+```javascript
+function numberToColor(x) {
+  // (...)
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+```
+
+#### Sum
+
+The first approach I tried is to sum all the codes:
+
+```javascript
+function add(string) {
+  return string.split("")
+    .reduce((acc, char) => (acc + char.charCodeAt(0)), 0)
+}
+```
+
+##### Problems
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/issues-sum %}'>
+{% img posts/colorizing-names/issues-sum class:'half-width' alt:'Problems with summing character codes'%}
+</a>
+<figcaption>Problems with summing character codes</figcaption>
+</figure>
+
+###### 1. Consecutive strings are barely distinguishable {#sum-problem-1}
+
+Caused by the (very reasonable) property of `hue` to assign similar numbers to similar colors - `90` is green, `91` is still green.
+
+###### 2. Typos are barely distinguishable
+
+See [1](#sum-problem-1).
+
+###### 3. Anagrams have the same color
+
+Caused by the communicative property of addition: `x + y = y + x`.
+
+#### Multiply
+
+The second approach I tried is to multiply all the codes:
+
+```javascript
+function multiply(string) {
+  return string.split("")
+    .reduce((acc, char) => (acc * char.charCodeAt(0)), 1)
+}
+```
+
+##### Problems
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/issues-multiply %}'>
+{% img posts/colorizing-names/issues-multiply class:'half-width' alt:'Problems with multiplying character codes'%}
+</a>
+<figcaption>Problems with multiplying character codes</figcaption>
+</figure>
+
+###### 1. Consecutive single-character strings are barely distinguishable
+
+[The same story as for summing](#sum-problem-1), except the issue only appears for single-character strings.
+
+###### 2. Anagrams have the same color
+
+Caused by the communicative property of multiplication: `x * y = y * x`.
+
+###### 3. ...except they don't?
+
+With multiplication, I quickly go over [the maximum safe integer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) and run into floating-point rounding errors.
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/unsafe-integers %}'>
+{% img posts/colorizing-names/unsafe-integers alt:'reaching numbers over maximum safe integer'%}
+</a>
+<figcaption>When the result of multiplication exceeds the maximum safe integer, the communicative property of multiplication is no longer a guarantee.</figcaption>
+</figure>
+
+For addition, this wasn't a practical problem, as I would have to form a string consisting of the letter "a" repeated approximately `93 * 10^12` (`Number.MAX_SAFE_INTEGER / 97`) times to exceed the safe limit. But for multiplication, it's enough to repeat "a" [`9` times](https://www.wolframalpha.com/input/?i=log(97,+9007199254740991)).
+
+
+#### djb2
+
+After failing two times, I consulted a friend about my problem. He proposed the djb2 hashing algorithm - supposedly great for strings:
+
+```javascript
+function djb2(string) {
+  return Math.abs(
+    string.split("")
+    .reduce(function(acc, char) {
+      return ((acc << 5) + acc) + char.charCodeAt(0);
+    }, 5381)
+  );
+}
+```
+
+Indeed, that one worked great! Except...
+
+##### Problems
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/issues-djb2 %}'>
+{% img posts/colorizing-names/issues-djb2 class:'half-width' alt:'A problem with the djb2 algorithm'%}
+</a>
+<figcaption>A problem with the djb2 algorithm</figcaption>
+</figure>
+
+###### 1. Consecutive single-character strings are barely distinguishable
+
+:cry:
+
+I decided to intuitively tweak the djb2 algorithm on my own to remove that linear growth of the hash with the linear growth of the character codes.
+
+#### The Final Solution - djb2 squared
+
+I decided to simply square the character code before doing anything with it:
+
+
+```javascript
+function djb2Square(string) {
+  return Math.abs(
+    string.split("")
+    .reduce(function(acc, char) {
+      return ((acc << 5) + acc) + Math.pow(char.charCodeAt(0), 2);
+    }, 5381)
+  );
+}
+```
+
+#### No problems!
+
+<figure>
+<a href='{% asset_path posts/colorizing-names/issues-djb2-square %}'>
+{% img posts/colorizing-names/issues-djb2-square class:'half-width' alt:'Final solution' %}
+</a>
+<figcaption>No problems with this algorithm!</figcaption>
+</figure>
+
+
+## Source
+
+Here is [the repository](https://github.com/angelikatyborska/colorize-phrases).
+Here is [the sample table table showing colors generated for some test phrases](http://htmlpreview.github.io/?https://github.com/angelikatyborska/colorize-phrases/blob/master/index.html).
