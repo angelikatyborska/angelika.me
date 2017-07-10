@@ -126,7 +126,7 @@ See [1](#sum-problem-1).
 
 ###### 3. Anagrams have the same color
 
-Caused by the communicative property of addition: `x + y = y + x`.
+Caused by the commutative property of addition: `x + y = y + x`.
 
 #### Multiply
 
@@ -154,7 +154,7 @@ function multiply(string) {
 
 ###### 2. Anagrams have the same color
 
-Caused by the communicative property of multiplication: `x * y = y * x`.
+Caused by the commutative property of multiplication: `x * y = y * x`.
 
 ###### 3. ...except they don't?
 
@@ -164,7 +164,7 @@ With multiplication, I quickly go over [the maximum safe integer](https://develo
 <a href='{% asset_path posts/colorizing-names/unsafe-integers %}'>
 {% img posts/colorizing-names/unsafe-integers alt:'reaching numbers over maximum safe integer'%}
 </a>
-<figcaption>When the result of multiplication exceeds the maximum safe integer, the communicative property of multiplication is no longer a guarantee.</figcaption>
+<figcaption>When the result of multiplication exceeds the maximum safe integer, the commutative property of multiplication is no longer a guarantee.</figcaption>
 </figure>
 
 For addition, this wasn't a practical problem, as I would have to form a string consisting of the letter "a" repeated approximately `93 * 10^12` (`Number.MAX_SAFE_INTEGER / 97`) times to exceed the safe limit. But for multiplication, it's enough to repeat "a" [`9` times](https://www.wolframalpha.com/input/?i=log(97,+9007199254740991)).
