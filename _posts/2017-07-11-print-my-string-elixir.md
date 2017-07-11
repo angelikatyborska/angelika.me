@@ -1,0 +1,91 @@
+---
+title: Print my string, Elixir!
+excerpt: Not everything that presents itself as a binary is an invalid string.
+tags: [elixir]
+date: 2017-07-11 20:26:00 +0200
+---
+
+If you have ever tried to do anything with strings in Elixir, you probably experienced being presented a binary where you wanted to see a string:
+
+```elixir
+iex(1)> my_string
+<<99, 111, 109, 109, 105, 116, 32, 97, 97, 97, ...>>
+```
+
+This actually happened to me today as I was trying to read logs from a git repository:
+
+```elixir
+iex(1)> {my_string, 0} = System.cmd("git", ["log"])
+{<<99, 111, 109, 109, 105, 116, 32, 97, 97, 97, ...>>, 0}
+```
+
+## Valid?
+
+That's weird, right? This is the text that would printed in my terminal if I run `git log`. How could it not be a valid string?
+
+Indeed, it was a valid string:
+
+```elixir
+iex(2)> String.valid?(my_string)
+true
+```
+
+Ok, if the string is valid, but it is being _printed_ as a binary... that must mean...
+
+## Printable?
+
+:bulb: It is not printable! :bulb:
+
+```elixir
+iex(3)> String.printable?(my_string)
+false
+```
+
+But what kind of unprintable characters could there be in my git logs?
+
+```elixir
+iex(4)> my_string \
+...(4)> |> String.codepoints \
+...(4)> |> Enum.filter(fn(p) -> !String.printable?(p) end)
+[<<194, 130>>]
+```
+
+The character here is a ['BREAK PERMITTED HERE' (U+0082)](http://www.fileformat.info/info/unicode/char/0082/index.htm).
+
+## Solution
+
+For my use case, it was absolutely fine to remove that unprintable character and move on:
+
+```elixir
+iex(5)> my_string \
+...(5)> |> String.codepoints \
+...(5)> |> Enum.filter(fn(p) -> String.printable?(p) end) \
+...(5)> |> Enum.join("")
+"commit aaaccbfbb6b398972dae2ad0..." # a very very long string here
+```
+
+## Cause
+
+But I was still curious. I thought that maybe this is the character that causes my terminal to truncate output and wait for a <kbd>q</kbd> press to show more, but that seemed unlikely. I checked if I would experience the same thing in a different repository. I did not. I was certain then that the issue is inside one of the commit messages. I wanted to find that commit message.
+
+First I found the index of the unprintable character:
+
+```elixir
+iex(6)> i = my_string \
+...(6)> |> String.codepoints \
+...(6)> |> Enum.find_index(fn(p) -> !String.printable?(p) end)
+83215
+```
+
+Then I printed a few characters around it to read what that snippet of logs is about:
+
+```elixir
+iex(7)> my_string \
+...(7)> |> String.codepoints \
+...(7)> |> Enum.slice(i - 1, 3) \
+...(7)> |> Enum.filter(fn(p) -> String.printable?(p) end) \
+...(7)> |> Enum.join("")
+"â¬"
+```
+
+By reading a longer snippet (that I cannot share with you), I figured out that this is indeed a part of a commit message and I was able to find the hash of that commit. The whole message made sense and only had a few gibberish characters at the end. I asked the author of that message about it. He said he meant to write `@`. At least I know that it was not git's fault :smile:.
