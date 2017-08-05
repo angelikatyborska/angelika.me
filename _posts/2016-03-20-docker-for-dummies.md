@@ -221,6 +221,7 @@ ENV BUNDLE_PATH="$GEM_HOME" \
   BUNDLE_APP_CONFIG="$GEM_HOME"
 ENV PATH $BUNDLE_BIN:$PATH
 
+COPY . /guestbook
 WORKDIR /guestbook
 
 CMD bin/rails s
