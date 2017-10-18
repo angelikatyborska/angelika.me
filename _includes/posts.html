@@ -5,7 +5,7 @@
     <p class="post-preview-description">{{ post.excerpt }}</p>
     <div class="post-preview-meta">
       <span class="date">{{ post.date | date: '%d %B %Y' }}</span>
-      <span class="tags">{{ post || tags }}</span>
+      <span class="tags">{{ post | tags }}</span>
     </div>
   </div>
   {% endfor %}
