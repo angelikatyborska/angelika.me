@@ -1,7 +1,7 @@
 ---
 title: 5 reasons to become a mentor on Exercism
-excerpt: Here are the reasons I am enjoying mentoring on Exercism and why you might want to do that too.
-tags: [elixir, education]
+excerpt: Here are the reasons I enjoy mentoring on Exercism and why you might want to do that too.
+tags: [review, education]
 date: 2018-08-12 16:26:00 +0200
 ---
 
