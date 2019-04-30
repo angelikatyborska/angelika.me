@@ -1,0 +1,184 @@
+---
+title: Pause CircleCI build until previous build finishes
+excerpt: If you ever configured CircleCI to do a deployment, you probably ran into the problem of two pushes triggering two deployments at the same time. You can prevent that.
+tags: [devops, circleci]
+date: 2019-04-30 21:57:00 +0200
+---
+
+Let's say you have a workflow on CircleCI that runs your test suite, and then deploys the changes to your staging system, but only from the `master` branch.
+```yaml
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy-staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+```
+
+Regardless of what it means to "deploy" to staging for your project, it's probably a process that:
+1. Should be allowed to run from start to finish uninterrupted,
+2. Running two instances of the process at once will result in either:
+    - a) the second one failing, or
+    - b) a totally unexpected outcome.
+
+You want to run your tests in parallel, but definitely not deployments.
+
+Unfortunately, CircleCI currently does not have a feature that would allow us to limit certain jobs in a workflow to only a single running build at a time.
+
+However, you can use CircleCI's API to implement something similar.
+
+## Idea
+
+To determine if your build should wait, you need to:
+
+1. Get a list of currently running builds in your projects for the master branch.
+2. Find out if there is another running build that does a deployment.
+    1. If yes, wait a bit and repeat,
+    2. If no, done.
+
+To find another running build that does a deployment, you will have to check the job name. To ensure that you don't count the current build that is doing the check, you also need to compare build numbers to ensure they are different. The current build's number is available as a built-in environment variable `CIRCLE_BUILD_NUM`.
+
+## API token
+
+To use the API, you will need an API token.
+
+CircleCI API has two types of tokens: project tokens and personal tokens. Project tokens grant read access to a single project, and personal tokens grant read and write access to all projects. [Read more in the docs](https://circleci.com/docs/2.0/managing-api-tokens/).
+
+For this use case, it's enough to have a project token.
+
+You can create the token in Project Settings -> Permissions -> API Permissions. Make sure to use the "All" scope so that the token can be used to retrieve all kinds of data about the project, not just its status. Give it a meaningful name that will allow you to later recognize what the token is used for.
+
+<figure>
+<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project %}'>
+{% img posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project.png alt:'CircleCI UI showing where the Add Token button is located'%}
+</a>
+<figcaption>You can create a token in Project Settings -> Permissions -> API Permissions.</figcaption>
+</figure>
+
+<figure>
+<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token %}'>
+{% img posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token.png alt:'CircleCI UI showing the Add Token dialog'%}
+</a>
+<figcaption>Make sure to use the "All" scope.</figcaption>
+</figure>
+
+### Pass the token to the workflow
+
+Once you have generated the token, you need to pass it to the job. You can pass it as an environment variable in Project Settings -> Build Settings -> Environment Variables. Let's name it `CIRCLE_API_TOKEN`.
+
+<figure>
+<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project %}'>
+{% img posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project.png alt:'CircleCI UI showing where you can add environment variables to the job'%}
+</a>
+<figcaption>You can ad an environemnt variable in Project Settings -> Build Settings -> Environment Variables.</figcaption>
+</figure>
+
+<figure>
+<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add %}'>
+{% img posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add.png alt:'CircleCI UI showing the Add an Environment Variable dialog'%}
+</a>
+<figcaption>Copy-paste the generated token here.</figcaption>
+</figure>
+
+## API call
+
+You need to use the API to fetch a list of recent builds for the project. [Here is the documentation](https://circleci.com/docs/api/#recent-builds-for-a-single-project).
+
+You need to limit the branch to `master`, and the status of the job to `running`. The documentation also recommends using the `shallow` parameter that strips the response of some detailed data that you don't need for better performance.
+
+You can use your project token to try out the API:
+```
+curl 'https://circleci.com/api/v1.1/project/github/my-org/my-project/tree/master?circle-token=my-token&shallow=true'
+```
+
+Note that the response is an array of objects, each object containing a `build_num` and `workflows.job_name`.
+
+The response is limited to 30 builds. If you have more than 30 builds running at the same time, this whole approach might not be the best idea (see the [disclaimer](#disclaimer) at the end of the post).
+
+## Code
+
+You need a script that will make the API call and parse the response. Use whichever scripting language you will have available on your CircleCI host.
+
+I used JavaScript because my project already required NodeJS for other parts of the build.
+
+Here is my script:
+
+```javascript
+const fetch = require('node-fetch');
+
+const organization = 'my-org';
+const project = 'my-project';
+// This is the environment variable added via CircleCI UI
+const token = process.env.CIRCLE_API_TOKEN;
+const branch = 'master';
+const url = `https://circleci.com/api/v1.1/project/github/${organization}/${project}/tree/${branch}?circle-token=${token}&shallow=true&filter=running`;
+
+// This is a build-in environment variable
+const currentBuildNum = process.env.CIRCLE_BUILD_NUM;
+const job = 'deploy-staging';
+const interval = 20000;
+  
+async function wait() {
+  const resp = await fetch(url);
+  const builds = await resp.json();
+
+  const otherStagingDeployRunning = builds.find(build => {
+    const isSameJob = (build.workflows && build.workflows.job_name) === job;
+    // Need parsing because the API response `build_num` is a number
+    // but the environment variable is a string
+    const isDifferentBuild = parseInt(build.build_num) !== parseInt(currentBuildNum);
+
+    return isSameJob && isDifferentBuild;
+  });
+
+  if (otherStagingDeployRunning) {
+    // Something must be logged to prevent the job from timing out
+    console.log(`Another staging deployment already running (build ${otherStagingDeployRunning.build_num}), will check again in ${interval / 1000} seconds...`);
+    setTimeout(wait, interval);
+  } else {
+    process.exit(0);
+  }
+}
+
+wait();
+```
+
+Remember that CircleCI has a `no_output_timeout` defaulting to 10 minutes, so you want to produce some logs while pausing the job.
+Otherwise, it might time out.
+
+I have avoided retrying in case of errors on purpose. I am assuming that the most likely errors would require restarting the job manually because of a misconfigured token or temporary network issues that need to be waited out.
+
+## Workflow config
+
+Make sure to add this script as a step in your job before the deployment step.
+
+I have committed the script to my project as `.circleci/deploy-staging-wait.js`. It requires installing an extra dependency first.
+
+```yaml
+jobs:
+ # ...
+  deploy-staging:
+    # ...
+    steps:
+      # ...
+      - run:
+          name: Install node-fetch
+          command: npm install node-fetch
+      - run:
+          name: Wait for other staging deployment builds to finish
+          command: node .circleci/deploy-staging-wait.js;
+      # ... deployment ...
+```
+
+## Disclaimer
+
+In practice, this approach works well enough for preventing two builds of the same job running at the same time.
+
+In theory, it might not always work. In case of two builds starting at exactly the same time, it might not work. In case of two or more builds being paused and doing API calls at exactly the same time, it might not work.
+
