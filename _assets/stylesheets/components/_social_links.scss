@@ -41,11 +41,10 @@
     }
   }
 
-  .exercism {
+  .exercism, .dev {
     svg {
-      height: $h3-font-size;
-      width: 0.8 * $h3-font-size;
-      margin-bottom: rem-calc(-3);
+      width: $h3-font-size;
+      margin-bottom: rem-calc(-7);
 
       path {
         @include transition;
