@@ -11,13 +11,13 @@ To give great code reviews, you need to know why you are doing code reviews.
 
 We all know what code reviews are important, but why? They can catch some bugs and prevent terrible design decisions from going to production, but is that their only function? 
 
-In my experience, a great code review has three important goals.
+In my experience, a great code review has three important goals:
 
-1. To keep the team up to date with a changing codebase.
-2. To improve the quality of the project.
-3. To provide feedback for the developer.
+1. Keeping the team up to date with a changing codebase.
+2. Improving the quality of the project.
+3. Providing feedback for the developer.
 
-## 1. To be up to date with the codebase
+## Keeping up to date with a changing codebase
 
 Giving code reviews forces developers to read the parts of the code that they themselves didn't work on. This improves the team's overall knowledge of the codebase. As a result, task planning goes more smoothly and the accuracy of time/complexity estimations increases.
 
@@ -35,9 +35,9 @@ If there is no issue/ticket, and no PR description, write down a description of 
 
 Don't be content with a simple "looks good to me". All well-formatted code looks good when you skim it! You want to read the changes and **really understand them**. Yes, it's difficult. Yes, it will take more time. Yes, it's worth it. It will also increase your chances of catching not-so-obvious project quality issues.
 
-## 2. To improve project quality
+## Improving project quality
 
-Having a second pair of eyes look the code before it goes to production is a good way to catch *some* bugs and ensure the code will be maintainable.
+Having a second pair of eyes look at the code before it goes to production is a good way to catch *some* bugs and ensure the code will be maintainable.
 
 ### III. Always run the code
 
@@ -65,11 +65,11 @@ Once you have your automated tools validating function name length and proper in
 
 Do those function/variable names make sense to you? Do they use the project's vocabulary consistently? Could they be confusing? Are there any ambiguous abbreviations?
 
-Fun story: I once spent 10 minutes believing that our app had a feature where guest users (non-paying users invited by paying users with subscriptions) are allowed to invite more guest users because somebody named a variable `sub_guest` instead of `subscription_guest`.
+Fun story: I once spent 10 minutes believing that the app I was working on had a feature where guest users (non-paying users invited by paying users with subscriptions) are allowed to invite more guest users because somebody named a variable `sub_guest` instead of `subscription_guest`.
 
-## 3. To provide feedback for the developer
+## Providing feedback for the developer
 
-Good feedback is feedback that **reinforces somebody's good habits** and helps notice and remove bad habits. For your feedback to have any impact at all, you need to **ensure that you are being listened to**.
+Good feedback is feedback that **reinforces somebody's good habits**, and helps notice and remove bad habits. For your feedback to have any impact at all, you need to **ensure that you are being listened to**.
 
 ### VI. Always say something nice
 
@@ -119,13 +119,13 @@ Great code reviews take time to do, but they will improve not only your project 
 
 Remember: 
 
-- [1. To be up to date with the codebase](#1-to-be-up-to-date-with-the-codebase)
+- [Keeping up to date with a changing codebase](#keeping-up-to-date-with-a-changing-codebase)
   - [I. Find out the *why* first](#i-find-out-the-why-first)
   - [II. Read, don't skim](#ii-read-dont-skim)
-- [2. To improve project quality](#2-to-improve-project-quality)
+- [Improving project quality](#improving-project-quality)
   - [III. Always run the code](#iii-always-run-the-code)
   - [IV. Do not nitpick](#iv-do-not-nitpick)
   - [V. Focus on readability issues that can't be detected automatically](#v-focus-on-readability-issues-that-cant-be-detected-automatically)
-- [3. To provide feedback for the developer](#3-to-provide-feedback-for-the-developer)
+- [Providing feedback for the developer](#providing-feedback-for-the-developer)
   - [VI. Always say something nice](#vi-always-say-something-nice)
   - [VII. Avoid judgemental and bossy language](#vii-avoid-judgemental-and-bossy-language)
