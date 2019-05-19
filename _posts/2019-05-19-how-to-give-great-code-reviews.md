@@ -9,7 +9,7 @@ To give great code reviews, you need to know why you are doing code reviews.
 
 ## Why do we review code?
 
-We all know what code reviews are important, but why? They can catch some bugs and prevent terrible design decisions from going to production, but is that their only function? 
+We all know that code reviews are important, but why? They can catch some bugs and prevent terrible design decisions from going to production, but is that their only function? 
 
 In my experience, a great code review has three important goals:
 
