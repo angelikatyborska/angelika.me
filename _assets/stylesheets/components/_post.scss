@@ -12,17 +12,31 @@
     margin-top: $huge-gap;
   }
 
-  .header-link {
+  h1, h2, h3, h4, h5, h6 {
     position: relative;
-    left: 0.5em;
-    opacity: 0;
-    font-size: 0.8em;
-    color: $medium-gray;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    &:hover .header-link {
-      opacity: 1;
+  .header-link {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 0.3em;
+    margin-right: $tiny-gap;
+    opacity: 0;
+    font-size: 0.7em;
+    color: $medium-gray;
+    z-index: 10;
+  }
+
+  @media #{$medium} {
+    .header-link {
+      display: block;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      &:hover .header-link {
+        opacity: 1;
+      }
     }
   }
 }

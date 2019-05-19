@@ -1,6 +1,8 @@
 $small-screen: 640px;
+$medium-screen: 780px;
 $big-screen: 1100px;
 
 $small: 'screen and (min-width: #{$small-screen})';
+$medium: 'screen and (min-width: #{$medium-screen})';
 $big: 'screen and (min-width: #{$big-screen})';
 

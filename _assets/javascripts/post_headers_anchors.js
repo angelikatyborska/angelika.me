@@ -12,7 +12,7 @@ var linkifyAnchors = function (level, containingElement) {
     var header = headers[h];
 
     if (typeof header.id !== 'undefined' && header.id !== '') {
-      header.appendChild(anchorForId(header.id));
+      header.insertAdjacentElement('afterbegin', anchorForId(header.id));
     }
   }
 };
