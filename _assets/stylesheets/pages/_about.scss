@@ -26,14 +26,19 @@
     border-radius: 50%;
   }
 
-  h3 {
-    text-align: center;
+  .projects {
+    a {
+      text-decoration: underline;
+    }
   }
 
-  .contact {
-    text-align: center;
+  .contact-email {
+    display: inline-block;
+    max-width: 200px;
 
     svg {
+      vertical-align: middle;
+
       path {
         fill: $text-color;
 
