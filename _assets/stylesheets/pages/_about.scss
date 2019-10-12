@@ -8,12 +8,12 @@
       padding: 0 $small-gap;
 
       &:before {
-        font-size: $h1-font-size;
+        font-size: $h3-font-size;
       }
     }
 
     svg {
-      height: $h1-font-size;
+      height: $h3-font-size;
       width: 0.8 * $h1-font-size;
     }
   }

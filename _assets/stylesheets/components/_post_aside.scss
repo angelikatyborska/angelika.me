@@ -13,7 +13,7 @@
       width: calc(50% - #{$page-max-width/2});
       transform: translateX(-100%);
       text-align: right;
-      padding: $small-gap $small-gap 0 0;
+      padding: $small-gap $page-wrapper-left-padding-small-screen 0 0;
       font-family: $paragraph-font-family;
 
       a {

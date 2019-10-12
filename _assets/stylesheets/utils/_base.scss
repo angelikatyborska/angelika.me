@@ -7,7 +7,7 @@
 body {
   overflow-y: scroll;
   color: $text-color;
-  background-color: $background-color;
+  background-color: $outer-background-color;
 }
 
 a {
@@ -26,13 +26,24 @@ a {
   }
 }
 
+$page-wrapper-left-padding-tiny-screen: $medium-gap;
+$page-wrapper-left-padding-small-screen: $big-gap;
+
 .page-wrapper {
   position: relative;
   max-width: $page-max-width;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: $huge-gap $small-gap 0;
+  padding: $medium-gap $page-wrapper-left-padding-tiny-screen;
+  background-color: $inner-background-color;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
 
   @media #{$small} {
-    padding: $huge-gap $medium-gap 0;
+    padding: $medium-gap $page-wrapper-left-padding-small-screen;
+  }
+
+  footer {
+    align-self: flex-end;
   }
 }

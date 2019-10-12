@@ -2,22 +2,26 @@ nav {
   @include delicate;
 
   margin-top: $medium-gap;
-  margin-bottom: $huge-gap;
-  text-align: right;
+  margin-bottom: $big-gap;
 
   @media #{$small} {
-    margin-bottom: 2 * $huge-gap;
+    margin-bottom: $huge-gap;
+    display: flex;
+    justify-content: space-between;
   }
 
   header {
     font-weight: 700;
-    text-align: center;
     margin-bottom: $medium-gap;
 
     @media #{$small} {
-      float: left;
       text-align: left;
       margin-bottom: 0;
+    }
+
+    em {
+      color: $accent-color;
+      font-style: normal;
     }
   }
 
@@ -26,10 +30,8 @@ nav {
     padding: 0;
     list-style: none;
     display: block;
-    text-align: center;
 
     @media #{$small} {
-      float: right;
       text-align: right;
     }
 

@@ -1,5 +1,5 @@
 .post-preview {
-  margin: $huge-gap auto;
+  margin: 0 auto $huge-gap auto;
 
   .post-preview-meta {
     @include post-meta;
