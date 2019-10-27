@@ -27,6 +27,10 @@
   }
 
   .list {
+    li {
+      display: flex;
+    }
+
     a {
       text-decoration: underline;
     }
