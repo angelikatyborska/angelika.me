@@ -43,3 +43,16 @@
 .post-meta {
   @include post-meta;
 }
+
+.disqus-info {
+  background-color: $light-gray;
+  padding: $medium-gap;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  .question {
+    font-weight: bold;
+  }
+}
