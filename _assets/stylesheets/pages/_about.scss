@@ -33,6 +33,7 @@
 
     .list-item {
       display: inline-flex;
+      flex-direction: column;
     }
 
     .date {
@@ -55,6 +56,27 @@
           fill: $accent-color;
         }
       }
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: $medium-gap;
+
+    &.poland {
+      max-width: 450px;
+    }
+
+    &.cow {
+      max-width: 350px;
+    }
+
+    &.wave {
+      max-width: 200px;
     }
   }
 }
