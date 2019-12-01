@@ -1,4 +1,19 @@
 .about {
+  .grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: $medium-gap;
+    grid-column-gap: $medium-gap;
+
+    @media #{$medium} {
+      grid-template-columns: auto auto;
+    }
+  }
+
+  .column-image {
+    width: 250px;
+  }
+
   .social-links {
     display: block;
     margin-bottom: $small-gap;
@@ -18,17 +33,14 @@
     }
   }
 
-  .avatar {
+  .portrait {
     display: block;
-    width: 200px;
-    height: 200px;
-    margin: $huge-gap auto;
-    border-radius: 50%;
   }
 
   .list {
     li {
       display: flex;
+      margin-bottom: $small-gap;
     }
 
     a {

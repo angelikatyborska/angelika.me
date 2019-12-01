@@ -3,30 +3,38 @@ layout: default
 title: About
 ---
 
-{% img avatar alt:"Angelika" class:avatar%}
-
-{% include social_links.html %}
-
 <h1>Hi!</h1>
 
-{% img about/wave-emoji alt:"A drawing of the waving emoji" class:'wave' %}
+<div class="grid">
+  <div class="column-image">
+    {% img about/portrait alt:"Angelika" class:portrait%}
 
-<p>My name is Angelika Tyborska and I'm a web developer located in Berlin, Germany.</p>
+    {% include social_links.html %}
+  </div>
+  <div>
+    <p>My name is Angelika Tyborska and I'm a web developer located in Berlin, Germany.</p>
 
-<p>I currently work for <a href="https://steadyhq.com">Steady Media</a>, where I help build a membership platform for independent content creators.</p>
+    <p>I currently work for <a href="https://steadyhq.com">Steady Media</a>, where I help build a membership platform for independent content creators.</p>
 
-<p>I write this blog to document and share my experiences with various challenges that I encounter writing software.
-  I am by no means an expert, so please take my posts with a healthy dose of skepticism, and make sure to leave a comment
-  if you have constructive feedback.</p>
-
+    <p>I write this blog to document and share my experiences with various challenges that I encounter writing software.
+      I am by no means an expert, so please take my posts with a healthy dose of skepticism, and make sure to leave a comment
+      if you have constructive feedback.</p>
+  </div>
+</div>
 
 <h3>Volunteering</h3>
 
 <ul class="list">
   <li>
     <div class="list-item">
-      <span>I mentor Elixir learners on <a href="https://exercism.io/">Exercism</a>.</span>
+      <span>Mentoring Elixir learners on <a href="https://exercism.io/">Exercism</a>.</span>
       <span class="date">July 2018 - Present</span>
+    </div>
+  </li>
+  <li>
+    <div class="list-item">
+      <span>Mentoring at an Elixir beginners workshop organized by <a href="https://taste-elixir.io">Taste Elixir</a> in Poznań.</span>
+      <span class="date">29-30 November 2019</span>
     </div>
   </li>
 </ul>
@@ -35,6 +43,12 @@ title: About
 <h3>Projects</h3>
 
 <ul class="list">
+  <li>
+    <div class="list-item">
+      <span><a href="https://css-art.angelika.me/">CSS art</a> - I try to write some CSS to create things that look cool.</span>
+      <span class="date">November 2019</span>
+    </div>
+  </li>
   <li>
     <div class="list-item">
       <span><a href="https://falling-tiles.angelika.me/">Falling Tiles</a> - a Tetris clone written using Phoenix LiveView, for fun.</span>
@@ -66,3 +80,5 @@ title: About
 
 <p>Feel free to contact me on Twitter <a href="https://twitter.com/atyborska93">@atyborska93</a>
   or write an email to <span class="contact-email">{% asset hello %}</span>.</p>
+
+{% img about/wave-emoji alt:"A drawing of the waving emoji" class:'wave' %}
