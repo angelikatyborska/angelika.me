@@ -49,7 +49,7 @@
       path {
         @include transition;
 
-        fill: $text-color;
+        fill: var(--text-color);
       }
     }
 
@@ -57,7 +57,7 @@
     &:active {
       svg {
         path {
-          fill: $accent-color;
+          fill: var(--accent-color);
         }
       }
     }

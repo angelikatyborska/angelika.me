@@ -4,10 +4,10 @@ kbd {
   padding: 2px $tiny-gap;
   font-family: $code-font-family;
   font-size: 0.75em;
-  text-shadow: 0 1px 0 $white;
-  background-color: darken($light-gray, 2);
-  border: 1px solid darken($light-gray, 8);
+  text-shadow: 0 1px 0 var(--secondary-text-color);
+  background-color: var(--outer-background-color);
+  border: 1px solid var(--outer-background-color);
   border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 0 0 2px $white inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.1) inset;
   white-space: nowrap;
 }

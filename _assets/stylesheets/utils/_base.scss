@@ -6,8 +6,8 @@
 
 body {
   overflow-y: scroll;
-  color: $text-color;
-  background-color: $outer-background-color;
+  color: var(--text-color);
+  background-color: var(--outer-background-color);
 }
 
 a {
@@ -18,7 +18,7 @@ a {
 
   &:active,
   &:hover {
-    color: $accent-color;
+    color: var(--accent-color);
   }
 
   p & {
@@ -35,7 +35,7 @@ $page-wrapper-left-padding-small-screen: $big-gap;
   min-height: 100vh;
   margin: 0 auto;
   padding: $medium-gap $page-wrapper-left-padding-tiny-screen;
-  background-color: $inner-background-color;
+  background-color: var(--inner-background-color);
   display: grid;
   grid-template-rows: auto auto 1fr;
 

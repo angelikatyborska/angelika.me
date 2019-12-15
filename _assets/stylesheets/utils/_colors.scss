@@ -1,12 +1,4 @@
-$white: #ffffff;
 $light-gray: #f5f5f5;
-$medium-gray: #808080;
-$black: #000000;
-$almost-black: #444444;
-
-$outer-background-color: $light-gray;
-$inner-background-color: $white;
-$text-color: $almost-black;
 
 $syntax-purple: #b53d8f;
 $syntax-green: #228B22;
@@ -15,5 +7,43 @@ $syntax-salmon: #CD5555;
 $syntax-red-error: #a61717;
 $syntax-teal: #1e889b;
 $syntax-teal-dark: #00688B;
+$syntax-navy: #000080;
+$syntax-orange: #cb6c20;
 
 $accent-color: $syntax-purple;
+
+:root {
+  --text-color: #444444;
+  --secondary-text-color: #777777;
+  --outer-background-color: #{$light-gray};
+  --inner-background-color: #ffffff;
+  --accent-color: #{$syntax-purple};
+  --syntax-purple: #{$syntax-purple};
+  --syntax-green: #{$syntax-green};
+  --syntax-red: #{$syntax-red};
+  --syntax-salmon: #{$syntax-salmon};
+  --syntax-red-error: #{$syntax-red-error};
+  --syntax-teal: #{$syntax-teal};
+  --syntax-teal-dark: #{$syntax-teal-dark};
+  --syntax-navy: #{$syntax-navy};
+  --syntax-orange: #{$syntax-orange};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #{$light-gray};
+    --secondary-text-color: #aaaaaa;
+    --outer-background-color: #333333;
+    --inner-background-color: #222222;
+    --accent-color: #{lighten($syntax-purple, 15)};
+    --syntax-purple: #{lighten($syntax-purple, 15)};
+    --syntax-green: #{lighten($syntax-green, 15)};
+    --syntax-red: #{lighten($syntax-red, 15)};
+    --syntax-salmon: #{lighten($syntax-salmon, 15)};
+    --syntax-red-error: #{lighten($syntax-red-error, 15)};
+    --syntax-teal: #{lighten($syntax-teal, 15)};
+    --syntax-teal-dark: #{lighten($syntax-teal-dark, 15)};
+    --syntax-navy: #{lighten($syntax-navy, 15)};
+    --syntax-orange: #{lighten($syntax-orange, 15)};
+  }
+}

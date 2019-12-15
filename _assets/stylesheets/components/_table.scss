@@ -9,7 +9,7 @@ table {
   margin: 0 auto $medium-gap;
   font-family: $code-font-family;
   font-size: $code-font-size;
-  background-color: $white;
+  background-color: var(--inner-background-color);
 
   th {
     font-weight: bold;
@@ -21,7 +21,7 @@ table {
 
   tbody tr:nth-child(2n + 1) {
     td {
-      background: $light-gray;
+      background: var(--outer-background-color);
     }
   }
 }

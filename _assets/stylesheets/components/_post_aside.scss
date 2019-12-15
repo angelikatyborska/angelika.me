@@ -22,7 +22,7 @@
         overflow: hidden;
         transition: none;
         padding: $tiny-gap $small-gap $tiny-gap 0;
-        color: $medium-gray;
+        color: var(--secondary-text-color);
 
         &.h2 {
           font-size: rem-calc(18);

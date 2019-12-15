@@ -3,7 +3,7 @@ figure {
   text-align: center;
 
   figcaption {
-    color: $medium-gray;
+    color: var(--secondary-text-color);
     font-size: $small-font-size;
   }
 

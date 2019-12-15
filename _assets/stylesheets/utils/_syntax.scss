@@ -6,7 +6,7 @@ code {
 *:not(.highlight) {
   > code {
     padding: 0 $tiny-gap;
-    background: $light-gray;
+    background: var(--outer-background-color);
     font-size: 0.9em;
   }
 }
@@ -39,46 +39,46 @@ code {
 }
 
 .highlight {
-  background: $light-gray;
+  background: var(--outer-background-color);
   border-radius: 8px;
 
   .hll {
-    background-color: #ffffcc;
+    background-color: var(--inner-outer-background-color);
   }
 
   .c {
-    color: $syntax-green;
+    color: var(--syntax-green);
   }
 
   .err {
-    color: $syntax-red-error;
-    background-color: #e3d2d2;
+    color: var(--syntax-red-error);
+    background-color: var(--inner-outer-background-color);
   }
 
   .k {
-    color: $syntax-purple;
+    color: var(--syntax-purple);
     font-weight: bold;
   }
 
   .ch, .cm {
-    color: $syntax-green;
+    color: var(--syntax-green);
   }
 
   .cp {
-    color: $syntax-teal;
+    color: var(--syntax-teal);
   }
 
   .cpf, .c1 {
-    color: $syntax-green;
+    color: var(--syntax-green);
   }
 
   .cs {
-    color: $syntax-purple;
+    color: var(--syntax-purple);
     font-weight: bold;
   }
 
   .gd {
-    color: $syntax-red;
+    color: var(--syntax-red);
   }
 
   .ge {
@@ -86,24 +86,24 @@ code {
   }
 
   .gr {
-    color: $syntax-red;
+    color: var(--syntax-red);
   }
 
   .gh {
-    color: #000080;
+    color: var(--syntax-navy);
     font-weight: bold;
   }
 
   .gi {
-    color: #00aa00;
+    color: var(--syntax-green);
   }
 
   .go {
-    color: #888888;
+    color: var(--secondary-text-color);
   }
 
   .gp {
-    color: #555555;
+    color: var(--secondary-text-color);
   }
 
   .gs {
@@ -111,119 +111,119 @@ code {
   }
 
   .gu {
-    color: #800080;
+    color: var(--syntax-purple);
     font-weight: bold;
   }
 
   .gt {
-    color: $syntax-red;
+    color: var(--syntax-red);
   }
 
   .kc, .kd, .kn, .kp, .kr {
-    color: $syntax-purple;
+    color: var(--syntax-purple);
     font-weight: bold;
   }
 
   .kt {
-    color: #a7a7a7;
+    color: var(--secondary-text-color);
     font-weight: bold;
   }
 
   .m {
-    color: #B452CD;
+    color: var(--syntax-purple);
   }
 
   .s {
-    color: $syntax-salmon;
+    color: var(--syntax-salmon);
   }
 
   .na, .nb {
-    color: #658b00;
+    color: var(--syntax-green);
   }
 
   .nc {
-    color: #008b45;
+    color: var(--syntax-green);
     font-weight: bold;
   }
 
   .no {
-    color: $syntax-teal-dark;
+    color: var(--syntax-teal-dark);
   }
 
   .nd {
-    color: #707a7c;
+    color: var(--secondary-text-color);
   }
 
   .ne {
-    color: #008b45;
+    color: var(--syntax-green);
     font-weight: bold;
   }
 
   .nf {
-    color: #008b45;
+    color: var(--syntax-green);
   }
 
   .nn {
-    color: #008b45;
+    color: var(--syntax-green);
     text-decoration: underline;
   }
 
   .nt {
-    color: $syntax-purple;
+    color: var(--syntax-purple);
     font-weight: bold;
   }
 
   .nv {
-    color: $syntax-teal-dark;
+    color: var(--syntax-teal-dark);
   }
 
   .ow {
-    color: $syntax-purple;
+    color: var(--syntax-purple);
   }
 
   .w {
-    color: #bbbbbb;
+    color: var(--secondary-text-color);
   }
 
   .mb, .mf, .mh, .mi, .mo {
-    color: #B452CD;
+    color: var(--syntax-purple);
   }
 
   .sb, .sc, .sd, .s2, .se {
-    color: $syntax-salmon;
+    color: var(--syntax-salmon);
   }
 
   .sh {
-    color: #1c7e71;
+    color: var(--syntax-teal);
     font-style: italic;
   }
 
   .si {
-    color: $syntax-salmon;
+    color: var(--syntax-salmon);
   }
 
   .sx {
-    color: #cb6c20;
+    color: var(--syntax-orange);
   }
 
   .sr {
-    color: #1c7e71;
+    color: var(--syntax-teal);
   }
 
   .s1, .ss {
-    color: $syntax-salmon;
+    color: var(--syntax-salmon);
   }
 
   .bp {
-    color: #658b00;
+    color: var(--syntax-green);
   }
 
   .vc, .vg, .vi {
-    color: $syntax-teal-dark;
+    color: var(--syntax-teal-dark);
   }
 
   .il {
-    color: #B452CD;
+    color: var(--syntax-purple);
   }
 }
 

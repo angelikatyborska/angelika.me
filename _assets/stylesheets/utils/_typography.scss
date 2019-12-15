@@ -24,7 +24,7 @@ q {
 }
 
 blockquote {
-  background: $light-gray;
+  background: var(--outer-background-color);
   border-radius: 8px;
   font-style: italic;
   position: relative;
@@ -34,7 +34,7 @@ blockquote {
     content: "\201C";
     font-family: Georgia, serif;
     font-weight: bold;
-    color: $accent-color;
+    color: var(--accent-color);
     position: absolute;
     left: $tiny-gap;
     top: 0;

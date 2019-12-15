@@ -66,10 +66,10 @@
       vertical-align: middle;
 
       path {
-        fill: $text-color;
+        fill: var(--text-color);
 
         &.at {
-          fill: $accent-color;
+          fill: var(--accent-color);
         }
       }
     }

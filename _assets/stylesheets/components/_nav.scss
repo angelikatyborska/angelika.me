@@ -20,7 +20,7 @@ nav {
     }
 
     em {
-      color: $accent-color;
+      color: var(--accent-color);
       font-style: normal;
     }
   }
@@ -47,7 +47,7 @@ nav {
       a {
         position: relative;
         padding: $tiny-gap;
-        color: $medium-gray;
+        color: var(--secondary-text-color);
       }
     }
   }
