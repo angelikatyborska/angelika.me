@@ -23,6 +23,16 @@ q {
   font-style: italic;
 }
 
+sup {
+  font-size: 80%;
+  vertical-align: top;
+}
+
+sub {
+  font-size: 80%;
+  vertical-align: bottom;
+}
+
 blockquote {
   background: var(--outer-background-color);
   border-radius: 8px;
