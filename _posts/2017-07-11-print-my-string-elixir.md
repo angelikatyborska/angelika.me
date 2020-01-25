@@ -1,7 +1,7 @@
 ---
 title: Print my string, Elixir!
 excerpt: Not everything that presents itself as a binary is an invalid string.
-tags: [elixir]
+tags: [Elixir]
 date: 2017-07-11 20:26:00 +0200
 ---
 

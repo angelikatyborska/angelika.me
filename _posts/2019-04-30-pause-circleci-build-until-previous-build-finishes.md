@@ -1,7 +1,7 @@
 ---
 title: Pause CircleCI build until previous build finishes
 excerpt: If you ever configured CircleCI to do a deployment, you probably ran into the problem of two pushes triggering two deployments at the same time. You can prevent that.
-tags: [devops, circleci]
+tags: [devops, CircleCI]
 date: 2019-04-30 21:57:00 +0200
 ---
 

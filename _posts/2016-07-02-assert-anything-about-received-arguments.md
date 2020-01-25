@@ -1,7 +1,7 @@
 ---
 title: Assert anything about received arguments
 excerpt: Advanced argument matching in RSpec.
-tags: [ruby, rspec, testing]
+tags: [Ruby, RSpec, testing]
 date: 2016-07-02 18:46:00 +0200
 ---
 

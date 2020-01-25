@@ -1,7 +1,7 @@
 ---
 title: Docker for dummies
 excerpt: Get acquainted with basic Docker concepts while trying to run a simple Guestbook Rails app in a Docker container.
-tags: [docker, devops, rails]
+tags: [Docker, devops, Rails]
 date: 2016-03-20 15:28:00 +0100
 ---
 Actually, Docker for *a* dummy. Me. To be honest, I have always been scared of DevOps. Whenever reading a Rails tutorial, I would skip the part about deployment. If it worked on my machine, it was good enough for me and I moved on. *Obviously* this attitude would not hold up in real life. Real life caught up with me quickly and learning Docker was the first thing I had to do on my new job.

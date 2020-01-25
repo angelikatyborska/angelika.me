@@ -1,7 +1,7 @@
 ---
 title: Hello World web app in Elixir, part&nbsp;2 - Plug
 excerpt: In the process of learning Elixir I am writing the same simple web app three times, using three different tools. This is the second part - the variant using Plug.
-tags: [elixir, plug]
+tags: [Elixir, Plug]
 date: 2016-08-14 17:56:00 +0200
 ---
 

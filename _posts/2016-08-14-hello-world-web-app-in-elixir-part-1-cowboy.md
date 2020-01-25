@@ -1,7 +1,7 @@
 ---
 title: Hello World web app in Elixir, part&nbsp;1 - Cowboy
 excerpt: In the process of learning Elixir I am writing the same simple web app three times, using three different tools. This is the first part - the variant using only the Cowboy web server.
-tags: [elixir, cowboy]
+tags: [Elixir, Cowboy]
 date: 2016-08-14 17:55:00 +0200
 ---
 

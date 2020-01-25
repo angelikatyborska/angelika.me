@@ -1,7 +1,7 @@
 ---
 title: Recursive SQL queries
 excerpt: A few examples of recursive queries for PostgreSQL using WITH RECURSIVE.
-tags: [sql]
+tags: [SQL]
 date: 2018-01-10 07:35:00 +0100
 ---
 

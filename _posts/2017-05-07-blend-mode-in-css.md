@@ -1,7 +1,7 @@
 ---
 title: Blend mode in CSS
 excerpt: Yes, you can set a blend mode for your HTML elements!
-tags: [css]
+tags: [CSS]
 date: 2017-05-07 15:39:00 +0200
 ---
 

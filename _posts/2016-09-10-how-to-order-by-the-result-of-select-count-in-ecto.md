@@ -1,7 +1,7 @@
 ---
  title: How to ORDER BY the result of SELECT COUNT in Ecto
  excerpt: "Spoiler: by using fragments to set an alias."
- tags: [elixir, ecto, sql]
+ tags: [Elixir, Ecto, SQL]
  date: 2016-09-10 21:06:00 +0200
 ---
 

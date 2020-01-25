@@ -1,7 +1,7 @@
 ---
 title: Colorizing Names
 excerpt: How I figured out how to assign colors to branch names - deterministically, but seemingly random to a human.
-tags: [javascript, ui/ux]
+tags: [JavaScript, UI/UX]
 date: 2017-07-03 20:41:00 +0200
 ---
 

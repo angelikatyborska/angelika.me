@@ -1,7 +1,7 @@
 ---
 title: Rubyist's first attempt at testing JavaScript
 excerpt: How to do everything that RSpec can do, but with Mocha, Chai, Sinon, and Proxyquire.
-tags: [testing, ruby, javascript, rspec, mocha, sinon]
+tags: [testing, Ruby, JavaScript, RSpec, Mocha, Sinon]
 date: 2016-04-22 20:29:00 +0200
 ---
 
@@ -261,7 +261,7 @@ end
 
 ### Mocha + Proxyquire
 
-In Javascript, every file imports modules to its own local scope. To overwrite a dependency, we have to fiddle with the import. Proxyquire is the tool for that job. It takes two arguments. The first one is the path to the module whose dependencies we will change (`lib/red_button.js`). This path is relative to the file where Proxyquire got imported, i.e. `test/setup.js`. The second one is a mapping of paths to objects overwriting exports. Those paths are relative to the file whose dependencies we're rewriting, i.e. `lib/red_button.js`. Specifying `{ default: SafeBomb }` means that the object exported with the name `default` (`exports default class Bomb ...`) will be swapped to `SafeBomb` . If there were any other exports in that file, they would not be affected. Proxyquire returns an object with all the exports from the imported file.
+In JavaScript, every file imports modules to its own local scope. To overwrite a dependency, we have to fiddle with the import. Proxyquire is the tool for that job. It takes two arguments. The first one is the path to the module whose dependencies we will change (`lib/red_button.js`). This path is relative to the file where Proxyquire got imported, i.e. `test/setup.js`. The second one is a mapping of paths to objects overwriting exports. Those paths are relative to the file whose dependencies we're rewriting, i.e. `lib/red_button.js`. Specifying `{ default: SafeBomb }` means that the object exported with the name `default` (`exports default class Bomb ...`) will be swapped to `SafeBomb` . If there were any other exports in that file, they would not be affected. Proxyquire returns an object with all the exports from the imported file.
 
 ```js
 // test/lib/red_button_test.js

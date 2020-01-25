@@ -1,7 +1,7 @@
 ---
 title: Garmin Vivosmart HR
 excerpt: My opinion about this fitness band after having used it for a month.
-tags: [review, gadget, garmin, fitness band]
+tags: [review, gadget, Garmin, fitness band]
 date: 2016-06-11 18:49:00 +0200
 ---
 

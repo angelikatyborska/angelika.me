@@ -1,7 +1,7 @@
 ---
 title: Why I'm excited about CSS Grid
 excerpt: I just got myself familiar with the specification of CSS Grid and cried a single tear of joy. Here's why.
-tags: [css]
+tags: [CSS]
 date: 2017-10-24 13:03:00 +0200
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: CSRF protection in Phoenix
 excerpt: If your Phoenix app uses basic authentication or cookies for authentication, you need to protect it from cross-site request forgery.
-tags: [elixir, phoenix, security]
+tags: [Elixir, Phoenix, security]
 date: 2019-12-31 23:23:00 +0100
 ---
 

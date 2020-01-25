@@ -1,7 +1,7 @@
 ---
 title: Scroll spy - heading breadcrumbs
 excerpt: Keep track of the headings that describe the current paragraph of a long article.
-tags: [javascript, blogging]
+tags: [JavaScript, blogging]
 date: 2016-05-03 19:52:00 +0200
 ---
 

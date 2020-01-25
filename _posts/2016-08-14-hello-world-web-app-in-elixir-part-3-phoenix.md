@@ -1,7 +1,7 @@
 ---
 title: Hello World web app in Elixir, part&nbsp;3 - Phoenix
 excerpt: In the process of learning Elixir I am writing the same simple web app three times, using three different tools. This is the third part - the variant using the web framework Phoenix.
-tags: [elixir, phoenix]
+tags: [Elixir, Phoenix]
 date: 2016-08-14 17:57:00 +0200
 ---
 
