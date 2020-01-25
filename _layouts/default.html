@@ -5,16 +5,16 @@
 <div class="page-wrapper">
   <nav>
     {% include header.html %}
-
     <ul>
       <li>
-        <a href="/" title="Blog">Blog</a>
+        {% if page.path == "index.html" %}<h1 class="current-location">Blog</h1>{% else %}<a href="/" title="Blog">Blog</a>{% endif %}
+      </li>
+
+      <li>
+        {% if page.path == "topics/index.html" %}<h1 class="current-location">Topics</h1>{% else %}<a href="/topics">Topics</a>{% endif %}
       </li>
       <li>
-        <a href="/topics" title="Topics">Topics</a>
-      </li>
-      <li>
-        <a href="/about" title="About me and this blog">About</a>
+        {% if page.path == "about/index.html" %}<h1 class="current-location">About</h1>{% else %}<a href="/about">About</a>{% endif %}
       </li>
     </ul>
   </nav>

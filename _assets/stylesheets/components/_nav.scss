@@ -1,4 +1,5 @@
 nav {
+  font-family: $header-font-family;
   margin-top: $medium-gap;
   margin-bottom: $big-gap;
 
@@ -9,7 +10,6 @@ nav {
   }
 
   header {
-    font-family: $header-font-family;
     font-size: $h1-font-size;
     font-weight: 700;
     margin-bottom: $medium-gap;
@@ -49,6 +49,18 @@ nav {
         position: relative;
         padding: $tiny-gap;
         color: var(--secondary-text-color);
+      }
+
+      h1 {
+        font-size: inherit;
+        font-weight: inherit;
+        margin: inherit;
+        font-family: inherit;
+        display: inline-block;
+      }
+
+      .current-location {
+        font-weight: bold;
       }
     }
   }
