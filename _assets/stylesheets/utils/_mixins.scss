@@ -12,9 +12,6 @@
 
 @mixin delicate {
   color: var(--secondary-text-color);
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 @mixin dot {

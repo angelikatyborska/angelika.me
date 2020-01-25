@@ -1,6 +1,4 @@
 nav {
-  @include delicate;
-
   margin-top: $medium-gap;
   margin-bottom: $big-gap;
 
@@ -11,6 +9,8 @@ nav {
   }
 
   header {
+    font-family: $header-font-family;
+    font-size: $h1-font-size;
     font-weight: 700;
     margin-bottom: $medium-gap;
 
@@ -29,7 +29,8 @@ nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: block;
+    display: flex;
+    align-items: center;
 
     @media #{$small} {
       text-align: right;
