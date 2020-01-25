@@ -87,14 +87,6 @@ h6 { font-size: $h6-font-size; }
 
 ul {
   padding-left: 1em;
-
-  li {
-    &:before {
-      @include dot;
-
-      margin: 0 0.5em;
-    }
-  }
 }
 
 ol {

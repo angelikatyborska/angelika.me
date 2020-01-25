@@ -29,7 +29,7 @@ The event took place in Kalkscheune, on Johannisstraße 2 in Mitte, a central di
 
 <figure>
 <a href='{% asset_path posts/react-day-berlin-conference-review/kalkscheune %}'>
-{% img posts/react-day-berlin-conference-review/kalkscheune alt:'Screenshot of Google Maps showing the location of Kalkscheune'%}
+{% img posts/react-day-berlin-conference-review/kalkscheune alt:'Screenshot of Google Maps showing the location of Kalkscheune in Berlin, Mitte'%}
 </a>
 </figure>
 

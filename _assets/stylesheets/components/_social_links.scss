@@ -1,8 +1,8 @@
 .social-links {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
-  text-align: center;
 
   li {
     display: inline-block;
@@ -14,37 +14,20 @@
 
   a {
     padding: $tiny-gap;
-    font-size: 0;
-
-    &:before {
-      @include fa-icon;
-
-      font-size: $h3-font-size;
-    }
+    font-size: $h3-font-size;
   }
 
-  .github {
-    &:before {
-      content: $fa-var-github;
-    }
+  .exercism svg {
+    margin-bottom: rem-calc(-2);
   }
 
-  .twitter {
-    &:before {
-      content: $fa-var-twitter;
-    }
-  }
-
-  .linkedin {
-    &:before {
-      content: $fa-var-linkedin;
-    }
+  .dev svg {
+    margin-bottom: rem-calc(-5);
   }
 
   .exercism, .dev {
     svg {
       width: $h3-font-size;
-      margin-bottom: rem-calc(-7);
 
       path {
         @include transition;

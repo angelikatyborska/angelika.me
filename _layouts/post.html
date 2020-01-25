@@ -6,8 +6,9 @@ layout: default
   <header>
     <h1>{{ page.title }}</h1>
     <div class="post-meta">
-      <span class="date">{{ page.date | date: '%d %B %Y' }}</span>
-      <span class="tags">{{ page | tags }}</span>
+      <span class="date"><span class="sr-only">Written on </span>{{ page.date | date: '%d %B %Y' }}</span>
+      <span class="dot" aria-hidden="true">&middot;</span>
+      <span class="tags"><span class="sr-only">Topics covered </span>{{ page | tags }}</span>
     </div>
   </header>
 
@@ -17,7 +18,7 @@ layout: default
 
 </article>
 
-<aside>
+<aside aria-hidden="true">
 </aside>
 
 {% javascript post_headers_anchors %}

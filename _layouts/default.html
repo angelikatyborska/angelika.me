@@ -8,10 +8,11 @@
     <ul>
       <li>
         {% if page.path == "index.html" %}<h1 class="current-location">Blog</h1>{% else %}<a href="/" title="Blog">Blog</a>{% endif %}
+        <span class="dot" aria-hidden="true">&middot;</span>
       </li>
-
       <li>
         {% if page.path == "topics/index.html" %}<h1 class="current-location">Topics</h1>{% else %}<a href="/topics">Topics</a>{% endif %}
+        <span class="dot" aria-hidden="true">&middot;</span>
       </li>
       <li>
         {% if page.path == "about/index.html" %}<h1 class="current-location">About</h1>{% else %}<a href="/about">About</a>{% endif %}
@@ -19,9 +20,9 @@
     </ul>
   </nav>
 
-  <div class="page-content {{ page.title | slugify }}">
+  <main class="page-content {{ page.title | slugify }}">
     {{ content }}
-  </div>
+  </main>
 
   {% include footer.html %}
 </div>

@@ -55,4 +55,13 @@
   .question {
     font-weight: bold;
   }
+
+  .answer button {
+    background: none;
+    font: inherit;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

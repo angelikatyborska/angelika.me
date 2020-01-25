@@ -14,23 +14,12 @@
   color: var(--secondary-text-color);
 }
 
-@mixin dot {
-  margin: 0 $big-gap;
-  content: '\00b7';
-}
-
 @mixin post-meta {
   @include clearfix;
   @include delicate;
 
   margin-bottom: $small-gap;
   font-size: $small-font-size;
-
-  .date {
-    &:after {
-      @include dot;
-    }
-  }
 
   .tags {
     a:not(:first-child) {

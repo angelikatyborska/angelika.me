@@ -3,16 +3,14 @@ layout: default
 title: About
 ---
 
-<h1>Hi!</h1>
-
 <div class="grid">
   <div class="column-image">
-    {% img about/portrait alt:"Angelika" class:portrait%}
+    {% img about/portrait alt:"" aria-hidden="true" class:portrait%}
 
     {% include social_links.html %}
   </div>
   <div>
-    <p>My name is Angelika Tyborska and I'm a web developer located in Berlin, Germany.</p>
+    <p>Hi! My name is <span lang="pl">Angelika Tyborska</span> and I'm a web developer located in Berlin, Germany.</p>
 
     <p>I currently work for <a href="https://steadyhq.com">Steady Media</a>, where I help build a membership platform for independent content creators.</p>
 
@@ -28,13 +26,13 @@ title: About
   <li>
     <div class="list-item">
       <span>Mentoring Elixir learners on <a href="https://exercism.io/">Exercism</a>.</span>
-      <span class="date">July 2018 - Present</span>
+      <span class="date"><span class="sr-only">from July 2018 to present</span><span aria-hidden="true">July 2018 - Present</span></span>
     </div>
   </li>
   <li>
     <div class="list-item">
-      <span>Mentoring at an Elixir beginners workshop organized by <a href="https://taste-elixir.io">Taste Elixir</a> in Poznań.</span>
-      <span class="date">29-30 November 2019</span>
+      <span>Mentoring at an Elixir beginners workshop organized by <a href="https://taste-elixir.io">Taste Elixir</a> in <span lang="pl">Poznań</span>.</span>
+      <span class="date"><span class="sr-only">on 29th November and 30th November 2019</span><span aria-hidden="true">29-30 November 2019</span></span>
     </div>
   </li>
 </ul>
@@ -45,14 +43,14 @@ title: About
 <ul class="list">
   <li>
     <div class="list-item">
-      <span><a href="https://css-art.angelika.me/">CSS art</a> - I try to write some CSS to create things that look cool.</span>
-      <span class="date">November 2019</span>
+      <span><a href="https://css-art.angelika.me/">CSS art</a> <span aria-hidden="true">-</span> I try to write some CSS to create things that look cool.</span>
+      <span class="date"><span class="sr-only">created in </span>November 2019</span>
     </div>
   </li>
   <li>
     <div class="list-item">
-      <span><a href="https://falling-tiles.angelika.me/">Falling Tiles</a> - a Tetris clone written using Phoenix LiveView, for fun.</span>
-      <span class="date">May 2019</span>
+      <span><a href="https://falling-tiles.angelika.me/">Falling Tiles</a> <span aria-hidden="true">-</span> a Tetris clone written using Phoenix LiveView, for fun.</span>
+      <span class="date"><span class="sr-only">created in </span>May 2019</span>
     </div>
   </li>
 </ul>
@@ -60,25 +58,25 @@ title: About
 
 <h3>Personal</h3>
 
-<p>I was born in Gorzów Wielkopolski, Poland, and spent my early 20s in Poznań, Poland.
+<p>I was born in <span lang="pl">Gorzów Wielkopolski</span>, Poland, and spent my early 20s in <span lang="pl">Poznań</span>, Poland.
   I moved to Berlin, Germany in 2017 to pursue love for a man, and ended up falling in love with the city as well.</p>
 
-{% img about/poland alt:"A map of Poland showing a route from Gorzów, to Poznań, to Berlin" class:'poland' %}
+{% img about/poland alt:"A map of Poland showing a route from Gorzów, to Poznań, to Berlin. All those cities are less than 300km from one another." class:'poland' %}
 
 <p>To relax after a long week of coding, I like to spend a few hours over a complex strategy board game,
   or silly party board games. To manage stress and stay healthy, I like to spend my mornings at the gym, lifting weights.</p>
 
-{% img about/hobbies alt:"A drawing of day - gym stuff, and night - board game stuff" class:'hobbies' %}
+{% img about/hobbies alt:"" aria-hidden="true" class:'hobbies' %}
 
 <p>I care deeply about reducing animal suffering, but
   I haven't figured out yet how to sustainably and productively use my software development skills to do that. Let me know if you have any ideas.</p>
 
-{% img about/cow alt:"A drawing of a cow\'s head" class:'cow' %}
+{% img about/cow alt:"" aria-hidden="true" class:'cow' %}
 
 
 <h3>Want to chat?</h3>
 
 <p>Feel free to contact me on Twitter <a href="https://twitter.com/atyborska93">@atyborska93</a>
-  or write an email to <span class="contact-email">{% asset hello %}</span>.</p>
+  or write an email to <span class="contact-email" aria-label="hello at angelika dot me"><span aria-hidden="true">{% asset hello %}</span></span>.</p>
 
-{% img about/wave-emoji alt:"A drawing of the waving emoji" class:'wave' %}
+{% img about/wave-emoji alt:"" aria-hidden="true" class:'wave' %}

@@ -3,6 +3,8 @@ var anchorForId = function (id) {
   anchor.className = 'header-link';
   anchor.href      = '#' + id;
   anchor.innerHTML = '<i class=\'fa fa-link\'></i>';
+  // I am imitating GitHub here, they hide those links too
+  anchor.setAttribute('aria-hidden', 'true');
   return anchor;
 };
 
@@ -12,7 +14,7 @@ var linkifyAnchors = function (level, containingElement) {
     var header = headers[h];
 
     if (typeof header.id !== 'undefined' && header.id !== '') {
-      header.insertAdjacentElement('afterbegin', anchorForId(header.id));
+      header.insertAdjacentElement('beforeend', anchorForId(header.id));
     }
   }
 };
