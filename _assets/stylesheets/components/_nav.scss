@@ -20,7 +20,7 @@ nav {
     }
 
     em {
-      color: var(--accent-color);
+      @include fancy-gradient();
       font-style: normal;
     }
   }

@@ -27,6 +27,8 @@ $accent-color: $syntax-purple;
   --syntax-teal-dark: #{$syntax-teal-dark};
   --syntax-navy: #{$syntax-navy};
   --syntax-orange: #{$syntax-orange};
+  --gradient-color-start: #{$syntax-teal-dark};
+  --gradient-color-end: #{$accent-color};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,5 +47,7 @@ $accent-color: $syntax-purple;
     --syntax-teal-dark: #{lighten($syntax-teal-dark, 15)};
     --syntax-navy: #{lighten($syntax-navy, 15)};
     --syntax-orange: #{lighten($syntax-orange, 15)};
+    --gradient-color-start: #{lighten($syntax-teal, 15)};
+    --gradient-color-end: #{lighten($syntax-purple, 15)};
   }
 }

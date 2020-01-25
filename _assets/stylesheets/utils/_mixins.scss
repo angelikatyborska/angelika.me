@@ -27,3 +27,13 @@
     }
   }
 }
+
+@mixin fancy-gradient() {
+  background: linear-gradient(90deg, var(--gradient-color-start) 0%, var(--gradient-color-end) 80%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-shadow: none;
+}
