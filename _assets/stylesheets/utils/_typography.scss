@@ -72,7 +72,7 @@ li {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: $big-gap 0 $medium-gap;
+  margin: $big-gap + $medium-gap 0 $medium-gap;
   font-family: $header-font-family;
   font-weight: bold;
   overflow-wrap: break-word;
