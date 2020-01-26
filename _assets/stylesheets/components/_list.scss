@@ -1,0 +1,19 @@
+.list {
+  li {
+    display: flex;
+    margin-bottom: $small-gap;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .list-item {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .list-item-title {
+    font-weight: bold;
+  }
+}

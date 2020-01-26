@@ -31,19 +31,16 @@ nav {
     list-style: none;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     @media #{$small} {
-      text-align: right;
+      margin-left: $big-gap;
+      justify-content: flex-end;
     }
 
     li {
       display: inline-block;
-
-      &:first-child {
-        &:before {
-          content: none;
-        }
-      }
+      white-space: nowrap;
 
       a {
         position: relative;

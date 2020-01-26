@@ -1,6 +1,12 @@
 .post-preview {
   margin: 0 auto $huge-gap auto;
 
+  &:first-child {
+    h2 {
+      margin-top: 0;
+    }
+  }
+
   .post-preview-meta {
     @include post-meta;
 

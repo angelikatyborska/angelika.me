@@ -18,25 +18,9 @@
     display: block;
   }
 
-  .list {
-    li {
-      display: flex;
-      margin-bottom: $small-gap;
-    }
-
-    a {
-      text-decoration: underline;
-    }
-
-    .list-item {
-      display: inline-flex;
-      flex-direction: column;
-    }
-
-    .date {
-      @include delicate;
-      font-size: $small-font-size;
-    }
+  .date {
+    @include delicate;
+    font-size: $small-font-size;
   }
 
   .contact-email {
