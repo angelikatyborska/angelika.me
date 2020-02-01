@@ -17,7 +17,7 @@ Let's say we have a form with a required input, like this:
 
 If you try to submit such a form without filling out the required field, you would be stopped by the browser with an error message, like this: 
 <figure>
-{% img posts/custom-error-messages-for-html5-form-validation/please-fill-out-this-field.gif alt:''%}
+{% img posts/custom-error-messages-for-html5-form-validation/please-fill-out-this-field.gif alt:'A screenshot showing a form submission validation error when a required input is not filled out' %}
 <figcaption>A required input with built-in validation has a generic "Please fill out this field" error message in Firefox.</figcaption>
 </figure>
 
@@ -56,7 +56,7 @@ On line 4, there's no need to check if the input is required because `event.targ
 Explicitly resetting custom validity to an empty string when the input value changes is necessary. Without it, if a mistake has been made once, you wouldn't be able to submit the form at all.
 
 <figure>
-{% img posts/custom-error-messages-for-html5-form-validation/please-tell-us-how-we-should-address-you.gif alt:''%}
+{% img posts/custom-error-messages-for-html5-form-validation/please-tell-us-how-we-should-address-you.gif alt:'A screenshot showing a customized form submission validation error when a required input is not filled out' %}
 <figcaption>A required input with built-in validation with a custom "Please tell us how we should address you" error message.</figcaption>
 </figure>
 
