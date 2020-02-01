@@ -66,9 +66,7 @@ p, ul, ol, blockquote {
 }
 
 li {
-  ul, li {
-    margin-bottom: 0;
-  }
+  margin: $small-gap 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -92,4 +90,8 @@ ul {
 ol {
   padding-left: 2em;
   list-style: decimal;
+
+  ol {
+    list-style: lower-alpha;
+  }
 }

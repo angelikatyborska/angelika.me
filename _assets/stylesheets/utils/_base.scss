@@ -21,7 +21,7 @@ a {
     color: var(--accent-color);
   }
 
-  p & {
+  p &, article ol &, article ul & {
     text-decoration: underline;
   }
 }
