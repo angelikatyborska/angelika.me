@@ -8,8 +8,8 @@ date: 2017-07-03 20:41:00 +0200
 I am building an app where the user can work on multiple projects, on multiple branches per project. The UI displays the name of the current branch in small white letters in the top left corner of the app, next to the project's name and the project's icon. Except for that, there is no quick and obvious way to tell on which branch the user is working, save for thinking long and hard about the actual contents of the project.
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/app %}'>
-{% img posts/colorizing-names/app alt:'Hard-to-notice branch name'%}
+<a href='{% asset posts/colorizing-names/app @path %}'>
+{% asset posts/colorizing-names/app alt:'Hard-to-notice branch name'%}
 </a>
 <figcaption>Easy to notice the wrong project - not so easy to notice the wrong branch.</figcaption>
 </figure>
@@ -21,8 +21,8 @@ And said mix-up already happened. Pre-first-coffee-of-the-day, I was greeted by 
 Before that ever happens again, I decided to make it easier to notice the user is editing the project on the wrong branch. Since I do not have enough space to spare in the UI of that application to enlarge fonts, I chose to differentiate branches by assigning colors to them.
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/app-colors %}'>
-{% img posts/colorizing-names/app-colors alt:'easier-to-notice branch name'%}
+<a href='{% asset posts/colorizing-names/app-colors @path %}'>
+{% asset posts/colorizing-names/app-colors alt:'easier-to-notice branch name'%}
 </a>
 <figcaption>Colorizing branch names to the rescue!</figcaption>
 </figure>
@@ -42,8 +42,8 @@ I chose to operate on colors using [HSL](https://developer.mozilla.org/en/docs/W
 Hue is a value ranging from `0` to `360`. `0` is red, `120` is green, `180` is cyan, `270` is purple, and `360` is again red.
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/hues %}'>
-{% img posts/colorizing-names/hues alt:'Hue range'%}
+<a href='{% asset posts/colorizing-names/hues @path %}'>
+{% asset posts/colorizing-names/hues alt:'Hue range'%}
 </a>
 <figcaption>Hue (from <a href="https://en.wikipedia.org/wiki/Hue">Wikipedia</a>)</figcaption>
 </figure>
@@ -110,8 +110,8 @@ function add(string) {
 ##### Problems
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/issues-sum %}'>
-{% img posts/colorizing-names/issues-sum class:'half-width' alt:'Problems with summing character codes'%}
+<a href='{% asset posts/colorizing-names/issues-sum @path %}'>
+{% asset posts/colorizing-names/issues-sum class='half-width' alt:'Problems with summing character codes'%}
 </a>
 <figcaption>Problems with summing character codes</figcaption>
 </figure>
@@ -142,8 +142,8 @@ function multiply(string) {
 ##### Problems
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/issues-multiply %}'>
-{% img posts/colorizing-names/issues-multiply class:'half-width' alt:'Problems with multiplying character codes'%}
+<a href='{% asset posts/colorizing-names/issues-multiply @path %}'>
+{% asset posts/colorizing-names/issues-multiply class='half-width' alt:'Problems with multiplying character codes'%}
 </a>
 <figcaption>Problems with multiplying character codes</figcaption>
 </figure>
@@ -161,8 +161,8 @@ Caused by the commutative property of multiplication: `x * y = y * x`.
 With multiplication, I quickly go over [the maximum safe integer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) and run into floating-point rounding errors.
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/unsafe-integers %}'>
-{% img posts/colorizing-names/unsafe-integers alt:'reaching numbers over maximum safe integer'%}
+<a href='{% asset posts/colorizing-names/unsafe-integers @path %}'>
+{% asset posts/colorizing-names/unsafe-integers alt:'reaching numbers over maximum safe integer'%}
 </a>
 <figcaption>When the result of multiplication exceeds the maximum safe integer, the commutative property of multiplication is no longer a guarantee.</figcaption>
 </figure>
@@ -190,8 +190,8 @@ Indeed, that one worked great! Except...
 ##### Problems
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/issues-djb2 %}'>
-{% img posts/colorizing-names/issues-djb2 class:'half-width' alt:'A problem with the djb2 algorithm'%}
+<a href='{% asset posts/colorizing-names/issues-djb2 @path %}'>
+{% asset posts/colorizing-names/issues-djb2 class='half-width' alt:'A problem with the djb2 algorithm'%}
 </a>
 <figcaption>A problem with the djb2 algorithm</figcaption>
 </figure>
@@ -221,8 +221,8 @@ function djb2Square(string) {
 #### No problems!
 
 <figure>
-<a href='{% asset_path posts/colorizing-names/issues-djb2-square %}'>
-{% img posts/colorizing-names/issues-djb2-square class:'half-width' alt:'Final solution' %}
+<a href='{% asset posts/colorizing-names/issues-djb2-square @path %}'>
+{% asset posts/colorizing-names/issues-djb2-square class='half-width' alt:'Final solution' %}
 </a>
 <figcaption>No problems with this algorithm!</figcaption>
 </figure>

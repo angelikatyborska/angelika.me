@@ -34,8 +34,8 @@ In a healthy team helping each other is encouraged, but **you** have to differen
 They google stuff all the time too. You can do that yourself. Not sure how an external library works? Read the docs. Don't understand the docs? Read them again. Then read the source code. It's Ruby, you have the source code of every gem you're using on your computer. Navigating to the relevant line of code in a blink of an eye is one of the many reasons I love RubyMine. 
 
 <figure>
-<a href='{% asset_path posts/the-death-of-a-schoolgirl/go-to-declaration %}'>
-{% img posts/the-death-of-a-schoolgirl/go-to-declaration alt:'Go To Declaration in RubyMine'%}
+<a href='{% asset posts/the-death-of-a-schoolgirl/go-to-declaration @path %}'>
+{% asset posts/the-death-of-a-schoolgirl/go-to-declaration alt:'Go To Declaration in RubyMine'%}
 </a>
 <figcaption>What would I do without you, RubyMine?</figcaption>
 </figure>

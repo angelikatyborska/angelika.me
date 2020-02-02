@@ -18,8 +18,8 @@ My boyfriend needed to take a shower in that bathroom that evening.
 His solution - tape a piece of cardboard to the window.
 
 <figure>
-<a href='{% asset_path posts/what-my-bathroom-window-taught-me-about-code-quality/the-window %}'>
-{% img posts/what-my-bathroom-window-taught-me-about-code-quality/the-window class:'half-width' alt:'Cardboard stuck to the window to block view'%}
+<a href='{% asset posts/what-my-bathroom-window-taught-me-about-code-quality/the-window @path %}'>
+{% asset posts/what-my-bathroom-window-taught-me-about-code-quality/the-window class='half-width' alt:'Cardboard stuck to the window to block view'%}
 </a>
 </figure>
 

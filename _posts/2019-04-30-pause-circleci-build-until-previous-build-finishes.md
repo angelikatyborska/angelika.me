@@ -55,15 +55,15 @@ For this use case, it's enough to have a project token.
 You can create the token in Project Settings -> Permissions -> API Permissions. Make sure to use the "All" scope so that the token can be used to retrieve all kinds of data about the project, not just its status. Give it a meaningful name that will allow you to later recognize what the token is used for.
 
 <figure>
-<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project %}'>
-{% img posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project.png alt:'CircleCI UI showing where the Add Token button is located'%}
+<a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project @path %}'>
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project.png alt:'CircleCI UI showing where the Add Token button is located'%}
 </a>
 <figcaption>You can create a token in Project Settings -> Permissions -> API Permissions.</figcaption>
 </figure>
 
 <figure>
-<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token %}'>
-{% img posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token.png alt:'CircleCI UI showing the Add Token dialog'%}
+<a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token @path %}'>
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token.png alt:'CircleCI UI showing the Add Token dialog'%}
 </a>
 <figcaption>Make sure to use the "All" scope.</figcaption>
 </figure>
@@ -73,15 +73,15 @@ You can create the token in Project Settings -> Permissions -> API Permissions. 
 Once you have generated the token, you need to pass it to the job. You can pass it as an environment variable in Project Settings -> Build Settings -> Environment Variables. Let's name it `CIRCLE_API_TOKEN`.
 
 <figure>
-<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project %}'>
-{% img posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project.png alt:'CircleCI UI showing where you can add environment variables to the job'%}
+<a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project @path %}'>
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project.png alt:'CircleCI UI showing where you can add environment variables to the job'%}
 </a>
 <figcaption>You can ad an environemnt variable in Project Settings -> Build Settings -> Environment Variables.</figcaption>
 </figure>
 
 <figure>
-<a href='{% asset_path posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add %}'>
-{% img posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add.png alt:'CircleCI UI showing the Add an Environment Variable dialog'%}
+<a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add @path %}'>
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add.png alt:'CircleCI UI showing the Add an Environment Variable dialog'%}
 </a>
 <figcaption>Copy-paste the generated token here.</figcaption>
 </figure>

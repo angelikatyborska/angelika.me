@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css?family=Patua+One:400,700" rel="stylesheet">
 
 
-  <link rel="shortcut icon" type="image/png" href="{% asset_path icon %}">
+  <link rel="shortcut icon" type="image/png" href="{% asset icon @path %}">
 
-  {% stylesheet screen %}
+  {% asset screen %}
 
   {% if page.excerpt %}
   {% assign description = page.excerpt %}
@@ -37,7 +37,7 @@
   <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="{{ site.url }}{% asset_path avatar %}" />
+  <meta property="og:image" content="{{ site.url }}{% asset avatar @path %}" />
   <meta property="og:image:width" content="300" />
   <meta property="og:image:height" content="300" />
 
@@ -45,5 +45,5 @@
   <meta name="twitter:site" content="{{ site.twitter_handler }}" />
   <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta name="twitter:description" content="{{ description | strip_html }}" />
-  <meta name="twitter:image" content="{{ site.url }}{% asset_path avatar %}" />
+  <meta name="twitter:image" content="{{ site.url }}{% asset avatar @path %}" />
 </head>

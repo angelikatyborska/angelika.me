@@ -34,8 +34,8 @@ It shows the weekday, the day of the month, the hour, and the minutes at all tim
 As a bonus, it lights up when I do the characteristic motion when I lift up my arm to check the time. The motion detection is correct when standing up, but goes haywire in the bed, which results in my wrist constantly lighting up when I am trying to fall sleep. That feature can be turned off, though.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/its-a-watch-alright %}'>
-{% img posts/garmin-vivosmart-hr/its-a-watch-alright alt:'Vivosmart HR tells time really well'%}
+<a href='{% asset posts/garmin-vivosmart-hr/its-a-watch-alright @path %}'>
+{% asset posts/garmin-vivosmart-hr/its-a-watch-alright alt:'Vivosmart HR tells time really well'%}
 </a>
 <figcaption>It's a watch alright</figcaption>
 </figure>
@@ -49,8 +49,8 @@ To get continuous heart rate monitoring, I have to start the activity mode (othe
 I don't run, I don't swim, I don't do intensive cycling. I am just an a-little-bit-more-active-than-totally-inactive programmer that doesn't want to suffer from back pain and obesity in the next 5 years, so I'm probably not a good person to review the accuracy and usefulness of Vivosmart HR for serious physical activity.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/my-workouts %}'>
-{% img posts/garmin-vivosmart-hr/my-workouts alt:'Garmin Connect Webapp - activity history'%}
+<a href='{% asset posts/garmin-vivosmart-hr/my-workouts @path %}'>
+{% asset posts/garmin-vivosmart-hr/my-workouts alt:'Garmin Connect Webapp - activity history'%}
 </a>
 <figcaption>Now I know when I am lying saying that I did earn that chocolate bar by exercising (hint: 100&nbsp;g of dark chocolate is about 500&nbsp;kcal). By the way, the times are off by 3 hours, which is peculiar, because my timezone is CEST (UTC +2) right now.</figcaption>
 </figure>
@@ -60,8 +60,8 @@ I don't run, I don't swim, I don't do intensive cycling. I am just an a-little-b
 I get notifications about incoming calls, missed calls, text messages, calendar notifications and from some apps of my choosing, like Gmail. The vibration pattern for those notifications is different that the one for "move!" reminders, so I can tell them apart without looking at the screen. The screen is big enough to read a simple text message or an email, so I don't even have to reach for my phone when I get a text message with a two-way authentication password or something simple like that. I can walk around the house with my headphones on, the vacuum cleaner on, my phone silenced in my backpack, and I still won't miss any calls.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/reading-emails %}'>
-{% img posts/garmin-vivosmart-hr/reading-emails alt:'Reading emails on Vivosmart HR'%}
+<a href='{% asset posts/garmin-vivosmart-hr/reading-emails @path %}'>
+{% asset posts/garmin-vivosmart-hr/reading-emails alt:'Reading emails on Vivosmart HR'%}
 </a>
 <figcaption>The process of reading emails</figcaption>
 </figure>
@@ -75,8 +75,8 @@ A fitness band is supposed to be worn 24/7, so I was really worried it would bot
 It leaves its imprint on my skin. I wear it low, close to my wrist, for a few hours, and then a little bit higher, further from my wrist, for another few hours, and so on, so that my skin can recover. The optical heart rate monitoring module is the most uncomfortable part of the band, so I would suggest you do not buy an HR smart/fitness band/watch (whatever you call it) unless you are sure you want this feature.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/imprint %}'>
-{% img posts/garmin-vivosmart-hr/imprint alt:'The imprint on my skin after a few hours of wearing Vivosmart HR'%}
+<a href='{% asset posts/garmin-vivosmart-hr/imprint @path %}'>
+{% asset posts/garmin-vivosmart-hr/imprint alt:'The imprint on my skin after a few hours of wearing Vivosmart HR'%}
 </a>
 <figcaption>The imprint on my skin after a few hours of wearing Vivosmart HR</figcaption>
 </figure>
@@ -84,8 +84,8 @@ It leaves its imprint on my skin. I wear it low, close to my wrist, for a few ho
 The device is really thick. Putting on sleeves with strong ribbing hurts a little bit because the ribbing presses the device hard against my skin.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/putting-on-clothes %}'>
-{% img posts/garmin-vivosmart-hr/putting-on-clothes alt:'Putting on clothes'%}
+<a href='{% asset posts/garmin-vivosmart-hr/putting-on-clothes @path %}'>
+{% asset posts/garmin-vivosmart-hr/putting-on-clothes alt:'Putting on clothes'%}
 </a>
 <figcaption>Putting on clothes</figcaption>
 </figure>
@@ -101,8 +101,8 @@ On the other hand, it is really more pleasant to be woken up by the sound of vib
 It's not the devices fault, the device only collects readings, but Garmin's app does a poor job at detecting when I fell asleep and when I woke up. Every three or four nights it overestimates my sleep duration by an hour or even three. Quite often I lay in bed for an hour, talking or reading before falling asleep, but because I'm very still at that time, the app thinks I am already asleep. I have to manually edit the data to be able to get a realistic average for the week, which I sometimes forget to do, and thus, the data ends up being not very reliable.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/sleep-tracking %}'>
-{% img posts/garmin-vivosmart-hr/sleep-tracking alt:'Inaccurate wake up time estimation'%}
+<a href='{% asset posts/garmin-vivosmart-hr/sleep-tracking @path %}'>
+{% asset posts/garmin-vivosmart-hr/sleep-tracking alt:'Inaccurate wake up time estimation'%}
 </a>
 <figcaption>Look, app, clearly we both know I woke up at 5:30, so why the lies? Is this your passive-aggresive way of telling me that I really should be sleeping 8 hours a night?</figcaption>
 </figure>
@@ -112,7 +112,7 @@ It's not the devices fault, the device only collects readings, but Garmin's app 
 If the phone is within Bluetooth's range, I can use the band to make my phone blink the screen and ring (even when it's silenced), and a proximity meter is shown. I have missed the info about this feature when making my decision to buy Vivosmart HR, so I was ecstatic to discover it. It's a really simple feature goes unused, but when it's needed, it's a lifesaver.
 
 <figure>
-<video src='{% asset_path posts/garmin-vivosmart-hr/find-my-phone %}' controls></video>
+<video src='{% asset posts/garmin-vivosmart-hr/find-my-phone @path %}' controls></video>
 <figcaption>I don't have to ask anyone to call me to find my phone</figcaption>
 </figure>
 
@@ -137,8 +137,8 @@ It takes 2 seconds between pressing the button for unlocking the screen and the 
 I can set the screen orientation to portrait instead of landscape (it's more natural for a watch), but even then some screens are still horizontal. It makes sense for the most part (like reading emails), but tilting my head to read anything is a nuisance.
 
 <figure>
-<a href='{% asset_path posts/garmin-vivosmart-hr/vertical-but-horizontal %}'>
-{% img posts/garmin-vivosmart-hr/vertical-but-horizontal alt:'Even with screen orientation set to portrait, some screens are still horizontal'%}
+<a href='{% asset posts/garmin-vivosmart-hr/vertical-but-horizontal @path %}'>
+{% asset posts/garmin-vivosmart-hr/vertical-but-horizontal alt:'Even with screen orientation set to portrait, some screens are still horizontal'%}
 </a>
 <figcaption>Even with screen orientation set to portrait, some screens are still horizontal</figcaption>
 </figure>

@@ -17,7 +17,7 @@ Docker is a tool that allows you to pretend there are tiny computers inside your
 The host OS has to be Linux, but that doesn't mean you can't use Docker on Mac OS X or Windows. It just means you need another layer of indirection. Docker provides a tool called Docker Machine that allows you to create a VirtualBox virtual machine with Linux to use as the Docker host OS.
 
 <figure>
-{% img posts/docker-for-dummies/docker_osx alt:'A diagram showing Docker on Mac OS X'%}
+{% asset posts/docker-for-dummies/docker_osx alt:'A diagram showing Docker on Mac OS X'%}
 <figcaption>Tiny virtual computers inside a virtual computer inside a real computer.</figcaption>
 </figure>
 
@@ -187,14 +187,14 @@ Containers run from the same image do not share filesystems. Whatever was copied
 It would be awesome if we could keep the code and the gems on our machine (OS X) and have the containers read from that. There is a way to achieve this. It's called **data volumes**. Well, data volumes allow us to mount a directory from the host OS (Linux VM in our case) on the container. The part where we mount a directory from OS X on the host OS is done by VirtualBox via shared folders. When Docker Machine created the default Linux host machine, it added `/Users` from OS X as a shared folder.
 
 <figure>
-{% img posts/docker-for-dummies/docker_osx_folder alt:'A diagram showing Docker containers sharing files with Mac OS X'%}
+{% asset posts/docker-for-dummies/docker_osx_folder alt:'A diagram showing Docker containers sharing files with Mac OS X'%}
 <figcaption>Tiny virtual computers sharing files with a a virtual computer sharing files with a real computer.</figcaption>
 </figure>
 
 Whenever you're in doubt about what's actually happening on the Linux VM, you can always open it via VirtualBox and talk to it.
 
 <figure>
-{% img posts/docker-for-dummies/vm_shell alt:'A screen from Docker default machine'%}
+{% asset posts/docker-for-dummies/vm_shell alt:'A screen from Docker default machine'%}
 <figcaption>Checking that the Linux VM in fact has access to my OS X home directory</figcaption>
 </figure>
 
@@ -355,7 +355,7 @@ $ docker-compose build
 Let's run everything with `docker-compose up -d`. We have to wait a while for the server to start, but when it does, we can visit `http://192.168.99.100:3000/` in the web browser. We will see a pretty `FATAL: database "guestbook_development" does not exist` error.
 
 <figure>
-{% img posts/docker-for-dummies/browser_nodatabase alt:'Rails app showing a ActiveRecord\:\:NoDatabaseError error'%}
+{% asset posts/docker-for-dummies/browser_nodatabase alt:'Rails app showing a ActiveRecord\:\:NoDatabaseError error'%}
 </figure>
 
 Let's set up the database by running `docker-compose run guestbook bin/setup`. Please notice that we are using the tool `docker-compose` instead of `docker` now, even to run single containers.
@@ -363,7 +363,7 @@ Let's set up the database by running `docker-compose run guestbook bin/setup`. P
 Let's visit `http://192.168.99.100:3000/` again. It works!
 
 <figure>
-{% img posts/docker-for-dummies/browser_success alt:'Rails app working correctly'%}
+{% asset posts/docker-for-dummies/browser_success alt:'Rails app working correctly'%}
 </figure>
 
 But does it really persist? Let's add an entry, stop everything and try again.

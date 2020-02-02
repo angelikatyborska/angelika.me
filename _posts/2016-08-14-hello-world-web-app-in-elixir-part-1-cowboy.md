@@ -256,21 +256,21 @@ iex(1)> :observer.start
 This command should open a window where I can see, among many other things, my app's process tree:
 
 <figure>
-{% img posts/hello-world-web-app-in-elixir-part-1-cowboy/hello-world alt:"The app's process tree"%}
+{% asset posts/hello-world-web-app-in-elixir-part-1-cowboy/hello-world alt:"The app's process tree"%}
 <figcaption>Not much here, huh?</figcaption>
 </figure>
 
 But wait, that's all? Where are those acceptor processes I have presumably run? Double-clicking on the process `<0.142.0>` reveals its details. It has a link to `<0.143.0>`.
 
 <figure>
-{% img posts/hello-world-web-app-in-elixir-part-1-cowboy/process-information alt:'Process information'%}
+{% asset posts/hello-world-web-app-in-elixir-part-1-cowboy/process-information alt:'Process information'%}
 <figcaption>I don't know who you are, <0.143.0>, but I will find you and I will inspect your tree.</figcaption>
 </figure>
 
 It turns out `<0.143.0>` is a part of an application used internally by Cowboy - [Ranch](https://github.com/ninenines/ranch). I can see that there are in fact 100 acceptor processes there, waiting for connections.
 
 <figure>
-{% img posts/hello-world-web-app-in-elixir-part-1-cowboy/ranch-100 alt:"Ranch's process tree"%}
+{% asset posts/hello-world-web-app-in-elixir-part-1-cowboy/ranch-100 alt:"Ranch's process tree"%}
 <figcaption>Here they are! All 100 of them (notice the long scrollbar).</figcaption>
 </figure>
 

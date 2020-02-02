@@ -20,8 +20,8 @@ Screen session is a session from which you can **detach** - break the ssh connec
 It's a very useful tool for doing tasks that are time-consuming and/or need to happen in one go "or else". For example: `docker-compose build` of a big set of containers, `scp`ing huge files, updating a lot of gems etc.
 
 <figure>
-<a href='{% asset_path posts/screen-sessions/start-detach-attach %}'>
-{% img posts/screen-sessions/start-detach-attach alt:'Screen session does not terminate when you detach'%}
+<a href='{% asset posts/screen-sessions/start-detach-attach @path %}'>
+{% asset posts/screen-sessions/start-detach-attach alt:'Screen session does not terminate when you detach'%}
 </a>
 <figcaption>Create a screen session, detach <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>d</kbd> and attach again - loop still running</figcaption>
 </figure>
@@ -126,8 +126,8 @@ $ session -x [name]
 When providing the name of the sessions, the same rules apply as when using `session -r`.
 
 <figure>
-<a href='{% asset_path posts/screen-sessions/multi-display-mode %}'>
-{% img posts/screen-sessions/multi-display-mode alt:'Screen session does not terminate when you detach'%}
+<a href='{% asset posts/screen-sessions/multi-display-mode @path %}'>
+{% asset posts/screen-sessions/multi-display-mode alt:'Screen session does not terminate when you detach'%}
 </a>
 <figcaption>Multi display mode</figcaption>
 </figure>
@@ -145,8 +145,8 @@ For multitasking inside a single screen session, you can create windows. While i
 
 
 <figure>
-<a href='{% asset_path posts/screen-sessions/windows %}'>
-{% img posts/screen-sessions/windows alt:'Multiple windows in a single session'%}
+<a href='{% asset posts/screen-sessions/windows @path %}'>
+{% asset posts/screen-sessions/windows alt:'Multiple windows in a single session'%}
 </a>
 <figcaption>Create a screen session, type, create a new window in that session <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>c</kbd>, type, switch windows <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>"</kbd>, exit both windows.</figcaption>
 </figure>
@@ -154,8 +154,8 @@ For multitasking inside a single screen session, you can create windows. While i
 If you ever forget any of those shortcuts or want to explore more, you can always refer to the man pages or press <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>?</kbd> inside a screen session.
 
 <figure>
-<a href='{% asset_path posts/screen-sessions/ctrl-a-question-mark %}'>
-{% img posts/screen-sessions/ctrl-a-question-mark alt:'screen key bindings'%}
+<a href='{% asset posts/screen-sessions/ctrl-a-question-mark @path %}'>
+{% asset posts/screen-sessions/ctrl-a-question-mark alt:'screen key bindings'%}
 </a>
 <figcaption>Screen key bindings - show by pressing <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>?</kbd></figcaption>
 </figure>

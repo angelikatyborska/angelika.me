@@ -6,8 +6,8 @@ date: 2018-11-30 19:33:00 +0100
 ---
 
 <figure>
-{% img posts/how-i-prepared-for-my-first-aws-certification/logo-color alt:'AWS Certified'%}
-{% img posts/how-i-prepared-for-my-first-aws-certification/tag-color alt:'Solutions Architect - Associate'%}
+{% asset posts/how-i-prepared-for-my-first-aws-certification/logo-color alt:'AWS Certified'%}
+{% asset posts/how-i-prepared-for-my-first-aws-certification/tag-color alt:'Solutions Architect - Associate'%}
 </figure>
 
 On 28 November 2018, I passed my _AWS Certified Solutions Architect - Associate_ exam. Here's how I went from knowing exactly zero about AWS to getting the certification.
