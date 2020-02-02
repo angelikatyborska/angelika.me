@@ -3,23 +3,39 @@
 {% include head.html title=page.title %}
 <body>
 <div class="page-wrapper">
-  <nav>
+  <nav aria-label="main">
     {% include header.html %}
     <ul>
       <li>
-        {% if page.path == "index.html" %}<h1 class="current-location">Blog</h1>{% else %}<a href="/" title="Blog">Blog</a>{% endif %}
+        {% if page.path == "index.html" %}
+          <h1 class="current-location">Blog</h1><span class="sr-only">(current location)</span>
+        {% else %}
+          <a href="/" title="Blog">Blog</a>
+        {% endif %}
       </li>
       <li>
         <span class="dot" aria-hidden="true">&middot;</span>
-        {% if page.path == "topics/index.html" %}<h1 class="current-location">Topics</h1>{% else %}<a href="/topics">Topics</a>{% endif %}
+        {% if page.path == "topics/index.html" %}
+          <h1 class="current-location">Topics</h1><span class="sr-only">(current location)</span>
+        {% else %}
+          <a href="/topics">Topics</a>
+        {% endif %}
       </li>
       <li>
         <span class="dot" aria-hidden="true">&middot;</span>
-        {% if page.path == "about/index.html" %}<h1 class="current-location">About</h1>{% else %}<a href="/about">About</a>{% endif %}
+        {% if page.path == "about/index.html" %}
+          <h1 class="current-location">About</h1><span class="sr-only">(current location)</span>
+        {% else %}
+          <a href="/about">About</a>
+        {% endif %}
       </li>
       <li>
         <span class="dot" aria-hidden="true">&middot;</span>
-        {% if page.path == "bookmarks/index.html" %}<h1 class="current-location">Bookmarks</h1>{% else %}<a href="/bookmarks">Bookmarks</a>{% endif %}
+        {% if page.path == "bookmarks/index.html" %}
+          <h1 class="current-location">Bookmarks</h1><span class="sr-only">(current location)</span>
+        {% else %}
+          <a href="/bookmarks">Bookmarks</a>
+        {% endif %}
       </li>
     </ul>
   </nav>

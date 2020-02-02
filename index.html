@@ -7,7 +7,7 @@ pagination:
 {% include posts.html posts=paginator.posts %}
 
 {% if paginator.total_pages > 1 %}
-<nav name="pagination" class="pagination">
+<nav aria-label="pagination" name="pagination" class="pagination">
   <ul>
     {% if paginator.previous_page %}
     <li class="pagination-prev">
@@ -15,7 +15,7 @@ pagination:
     </li>
     {% endif %}
     <li class="pagination-current">
-      Page {{ paginator.page }} out of {{ paginator.total_pages }}
+      <span class="sr-only">You are currently on </span>Page {{ paginator.page }} out of {{ paginator.total_pages }}
     </li>
     {% if paginator.next_page %}
     <li class="pagination-next">
