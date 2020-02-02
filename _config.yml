@@ -49,3 +49,12 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
+
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true

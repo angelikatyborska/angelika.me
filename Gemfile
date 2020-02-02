@@ -6,6 +6,7 @@ gem 'sprockets', "~> 3"
 gem 'rake'
 
 group :jekyll_plugins do
+  gem 'jekyll-paginate-v2'
   gem 'jekyll-tagging'
   gem 'jekyll-assets', "~> 3.0"
   gem 'sass'

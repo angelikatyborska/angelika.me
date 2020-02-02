@@ -53,6 +53,8 @@ GEM
       nokogiri (~> 1.8)
       pathutil (~> 0.16)
       sprockets (>= 3.3, < 4.1.beta)
+    jekyll-paginate-v2 (2.0.0)
+      jekyll (~> 3.0)
     jekyll-sanity (1.2.0)
       jekyll (~> 3.1)
     jekyll-sass-converter (1.5.2)
@@ -110,6 +112,7 @@ DEPENDENCIES
   autoprefixer-rails
   jekyll (~> 3.8)
   jekyll-assets (~> 3.0)
+  jekyll-paginate-v2
   jekyll-tagging
   jemoji
   rake
