@@ -52,7 +52,7 @@ How to achieve that depends on your operating system and shell. On macOS, using 
 
 ```bash
 # ~/.bash_profile
-export PLUG_EDITOR='x-mine://open?file=__FILE__&line=__FILE__'
+export PLUG_EDITOR='x-mine://open?file=__FILE__&line=__LINE__'
 ```
 
 Before restarting your Phoenix server to see the results, do not forget to reload the file (`. ~/.bash_profile`) in an existing shell session or just open a new session.
