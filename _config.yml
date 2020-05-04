@@ -27,7 +27,6 @@ assets:
     - "*.woff2"
   sources:
     - _assets/bower
-    - assets/bower
 
 defaults:
   -
