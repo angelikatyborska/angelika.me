@@ -5,6 +5,6 @@ task :dev do
 end
 
 task :build do
-  system 'rm -rf .asset-cache _site'
+  system 'rm -rf .jekyll-cache _site'
   system 'JEKYLL_ENV=production bundle exec jekyll build'
 end
