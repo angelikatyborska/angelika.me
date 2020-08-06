@@ -38,7 +38,7 @@ For those reasons, you might want to change those error messages. And you can!
 See this [GitHub gist for a full `index.html` file](https://gist.github.com/angelikatyborska/d6dc425700d9c0d53c5fd19ed1683e31).
 
 ```javascript
-const input = document.querySelector('input[name="name"');
+const input = document.querySelector('input[name="name"]');
 
 input.addEventListener('invalid', function (event) {
   if (event.target.validity.valueMissing) {
