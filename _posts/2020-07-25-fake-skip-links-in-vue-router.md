@@ -7,7 +7,7 @@ date: 2020-07-25 16:53:00 +0200
 
 _This article is inspired by Marcus Herrmann's article [Improved accessible routing in Vue.js](https://marcus.io/blog/improved-accessible-routing-vuejs). You should read it because it mentions other accessibility issues with Vue Router._
 
-[Skip links](https://www.a11yproject.com/posts/2013-05-11-skip-nav-links/) are shortcut links that take you to a section within the same webpage, allowing you to _skip_ big chunks of content that don't interest you. They are an important accessibility feature for users that navigate the web by means that would otherwise require them to go through all of the content in the order it appears in the DOM, for example when using keyboard navigation (tabbing through a page). Skip links are usually hidden until focused but can also be always visible. Think of a long Wikipedia article with a table of contents at the beginning, that can take you straight to the section that you're looking for <sup>[[1]](#note-1)</sup>.
+[Skip links](https://www.a11yproject.com/posts/2013-05-11-skip-nav-links/) are shortcut links that take you to a section within the same webpage, allowing you to _skip_ big chunks of content that don't interest you. They are an important accessibility feature for users that navigate the web by means that would otherwise require them to go through all of the content in the order it appears in the DOM, for example when using keyboard navigation (tabbing through a page). Skip links are usually hidden until focused but can also be always visible. Think of a long Wikipedia article with a table of contents at the beginning, that can take you straight to the section that you're looking for <sup>[[<span class="sr-only">Note </span>1]](#note-1)</sup>.
 
 <figure>
 <a href='{% asset posts/fake-skip-links-in-vue-router/wikipedia_table_of_contents.gif @path %}'>
@@ -85,7 +85,7 @@ This will cause Vue Router to look for an element with id `to.hash` and scroll i
 
 Scrolling the element into view by itself will not cause assistive technology to jump to that location. We need to do that explicitly.
 
-There are two ways to make the browser tell assistive technology to jump to a location: change the hash location or focus an element <sup>[[2]](#note-2)</sup>. We have this problem in the first place because changing the hash location is not an option. That means we have to focus the element.
+There are two ways to make the browser tell assistive technology to jump to a location: change the hash location or focus an element <sup>[[<span class="sr-only">Note </span>2]](#note-2)</sup>. We have this problem in the first place because changing the hash location is not an option. That means we have to focus the element.
 
 #### 2.1 Make skip link target focusable
 
@@ -159,7 +159,7 @@ If you want to reuse this code in many Vue components, you can extract it into a
 
 #### 2.3 The outline dilemma
 
-The focused element **needs** to stand out so that the user can clearly see where they currently are on the page. In Chrome and Safari, it has a blue outline <sup>[[3]](#note-3)</sup>. In Firefox, it has a thin dotted border.
+The focused element **needs** to stand out so that the user can clearly see where they currently are on the page. In Chrome and Safari, it has a blue outline <sup>[[<span class="sr-only">Note </span>3]](#note-3)</sup>. In Firefox, it has a thin dotted border.
 
 Because clicking on an element makes it focused, this outline is very often visible to users that navigate with a mouse and might not know anything about _focus_ and _keyboard navigation_. These users might get annoyed by the seemingly unnecessary outline. For this reason, product designers and product managers very often [want to get rid of it](https://www.a11yproject.com/posts/2013-01-25-never-remove-css-outlines/).
 
