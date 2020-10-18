@@ -47,6 +47,59 @@
   {% include footer.html %}
 </div>
 
+<span class="highlighters">
+  <button class="highlighter magenta">
+    <span class="highlighter-body"></span>
+    <span class="highlighter-tip"></span>
+  </button>
+  <button class="highlighter cyan">
+    <span class="highlighter-body"></span>
+    <span class="highlighter-tip"></span>
+  </button>
+  <button class="highlighter green">
+    <span class="highlighter-body"></span>
+    <span class="highlighter-tip"></span>
+  </button>
+  <button class="highlighter yellow">
+    <span class="highlighter-body"></span>
+    <span class="highlighter-tip"></span>
+  </button>
+</div>
+
+{% asset highlighters.js %}
+
+<div class="decorative-scribbles" aria-hidden="true">
+  <span class="scribble flower">
+    <a href="https://www.youtube.com/watch?v=tbo5sH2dcJo" title="Moop Mama - Alle Kinder">
+      {% asset design/flower alt:'' aria-hidden='true'%}
+    </a>
+  </span>
+
+  <span class="scribble stick-figure">
+    <a href="https://www.youtube.com/watch?v=BBgPd7I8oSQ" title="The Correspondents - Finally">
+      {% asset design/stick-figure alt:'' aria-hidden='true'%}
+    </a>
+  </span>
+
+  <span class="scribble two-plus-two" title="Radiohead - 2 + 2 - 5">
+    <a href="https://www.youtube.com/watch?v=2w6kHS_IRrE">
+      {% asset design/two-plus-two alt:'' aria-hidden='true'%}
+    </a>
+  </span>
+
+  <span class="scribble smiley-face" title="Cow Thinks She's A Dog | The Dodo">
+    <a href="https://www.youtube.com/watch?v=qRq_YZuDKhU">
+      {% asset design/smiley-face alt:'' aria-hidden='true'%}
+    </a>
+  </span>
+
+  <span class="scribble triangle">
+    <a href="https://css-art.angelika.me/sierpinski-triangle" title="Sierpinski Triangle - My CSS Art">
+      {% asset design/triangle alt:'' aria-hidden='true'%}
+    </a>
+  </span>
+</div>
+
 <script id="dsq-count-scr" src="//angelikatyborska.disqus.com/count.js" async></script>
 
 </body>

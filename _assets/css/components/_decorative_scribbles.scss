@@ -1,0 +1,51 @@
+.decorative-scribbles {
+  display: none;
+  overflow: hidden;
+
+  @media #{$big} {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $margin-width
+  }
+
+  .scribble {
+    position: absolute;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .flower {
+    top: 10%;
+    width: 0.7 * $margin-width;
+  }
+
+  .stick-figure {
+    width: 0.7 * $margin-width;
+    top: 30%;
+    right: 5px;
+    transform: rotate(10deg)
+  }
+
+  .two-plus-two {
+    width: 0.4 * $margin-width;
+    bottom: 25%;
+    left: 20%;
+  }
+
+  .smiley-face {
+    bottom: 15%;
+    right: 5px;
+    width: 0.5 * $margin-width;
+  }
+
+  .triangle {
+    width: 0.7 * $margin-width;
+    bottom: 20px;
+  }
+}

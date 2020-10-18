@@ -10,10 +10,6 @@ nav {
     justify-content: space-between;
   }
 
-  @media #{$medium} {
-    margin-top: $huge-gap;
-  }
-
   header {
     font-size: $h1-font-size;
     font-weight: 700;

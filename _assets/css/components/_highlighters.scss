@@ -1,0 +1,90 @@
+.highlighters {
+  display: none;
+  overflow: hidden;
+
+  @media #{$big} {
+    display: block;
+    position: fixed;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+  }
+
+  .highlighter {
+    @include transition();
+    @include button_reset();
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transform: translateX(-10px);
+
+    &:hover, &.active {
+      transform: translateX(0);
+    }
+
+    &.magenta {
+      --tip-color: #{$magenta};
+    }
+
+    &.cyan {
+      --tip-color: #{$cyan};
+    }
+
+    &.green {
+      --tip-color: #{$green};
+    }
+
+    &.yellow {
+      --tip-color: #{$yellow};
+    }
+
+    $thickness: 40px;
+
+    .highlighter-body {
+      height: $thickness;
+      display: flex;
+
+      &:before {
+        content: '';
+        height: 100%;
+        background-image: linear-gradient(90deg, var(--tip-color) 80%, black 81%);
+        width: 30px;
+        display: block;
+      }
+
+      &:after {
+        content: '';
+        height: 100%;
+        width: 0;
+        display: block;
+        border-left: 0.3333 * $thickness solid black;
+        border-bottom: 0.3333 * $thickness solid transparent;
+        border-top: 0.3333 * $thickness solid transparent;
+      }
+    }
+
+    .highlighter-tip {
+      height: 0.3333 * $thickness;
+      display: flex;
+
+      &:before {
+        content: '';
+        height: 100%;
+        background-image: linear-gradient(90deg, black 60%, var(--tip-color) 61%);
+        width: 20px;
+        display: block;
+      }
+
+      &:after {
+        content: '';
+        height: 100%;
+        display: block;
+        border-left: 10px solid var(--tip-color);
+        border-bottom: 0.3333 * $thickness solid transparent;
+        border-top: 0 solid transparent;
+      }
+    }
+  }
+}
