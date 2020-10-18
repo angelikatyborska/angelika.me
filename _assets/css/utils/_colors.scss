@@ -1,23 +1,44 @@
 $light-gray: #f5f5f5;
 
-$syntax-purple: #b53d8f;
-$syntax-green: #228B22;
-$syntax-red: #aa0000;
-$syntax-salmon: #CD5555;
-$syntax-red-error: #a61717;
-$syntax-teal: #1e889b;
-$syntax-teal-dark: #00688B;
-$syntax-navy: #000080;
-$syntax-orange: #cb6c20;
+$notepad-blue: #34aef2;
+$notepad-red: #de0a93;
+$magenta: #f731f7;
+$magenta-highlight: rgba($magenta, 0.4);
+$cyan: #00ffff;
+$cyan-highlight: rgba($cyan, 0.5);
+$green: #09ea09;
+$green-highlight:  rgba($green, 0.5);
+$yellow: #f5f045;
+$yellow-highlight: rgba($yellow, 0.7);
+$orange: #fc9219;
+$orange-highlight: rgba($orange, 0.7);
 
-$accent-color: $syntax-purple;
+$white: #ffffff;
+$shadow-1-color: rgba(0, 0, 0, 0.2);
+$shadow-2-color: rgba(0, 0, 0, 0.1);
+
+$syntax-purple: darken($magenta, 20);
+$syntax-green: darken($green, 20);
+$syntax-red: $notepad-red;
+$syntax-salmon: darken($orange, 20);
+$syntax-red-error: $notepad-red;
+$syntax-teal: darken($cyan, 10);
+$syntax-teal-dark: darken($cyan, 20);
+$syntax-navy: #000080;
+$syntax-orange: darken($orange, 10);
+
+$accent-color: $notepad-red;
+
+$light-mode-text-color: #222;
 
 :root {
-  --text-color: #444444;
-  --secondary-text-color: #777777;
-  --outer-background-color: #{$light-gray};
-  --inner-background-color: #ffffff;
-  --accent-color: #{$syntax-purple};
+  --text-color: #{$light-mode-text-color};
+  --secondary-text-color: #444;
+  --background-color: #{$white};
+  --highlight: #{$yellow-highlight};
+  --shadow-color-1: rgba(0, 0, 0, 0.2);
+  --shadow-color-2: rgba(0, 0, 0, 0.1);
+  --accent-color: #{$accent-color};
   --syntax-purple: #{$syntax-purple};
   --syntax-green: #{$syntax-green};
   --syntax-red: #{$syntax-red};
@@ -33,11 +54,13 @@ $accent-color: $syntax-purple;
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #{$light-gray};
-    --secondary-text-color: #aaaaaa;
-    --outer-background-color: #333333;
-    --inner-background-color: #222222;
-    --accent-color: #{lighten($syntax-purple, 15)};
+    --text-color: #eee;
+    --secondary-text-color: #ccc;
+    --background-color: #000;
+    --highlight: #{$yellow-highlight};
+    --shadow-color-1: rgba(255, 255, 255, 0.3);
+    --shadow-color-2: rgba(255, 255, 255, 0.2);
+    --accent-color: #{lighten($accent-color, 15)};
     --syntax-purple: #{lighten($syntax-purple, 15)};
     --syntax-green: #{lighten($syntax-green, 15)};
     --syntax-red: #{lighten($syntax-red, 15)};

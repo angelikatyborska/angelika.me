@@ -4,9 +4,14 @@ nav {
   margin-bottom: $big-gap;
 
   @media #{$small} {
+    margin-top: $big-gap;
     margin-bottom: $huge-gap;
     display: flex;
     justify-content: space-between;
+  }
+
+  @media #{$medium} {
+    margin-top: $huge-gap;
   }
 
   header {
@@ -20,7 +25,6 @@ nav {
     }
 
     em {
-      @include fancy-gradient();
       font-style: normal;
     }
   }
@@ -63,6 +67,7 @@ nav {
   }
 
   &.pagination {
+    font-family: $paragraph-font-family;
     margin: $huge-gap 0 0 0;
 
     ul {

@@ -44,12 +44,11 @@ function headingBreadcrumbs(article, breadcrumbsContainer, options) {
     headingsInScope.forEach(function(heading) {
       var opacity = calculateOpacity(heading.beginningOfScope, heading.endOfScope, scrollTop);
 
-      var html = '<a href="#' + heading.id
+      var html = '<span style="opacity: ' + opacity + '"><a href="#' + heading.id
         + '" class="' + heading.tag
-        + '" style="opacity:' + opacity
         + '; pointer-events: ' + (opacity > 0.5 ? 'auto' : 'none')
         + '">' + heading.text
-        + '</a>';
+        + '</a></span>';
 
       breadcrumbs.push(html);
     });

@@ -1,6 +1,14 @@
-$header-font-family: 'Patua One', sans-serif;
-$paragraph-font-family: 'Open Sans', sans-serif;
+$header-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+$paragraph-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 $code-font-family: 'Roboto Mono', Courier, monospace;
+
+@mixin fake-highlight-underline {
+  border-bottom: 4px solid var(--highlight);
+}
+
+::selection {
+  background: var(--highlight);
+}
 
 html {
   font-size: $rem-base;
@@ -34,8 +42,7 @@ sub {
 }
 
 blockquote {
-  background: var(--outer-background-color);
-  border-radius: 8px;
+  @include shadow();
   font-style: italic;
   position: relative;
   padding: $tiny-gap $tiny-gap $tiny-gap $big-gap + $small-gap;
@@ -62,7 +69,7 @@ strong {
 }
 
 p, ul, ol, blockquote {
-  margin-bottom: $medium-gap;
+  margin-bottom: $big-gap;
 }
 
 li {

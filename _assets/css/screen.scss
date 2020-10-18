@@ -25,3 +25,29 @@
 'pages/about',
 'pages/bookmarks',
 'pages/404';
+
+
+// fancy triangles in the corner
+body {
+  $size: 20px;
+  $line-width: 1px;
+  $line-color: $notepad-blue;
+  background-image: linear-gradient(transparent #{$size - $line-width}, $line-color $size),
+    linear-gradient(90deg, transparent #{$size - $line-width}, $line-color $size);
+  background-size: $size $size;
+  background-repeat: repeat;
+
+  @media #{$big} {
+    &:before {
+      content: '';
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 60px;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(90deg, transparent 10px, $notepad-red 11px, transparent 12px, transparent 60px);
+    }
+  }
+}

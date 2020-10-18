@@ -35,14 +35,5 @@
         fill: var(--text-color);
       }
     }
-
-    &:hover,
-    &:active {
-      svg {
-        path {
-          fill: var(--accent-color);
-        }
-      }
-    }
   }
 }

@@ -5,7 +5,7 @@
   }
 
   a {
-    text-decoration: underline;
+    @include fake-highlight-underline();
   }
 
   .list-item {

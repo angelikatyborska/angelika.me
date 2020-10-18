@@ -11,7 +11,31 @@
   }
 
   .column-image {
-    width: 250px;
+    @include shadow();
+    grid-row: 2;
+    background: $white;
+    padding: $medium-gap;
+    width: 300px;
+    margin: 0 auto;
+    --text-color: $light-mode-text-color;
+    color: $light-mode-text-color;
+
+    @media #{$medium} {
+      grid-row: 1;
+      width: auto;
+      margin-right: $medium-gap;
+
+      img {
+        width: 250px;
+      }
+    }
+
+    @media #{$big} {
+      margin-top: -1 * $medium-gap;
+      margin-left: -1 * 3 * $big-gap;
+      margin-right: $medium-gap;
+      transform: rotate(-2deg);
+    }
   }
 
   .portrait {

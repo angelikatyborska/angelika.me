@@ -4,17 +4,20 @@ title: About
 ---
 
 <div class="grid">
-  <div class="column-image">
-    {% asset about/portrait alt:'' aria-hidden='true' class=portrait%}
-
-    {% include social_links.html %}
-  </div>
   <div>
-    <p>Hi! My name is <span lang="pl">Angelika Tyborska</span> and I'm a web developer located in Berlin, Germany.</p>
+    <h2>Hi! 👋</h2>
+
+    <p>My name is <span lang="pl">Angelika Tyborska</span> and I'm a web developer located in Berlin, Germany.</p>
 
     <p>I write this blog to document and share my experiences with various challenges that I encounter writing software.
       I am by no means an expert, so please take my posts with a healthy dose of skepticism, and make sure to leave a comment
       if you have constructive feedback.</p>
+  </div>
+
+  <div class="column-image">
+    {% asset about/portrait alt:'' aria-hidden='true' class=portrait%}
+
+    {% include social_links.html %}
   </div>
 </div>
 
@@ -47,21 +50,21 @@ title: About
 <ul class="list">
   <li>
     <article class="list-item">
-      <a class="list-item-title" href="https://github.com/angelikatyborska/vnu-elixir">vnu-elixir</a>
+      <span><a class="list-item-title" href="https://github.com/angelikatyborska/vnu-elixir">vnu-elixir</a></span>
       <span>An Elixir client for the Nu HTML Checker. I wrote it because I wanted to validate the HTML responses in my Phoenix controller tests.</span>
       <span class="date"><span class="sr-only">created in </span>April 2020</span>
     </article>
   </li>
   <li>
     <article class="list-item">
-      <a class="list-item-title" href="https://css-art.angelika.me/">CSS art</a>
+      <span><a class="list-item-title" href="https://css-art.angelika.me/">CSS art</a></span>
       <span>I try to write some CSS to create things that look cool.</span>
       <span class="date"><span class="sr-only">created in </span>November 2019</span>
     </article>
   </li>
   <li>
     <article class="list-item">
-      <a class="list-item-title" href="https://falling-tiles.angelika.me/">Falling Tiles</a>
+      <span><a class="list-item-title" href="https://falling-tiles.angelika.me/">Falling Tiles</a></span>
       <span>A Tetris clone written using Phoenix LiveView, for fun.</span>
       <span class="date"><span class="sr-only">created in </span>May 2019</span>
     </article>
@@ -69,27 +72,7 @@ title: About
 </ul>
 
 
-<h3>Personal</h3>
-
-<p>I was born in <span lang="pl">Gorzów Wielkopolski</span>, Poland, and spent my early 20s in <span lang="pl">Poznań</span>, Poland.
-  I moved to Berlin, Germany in 2017 to pursue love for a man, and ended up falling in love with the city as well.</p>
-
-{% asset about/poland alt:"A map of Poland showing a route from Gorzów, to Poznań, to Berlin. All those cities are less than 300km from one another." class='poland' %}
-
-<p>To relax after a long week of coding, I like to spend a few hours over a complex strategy board game,
-  or silly party board games. To manage stress and stay healthy, I like to spend my mornings at the gym, lifting weights.</p>
-
-{% asset about/hobbies alt:'' aria-hidden='true' class='hobbies' %}
-
-<p>I care deeply about reducing animal suffering, but
-  I haven't figured out yet how to sustainably and productively use my software development skills to do that. Let me know if you have any ideas.</p>
-
-{% asset about/cow alt:'' aria-hidden='true' class='cow' %}
-
-
 <h3>Want to chat?</h3>
 
 <p>Feel free to contact me on Twitter <a href="https://twitter.com/atyborska93">@atyborska93</a>
   or write an email to <span class="contact-email" aria-label="hello at angelika dot me"><span aria-hidden='true'>{% asset hello.svg @inline %}</span></span>.</p>
-
-{% asset about/wave-emoji alt:'' aria-hidden='true' class='wave' %}

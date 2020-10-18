@@ -7,7 +7,7 @@
 }
 
 @mixin transition {
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 @mixin delicate {
@@ -28,12 +28,6 @@
   }
 }
 
-@mixin fancy-gradient() {
-  background: linear-gradient(90deg, var(--gradient-color-start) 0%, var(--gradient-color-end) 80%);
-  background-clip: border-box;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  text-shadow: none;
+@mixin shadow {
+  box-shadow: 2px 2px 0 2px var(--shadow-color-1), -1px -1px 0 1px var(--shadow-color-2);
 }
