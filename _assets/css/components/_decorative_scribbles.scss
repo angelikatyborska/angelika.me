@@ -8,11 +8,20 @@
     top: 0;
     bottom: 0;
     right: 0;
-    width: $margin-width
+    width: $margin-width;
   }
 
   .scribble {
     position: absolute;
+
+    a {
+      @include transition();
+      opacity: 0;
+
+      &:hover, &:focus {
+        opacity: 1;
+      }
+    }
 
     img {
       display: block;
