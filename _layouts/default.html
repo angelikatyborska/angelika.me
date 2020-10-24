@@ -7,23 +7,23 @@
     {% include header.html %}
     <ul>
       <li>
-        {% if page.path == ".html" %}
-          <h1 class="current-location">Blog</h1><span class="sr-only">(current location)</span>
-        {% else %}
-          <a href="/" title="Blog">Blog</a>
-        {% endif %}
-      </li>
-      <li>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        {% if page.path == "about/index.html" %}
+        {% if page.path == "about" %}
           <h1 class="current-location">About</h1><span class="sr-only">(current location)</span>
         {% else %}
-          <a href="/about">About</a>
+          <a href="/">About</a>
         {% endif %}
       </li>
       <li>
         <span class="dot" aria-hidden="true">&middot;</span>
-        {% if page.path == "bookmarks/index.html" %}
+        {% if page.path == "blog" %}
+          <h1 class="current-location">Blog</h1><span class="sr-only">(current location)</span>
+        {% else %}
+          <a href="/blog" title="Blog">Blog</a>
+        {% endif %}
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true">&middot;</span>
+        {% if page.path == "bookmarks" %}
           <h1 class="current-location">Bookmarks</h1><span class="sr-only">(current location)</span>
         {% else %}
           <a href="/bookmarks">Bookmarks</a>

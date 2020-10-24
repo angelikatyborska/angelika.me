@@ -1,0 +1,28 @@
+---
+layout: default
+title: Blog
+path: blog
+pagination:
+  enabled: true
+---
+{% include posts.html posts=paginator.posts %}
+
+{% if paginator.total_pages > 1 %}
+<nav aria-label="pagination" name="pagination" class="pagination">
+  <ul>
+    {% if paginator.previous_page %}
+    <li class="pagination-prev">
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Previous page</a>
+    </li>
+    {% endif %}
+    <li class="pagination-current">
+      <span class="sr-only">You are currently on </span>Page {{ paginator.page }} out of {{ paginator.total_pages }}
+    </li>
+    {% if paginator.next_page %}
+    <li class="pagination-next">
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Next page</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
