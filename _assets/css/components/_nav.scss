@@ -20,7 +20,14 @@ nav {
       margin-bottom: 0;
     }
 
+    a {
+      &:hover {
+        background: none;
+      }
+    }
+
     em {
+      @include fake-highlight-underline();
       font-style: normal;
     }
   }
