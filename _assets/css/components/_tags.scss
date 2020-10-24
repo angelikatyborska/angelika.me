@@ -1,38 +1,3 @@
-.tag-cloud {
-  @include delicate;
-
-  line-height: $h1-font-size;
-  text-align: center;
-
-  a {
-    margin: 0 $tiny-gap;
-    vertical-align: middle;
-  }
-
-  .set-1 {
-    font-size: $small-font-size;
-  }
-
-  .set-2 {
-    font-size: $h5-font-size;
-  }
-
-  .set-3 {
-    font-weight: 400;
-    font-size: $h4-font-size;
-  }
-
-  .set-4 {
-    font-weight: 400;
-    font-size: $h3-font-size;
-  }
-
-  .set-5 {
-    font-weight: 400;
-    font-size: $h2-font-size;
-  }
-}
-
 .tag-header {
   text-align: center;
 }
