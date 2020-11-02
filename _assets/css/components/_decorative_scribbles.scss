@@ -20,12 +20,18 @@
 
       &:hover, &:focus {
         opacity: 1;
+
+        img {
+          opacity: 1;
+        }
       }
     }
 
     img {
+      @include transition();
       display: block;
       width: 100%;
+      opacity: 0;
 
       html[data-dark] & {
         filter: invert(1);

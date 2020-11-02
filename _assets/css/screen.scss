@@ -33,8 +33,8 @@ body {
   $size: 20px;
   $line-width: 1px;
   $line-color: var(--notepad-lines);
-  background-image: linear-gradient(transparent #{$size - $line-width}, $line-color $size),
-  linear-gradient(90deg, transparent #{$size - $line-width}, $line-color $size);
+  background-image: linear-gradient($transparent-white #{$size - $line-width}, $line-color #{$size - $line-width}, $line-color $size),
+  linear-gradient(90deg, $transparent-white #{$size - $line-width}, $line-color #{$size - $line-width}, $line-color $size);
   background-size: $size $size;
   background-repeat: repeat;
 
@@ -48,7 +48,7 @@ body {
       right: 0;
       width: 60px;
       background-repeat: no-repeat;
-      background-image: linear-gradient(90deg, transparent 1px, $notepad-red 2px, transparent 3px, transparent $margin-width);
+      background-image: linear-gradient(90deg, $transparent-white 1px, rgba($notepad-red, 0.8) 1px, rgba($notepad-red, 0.8) 3px, $transparent-white 3px, $transparent-white $margin-width);
     }
   }
 }
