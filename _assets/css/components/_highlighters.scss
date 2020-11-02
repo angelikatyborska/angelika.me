@@ -25,19 +25,19 @@
     }
 
     &.magenta {
-      --tip-color: #{$magenta};
+      --tip-color: var(--magenta);
     }
 
     &.cyan {
-      --tip-color: #{$cyan};
+      --tip-color: var(--cyan);
     }
 
     &.green {
-      --tip-color: #{$green};
+      --tip-color: var(--green);
     }
 
     &.yellow {
-      --tip-color: #{$yellow};
+      --tip-color: var(--yellow);
     }
 
     $thickness: 40px;

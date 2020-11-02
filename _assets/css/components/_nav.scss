@@ -66,6 +66,13 @@ nav {
       .current-location {
         font-weight: bold;
       }
+
+      .emoji-button {
+        @include button_reset();
+        cursor: pointer;
+        vertical-align: middle;
+        font-size: 1.5em;
+      }
     }
   }
 

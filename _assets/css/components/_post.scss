@@ -68,5 +68,6 @@
     padding: 0;
     @include fake-highlight-underline();
     cursor: pointer;
+    color: var(--text-color);
   }
 }

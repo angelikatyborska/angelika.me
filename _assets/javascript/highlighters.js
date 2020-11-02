@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   var root = document.querySelector(':root');
-  var defaultColor = 'yellow';
+  var defaultColor = 'magenta';
   var savedColor = window.localStorage.getItem('--highlight');
 
   var colors = ['magenta', 'cyan', 'green', 'yellow']

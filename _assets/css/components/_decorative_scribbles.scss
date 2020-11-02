@@ -26,6 +26,10 @@
     img {
       display: block;
       width: 100%;
+
+      html[data-dark] & {
+        filter: invert(1);
+      }
     }
   }
 

@@ -29,6 +29,10 @@
           <a href="/bookmarks">Bookmarks</a>
         {% endif %}
       </li>
+      <li>
+        <span class="dot" aria-hidden="true">&middot;</span>
+        <button type="button" class="emoji-button dark-mode-switch">☀️</button>
+      </li>
     </ul>
   </nav>
 
@@ -39,7 +43,7 @@
   {% include footer.html %}
 </div>
 
-<span class="highlighters">
+<div class="highlighters">
   <button class="highlighter magenta">
     <span class="highlighter-body"></span>
     <span class="highlighter-tip"></span>
@@ -58,6 +62,7 @@
   </button>
 </div>
 
+{% asset dark_mode_switch.js %}
 {% asset highlighters.js %}
 
 <div class="decorative-scribbles" aria-hidden="true">
