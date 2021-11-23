@@ -1,7 +1,7 @@
 desc 'run jekyll server'
 
 task :dev do
-  system 'bundle exec jekyll serve --host 0.0.0.0 --drafts'
+  system 'bundle exec jekyll serve --host 0.0.0.0 --port 5500 --drafts'
 end
 
 task :build do
