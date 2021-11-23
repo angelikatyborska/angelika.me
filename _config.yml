@@ -2,7 +2,7 @@ exclude: [Gemfile, bower.json, Rakefile, README, vendor]
 
 name: Angelika.me
 description: Angelika Tyborska's personal blog about web development.
-url: http://angelika.me
+url: https://angelika.me
 twitter_handler: "@atyborska93"
 permalink: pretty
 
