@@ -48,6 +48,10 @@ $page-wrapper-left-padding-small-screen: $big-gap;
     padding: $medium-gap $page-wrapper-left-padding-small-screen;
   }
 
+  > * {
+    min-width: 0;
+  }
+
   footer {
     align-self: flex-end;
   }
