@@ -7,7 +7,7 @@ date: 2021-11-23 21:01:00 +0100
 
 In January 2020, we were finishing an ambitious task at [Steady](https://steadyhq.com/) - grow our platform from 2 languages, translated in-house, to many more, translated externally, with the ability to add new ones fast.
 
-It's November 2021, and currently Steady is available in 9 different languages: German 🇩🇪, Greek 🇬🇷, English 🇬🇧, Spanish 🇪🇸, French 🇫🇷, Hungarian 🇭🇺, Italian 🇮🇹, Portuguese 🇵🇹, and Romanian 🇷🇴.
+It's November 2021, and currently Steady is available in 9 different languages: German, Greek, English, Spanish, French, Hungarian, Italian, Portuguese, and Romanian.
 
 Here are 7 lessons that we learned by completing the initial translation efforts and continuing to add new features to the platform for 2 years.
 
@@ -155,3 +155,5 @@ If you're suffering from slow recompilation times and your project already has m
 ## Bonus lesson: hire a diverse team
 
 A diverse team has a lot of strengths, and one of them can be speaking many different languages. People that know more than one language will have an easier time empathizing with translators and foreseeing problems that translators might face when translating short and vague English phrases.
+
+_Edited on 08.12.2021: removed flag emojis._
