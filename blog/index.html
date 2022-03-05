@@ -8,7 +8,7 @@ pagination:
 {% include posts.html posts=paginator.posts %}
 
 {% if paginator.total_pages > 1 %}
-<nav aria-label="pagination" name="pagination" class="pagination">
+<nav aria-label="pagination" class="pagination">
   <ul>
     {% if paginator.previous_page %}
     <li class="pagination-prev">
