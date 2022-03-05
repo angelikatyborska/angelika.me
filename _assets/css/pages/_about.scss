@@ -19,7 +19,6 @@
     grid-row: 2;
     background: $white;
     padding: $medium-gap;
-    width: 300px;
     margin: 0 auto;
     --text-color: $light-mode-text-color;
     color: $light-mode-text-color;
@@ -65,27 +64,6 @@
           fill: var(--accent-color);
         }
       }
-    }
-  }
-
-  img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-    margin-bottom: $medium-gap;
-
-    &.poland {
-      max-width: 450px;
-    }
-
-    &.cow {
-      max-width: 350px;
-    }
-
-    &.wave {
-      max-width: 200px;
     }
   }
 }

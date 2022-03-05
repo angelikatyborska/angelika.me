@@ -16,7 +16,16 @@ path: about
   </div>
 
   <div class="column-image">
-    {% asset about/portrait alt:'' aria-hidden='true' class=portrait %}
+    <picture>
+      <source srcset="{% asset about/portrait.webp @path %}" type="image/webp">
+      <img src="{% asset about/portrait.png @path %}"
+           alt=""
+           class="portrait"
+           aria-hidden="true"
+           width="{{ assets['about/portrait.png'].dimensions.width | divided_by: 2}}"
+           height="{{ assets['about/portrait.png'].dimensions.height | divided_by: 2}}"
+      >
+    </picture>
 
     {% include social_links.html %}
   </div>
