@@ -263,7 +263,7 @@ This command should open a window where I can see, among many other things, my a
 But wait, that's all? Where are those acceptor processes I have presumably run? Double-clicking on the process `<0.142.0>` reveals its details. It has a link to `<0.143.0>`.
 
 <figure>
-{% asset posts/hello-world-web-app-in-elixir-part-1-cowboy/process-information alt:'Process information'%}
+{% asset posts/hello-world-web-app-in-elixir-part-1-cowboy/process-information alt='Process information'%}
 <figcaption>I don't know who you are, <0.143.0>, but I will find you and I will inspect your tree.</figcaption>
 </figure>
 

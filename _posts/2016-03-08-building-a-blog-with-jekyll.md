@@ -330,7 +330,7 @@ To include a JavaScript file use:
 To include an image use:
 
 ```html
-{% raw %}{% img my_logo alt:'My Logo' class:'logo' %}{% endraw %}
+{% raw %}{% img my_logo alt='My Logo' class:'logo' %}{% endraw %}
 ```
 
 If you want to include a svg file as an inline `<svg>`, not `<img>`, use:

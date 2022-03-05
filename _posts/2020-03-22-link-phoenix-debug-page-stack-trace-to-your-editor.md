@@ -9,7 +9,7 @@ If you ever worked on a Phoenix app, you might have seen this debug page when an
 
 <figure>
 <a href='{% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/error-page.png @path %}'>
-  {% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/error-page.png alt:'A debug page of a Phoenix app' %}
+  {% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/error-page.png alt='A debug page of a Phoenix app' %}
 </a>
 </figure>
 
@@ -61,7 +61,7 @@ Before restarting your Phoenix server to see the results, do not forget to reloa
 
 <figure>
 <a href='{% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/link-stack-trace.gif @path %}'>
-  {% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/link-stack-trace.gif alt:'A gif showing a debug page in Phoenix and how clicking on a file name opens that file in RubyMine' %}
+  {% asset posts/link-phoenix-debug-page-stack-trace-to-your-editor/link-stack-trace.gif alt='A gif showing a debug page in Phoenix and how clicking on a file name opens that file in RubyMine' %}
 </a>
 <figcaption>When I click on the file name in the stack trace, that file opens in RubyMine, on the line that caused the error.</figcaption>
 </figure>

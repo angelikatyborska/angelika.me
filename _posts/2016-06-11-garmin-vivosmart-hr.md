@@ -35,7 +35,7 @@ As a bonus, it lights up when I do the characteristic motion when I lift up my a
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/its-a-watch-alright @path %}'>
-{% asset posts/garmin-vivosmart-hr/its-a-watch-alright alt:'Vivosmart HR tells time really well'%}
+{% asset posts/garmin-vivosmart-hr/its-a-watch-alright alt='Vivosmart HR tells time really well'%}
 </a>
 <figcaption>It's a watch alright</figcaption>
 </figure>
@@ -50,7 +50,7 @@ I don't run, I don't swim, I don't do intensive cycling. I am just an a-little-b
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/my-workouts @path %}'>
-{% asset posts/garmin-vivosmart-hr/my-workouts alt:'Garmin Connect Webapp - activity history'%}
+{% asset posts/garmin-vivosmart-hr/my-workouts alt='Garmin Connect Webapp - activity history'%}
 </a>
 <figcaption>Now I know when I am lying saying that I did earn that chocolate bar by exercising (hint: 100&nbsp;g of dark chocolate is about 500&nbsp;kcal). By the way, the times are off by 3 hours, which is peculiar, because my timezone is CEST (UTC +2) right now.</figcaption>
 </figure>
@@ -61,7 +61,7 @@ I get notifications about incoming calls, missed calls, text messages, calendar 
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/reading-emails @path %}'>
-{% asset posts/garmin-vivosmart-hr/reading-emails alt:'Reading emails on Vivosmart HR'%}
+{% asset posts/garmin-vivosmart-hr/reading-emails alt='Reading emails on Vivosmart HR'%}
 </a>
 <figcaption>The process of reading emails</figcaption>
 </figure>
@@ -76,7 +76,7 @@ It leaves its imprint on my skin. I wear it low, close to my wrist, for a few ho
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/imprint @path %}'>
-{% asset posts/garmin-vivosmart-hr/imprint alt:'The imprint on my skin after a few hours of wearing Vivosmart HR'%}
+{% asset posts/garmin-vivosmart-hr/imprint alt='The imprint on my skin after a few hours of wearing Vivosmart HR'%}
 </a>
 <figcaption>The imprint on my skin after a few hours of wearing Vivosmart HR</figcaption>
 </figure>
@@ -85,7 +85,7 @@ The device is really thick. Putting on sleeves with strong ribbing hurts a littl
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/putting-on-clothes @path %}'>
-{% asset posts/garmin-vivosmart-hr/putting-on-clothes alt:'Putting on clothes'%}
+{% asset posts/garmin-vivosmart-hr/putting-on-clothes alt='Putting on clothes'%}
 </a>
 <figcaption>Putting on clothes</figcaption>
 </figure>
@@ -102,7 +102,7 @@ It's not the devices fault, the device only collects readings, but Garmin's app 
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/sleep-tracking @path %}'>
-{% asset posts/garmin-vivosmart-hr/sleep-tracking alt:'Inaccurate wake up time estimation'%}
+{% asset posts/garmin-vivosmart-hr/sleep-tracking alt='Inaccurate wake up time estimation'%}
 </a>
 <figcaption>Look, app, clearly we both know I woke up at 5:30, so why the lies? Is this your passive-aggresive way of telling me that I really should be sleeping 8 hours a night?</figcaption>
 </figure>
@@ -138,7 +138,7 @@ I can set the screen orientation to portrait instead of landscape (it's more nat
 
 <figure>
 <a href='{% asset posts/garmin-vivosmart-hr/vertical-but-horizontal @path %}'>
-{% asset posts/garmin-vivosmart-hr/vertical-but-horizontal alt:'Even with screen orientation set to portrait, some screens are still horizontal'%}
+{% asset posts/garmin-vivosmart-hr/vertical-but-horizontal alt='Even with screen orientation set to portrait, some screens are still horizontal'%}
 </a>
 <figcaption>Even with screen orientation set to portrait, some screens are still horizontal</figcaption>
 </figure>

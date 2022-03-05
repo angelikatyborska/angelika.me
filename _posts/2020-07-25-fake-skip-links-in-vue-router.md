@@ -11,14 +11,14 @@ _This article is inspired by Marcus Herrmann's article [Improved accessible rout
 
 <figure>
 <a href='{% asset posts/fake-skip-links-in-vue-router/wikipedia_table_of_contents.gif @path %}'>
-  {% asset posts/fake-skip-links-in-vue-router/wikipedia_table_of_contents.gif alt:'A gif showing navigating a Wikipedia article with its table of contents' %}
+  {% asset posts/fake-skip-links-in-vue-router/wikipedia_table_of_contents alt='A gif showing navigating a Wikipedia article with its table of contents' %}
 </a>
 <figcaption>You can use the table of contents on Wikipedia to jump straight to the section that interests you the most.</figcaption>
 </figure>
 
 <figure>
 <a href='{% asset posts/fake-skip-links-in-vue-router/wikipedia_hidden_skip_link.gif @path %}'>
-  {% asset posts/fake-skip-links-in-vue-router/wikipedia_hidden_skip_link.gif alt:'A gif showing a skip link on Wikipedia' %}
+  {% asset posts/fake-skip-links-in-vue-router/wikipedia_hidden_skip_link.gif alt='A gif showing a skip link on Wikipedia' %}
 </a>
 <figcaption>Wikipedia also has some hidden skip links, for example to jump straight to the search.</figcaption>
 </figure>
@@ -150,7 +150,7 @@ If you want to reuse this code in many Vue components, you can extract it into a
 
 <figure>
 <a href='{% asset posts/fake-skip-links-in-vue-router/solution.gif @path %}'>
-  {% asset posts/fake-skip-links-in-vue-router/solution.gif alt:'A gif showing using keyboard navigation on an example Vue app with a lot of text that has a table of contents.' %}
+  {% asset posts/fake-skip-links-in-vue-router/solution.gif alt='A gif showing using keyboard navigation on an example Vue app with a lot of text that has a table of contents.' %}
 </a>
 <figcaption>Our solution in action.</figcaption>
 </figure>

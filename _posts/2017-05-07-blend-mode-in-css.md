@@ -65,7 +65,7 @@ That combination would only be invisible on big areas of plain colors similar to
 The final effect ended up looking something like this:
 
 <figure>
-{% asset posts/blend-mode-in-css/my-bounding-box alt:'My bounding box'%}
+{% asset posts/blend-mode-in-css/my-bounding-box alt='My bounding box'%}
 <figcaption>A Photoshop-like bounding box made up of two inline SVGs over a canvas displaying a photo of my unamused cat</figcaption>
 </figure>
 

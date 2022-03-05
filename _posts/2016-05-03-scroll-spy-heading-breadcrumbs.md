@@ -14,7 +14,7 @@ I, as a reader, want to be able to quickly check all the headings that describe 
 It's very similar to what popular front-end frameworks offer, except that it doesn't use an existing navigational element to highlight  current sections, but rather creates one. It's not supposed to be the whole table of contents either, just a quick reminder of the current context.
 
 <figure>
-{% asset posts/scroll-spy-heading-breadcrumbs/concept alt:'scroll spy heading breadcrumbs concept'%}
+{% asset posts/scroll-spy-heading-breadcrumbs/concept alt='scroll spy heading breadcrumbs concept'%}
 <figcaption>A fixed container with anchors to headings that describe the paragraph at the eye level of the reader</figcaption>
 </figure>
 
@@ -80,7 +80,7 @@ Basing on the assumption that there will be no levels skipped, I know that a hea
 In other words: The scope of a heading is a group of paragraphs that the heading describes. It begins just after the heading. It ends in three cases (whichever comes first). Firstly, if a next heading of the same level appears. Secondly, if the scope of the current      one-level-higher heading ends. Thirdly, if the article ends.
 
 <figure>
-{% asset posts/scroll-spy-heading-breadcrumbs/scope alt:'Heading scopes'%}
+{% asset posts/scroll-spy-heading-breadcrumbs/scope alt='Heading scopes'%}
 <figcaption>Headings and scopes of text which they describe</figcaption>
 </figure>
 
@@ -162,7 +162,7 @@ function calculateEndOfScope(nextHeadingOfSameLevel,
 To prevent sharp, sudden appearances of new breadcrumbs, I want them to fade in and out smoothly. A breadcrumb should **begin** fading **in** when its heading gets scrolled out of view. It should **end** fading **out** a little bit before the end of its heading's scope reaches the top of the window. The reader usually moves their eyes up and down, and I don't want them to see a breadcrumb for a heading when they're reading the next one already.
 
 <figure>
-{% asset posts/scroll-spy-heading-breadcrumbs/opacity alt:'Opacity of breadcrumb'%}
+{% asset posts/scroll-spy-heading-breadcrumbs/opacity alt='Opacity of breadcrumb'%}
 <figcaption>Opacity of a breadcrumb at a given distance from its heading</figcaption>
 </figure>
 
@@ -240,7 +240,7 @@ function offsetTop() {
 With some styling (which I leave to your imagination):
 
 <figure>
-{% asset posts/scroll-spy-heading-breadcrumbs/result alt:'scroll spy heading breadcrumbs'%}
+{% asset posts/scroll-spy-heading-breadcrumbs/result alt='scroll spy heading breadcrumbs'%}
 <figcaption>The result of all that code above</figcaption>
 </figure>
 

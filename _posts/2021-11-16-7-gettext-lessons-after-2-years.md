@@ -91,7 +91,7 @@ It is sometimes necessary to put HTML in your strings to let a sentence be trans
 
 <figure>
 <a href='{% asset posts/7-gettext-lessons-after-2-years/crowdin-translator-ui @path %}'>
-{% asset posts/7-gettext-lessons-after-2-years/crowdin-translator-ui alt:'A screenshot of the translator UI offered by Crowdin'%}
+{% asset posts/7-gettext-lessons-after-2-years/crowdin-translator-ui alt='A screenshot of the translator UI offered by Crowdin'%}
 </a>
 <figcaption>On <a href="https://crowdin.com/">Crowdin</a>, HTML tags in original strings are highlighted, and translators are warned before saving a translation with missing tags.</figcaption>
 </figure>

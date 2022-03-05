@@ -56,14 +56,14 @@ You can create the token in Project Settings -> Permissions -> API Permissions. 
 
 <figure>
 <a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project @path %}'>
-{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project.png alt:'CircleCI UI showing where the Add Token button is located'%}
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project.png alt='CircleCI UI showing where the Add Token button is located'%}
 </a>
 <figcaption>You can create a token in Project Settings -> Permissions -> API Permissions.</figcaption>
 </figure>
 
 <figure>
 <a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token @path %}'>
-{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token.png alt:'CircleCI UI showing the Add Token dialog'%}
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-api-tokens-for-project-add-token.png alt='CircleCI UI showing the Add Token dialog'%}
 </a>
 <figcaption>Make sure to use the "All" scope.</figcaption>
 </figure>
@@ -74,14 +74,14 @@ Once you have generated the token, you need to pass it to the job. You can pass 
 
 <figure>
 <a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project @path %}'>
-{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project.png alt:'CircleCI UI showing where you can add environment variables to the job'%}
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project.png alt='CircleCI UI showing where you can add environment variables to the job'%}
 </a>
 <figcaption>You can ad an environemnt variable in Project Settings -> Build Settings -> Environment Variables.</figcaption>
 </figure>
 
 <figure>
 <a href='{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add @path %}'>
-{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add.png alt:'CircleCI UI showing the Add an Environment Variable dialog'%}
+{% asset posts/pause-circleci-job-until-previous-finishes/circleci-env-variables-for-project-add.png alt='CircleCI UI showing the Add an Environment Variable dialog'%}
 </a>
 <figcaption>Copy-paste the generated token here.</figcaption>
 </figure>

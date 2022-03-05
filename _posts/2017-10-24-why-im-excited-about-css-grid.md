@@ -9,7 +9,7 @@ I started learning CSS as a kid in the early '00s, in the dark times of laying o
 
 <figure>
 <a href='{% asset posts/why-im-excited-about-css-grid/caniuse-css-grid-2017-10-24 @path %}'>
-{% asset posts/why-im-excited-about-css-grid/caniuse-css-grid-2017-10-24 alt:'A screenshot of CSS Grid support on caniuse.com'%}
+{% asset posts/why-im-excited-about-css-grid/caniuse-css-grid-2017-10-24 alt='A screenshot of CSS Grid support on caniuse.com'%}
 </a>
 <figcaption>CSS Grid support according to <a href="https://caniuse.com/#feat=css-grid">caniuse.com</a> on 24 Oct 2017.</figcaption>
 </figure>
@@ -37,7 +37,7 @@ main {
 
 <figure>
 <a href='{% asset posts/why-im-excited-about-css-grid/grid-equal-heights.html @path %}'>
-{% asset posts/why-im-excited-about-css-grid/grid-equal-heights.png alt:'A three column grid layout'%}
+{% asset posts/why-im-excited-about-css-grid/grid-equal-heights.png alt='A three column grid layout'%}
 </a>
 <figcaption>Click image for the HTML file</figcaption>
 </figure>
@@ -71,7 +71,7 @@ main {
 
 <figure>
 <a href='{% asset posts/why-im-excited-about-css-grid/grid-reordering.html @path %}'>
-{% asset posts/why-im-excited-about-css-grid/grid-reordering.gif alt:'A gif of a two row three column grid layout changing order on window resolution change'%}
+{% asset posts/why-im-excited-about-css-grid/grid-reordering.gif alt='A gif of a two row three column grid layout changing order on window resolution change'%}
 </a>
 <figcaption>Click image for the HTML file</figcaption>
 </figure>
@@ -84,7 +84,7 @@ The simplicity of defining a grid together with the power of it will allow every
 
 <figure>
 <a href='{% asset posts/why-im-excited-about-css-grid/grid-creative.html @path %}'>
-{% asset posts/why-im-excited-about-css-grid/grid-creative.png alt:'A screenshot of a website with CSS grid that forms the content to look like the letter A'%}
+{% asset posts/why-im-excited-about-css-grid/grid-creative.png alt='A screenshot of a website with CSS grid that forms the content to look like the letter A'%}
 </a>
 <figcaption>A-shaped layout. Click image for the HTML file.</figcaption>
 </figure>

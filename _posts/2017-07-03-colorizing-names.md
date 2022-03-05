@@ -9,7 +9,7 @@ I am building an app where the user can work on multiple projects, on multiple b
 
 <figure>
 <a href='{% asset posts/colorizing-names/app @path %}'>
-{% asset posts/colorizing-names/app alt:'Hard-to-notice branch name'%}
+{% asset posts/colorizing-names/app alt='Hard-to-notice branch name'%}
 </a>
 <figcaption>Easy to notice the wrong project - not so easy to notice the wrong branch.</figcaption>
 </figure>
@@ -22,7 +22,7 @@ Before that ever happens again, I decided to make it easier to notice the user i
 
 <figure>
 <a href='{% asset posts/colorizing-names/app-colors @path %}'>
-{% asset posts/colorizing-names/app-colors alt:'easier-to-notice branch name'%}
+{% asset posts/colorizing-names/app-colors alt='easier-to-notice branch name'%}
 </a>
 <figcaption>Colorizing branch names to the rescue!</figcaption>
 </figure>
@@ -43,7 +43,7 @@ Hue is a value ranging from `0` to `360`. `0` is red, `120` is green, `180` is c
 
 <figure>
 <a href='{% asset posts/colorizing-names/hues @path %}'>
-{% asset posts/colorizing-names/hues alt:'Hue range'%}
+{% asset posts/colorizing-names/hues alt='Hue range'%}
 </a>
 <figcaption>Hue (from <a href="https://en.wikipedia.org/wiki/Hue">Wikipedia</a>)</figcaption>
 </figure>
@@ -111,7 +111,7 @@ function add(string) {
 
 <figure>
 <a href='{% asset posts/colorizing-names/issues-sum @path %}'>
-{% asset posts/colorizing-names/issues-sum class='half-width' alt:'Problems with summing character codes'%}
+{% asset posts/colorizing-names/issues-sum class='half-width' alt='Problems with summing character codes'%}
 </a>
 <figcaption>Problems with summing character codes</figcaption>
 </figure>
@@ -143,7 +143,7 @@ function multiply(string) {
 
 <figure>
 <a href='{% asset posts/colorizing-names/issues-multiply @path %}'>
-{% asset posts/colorizing-names/issues-multiply class='half-width' alt:'Problems with multiplying character codes'%}
+{% asset posts/colorizing-names/issues-multiply class='half-width' alt='Problems with multiplying character codes'%}
 </a>
 <figcaption>Problems with multiplying character codes</figcaption>
 </figure>
@@ -162,7 +162,7 @@ With multiplication, I quickly go over [the maximum safe integer](https://develo
 
 <figure>
 <a href='{% asset posts/colorizing-names/unsafe-integers @path %}'>
-{% asset posts/colorizing-names/unsafe-integers alt:'reaching numbers over maximum safe integer'%}
+{% asset posts/colorizing-names/unsafe-integers alt='reaching numbers over maximum safe integer'%}
 </a>
 <figcaption>When the result of multiplication exceeds the maximum safe integer, the commutative property of multiplication is no longer a guarantee.</figcaption>
 </figure>
@@ -191,7 +191,7 @@ Indeed, that one worked great! Except...
 
 <figure>
 <a href='{% asset posts/colorizing-names/issues-djb2 @path %}'>
-{% asset posts/colorizing-names/issues-djb2 class='half-width' alt:'A problem with the djb2 algorithm'%}
+{% asset posts/colorizing-names/issues-djb2 class='half-width' alt='A problem with the djb2 algorithm'%}
 </a>
 <figcaption>A problem with the djb2 algorithm</figcaption>
 </figure>
@@ -222,7 +222,7 @@ function djb2Square(string) {
 
 <figure>
 <a href='{% asset posts/colorizing-names/issues-djb2-square @path %}'>
-{% asset posts/colorizing-names/issues-djb2-square class='half-width' alt:'Final solution' %}
+{% asset posts/colorizing-names/issues-djb2-square class='half-width' alt='Final solution' %}
 </a>
 <figcaption>No problems with this algorithm!</figcaption>
 </figure>

@@ -7,14 +7,14 @@ date: 2016-03-12 16:15:00 +0100
 You're about to run a command only to notice a typo at the beginning. Looks familiar?
 
 <figure>
-{% asset posts/command-line-keyboard-shortcuts/no-shortcuts alt:'Navigating to a typo without shortcuts'%}
+{% asset posts/command-line-keyboard-shortcuts/no-shortcuts alt='Navigating to a typo without shortcuts'%}
 <figcaption>Navigating to a typo without shortcuts.</figcaption>
 </figure>
 
 There is a better way!
 
 <figure>
-{% asset posts/command-line-keyboard-shortcuts/emacs-mode alt:'Navigating to a typo with shortcuts.' %}
+{% asset posts/command-line-keyboard-shortcuts/emacs-mode alt='Navigating to a typo with shortcuts.' %}
 <figcaption>Navigating to a typo with shortcuts.</figcaption>
 </figure>
 

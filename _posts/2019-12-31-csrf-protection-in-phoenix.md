@@ -33,7 +33,7 @@ If `Access-Control-Allow-Credentials` is set to `true`, and the value of `Access
 
 <figure>
 <a href='{% asset posts/csrf-protection-in-phoenix/credentials-not-supported-if @path %}'>
-{% asset posts/csrf-protection-in-phoenix/credentials-not-supported-if alt:'A screenshot of a dev console in Firefox demonstrating an error when trying to use fetch with credentials '%}
+{% asset posts/csrf-protection-in-phoenix/credentials-not-supported-if alt='A screenshot of a dev console in Firefox demonstrating an error when trying to use fetch with credentials '%}
 </a>
 <figcaption>Technically, browsers won't allow a cross-origin request with credentials if <code>Access-Control-Allow-Origin</code> is set to <code>*</code> <sup><a href="https://fetch.spec.whatwg.org/#cors-protocol-and-credentials">source</a></sup>, but that's not the only value that might make your app vulnerable.
 </figcaption>
@@ -98,7 +98,7 @@ The generated form will include a hidden input with a CSRF token <sup>[source](h
 
 <figure>
 <a href='{% asset posts/csrf-protection-in-phoenix/hidden-input-in-form @path %}'>
-{% asset posts/csrf-protection-in-phoenix/hidden-input-in-form alt:'A screenshot of a simple Phoenix app with a form, showing the dev tools open to reveal a hidden input with the CSRF token in the form. '%}
+{% asset posts/csrf-protection-in-phoenix/hidden-input-in-form alt='A screenshot of a simple Phoenix app with a form, showing the dev tools open to reveal a hidden input with the CSRF token in the form. '%}
 </a>
 <figcaption>Forms generated with <code>form_for</code> have a hidden input with the CSRF token.</figcaption>
 </figure>
@@ -117,7 +117,7 @@ Links to routes with methods other than `GET` are implemented by creating and su
 
 <figure>
 <a href='{% asset posts/csrf-protection-in-phoenix/data-csrf-on-a-link @path %}'>
-{% asset posts/csrf-protection-in-phoenix/data-csrf-on-a-link alt:'A screenshot of a simple Phoenix app with a list of users and links to delete them, showing the dev tools open to reveal a data-csrf attribute on the links. '%}
+{% asset posts/csrf-protection-in-phoenix/data-csrf-on-a-link alt='A screenshot of a simple Phoenix app with a list of users and links to delete them, showing the dev tools open to reveal a data-csrf attribute on the links. '%}
 </a>
 <figcaption>Links generated with <code>link</code> have a <code>data-csrf</code> attribute with the CSRF token.</figcaption>
 </figure>
@@ -147,7 +147,7 @@ Use it in your layout (e.g. `lib/my_app_web/templates/layout/app.html.eex`), for
 
 <figure>
 <a href='{% asset posts/csrf-protection-in-phoenix/csrf-meta-tag @path %}'>
-{% asset posts/csrf-protection-in-phoenix/csrf-meta-tag alt:'A screenshot of a simple Phoenix app, showing the dev tools open to reveal a meta tag in the head containing a CSRF token. '%}
+{% asset posts/csrf-protection-in-phoenix/csrf-meta-tag alt='A screenshot of a simple Phoenix app, showing the dev tools open to reveal a meta tag in the head containing a CSRF token. '%}
 </a>
 <figcaption>A <code>meta</code> tag with a CSRF token.</figcaption>
 </figure>

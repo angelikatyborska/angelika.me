@@ -9,7 +9,7 @@ React Day Berlin is a one-day programming conference about ReactJS and React Nat
 
 <figure>
 <a href='{% asset posts/react-day-berlin-conference-review/pass @path %}'>
-{% asset posts/react-day-berlin-conference-review/pass alt:'An attendee conference pass for React Day Berlin'%}
+{% asset posts/react-day-berlin-conference-review/pass alt='An attendee conference pass for React Day Berlin'%}
 </a>
 </figure>
 
@@ -29,7 +29,7 @@ The event took place in Kalkscheune, on Johannisstraße 2 in Mitte, a central di
 
 <figure>
 <a href='{% asset posts/react-day-berlin-conference-review/kalkscheune @path %}'>
-{% asset posts/react-day-berlin-conference-review/kalkscheune alt:'Screenshot of Google Maps showing the location of Kalkscheune in Berlin, Mitte'%}
+{% asset posts/react-day-berlin-conference-review/kalkscheune alt='Screenshot of Google Maps showing the location of Kalkscheune in Berlin, Mitte'%}
 </a>
 </figure>
 

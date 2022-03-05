@@ -21,7 +21,7 @@ It's a very useful tool for doing tasks that are time-consuming and/or need to h
 
 <figure>
 <a href='{% asset posts/screen-sessions/start-detach-attach @path %}'>
-{% asset posts/screen-sessions/start-detach-attach alt:'Screen session does not terminate when you detach'%}
+{% asset posts/screen-sessions/start-detach-attach alt='Screen session does not terminate when you detach'%}
 </a>
 <figcaption>Create a screen session, detach <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>d</kbd> and attach again - loop still running</figcaption>
 </figure>
@@ -127,7 +127,7 @@ When providing the name of the sessions, the same rules apply as when using `ses
 
 <figure>
 <a href='{% asset posts/screen-sessions/multi-display-mode @path %}'>
-{% asset posts/screen-sessions/multi-display-mode alt:'Screen session does not terminate when you detach'%}
+{% asset posts/screen-sessions/multi-display-mode alt='Screen session does not terminate when you detach'%}
 </a>
 <figcaption>Multi display mode</figcaption>
 </figure>
@@ -146,7 +146,7 @@ For multitasking inside a single screen session, you can create windows. While i
 
 <figure>
 <a href='{% asset posts/screen-sessions/windows @path %}'>
-{% asset posts/screen-sessions/windows alt:'Multiple windows in a single session'%}
+{% asset posts/screen-sessions/windows alt='Multiple windows in a single session'%}
 </a>
 <figcaption>Create a screen session, type, create a new window in that session <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>c</kbd>, type, switch windows <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>"</kbd>, exit both windows.</figcaption>
 </figure>
@@ -155,7 +155,7 @@ If you ever forget any of those shortcuts or want to explore more, you can alway
 
 <figure>
 <a href='{% asset posts/screen-sessions/ctrl-a-question-mark @path %}'>
-{% asset posts/screen-sessions/ctrl-a-question-mark alt:'screen key bindings'%}
+{% asset posts/screen-sessions/ctrl-a-question-mark alt='screen key bindings'%}
 </a>
 <figcaption>Screen key bindings - show by pressing <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>?</kbd></figcaption>
 </figure>

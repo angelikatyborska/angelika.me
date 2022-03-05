@@ -19,7 +19,7 @@ His solution - tape a piece of cardboard to the window.
 
 <figure>
 <a href='{% asset posts/what-my-bathroom-window-taught-me-about-code-quality/the-window @path %}'>
-{% asset posts/what-my-bathroom-window-taught-me-about-code-quality/the-window class='half-width' alt:'Cardboard stuck to the window to block view'%}
+{% asset posts/what-my-bathroom-window-taught-me-about-code-quality/the-window class='half-width' alt='Cardboard stuck to the window to block view'%}
 </a>
 </figure>
 

@@ -35,7 +35,7 @@ They google stuff all the time too. You can do that yourself. Not sure how an ex
 
 <figure>
 <a href='{% asset posts/the-death-of-a-schoolgirl/go-to-declaration @path %}'>
-{% asset posts/the-death-of-a-schoolgirl/go-to-declaration alt:'Go To Declaration in RubyMine'%}
+{% asset posts/the-death-of-a-schoolgirl/go-to-declaration alt='Go To Declaration in RubyMine'%}
 </a>
 <figcaption>What would I do without you, RubyMine?</figcaption>
 </figure>
