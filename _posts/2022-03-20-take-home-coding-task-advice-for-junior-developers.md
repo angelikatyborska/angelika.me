@@ -169,7 +169,7 @@ Make sure to follow those formatting rules:
 
 ### Tabs versus spaces?
 
-How to decide whether to use tabs or spaces for indentation, and how if spaces - how many? Follow those rules:
+How to decide whether to use tabs or spaces for indentation, and if spaces - how many? Follow those rules:
 
 1. Use the same indentation style that was already used in this project for this type of file.
 2. Use the same indentation style that the majority of your teammates also want to use.
