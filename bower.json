@@ -18,6 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^5.8.0"
   }
 }

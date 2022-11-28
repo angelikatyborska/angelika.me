@@ -2,15 +2,38 @@
 @import 'font-awesome/scss/mixins';
 
 @font-face {
-  font-family: 'FontAwesome';
-  src: url(asset_path("font-awesome/fonts/fontawesome-webfont.eot?v=#{$fa-version}"));
-  src: url(asset_path('font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=#{$fa-version}')) format('embedded-opentype'),
-  url(asset_path('font-awesome/fonts/fontawesome-webfont.woff2?v=#{$fa-version}')) format('woff2'),
-  url(asset_path('font-awesome/fonts/fontawesome-webfont.woff?v=#{$fa-version}')) format('woff'),
-  url(asset_path('font-awesome/fonts/fontawesome-webfont.ttf?v=#{$fa-version}')) format('truetype'),
-  url(asset_path('font-awesome/fonts/fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
+  font-family: 'Font Awesome 5 Free';
+  font-display: $fa-font-display;
+  src: url(asset_path("font-awesome/webfonts/fa-regular-400.eot?v=#{$fa-version}"));
+  src: url(asset_path('font-awesome/webfonts/fa-regular-400.woff2?v=#{$fa-version}')) format('woff2'),
+  url(asset_path('font-awesome/webfonts/fa-regular-400.woff?v=#{$fa-version}')) format('woff'),
+  url(asset_path('font-awesome/webfonts/fa-regular-400.ttf?v=#{$fa-version}')) format('truetype'),
+  url(asset_path('font-awesome/webfonts/fa-regular-400.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-display: $fa-font-display;
+  src: url(asset_path("font-awesome/webfonts/fa-brands-400.eot?v=#{$fa-version}"));
+  src: url(asset_path('font-awesome/webfonts/fa-brands-400.woff2?v=#{$fa-version}')) format('woff2'),
+  url(asset_path('font-awesome/webfonts/fa-brands-400.woff?v=#{$fa-version}')) format('woff'),
+  url(asset_path('font-awesome/webfonts/fa-brands-400.ttf?v=#{$fa-version}')) format('truetype'),
+  url(asset_path('font-awesome/webfonts/fa-brands-400.svg?v=#{$fa-version}#fontawesomeregular')) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.far {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+}
+
+.fab {
+  font-family: 'Font Awesome 5 Brands';
+  font-weight: 400;
 }
 
 @import 'font-awesome/scss/core';
@@ -22,3 +45,4 @@
 @import 'font-awesome/scss/rotated-flipped';
 @import 'font-awesome/scss/stacked';
 @import 'font-awesome/scss/icons';
+@import 'font-awesome/scss/screen-reader';
