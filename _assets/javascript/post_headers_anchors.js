@@ -2,7 +2,7 @@ var anchorForId = function (id) {
   var anchor = document.createElement('a');
   anchor.className = 'header-link';
   anchor.href      = '#' + id;
-  anchor.innerHTML = '<i class=\'fa fa-link\'></i>';
+  anchor.innerHTML = '<i class=\'fas fa-link\'></i>';
   // I am imitating GitHub here, they hide those links too
   anchor.setAttribute('aria-hidden', 'true');
   return anchor;
