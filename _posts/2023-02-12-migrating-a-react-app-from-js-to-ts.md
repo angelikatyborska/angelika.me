@@ -1,0 +1,108 @@
+---
+title: Migrating a React app from JavaScript to TypeScript
+excerpt: Recently we rewrote a medium-sized React app from JavaScript to TypeScript. Here's how we approached the task.
+tags: [JavaScript, TypeScript]
+date: 2023-02-12 19:47:00 +0100
+---
+
+The task was to rewrite a ~30-file React Single Page App from JavaScript to TypeScript. The goal of the rewrite was to make it easier to later do more serious refactoring and add new features.
+
+The SPA was part of a big full-stack multi-page app whose client-side JavaScript part was ~250 files, including a few more React and Vue SPAs, all bundled together with Webpack, transpiled with Babel. The rest of the JavaScript codebase should remain unchanged. It needs to be possible to import JS files from TS files and TS files from JS files.
+
+The team was 2 experienced JS devs, enthusiastic to try out TypeScript 🙂.
+
+Spoiler: everything went very well except for one bigger hiccup (see the last section of this post). We ended up pretty satisfied with this approach. 
+
+## Learning
+
+We read the entire [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) first. We figured investing some time in gaining a better understanding of TypeScript will pay off with fewer beginners' mistakes along the way.
+
+As I was learning, I did a few [TypeScript Exercism exercises](https://exercism.org/tracks/typescript) of course, and created [a gist with TS snippets that I found surprising](https://gist.github.com/angelikatyborska/cea5696595be44b930498bfd5e124454). I was very happy to have found this [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/) that turned out to be very helpful.
+
+## Approach
+
+To make it possible to work in parallel on separate branches, and to ensure we can merge our work to master often to minimize conflicts, we decided on a **file by file approach**.
+
+Choose one file, rename it from `*.js(x)` to `*.ts(x)`, and fix all TS compiler errors in that one file. Repeat for 2-3 files per PR.
+
+We didn't want to half-ass it either, as the goal was to make this code shiny and ready for whatever the future brings, so we went all in with the strict TypeScript checks.
+
+We:
+
+- Set `"strict": true`
+- Set `"noImplicitAny": true`
+- Set `"noUncheckedIndexedAccess": true`
+- [Avoided enums](https://fettblog.eu/tidy-typescript-avoid-enums/)
+- Avoided assuming we know better than the compiler
+  - Didn't overwrite types with `as`
+  - Didn't ignore `null`/`undefined` warnings, used `if` and optional chaining to be safe
+  - For example:
+    ```ts
+    // the return type of `document.querySelector` is: Element | null
+    // if that's not specific enough, do:
+    const form: HTMLFormElement | null = document.querySelector(formSelector) 
+    if (form) { doSomethingWith(form) }
+    
+    // don't:
+    const form = document.querySelector(formSelector) as HTMLFormElement
+    doSomethingWith(form)
+    ```
+- And set `"allowJs": true` to be able to still include JS files in TS files
+
+## Tools
+
+### `tsc` and `ts-loader`
+
+One of the decisions one has to make when setting up TypeScript is: [transpile with Babel or with `tsc`?](https://blog.logrocket.com/babel-vs-typescript/)
+
+Even though we were already using Babel to transpile our JavaScript code, we went fully with `tsc` for TypeScript. We knew we wanted a type-check step as part of our CI setup, so we needed `tsc` anyway. The decision to use `tsc` both for development-time type-checks as well as production builds was a gut feeling that it's better to do both with the same tool.
+
+We set up the `tsc --noEmit` command to run as part of our testing & linting CI job, and added `ts-loader` to our Webpack config.
+
+### ESLint
+
+We've been using ESLint to lint our JavaScript code, so it seemed obvious to [do the same for TypeScript](https://typescript-eslint.io/getting-started). We took advantage of ESLint's overrides that allow you to set different linting rules per file extension. We have a lot of different files to cover - `.js`, `.vue` (JS), `.jsx` (React JS), `.ts`, and `.tsx` (React TS).
+
+However, we hit a problem. We've not only been using ESLint for linting, but we've also relied on it for all of our JavaScript formatting needs. [The TypeScript ESLint project is very clear that they don't want you to use it for formatting](https://typescript-eslint.io/linting/troubleshooting/formatting). Thus, we also needed to migrate our formatting needs to a dedicated tool.
+
+### Prettier
+
+We [set up Prettier](https://prettier.io/docs/en/install.html) as the formatting tool for all our JS and TS files. To make sure there are no conflicts between Prettier and ESLint, we had to [turn off all formatting-related ESLint rules](https://github.com/prettier/eslint-config-prettier/blob/main/index.js).
+
+### Types for external dependencies
+
+As we were migrating files with external dependencies from JS to TS, sometimes we would get errors about external dependencies missing type declarations. Those errors come with useful hints about where to find the types:
+
+```
+js/components/SomeComponent.tsx:1:31 - error TS7016: Could not find a declaration file for module 'react'. '/Users/angelika/code/my_app/assets/node_modules/react/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/react` if it exists or add a new declaration (.d.ts) file containing `declare module 'react';`
+
+1 import { createContext } from 'react' 
+```
+
+You can check in the [NPM package registry](https://www.npmjs.com/) if a specific package has types built in, in a separate package, or doesn't have them at all.
+
+<figure>
+<a href='{% asset posts/migrating-medium-sized-react-app-from-js-to-ts/npm-react @path %}'>
+{% asset posts/migrating-medium-sized-react-app-from-js-to-ts/npm-react alt='A screenshot of the NPm package registry showing the React package with a white D-TS icon'%}
+</a>
+<figcaption>This package has TypeScript declarations provided by @types/react.
+</figcaption>
+</figure>
+
+#### The unfortunate global type conflicts
+
+One unexpected problem that cost us a full day of work to figure out came about when we tried to migrate the first file that used a React context. We hit this mysterious error:
+
+```
+'MyContext.Provider' cannot be used as a JSX component.
+  Its return type 'ReactElement<any, string | JSXElementConstructor<any>> | null' is not a valid JSX element.
+```
+
+What do you mean a context provider is not a valid JSX element? Of course it is. We ended up chasing a false lead that suggested that those kinds of errors are caused by two different and conflicting versions of the `@types/react` package being installed, but that was not our problem
+
+Finally, we arrived at the real cause: [The `@types/react` package and the `vue` package both define a global `JSX.Element` type, and those two definitions conflict](https://github.com/vuejs/core/issues/1033). This means that it's currently impossible to use both React and Vue in the same TypeScript project.
+
+Thankfully we didn't need Vue to work with TypeScript, so in theory we could get rid of Vue's type definitions. In practice, Vue and Vue's type definitions come in a single package, so you can't get rid of them.
+
+We ended up using [patch-package](https://www.npmjs.com/package/patch-package) to monkey-patch the `vue` package to remove the conflicting global type.
