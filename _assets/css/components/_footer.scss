@@ -17,17 +17,4 @@ footer {
     right: 0;
     transform: translateY(-50%);
   }
-
-  .rss {
-    font-size: 0;
-
-    &:before {
-      @include fa-icon;
-
-      content: $fa-var-rss;
-      padding: 0 $small-gap;
-      vertical-align: middle;
-      font-size: $h5-font-size;
-    }
-  }
 }
