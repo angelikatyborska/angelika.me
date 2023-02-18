@@ -66,3 +66,7 @@ $page-wrapper-left-padding-small-screen: $big-gap;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap; /* added line */
 }
+
+*, *::before, *::after {
+  outline-color: var(--accent-color);
+}

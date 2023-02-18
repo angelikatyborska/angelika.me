@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var colors = ['magenta', 'cyan', 'green', 'yellow']
   var highlighters = colors.map(function (color) {
-    return document.querySelector(`.highlighter.${color}`);
+    return document.querySelector(`input[name=highlight][value=${color}]`);
   })
 
   if (savedColor) {
@@ -17,14 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function setCurrent(highlighter, color) {
+    console.log('set current', highlighter)
     root.style.setProperty('--highlight', `var(--${color}-highlight)`);
     window.localStorage.setItem('--highlight', color);
 
     highlighters.forEach(function(el) {
-      el.classList.remove('active');
+      el.removeAttribute('checked')
     });
 
-    highlighter.classList.add('active');
+    highlighter.setAttribute('checked', 'checked')
   }
 
   highlighters.forEach(function (highlighter, index) {

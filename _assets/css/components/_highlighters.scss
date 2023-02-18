@@ -2,6 +2,31 @@
   display: none;
   overflow: hidden;
 
+  input[type=radio] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+
+    &:focus + label {
+      outline-width: 2px;
+    }
+
+    &:focus-visible + label {
+      outline-width: 2px;
+      outline-offset: -2px;
+      outline-style: solid;
+    }
+
+    &:checked + label {
+      transform: translateX(0);
+    }
+  }
+
   @media #{$big} {
     display: block;
     position: fixed;
@@ -21,7 +46,7 @@
     margin-bottom: 10px;
     transform: translateX(-10px);
 
-    &:hover, &.active {
+    &:hover, input:checked + & {
       transform: translateX(0);
     }
 

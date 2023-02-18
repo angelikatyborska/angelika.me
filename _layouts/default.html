@@ -2,6 +2,7 @@
 <html lang="en">
 {% include head.html title=page.title %}
 <body>
+
 <div class="page-wrapper">
   <nav aria-label="main">
     {% include header.html %}
@@ -44,22 +45,37 @@
 </div>
 
 <div class="highlighters">
-  <button class="highlighter magenta">
-    <span class="highlighter-body"></span>
-    <span class="highlighter-tip"></span>
-  </button>
-  <button class="highlighter cyan">
-    <span class="highlighter-body"></span>
-    <span class="highlighter-tip"></span>
-  </button>
-  <button class="highlighter green">
-    <span class="highlighter-body"></span>
-    <span class="highlighter-tip"></span>
-  </button>
-  <button class="highlighter yellow">
-    <span class="highlighter-body"></span>
-    <span class="highlighter-tip"></span>
-  </button>
+  <fieldset>
+    <legend class="sr-only">Select a highlight color:</legend>
+
+    <input type="radio" id="magenta" name="highlight" value="magenta" />
+    <label class="highlighter magenta" for="magenta">
+      <span class="sr-only">Magenta</span>
+      <span class="highlighter-body"></span>
+      <span class="highlighter-tip"></span>
+    </label>
+
+    <input type="radio" id="cyan" name="highlight" value="cyan" />
+    <label class="highlighter cyan" for="cyan">
+      <span class="sr-only">Cyan</span>
+      <span class="highlighter-body"></span>
+      <span class="highlighter-tip"></span>
+    </label>
+
+    <input type="radio" id="green" name="highlight" value="green" />
+    <label class="highlighter green" for="green">
+      <span class="sr-only">Green</span>
+      <span class="highlighter-body"></span>
+      <span class="highlighter-tip"></span>
+    </label>
+
+    <input type="radio" id="yellow" name="highlight" value="yellow" />
+    <label class="highlighter yellow" for="yellow">
+      <span class="sr-only">Yellow</span>
+      <span class="highlighter-body"></span>
+      <span class="highlighter-tip"></span>
+    </label>
+  </fieldset>
 </div>
 
 {% asset dark_mode_switch.js %}
