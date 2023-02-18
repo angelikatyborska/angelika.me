@@ -67,7 +67,24 @@ nav {
         font-weight: bold;
       }
 
-      .emoji-button {
+      .dark-mode-switch-input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        line-height: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+
+        &:focus-visible + label {
+          outline-width: 2px;
+          outline-offset: -2px;
+          outline-style: solid;
+        }
+      }
+
+      .dark-mode-switch-label {
         @include button_reset();
         cursor: pointer;
         vertical-align: middle;

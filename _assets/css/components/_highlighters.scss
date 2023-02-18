@@ -12,10 +12,6 @@
     background-color: #fff;
     margin: 0;
 
-    &:focus + label {
-      outline-width: 2px;
-    }
-
     &:focus-visible + label {
       outline-width: 2px;
       outline-offset: -2px;

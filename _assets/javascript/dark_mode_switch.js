@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   var html = document.querySelector('html');
-  var button = document.querySelector('.dark-mode-switch');
+  var input = document.querySelector('.dark-mode-switch-input');
+  var label = document.querySelector('.dark-mode-switch-label');
   var savedMode = window.localStorage.getItem('dark');
 
   if (savedMode === 'true') {
@@ -10,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
   function toggleMode() {
     if (html.hasAttribute('data-dark')) {
       html.removeAttribute('data-dark');
-      button.innerHTML = '☀️'
+      label.innerHTML = '<span class=\"sr-only\">Dark mode </span>☀️'
       window.localStorage.setItem('dark', 'false')
     } else {
       html.setAttribute('data-dark', 'true');
-      button.innerHTML = '🌘️'
+      label.innerHTML = '<span class=\"sr-only\">Dark mode </span>🌘️'
       window.localStorage.setItem('dark', 'true')
     }
   }
 
-  button.addEventListener('click', toggleMode);
+  input.addEventListener('click', toggleMode);
 });
