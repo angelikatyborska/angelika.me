@@ -1,6 +1,6 @@
 ---
 title: How to require the document to start with an h1 in TipTap?
-excerpt: If we're writing a blog post editor, something that we might need is to require the blog post to start with a title. That's something that TipTap can do for us.
+excerpt: If we're writing a blog post editor, something that we might need is to require the blog post to start with a title. TipTap can do that for us.
 tags: [JavaScript, TipTap]
 date: 2023-03-07 10:22:00 +0100
 ---
