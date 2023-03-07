@@ -15,7 +15,7 @@ code {
   table {
     width: 100%;
     table-layout: fixed;
-    margin: 0 0 $big-gap 0;
+    margin: $medium-gap 0 $big-gap 0;
     padding: rem-calc(10);
     background-color: transparent;
     border: none;
