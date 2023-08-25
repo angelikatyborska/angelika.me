@@ -13,6 +13,7 @@ code {
 
 .highlight {
   table {
+    @include shadow();
     width: 100%;
     table-layout: fixed;
     margin: $medium-gap 0 $big-gap 0;

@@ -54,7 +54,6 @@ If you have no previous experience with neither Emacs nor Vi, I suggest you stic
 
 ## Cursor movement
 
-<div class='table-wrapper' markdown="block">
 | Action | Emacs&nbsp;mode | Vi&nbsp;mode |
 |:-------|:---------------:|:------------:|
 | Beginning of the line | Ctrl&nbsp;+&nbsp;a | 0 |
@@ -64,15 +63,12 @@ If you have no previous experience with neither Emacs nor Vi, I suggest you stic
 | Previous character | Ctrl&nbsp;+&nbsp;b | h |
 | Next character | Ctrl&nbsp;+&nbsp;f | l |
 
-</div>
-
 ### Option&nbsp;+&nbsp;Click
 
 Move cursor anywhere inside the command by clicking. Works only on OS X.
 
 ## Deleting
 
-<div class='table-wrapper' markdown="block">
 | Action | Emacs&nbsp;mode | Vi&nbsp;mode |
 |:-------|:---------------:|:------------:|
 | Character under the cursor | Ctrl&nbsp;+&nbsp;d | x |
@@ -84,42 +80,31 @@ Move cursor anywhere inside the command by clicking. Works only on OS X.
 | From the current position to the end of the word | Alt&nbsp;+&nbsp;d&nbsp;[(*)](#alt-key) | dw |
 | Word around current position | Alt&nbsp;+&nbsp;b, then Alt&nbsp;+&nbsp;d&nbsp;[(*)](#alt-key) | bdw |
 
-</div>
-
 ## Other editing actions
 
-<div class='table-wrapper' markdown="block">
 | Action | Emacs&nbsp;mode | Vi&nbsp;mode |
 |:-------|:---------------:|:------------:|
 | Undo | Ctrl&nbsp;+&nbsp;_ | u |
 | Clear screen (leaves the prompt and current command) | Ctrl&nbsp;+&nbsp;l | Ctrl&nbsp;+&nbsp;l |
 | Autocompletion | Tab | Tab |
 
-</div>
-
 ## Command history
 
-<div class='table-wrapper' markdown="block">
 | Action | Emacs&nbsp;mode | Vi&nbsp;mode |
 |:-------|:---------------:|:------------:|
 | Previous command | Ctrl&nbsp;+&nbsp;p | j |
 | Next command | Ctrl&nbsp;+&nbsp;n | k |
 | Search | Ctrl&nbsp;+&nbsp;r | Ctrl&nbsp;+&nbsp;r |
 
-</div>
-
 Command history is shell-specific and can be found in `~/.bash_history`. It means that if you're using more than one terminal emulator (like Terminal and iTerm), they share the same command history.
 
 ## Process control
 
-<div class='table-wrapper' markdown="block">
 | Action | Emacs&nbsp;mode | Vi&nbsp;mode |
 |:-------|:---------------:|:------------:|
 | Send SIGINT to current process | Ctrl&nbsp;+&nbsp;c | Ctrl&nbsp;+&nbsp;c |
 | Send EOT character to current process | Ctrl&nbsp;+&nbsp;d | Ctrl&nbsp;+&nbsp;d |
 | Send SIGSTP to current process | Ctrl&nbsp;+&nbsp;z | Ctrl&nbsp;+&nbsp;z |
-
-</div>
 
 ## (*) Alt key {#alt-key}
 
