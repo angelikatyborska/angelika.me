@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function setCurrent(highlighter, color) {
-    console.log('set current', highlighter)
     root.style.setProperty('--highlight', `var(--${color}-highlight)`);
     window.localStorage.setItem('--highlight', color);
 
