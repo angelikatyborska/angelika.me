@@ -31,6 +31,8 @@
   <meta name="description" content="{{ description | strip_html }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html',''}}">
+
   <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
