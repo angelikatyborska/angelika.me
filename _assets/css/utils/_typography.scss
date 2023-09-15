@@ -41,9 +41,13 @@ sub {
   vertical-align: bottom;
 }
 
+mark {
+  color: var(--text-color);
+  background-color: var(--highlight);
+}
+
 blockquote {
   @include shadow();
-  font-style: italic;
   position: relative;
   padding: $tiny-gap $tiny-gap $tiny-gap $big-gap + $small-gap;
 

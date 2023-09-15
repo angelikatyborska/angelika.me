@@ -31,6 +31,10 @@ a {
   }
 }
 
+figure img {
+  @include shadow();
+}
+
 $page-wrapper-left-padding-tiny-screen: $medium-gap;
 $page-wrapper-left-padding-small-screen: $big-gap;
 
