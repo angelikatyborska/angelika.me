@@ -1,7 +1,7 @@
 ---
 title: Fake skip links in Vue Router
 excerpt: How to allow users to skip chunks of content in your Vue app when the hash part of the URL is hijacked by Vue Router.
-tags: [JavaScript, Vue, Accessibility]
+tags: [JavaScript, Vue, accessibility]
 date: 2020-07-25 16:53:00 +0200
 ---
 
