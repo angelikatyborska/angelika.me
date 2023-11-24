@@ -16,4 +16,11 @@
   .list-item-title {
     font-weight: bold;
   }
+
+  .list-item-icon {
+    vertical-align: bottom;
+    width: 1.44em;
+    height: 1.44em;
+    margin-right: $tiny-gap;
+  }
 }
