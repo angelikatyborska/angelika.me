@@ -63,7 +63,7 @@ nav {
         display: inline-block;
       }
 
-      .current-location {
+      a[aria-current="page"] {
         font-weight: bold;
       }
 

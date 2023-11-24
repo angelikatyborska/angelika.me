@@ -5,6 +5,7 @@ path: blog
 pagination:
   enabled: true
 ---
+
 {% include posts.html posts=paginator.posts %}
 
 {% if paginator.total_pages > 1 %}
