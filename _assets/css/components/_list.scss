@@ -4,10 +4,6 @@
     margin-bottom: $small-gap;
   }
 
-  a {
-    @include fake-highlight-underline();
-  }
-
   .list-item {
     display: inline-flex;
     flex-direction: column;

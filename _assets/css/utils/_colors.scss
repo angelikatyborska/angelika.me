@@ -25,6 +25,7 @@ $syntax-navy: #000080;
 $syntax-orange: darken($orange, 10);
 
 $accent-color: $notepad-red;
+$highlight: $notepad-blue;
 
 $light-mode-text-color: #222;
 
@@ -37,7 +38,7 @@ $light-mode-text-color: #222;
   --cyan: #{$cyan};
   --green: #{$green};
   --yellow: #{$yellow};
-  --highlight: #{rgba($magenta, 0.4)};
+  --highlight: #{$highlight};
   --shadow-color-1: rgba(0, 0, 0, 0.2);
   --shadow-color-2: rgba(0, 0, 0, 0.1);
   --shadow-color-transparent: rgba(0, 0, 0, 0);

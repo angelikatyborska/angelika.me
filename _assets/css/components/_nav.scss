@@ -27,7 +27,6 @@ nav {
     }
 
     em {
-      @include fake-highlight-underline();
       font-style: normal;
     }
   }

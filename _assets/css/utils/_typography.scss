@@ -2,8 +2,13 @@ $header-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 $paragraph-font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 $code-font-family: 'Roboto Mono', Courier, monospace;
 
-@mixin fake-highlight-underline {
-  border-bottom: 4px solid var(--highlight);
+@mixin inline-link {
+  color: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--text-color);
 }
 
 ::selection {

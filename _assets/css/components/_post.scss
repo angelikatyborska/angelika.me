@@ -79,11 +79,11 @@
   }
 
   .answer button {
+    @include inline-link();
     background: none;
     font: inherit;
     border: 0;
     padding: 0;
-    @include fake-highlight-underline();
     cursor: pointer;
     color: var(--text-color);
   }

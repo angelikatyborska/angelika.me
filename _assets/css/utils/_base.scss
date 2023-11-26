@@ -11,24 +11,7 @@ body {
 }
 
 a {
-  $size: 100%;
-  @include transition;
-
-  color: inherit;
-  text-decoration: none;
-  background-image: linear-gradient(var(--highlight), var(--highlight));
-  background-size: 0% $size;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-
-  &:active,
-  &:hover {
-    background-size: 100% $size;
-  }
-
-  p &, article ol &, article ul & {
-    @include fake-highlight-underline();
-  }
+  @include inline-link();
 }
 
 figure img {
