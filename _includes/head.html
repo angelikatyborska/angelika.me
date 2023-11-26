@@ -19,6 +19,10 @@
 
   <link rel="shortcut icon" type="image/png" href="{% asset icon @path %}">
 
+  {% if page.hidden %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+
   {% asset screen %}
 
   {% if page.excerpt %}
