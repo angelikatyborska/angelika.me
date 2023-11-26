@@ -1,5 +1,22 @@
 <header>
-  <a href="/" title="{{ site.name }}">
+  <a class="logo" href="/" title="{{ site.name }}">
     <em>Angelika</em>.me
   </a>
+
+  <nav aria-label="main">
+    <a href="/" {% if page.path == "about" %} aria-current="page" {% endif %}>
+    About
+    </a>
+    <a href="/blog" {% if page.path == "blog" %} aria-current="page" {% endif %}>
+    Blog
+    </a>
+    <a href="/bookmarks" {% if page.path == "bookmarks" %} aria-current="page" {% endif %}>
+    Bookmarks
+    </a>
+
+    <input type="checkbox" id="dark-mode" name="dark-mode" class="dark-mode-switch-input"/>
+    <label for="dark-mode" class="dark-mode-switch-label">
+      <span class="sr-only">Dark mode </span>☀️
+    </label>
+  </nav>
 </header>

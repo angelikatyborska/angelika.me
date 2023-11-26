@@ -96,12 +96,10 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
     <h1>Style test</h1>
     <div class="post-meta">
       <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
-      <span class="dot" aria-hidden="true">·</span>
       <span class="time-estimate">
         
         1 min read
       </span>
-      <span class="dot" aria-hidden="true">·</span>
       <span class="tags"><span class="sr-only">Topics covered </span></span>
     </div>
   </header>
