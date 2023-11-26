@@ -12,6 +12,11 @@
     <div class="post-preview-meta">
       <span class="date"><span class="sr-only">Published on </span>{{ post.date | date: '%d %B %Y' }}</span>
       <span class="dot" aria-hidden="true">&middot;</span>
+      <span class="time-estimate">
+        {% capture time %}{{ post.content | reading_time }}{% endcapture %}
+        {{ time }} min read
+      </span>
+      <span class="dot" aria-hidden="true">&middot;</span>
       <span class="tags"><span class="sr-only">Topics covered </span>{{ post | tags }}</span>
       <a href="{{ post.url }}" class="sr-only">Continue reading {{ post.title }}</a>
     </div>

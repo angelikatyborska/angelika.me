@@ -8,6 +8,11 @@ layout: default
     <div class="post-meta">
       <span class="date"><span class="sr-only">Written on </span>{{ page.date | date: '%d %B %Y' }}</span>
       <span class="dot" aria-hidden="true">&middot;</span>
+      <span class="time-estimate">
+        {% capture time %}{{ content | reading_time }}{% endcapture %}
+        {{ time }} min read
+      </span>
+      <span class="dot" aria-hidden="true">&middot;</span>
       <span class="tags"><span class="sr-only">Topics covered </span>{{ page | tags }}</span>
     </div>
   </header>

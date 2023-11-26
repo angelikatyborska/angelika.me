@@ -13,4 +13,5 @@ group :jekyll_plugins do
   gem 'uglifier'
   gem 'autoprefixer-rails'
   gem 'jemoji'
+  gem 'liquid_reading_time'
 end
