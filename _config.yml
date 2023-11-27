@@ -29,6 +29,7 @@ assets:
     - "*.woff2"
   sources:
     - _assets/bower
+    - _assets/fonts
   defaults:
     img:
       integrity: false
@@ -56,7 +57,7 @@ kramdown:
 
 pagination:
   enabled: true
-  per_page: 5
+  per_page: 20
   permalink: '/page/:num/'
   title: ':title - page :num'
   limit: 0
