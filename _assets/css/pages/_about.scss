@@ -17,8 +17,8 @@
     background: $white;
     padding: $medium-gap;
     margin: 0 auto;
-    --text-color: $light-mode-text-color;
-    color: $light-mode-text-color;
+    --text-color: $text-color-light;
+    color: $text-color-light;
 
     @media #{$medium} {
       grid-row: 1;

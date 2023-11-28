@@ -1,14 +1,14 @@
 $light-gray: #f5f5f5;
 
-$notepad-blue: #8dd5fc;
-$notepad-red: #e84c95;
 $magenta: #f731f7;
 $cyan: #00ffff;
 $green: #09ea09;
 $yellow: #f5f045;
 $orange: #fc9219;
+$red: #ed1b10;
 
 $white: #ffffff;
+$black: #000000;
 $transparent-white: rgba(255, 255, 255, 0);
 $transparent-black: rgba(0, 0, 0, 0);
 $shadow-1-color: rgba(0, 0, 0, 0.2);
@@ -16,34 +16,39 @@ $shadow-2-color: rgba(0, 0, 0, 0.1);
 
 $syntax-purple: darken($magenta, 20);
 $syntax-green: darken($green, 20);
-$syntax-red: $notepad-red;
+$syntax-red: $red;
 $syntax-salmon: darken($orange, 20);
-$syntax-red-error: $notepad-red;
+$syntax-red-error: $red;
 $syntax-teal: darken($cyan, 10);
 $syntax-teal-dark: darken($cyan, 20);
 $syntax-navy: #000080;
 $syntax-orange: darken($orange, 10);
 
-$accent-color: $notepad-red;
-$highlight: $notepad-blue;
+$accent-color: $magenta;
+$highlight: $yellow;
 
-$light-mode-text-color: #222;
+$text-color-light: #222;
+$text-color-secondary-light: #666;
+$background-color-light: $white;
+
+$text-color-dark: #eee;
+$text-color-secondary-dark: #bbb;
+$background-color-dark: #222;
+
 
 :root {
-  --text-color: #{$light-mode-text-color};
-  --secondary-text-color: #666;
-  --background-color: #{$white};
-  --background-color-transparent: #{rgba($white, 0)};
-  --magenta: #{$magenta};
-  --cyan: #{$cyan};
-  --green: #{$green};
-  --yellow: #{$yellow};
+  --text-color: #{$text-color-light};
+  --secondary-text-color: #{$text-color-secondary-light};
+  --background-color: #{$background-color-light};
+  --background-color-transparent: #{rgba($background-color-light, 0)};
+
   --highlight: #{$highlight};
+  --accent-color: #{$accent-color};
+
   --shadow-color-1: rgba(0, 0, 0, 0.2);
   --shadow-color-2: rgba(0, 0, 0, 0.1);
   --shadow-color-transparent: rgba(0, 0, 0, 0);
-  --accent-color: #{$accent-color};
-  --notepad-lines: #{$notepad-blue};
+
   --syntax-purple: #{$syntax-purple};
   --syntax-green: #{$syntax-green};
   --syntax-red: #{$syntax-red};
@@ -53,28 +58,20 @@ $light-mode-text-color: #222;
   --syntax-teal-dark: #{$syntax-teal-dark};
   --syntax-navy: #{$syntax-navy};
   --syntax-orange: #{$syntax-orange};
-  --gradient-color-start: #{$syntax-teal-dark};
-  --gradient-color-end: #{$accent-color};
 }
 
 html[data-dark] {
-  --text-color: #eee;
-  --secondary-text-color: #bbb;
-  --background-color: #001d44;
-  --background-color-transparent: #{rgba(#001d44, 0)};
-  --magenta: #{darken($magenta, 15)};
-  --cyan: #{darken($cyan, 10)};
-  --green: #{darken($green, 10)};
-  --yellow: #{darken($yellow, 15)};
-  --magenta-highlight: #{rgba($magenta, 0.7)};
-  --cyan-highlight: #{rgba($cyan, 0.5)};
-  --green-highlight: #{rgba($green, 0.5)};
-  --yellow-highlight: #{rgba($yellow, 0.4)};
+  --text-color: #{$text-color-dark};
+  --secondary-text-color: #{$text-color-secondary-dark};
+  --background-color: #{$background-color-dark};
+  --background-color-transparent: #{rgba($background-color-dark, 0)};
+
+  --highlight: #{$highlight};
+  --accent-color: #{lighten($accent-color, 15)};
+
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);
-  --accent-color: #{lighten($accent-color, 15)};
-  --notepad-lines: rgba(255, 255, 255, 0.2);
   --syntax-purple: #{lighten($syntax-purple, 15)};
   --syntax-green: #{lighten($syntax-green, 15)};
   --syntax-red: #{lighten($syntax-red, 15)};
@@ -84,6 +81,4 @@ html[data-dark] {
   --syntax-teal-dark: #{lighten($syntax-teal-dark, 15)};
   --syntax-navy: #{lighten($syntax-navy, 15)};
   --syntax-orange: #{lighten($syntax-orange, 15)};
-  --gradient-color-start: #{lighten($syntax-teal, 15)};
-  --gradient-color-end: #{lighten($syntax-purple, 15)};
 }
