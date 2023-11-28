@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
 
+  $link-size: $font-size-h5;
+
   li {
     display: inline-block;
 
@@ -14,20 +16,16 @@
 
   a {
     padding: $gap-tiny;
-    font-size: $font-size-h4;
+    font-size: $link-size;
   }
 
   .exercism svg {
     margin-bottom: rem-calc(-2);
   }
 
-  .dev svg {
-    margin-bottom: rem-calc(-5);
-  }
-
-  .exercism, .dev {
+  .exercism {
     svg {
-      width: $font-size-h4;
+      width: $link-size;
 
       path {
         @include transition;
