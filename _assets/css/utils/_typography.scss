@@ -55,6 +55,8 @@ blockquote {
   @include shadow();
   position: relative;
   padding: $gap-tiny $gap-tiny $gap-tiny $gap-big + $gap-small;
+  width: var(--figure-width);
+  margin: 0 var(--figure-margin-right) 0 var(--figure-margin-left);
 
   &::before{
     content: "\201C";

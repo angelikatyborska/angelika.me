@@ -18,21 +18,43 @@ figure img {
   @include shadow();
 }
 
-$page-wrapper-left-padding-tiny-screen: $gap-medium;
-$page-wrapper-left-padding-small-screen: $gap-big;
-
 .page-wrapper {
+  --page-margin-left: 0rem;
+  --page-padding-left: #{$gap-medium};
+  --figure-margin-left: calc(-0.5 * (var(--page-margin-left)));
+  // imperfect calculation (20px) because for some reason the scrollbar counts into 100dvw :(
+  --figure-margin-right: min(
+    0px,
+    max(
+      var(--figure-margin-left),
+      calc(-1 * (100dvw - #{$page-max-width} - var(--page-margin-left) - 20px))
+    )
+  );
+  --figure-width: calc(100% - var(--figure-margin-left) - var(--figure-margin-right));
   position: relative;
   max-width: $page-max-width;
   min-height: 100vh;
-  margin: 0 auto;
-  padding: $gap-medium $page-wrapper-left-padding-tiny-screen;
+  margin: 0 auto 0 var(--page-margin-left);
+  padding: $gap-medium var(--page-padding-left) $gap-medium var(--page-padding-left);
   background-color: var(--background-color);
   display: grid;
   grid-template-rows: auto auto 1fr;
 
   @media #{$small} {
-    padding: $gap-medium $page-wrapper-left-padding-small-screen;
+    --page-margin-left: #{$gap-huge};
+    --page-padding-left: #{$gap-big};
+  }
+
+  @media #{$medium} {
+    --page-margin-left: #{$gap-huge * 2};
+  }
+
+  @media #{$big} {
+    --page-margin-left: #{$gap-huge * 3};
+  }
+
+  @media #{$very-big} {
+    --page-margin-left: #{$gap-huge * 4};
   }
 
   > * {
@@ -60,4 +82,9 @@ $page-wrapper-left-padding-small-screen: $gap-big;
 
 *:focus-visible {
   @include focus()
+}
+
+// transition all for nicer theme change
+* {
+  transition: all $transition-duration ease;
 }

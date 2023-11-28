@@ -89,6 +89,13 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
 
+<figure>
+<a href='{% asset posts/colorizing-names/issues-sum @path %}'>
+{% asset posts/colorizing-names/issues-sum class='half-width' alt='Problems with summing character codes'%}
+</a>
+<figcaption>Problems with summing character codes</figcaption>
+</figure>
+
 ## Code
 
 ```html

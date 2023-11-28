@@ -14,9 +14,9 @@ code {
 .highlight {
   table {
     @include shadow();
-    width: 100%;
     table-layout: fixed;
-    margin: $gap-medium 0 $gap-big 0;
+    width: var(--figure-width);
+    margin: $gap-medium var(--figure-margin-right) $gap-big var(--figure-margin-left);
     padding: rem-calc(10);
     background-color: transparent;
     border: none;

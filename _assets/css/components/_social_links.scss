@@ -28,8 +28,6 @@
       width: $link-size;
 
       path {
-        @include transition;
-
         fill: var(--text-color);
       }
     }

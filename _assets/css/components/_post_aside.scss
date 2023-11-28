@@ -15,7 +15,7 @@
       width: calc(50% - #{$page-max-width/2});
       transform: translateX(-100%);
       text-align: right;
-      padding: $gap-small $page-wrapper-left-padding-small-screen 0 0;
+      padding: $gap-small var(--page-padding-left) 0 0;
       font-family: $paragraph-font-family;
 
       span {

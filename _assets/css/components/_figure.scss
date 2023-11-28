@@ -1,5 +1,6 @@
 figure {
-  margin-bottom: $gap-big;
+  width: var(--figure-width);
+  margin: 0 var(--figure-margin-right) $gap-big var(--figure-margin-left);
   text-align: center;
 
   figcaption {
