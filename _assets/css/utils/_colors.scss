@@ -15,18 +15,15 @@ $transparent-black: rgba(0, 0, 0, 0);
 $shadow-1-color: rgba(0, 0, 0, 0.2);
 $shadow-2-color: rgba(0, 0, 0, 0.1);
 
-$syntax-purple: darken($purple, 20);
-$syntax-green: darken($green, 20);
+$syntax-purple: $purple;
+$syntax-green: darken($green, 10);
 $syntax-red: $red;
-$syntax-salmon: darken($orange, 20);
+$syntax-salmon: darken($orange, 10);
 $syntax-red-error: $red;
 $syntax-teal: darken($teal, 10);
 $syntax-teal-dark: darken($teal, 20);
 $syntax-navy: $navy;
 $syntax-orange: darken($orange, 10);
-
-$accent-color: $orange;
-$highlight: $yellow;
 
 $text-color-light: #222;
 $text-color-secondary-light: #666;
@@ -45,8 +42,11 @@ $secondary-background-color-dark: #444;
   --secondary-background-color: #{$secondary-background-color-light};
   --background-color-transparent: #{rgba($background-color-light, 0)};
 
-  --highlight: #{$highlight};
-  --accent-color: #{$accent-color};
+  --highlight: #{rgba($yellow, 0.5)};
+  --accent-color: #{$orange};
+  --accent-color1: #{$yellow};
+  --accent-color2: #{$orange};
+  --accent-color3: #{$red};
 
   --shadow-color-1: rgba(0, 0, 0, 0.2);
   --shadow-color-2: rgba(0, 0, 0, 0.1);
@@ -70,8 +70,11 @@ html[data-dark] {
   --background-color-transparent: #{rgba($background-color-dark, 0)};
   --secondary-background-color: #{$secondary-background-color-dark};
 
-  --highlight: #{$purple};
-  --accent-color: #{lighten($accent-color, 15)};
+  --highlight: #{rgba($purple, 0.5)};
+  --accent-color: #{$blue};
+  --accent-color1: #{$purple};
+  --accent-color2: #{$blue};
+  --accent-color3: #{$green};
 
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);

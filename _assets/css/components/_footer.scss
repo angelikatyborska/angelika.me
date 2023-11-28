@@ -4,11 +4,10 @@
   padding: $gap-medium 0;
   font-size: $font-size-small;
   text-align: center;
-  background: $orange;
+  background: var(--text-color);
+  color: var(--background-color);
 
   .copyright {
-    @include delicate;
-
     margin: 0 $gap-huge;
   }
 

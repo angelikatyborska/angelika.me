@@ -18,6 +18,12 @@ figure img {
   @include shadow();
 }
 
+@mixin grid {
+  display: grid;
+  grid-template-columns: var(--page-margin-left) 1fr;
+  padding: 0 var(--page-padding-left);
+}
+
 .page-wrapper {
   --page-margin-left: 0rem;
   --page-padding-left: #{$gap-medium};
@@ -32,10 +38,10 @@ figure img {
   );
   --figure-width: calc(100% - var(--figure-margin-left) - var(--figure-margin-right));
   position: relative;
-  max-width: $page-max-width;
+  //max-width: $page-max-width;
   min-height: 100vh;
-  margin: 0 auto 0 var(--page-margin-left);
-  padding: $gap-medium var(--page-padding-left) $gap-medium var(--page-padding-left);
+  //margin: 0 auto 0 var(--page-margin-left);
+  //padding: $gap-medium var(--page-padding-left) $gap-medium var(--page-padding-left);
   background-color: var(--background-color);
   display: grid;
   grid-template-rows: auto auto 1fr;
@@ -58,10 +64,22 @@ figure img {
   }
 
   > * {
+    @include grid();
     min-width: 0;
+
+    > * {
+      min-width: 0;
+    }
   }
 
-  footer {
+  .page-content, .footer {
+    > * {
+      grid-column: 2 / 3;
+      max-width: $page-max-width;
+    }
+  }
+
+  .footer {
     align-self: flex-end;
   }
 }
