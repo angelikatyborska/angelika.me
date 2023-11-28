@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
   function toggleMode() {
     if (html.hasAttribute('data-dark')) {
       html.removeAttribute('data-dark');
-      label.innerHTML = '<span class=\"sr-only\">Dark mode </span>☀️'
+      label.innerHTML = '<span class=\"sr-only\">Dark mode </span><i class="fas fa-sun"></i>️'
       window.localStorage.setItem('dark', 'false')
     } else {
       html.setAttribute('data-dark', 'true');
-      label.innerHTML = '<span class=\"sr-only\">Dark mode </span>🌘️'
+      label.innerHTML = '<span class=\"sr-only\">Dark mode </span><i class="fas fa-moon"></i>️️'
       window.localStorage.setItem('dark', 'true')
     }
   }

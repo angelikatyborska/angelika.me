@@ -54,6 +54,10 @@ $page-wrapper-left-padding-small-screen: $gap-big;
   white-space: nowrap; /* added line */
 }
 
-*, *::before, *::after {
-  outline-color: var(--accent-color);
+@mixin focus {
+  outline: 2px solid var(--accent-color);
+}
+
+*:focus-visible {
+  @include focus()
 }

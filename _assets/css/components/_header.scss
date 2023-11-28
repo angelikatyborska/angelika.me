@@ -1,16 +1,25 @@
+$header-border-width: 5px;
+
 .header {
+  position: relative;
   font-family: $header-font-family;
   margin-top: $gap-medium;
-  margin-bottom: $gap-big;
+  margin-bottom: $gap-huge;
+  flex-direction: row;
+  justify-content: space-between;
   display: flex;
   gap: $gap-medium;
-  flex-direction: column;
+  border-bottom: $header-border-width solid var(--text-color);
 
-  @media #{$small} {
-    margin-top: $gap-big;
-    margin-bottom: $gap-huge;
-    flex-direction: row;
-    justify-content: space-between;
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    height: $header-border-width;
+    width: 10 * $header-border-width;
+    background: var(--text-color);
   }
 
   a {
@@ -18,32 +27,62 @@
   }
 
   .logo {
-    font-size: $font-size-h4;
-    font-weight: 700;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: flex-end;
 
-    em {
-      font-style: normal;
-      font-size: $font-size-h1;
+    svg {
+      * {
+        fill: var(--text-color);
+      }
     }
   }
 
   nav {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: $gap-big;
+    align-items: flex-end;
+    gap: $gap-small;
+    margin-left: $gap-big;
+    justify-content: flex-end;
 
-    @media #{$small} {
-      margin-left: $gap-big;
-      justify-content: flex-end;
+    > * {
+      padding: $gap-tiny $gap-small 0 $gap-small;
+      position: relative;
+      z-index: 1;
+
+      &:before {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--accent-color);
+        width: 100%;
+        height: $header-border-width;
+        transition: all $transition-duration ease;
+        z-index: -1;
+      }
+
+      &:hover, &[aria-current="page"]  {
+        &:before {
+          $zoom: 2.3;
+          transform: translateY(($zoom - 1) * -50%) scaleY(100% * $zoom);
+        }
+      }
+
+
+      &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+        &::before {
+          content: '';
+        }
+      }
+
+      &:nth-child(1) { --accent-color: #{$yellow}; }
+      &:nth-child(2) { --accent-color: #{$orange}; }
+      &:nth-child(3) { --accent-color: #{$red}; }
     }
 
     a {
-      color: var(--secondary-text-color);
-    }
-
-    a[aria-current="page"] {
-      // TODO: style
+      color: var(--text-color);
     }
 
     .dark-mode-switch-input {
@@ -56,18 +95,20 @@
       background-color: #fff;
       margin: 0;
 
-      &:focus-visible + label {
-        outline-width: 2px;
-        outline-offset: -2px;
-        outline-style: solid;
+      &:focus-visible {
+        outline: 0;
+
+        & + label {
+          @include focus()
+        }
       }
     }
 
     .dark-mode-switch-label {
       @include button_reset();
       cursor: pointer;
-      font-size: 1.5em;
-      line-height: 0;
+      font-size: 1.3em;
+      line-height: 1.3em;
     }
   }
 }

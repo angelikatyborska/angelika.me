@@ -1,6 +1,9 @@
 <header class="header">
   <a class="logo" href="/" title="{{ site.name }}">
-    <em>Angelika</em>.me
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 200 0 L 325 250 L 75 250 Z M 350 300 L 50 300 L 62.5 275 L 337.5 275 Z M 400 400 L 0 400 L 37.5 325 L 362.5 325 Z M 125 221 L 275 221 L 200 71 Z" fill="black"/>
+    </svg>
   </a>
 
   <nav aria-label="main">
@@ -14,9 +17,12 @@
     Bookmarks
     </a>
 
-    <input type="checkbox" id="dark-mode" name="dark-mode" class="dark-mode-switch-input"/>
-    <label for="dark-mode" class="dark-mode-switch-label">
-      <span class="sr-only">Dark mode </span>☀️
-    </label>
+    <span>
+      <input type="checkbox" id="dark-mode" name="dark-mode" class="dark-mode-switch-input"/>
+      <label for="dark-mode" class="dark-mode-switch-label">
+        <span class="sr-only">Dark mode </span><i class="fas fa-sun"></i>️
+      </label>
+    </span>
   </nav>
 </header>
+
