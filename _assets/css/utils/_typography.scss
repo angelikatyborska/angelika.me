@@ -1,4 +1,5 @@
 $header-font-family: 'Roboto Slab', Helvetica Neue, Helvetica, Arial, sans-serif;
+//$header-font-family: 'Bevan', Helvetica Neue, Helvetica, Arial, sans-serif;
 $paragraph-font-family: 'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif;
 $code-font-family: 'Roboto Mono', Courier, monospace;
 
@@ -96,7 +97,7 @@ li {
 h1, h2, h3, h4, h5, h6 {
   margin: $gap-big + $gap-medium 0 $gap-medium;
   font-family: $header-font-family;
-  font-weight: bold;
+  font-weight: 900;
   overflow-wrap: break-word;
 }
 

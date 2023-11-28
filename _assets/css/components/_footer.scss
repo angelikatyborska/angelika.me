@@ -4,6 +4,7 @@
   padding: $gap-medium 0;
   font-size: $font-size-small;
   text-align: center;
+  background: $orange;
 
   .copyright {
     @include delicate;
