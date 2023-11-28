@@ -1,9 +1,22 @@
 .post-preview {
-  margin: 0 auto $huge-gap auto;
+  margin: 0 auto $big-gap auto;
+  border: 1px solid var(--text-color);
+
+  time {
+    @include delicate;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
 
   .post-preview-meta {
     @include post-meta;
 
     text-align: left;
+  }
+
+  .post-preview-description {
+    margin-bottom: $medium-gap;
   }
 }

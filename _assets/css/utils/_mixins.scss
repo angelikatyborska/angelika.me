@@ -1,11 +1,3 @@
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
 @mixin transition {
   transition: all 0.3s ease-in-out;
 }
@@ -15,16 +7,20 @@
 }
 
 @mixin post-meta {
-  @include clearfix;
   @include delicate;
 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: $small-gap;
   font-size: $small-font-size;
 
   .tags {
-    a:not(:first-child) {
-      margin-left: $tiny-gap;
-    }
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: $tiny-gap;
   }
 }
 

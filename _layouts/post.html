@@ -4,11 +4,11 @@ layout: default
 
 <article class="post">
   <header>
+    <time class="date" datetime="{{page.date}}">
+      {{ page.date | date: '%d %B %Y' }}
+    </time>
     <h1>{{ page.title }}</h1>
     <div class="post-meta">
-      <time class="date" datetime="{{page.date}}">
-        {{ page.date | date: '%d %B %Y' }}
-      </time>
       <span class="time-estimate">
         {% capture time %}{{ content | reading_time }}{% endcapture %}
         {{ time }} min read

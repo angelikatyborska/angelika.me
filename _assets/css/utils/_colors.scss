@@ -31,7 +31,7 @@ $light-mode-text-color: #222;
 
 :root {
   --text-color: #{$light-mode-text-color};
-  --secondary-text-color: #444;
+  --secondary-text-color: #666;
   --background-color: #{$white};
   --background-color-transparent: #{rgba($white, 0)};
   --magenta: #{$magenta};
@@ -59,7 +59,7 @@ $light-mode-text-color: #222;
 
 html[data-dark] {
   --text-color: #eee;
-  --secondary-text-color: #ccc;
+  --secondary-text-color: #bbb;
   --background-color: #001d44;
   --background-color-transparent: #{rgba(#001d44, 0)};
   --magenta: #{darken($magenta, 15)};
