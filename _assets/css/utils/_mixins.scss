@@ -17,10 +17,10 @@
   font-size: $small-font-size;
 
   .tags {
-    display: inline-flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: $tiny-gap;
+    // cannot use flex and gap due to commas outside of links
+    a:not(:first-child) {
+      margin-left: 0.25em;
+    }
   }
 }
 
