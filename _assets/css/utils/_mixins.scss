@@ -21,7 +21,7 @@
 }
 
 @mixin shadow {
-  box-shadow: 2px 2px 0 2px var(--shadow-color-1), -1px -1px 0 1px var(--shadow-color-2);
+  box-shadow: 0 0 0 2px var(--shadow-color-2);
 }
 
 @mixin button_reset {

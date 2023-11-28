@@ -1,7 +1,4 @@
-$light-gray: #f5f5f5;
-
-$magenta: #f731f7;
-$purple: #BC34F1;
+$purple: #642ac1;
 $blue: #49B3EC;
 $cyan: #00ffff;
 $teal: #4CC2A7;
@@ -34,16 +31,18 @@ $highlight: $yellow;
 $text-color-light: #222;
 $text-color-secondary-light: #666;
 $background-color-light: $white;
+$secondary-background-color-light: #ddd;
 
 $text-color-dark: #eee;
 $text-color-secondary-dark: #bbb;
 $background-color-dark: #222;
-
+$secondary-background-color-dark: #444;
 
 :root {
   --text-color: #{$text-color-light};
   --secondary-text-color: #{$text-color-secondary-light};
   --background-color: #{$background-color-light};
+  --secondary-background-color: #{$secondary-background-color-light};
   --background-color-transparent: #{rgba($background-color-light, 0)};
 
   --highlight: #{$highlight};
@@ -69,6 +68,7 @@ html[data-dark] {
   --secondary-text-color: #{$text-color-secondary-dark};
   --background-color: #{$background-color-dark};
   --background-color-transparent: #{rgba($background-color-dark, 0)};
+  --secondary-background-color: #{$secondary-background-color-dark};
 
   --highlight: #{$purple};
   --accent-color: #{lighten($accent-color, 15)};

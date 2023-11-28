@@ -17,6 +17,8 @@ code {
     table-layout: fixed;
     width: var(--figure-width);
     margin: $gap-medium var(--figure-margin-right) $gap-big var(--figure-margin-left);
+    //width: 100%;
+    //margin: 0 0 $gap-big 0;
     padding: rem-calc(10);
     background-color: transparent;
     border: none;
