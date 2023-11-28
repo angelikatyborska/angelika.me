@@ -1,11 +1,15 @@
 $light-gray: #f5f5f5;
 
 $magenta: #f731f7;
+$purple: #BC34F1;
+$blue: #49B3EC;
 $cyan: #00ffff;
-$green: #09ea09;
-$yellow: #f5f045;
-$orange: #fc9219;
-$red: #ed1b10;
+$teal: #4CC2A7;
+$green: #36D233;
+$yellow: #FFDD55;
+$orange: #FF911B;
+$red: #F52533;
+$navy: #342C9A;
 
 $white: #ffffff;
 $black: #000000;
@@ -14,17 +18,17 @@ $transparent-black: rgba(0, 0, 0, 0);
 $shadow-1-color: rgba(0, 0, 0, 0.2);
 $shadow-2-color: rgba(0, 0, 0, 0.1);
 
-$syntax-purple: darken($magenta, 20);
+$syntax-purple: darken($purple, 20);
 $syntax-green: darken($green, 20);
 $syntax-red: $red;
 $syntax-salmon: darken($orange, 20);
 $syntax-red-error: $red;
-$syntax-teal: darken($cyan, 10);
-$syntax-teal-dark: darken($cyan, 20);
-$syntax-navy: #000080;
+$syntax-teal: darken($teal, 10);
+$syntax-teal-dark: darken($teal, 20);
+$syntax-navy: $navy;
 $syntax-orange: darken($orange, 10);
 
-$accent-color: $magenta;
+$accent-color: $orange;
 $highlight: $yellow;
 
 $text-color-light: #222;
@@ -66,19 +70,19 @@ html[data-dark] {
   --background-color: #{$background-color-dark};
   --background-color-transparent: #{rgba($background-color-dark, 0)};
 
-  --highlight: #{$highlight};
+  --highlight: #{$purple};
   --accent-color: #{lighten($accent-color, 15)};
 
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);
-  --syntax-purple: #{lighten($syntax-purple, 15)};
-  --syntax-green: #{lighten($syntax-green, 15)};
-  --syntax-red: #{lighten($syntax-red, 15)};
-  --syntax-salmon: #{lighten($syntax-salmon, 15)};
-  --syntax-red-error: #{lighten($syntax-red-error, 15)};
-  --syntax-teal: #{lighten($syntax-teal, 15)};
-  --syntax-teal-dark: #{lighten($syntax-teal-dark, 15)};
-  --syntax-navy: #{lighten($syntax-navy, 15)};
-  --syntax-orange: #{lighten($syntax-orange, 15)};
+  --syntax-purple: #{lighten($syntax-purple, 30)};
+  --syntax-green: #{lighten($syntax-green, 30)};
+  --syntax-red: #{lighten($syntax-red, 30)};
+  --syntax-salmon: #{lighten($syntax-salmon, 30)};
+  --syntax-red-error: #{lighten($syntax-red-error, 30)};
+  --syntax-teal: #{lighten($syntax-teal, 30)};
+  --syntax-teal-dark: #{lighten($syntax-teal-dark, 30)};
+  --syntax-navy: #{lighten($syntax-navy, 30)};
+  --syntax-orange: #{lighten($syntax-orange, 30)};
 }

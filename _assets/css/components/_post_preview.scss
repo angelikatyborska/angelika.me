@@ -1,6 +1,5 @@
 .post-preview {
-  margin: 0 auto $big-gap auto;
-  border: 1px solid var(--text-color);
+  margin: 0 auto $huge-gap auto;
 
   time {
     @include delicate;
