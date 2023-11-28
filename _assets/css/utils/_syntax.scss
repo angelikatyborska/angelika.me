@@ -3,8 +3,12 @@ code {
   font-size: $font-size-code;
 }
 
+// TODO: add scroll shadow to code block?
+// TODO: make code block extra wide?
+
 *:not(.highlight) {
   > code {
+    border: 1px solid var(--shadow-color-2);
     padding: 0 $gap-tiny;
     font-size: 0.9em;
     word-wrap: break-word;
@@ -21,7 +25,6 @@ code {
     //margin: 0 0 $gap-big 0;
     padding: rem-calc(10);
     background-color: transparent;
-    border: none;
 
     td, tr:nth-child(n), th {
       background-color: transparent;

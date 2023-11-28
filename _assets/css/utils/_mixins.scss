@@ -21,7 +21,8 @@
 }
 
 @mixin shadow {
-  box-shadow: 0 0 0 2px var(--shadow-color-2);
+  // TODO: rename to box?
+  border: 1px solid var(--shadow-color-2);
 }
 
 @mixin button_reset {
