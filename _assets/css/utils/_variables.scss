@@ -1,18 +1,23 @@
+$line-height-default: 1.5;
 $page-max-width: rem-calc(750);
 
-$gap-huge: rem-calc(64);
-$gap-big: rem-calc(32);
-$gap-medium: rem-calc(16);
-$gap-small: rem-calc(8);
-$gap-tiny: rem-calc(4);
+$gap-base: $line-height-default * 1rem;
 
-$font-size-h1: rem-calc(36);
-$font-size-h2: rem-calc(30);
-$font-size-h3: rem-calc(26);
-$font-size-h4: rem-calc(22);
-$font-size-h5: rem-calc(20);
-$font-size-h6: rem-calc(18);
+$gap-huge: $gap-base * 2;
+$gap-big: $gap-base * 1;
+$gap-medium: $gap-base * 0.5;
+$gap-small: $gap-base * 0.25;
+$gap-tiny: $gap-base * 0.125;
 
-$font-size-code: rem-calc(14);
+// minor third based on 18px
 
-$font-size-small: rem-calc(16);
+$font-size-h1: rem-calc(53.75);
+$font-size-h2: rem-calc(44.79);
+$font-size-h3: rem-calc(37.32);
+$font-size-h4: rem-calc(31.1);
+$font-size-h5: rem-calc(25.92);
+$font-size-h6: rem-calc(21.6);
+
+$font-size-code: rem-calc(15);
+
+$font-size-small: rem-calc(15);
