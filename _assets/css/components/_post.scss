@@ -4,16 +4,16 @@
   }
 
   header {
-    margin-bottom: $big-gap;
+    margin-bottom: $gap-big;
 
     h1 {
       margin-top: 0;
-      margin-bottom: $small-gap;
+      margin-bottom: $gap-small;
     }
   }
 
   #disqus_thread {
-    margin-top: $huge-gap;
+    margin-top: $gap-huge;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -26,7 +26,7 @@
     position: absolute;
     right: 100%;
     top: 0.7em; // can't be vertically centered due to multiline headers (must stick to first line)
-    padding-right: $small-gap;
+    padding-right: $gap-small;
     opacity: 0;
     font-size: 0.5em;
     color: var(--secondary-text-color);
@@ -69,7 +69,7 @@
 
 .disqus-info {
   background-color: var(--background-color);
-  padding: $medium-gap 0;
+  padding: $gap-medium 0;
 
   > *:first-child {
     margin-top: 0;

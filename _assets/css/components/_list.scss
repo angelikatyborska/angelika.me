@@ -1,7 +1,7 @@
 .list {
   li {
     display: flex;
-    margin-bottom: $small-gap;
+    margin-bottom: $gap-small;
   }
 
   .list-item {
@@ -17,6 +17,6 @@
     vertical-align: bottom;
     width: 1.44em;
     height: 1.44em;
-    margin-right: $tiny-gap;
+    margin-right: $gap-tiny;
   }
 }

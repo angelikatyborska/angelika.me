@@ -1,10 +1,10 @@
 figure {
-  margin-bottom: $big-gap;
+  margin-bottom: $gap-big;
   text-align: center;
 
   figcaption {
     color: var(--secondary-text-color);
-    font-size: $small-font-size;
+    font-size: $font-size-small;
   }
 
   img, video {

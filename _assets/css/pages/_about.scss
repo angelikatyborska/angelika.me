@@ -2,8 +2,8 @@
   .grid {
     display: grid;
     grid-template-columns: auto;
-    grid-row-gap: $medium-gap;
-    grid-column-gap: $medium-gap;
+    grid-row-gap: $gap-medium;
+    grid-column-gap: $gap-medium;
     align-items: start;
 
     @media #{$medium} {
@@ -15,7 +15,7 @@
     @include shadow();
     grid-row: 2;
     background: $white;
-    padding: $medium-gap;
+    padding: $gap-medium;
     margin: 0 auto;
     --text-color: $text-color-light;
     color: $text-color-light;
@@ -23,7 +23,7 @@
     @media #{$medium} {
       grid-row: 1;
       width: auto;
-      margin-right: $medium-gap;
+      margin-right: $gap-medium;
 
       img {
         width: 250px;
@@ -31,9 +31,9 @@
     }
 
     @media #{$big} {
-      margin-top: -1 * $medium-gap;
-      margin-left: -1 * 3 * $big-gap;
-      margin-right: $medium-gap;
+      margin-top: -1 * $gap-medium;
+      margin-left: -1 * 3 * $gap-big;
+      margin-right: $gap-medium;
       transform: rotate(-2deg);
     }
   }
@@ -44,7 +44,7 @@
 
   .date {
     @include delicate;
-    font-size: $small-font-size;
+    font-size: $font-size-small;
   }
 
   .contact-email {

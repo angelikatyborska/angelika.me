@@ -3,7 +3,7 @@
   overflow: hidden;
   overflow-x: auto;
   max-width: fit-content;
-  margin: 0 auto $medium-gap;
+  margin: 0 auto $gap-medium;
 
   background:
     // Shadow Cover LEFT
@@ -39,7 +39,7 @@
 
 table {
   font-family: $code-font-family;
-  font-size: $code-font-size;
+  font-size: $font-size-code;
   // no table background color so that the scroll shadow is visible
   // background-color: var(--background-color);
 
@@ -54,6 +54,6 @@ table {
   }
 
   td, th {
-    padding: $tiny-gap $small-gap;
+    padding: $gap-tiny $gap-small;
   }
 }

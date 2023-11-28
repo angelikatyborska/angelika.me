@@ -13,8 +13,8 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: $small-gap;
-  font-size: $small-font-size;
+  margin-bottom: $gap-small;
+  font-size: $font-size-small;
 
   .tags {
     // cannot use flex and gap due to commas outside of links

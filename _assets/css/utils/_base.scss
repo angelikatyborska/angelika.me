@@ -18,21 +18,21 @@ figure img {
   @include shadow();
 }
 
-$page-wrapper-left-padding-tiny-screen: $medium-gap;
-$page-wrapper-left-padding-small-screen: $big-gap;
+$page-wrapper-left-padding-tiny-screen: $gap-medium;
+$page-wrapper-left-padding-small-screen: $gap-big;
 
 .page-wrapper {
   position: relative;
   max-width: $page-max-width;
   min-height: 100vh;
   margin: 0 auto;
-  padding: $medium-gap $page-wrapper-left-padding-tiny-screen;
+  padding: $gap-medium $page-wrapper-left-padding-tiny-screen;
   background-color: var(--background-color);
   display: grid;
   grid-template-rows: auto auto 1fr;
 
   @media #{$small} {
-    padding: $medium-gap $page-wrapper-left-padding-small-screen;
+    padding: $gap-medium $page-wrapper-left-padding-small-screen;
   }
 
   > * {

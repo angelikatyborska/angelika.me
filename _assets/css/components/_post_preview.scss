@@ -1,5 +1,5 @@
 .post-preview {
-  margin: 0 auto $huge-gap auto;
+  margin: 0 auto $gap-huge auto;
 
   time {
     @include delicate;
@@ -20,6 +20,6 @@
   }
 
   .post-preview-description {
-    margin-bottom: $medium-gap;
+    margin-bottom: $gap-medium;
   }
 }

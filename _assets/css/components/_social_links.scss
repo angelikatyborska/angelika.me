@@ -13,8 +13,8 @@
   }
 
   a {
-    padding: $tiny-gap;
-    font-size: $h4-font-size;
+    padding: $gap-tiny;
+    font-size: $font-size-h4;
   }
 
   .exercism svg {
@@ -27,7 +27,7 @@
 
   .exercism, .dev {
     svg {
-      width: $h4-font-size;
+      width: $font-size-h4;
 
       path {
         @include transition;

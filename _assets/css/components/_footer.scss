@@ -1,14 +1,14 @@
 .footer {
   position: relative;
-  margin-top: $huge-gap;
-  padding: $medium-gap 0;
-  font-size: $small-font-size;
+  margin-top: $gap-huge;
+  padding: $gap-medium 0;
+  font-size: $font-size-small;
   text-align: center;
 
   .copyright {
     @include delicate;
 
-    margin: 0 $huge-gap;
+    margin: 0 $gap-huge;
   }
 
   .side-links {
