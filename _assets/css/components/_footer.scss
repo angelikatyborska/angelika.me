@@ -4,8 +4,8 @@
   padding: $gap-huge 0 $gap-medium;
   font-size: $font-size-small;
   text-align: center;
-  background: transparent;
   color: var(--background-color);
+  background-color: var(--text-color);
 
   .copyright {
     margin: 0 $gap-huge;
