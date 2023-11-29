@@ -7,31 +7,6 @@ $header-border-width: 5px;
   margin-bottom: $gap-huge;
   border-bottom: $header-border-width solid var(--text-color);
 
-  //&:before, &:after {
-  //  display: block;
-  //  content: '';
-  //  position: absolute;
-  //  transition: none;
-  //}
-  //
-  //&:before {
-  //  right: 100%;
-  //  top: 100%;
-  //  height: $header-border-width;
-  //  width: calc(var(--page-margin-left) + var(--page-padding-left));
-  //  background: var(--text-color);
-  //}
-  //
-  //&:after {
-  //  left: 100%;
-  //  top: 100%;
-  //  height: $header-border-width;
-  //  // imperfect calculation (20px) because for some reason the scrollbar counts into 100dvw :(
-  //  width: calc(100dvw - #{$page-max-width} - var(--page-margin-left) + var(--page-padding-left) - 20px);
-  //  //background: cyan;
-  //  // TODO: something fancy
-  //}
-
   a {
     text-decoration: none;
   }

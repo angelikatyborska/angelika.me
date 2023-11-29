@@ -1,10 +1,10 @@
 .footer {
   position: relative;
   margin-top: $gap-huge;
-  padding: $gap-medium 0;
+  padding: $gap-huge 0 $gap-medium;
   font-size: $font-size-small;
   text-align: center;
-  background: var(--text-color);
+  background: transparent;
   color: var(--background-color);
 
   .copyright {
