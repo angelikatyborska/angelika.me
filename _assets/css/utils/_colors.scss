@@ -42,7 +42,8 @@ $secondary-background-color-dark: #444;
   --secondary-background-color: #{$secondary-background-color-light};
   --background-color-transparent: #{rgba($background-color-light, 0)};
 
-  --highlight: #{rgba($yellow, 0.5)};
+  --highlight: #{$yellow};
+  --reverse-highlight: #{$purple};
   --accent-color: #{$orange};
   --accent-color1: #{$yellow};
   --accent-color2: #{$orange};
@@ -70,7 +71,8 @@ html[data-dark] {
   --background-color-transparent: #{rgba($background-color-dark, 0)};
   --secondary-background-color: #{$secondary-background-color-dark};
 
-  --highlight: #{rgba($purple, 0.5)};
+  --highlight: #{$purple};
+  --reverse-highlight: #{$yellow};
   --accent-color: #{$blue};
   --accent-color1: #{$purple};
   --accent-color2: #{$blue};
@@ -88,4 +90,10 @@ html[data-dark] {
   --syntax-teal-dark: #{lighten($syntax-teal-dark, 30)};
   --syntax-navy: #{lighten($syntax-navy, 30)};
   --syntax-orange: #{lighten($syntax-orange, 30)};
+}
+
+@mixin reverse-section() {
+  background: var(--text-color);
+  color: var(--background-color);
+  --highlight: var(--reverse-highlight);
 }
