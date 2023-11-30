@@ -1,11 +1,65 @@
 .footer {
   position: relative;
-  margin-top: $gap-huge;
-  padding: $gap-huge 0 $gap-medium;
-  font-size: $font-size-small;
+  padding: $gap-medium 0;
   text-align: center;
+  font-size: $font-size-h6;
   color: var(--background-color);
   background-color: var(--text-color);
+
+  $triangle-max-width: 12px;
+  $sin-60deg: 0.866;
+  $triangle-background-height: #{6 * $sin-60deg * $triangle-max-width};
+
+  margin-top: calc(#{2 * $gap-huge} + #{$triangle-background-height});
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: #{$triangle-background-height};
+    background-repeat: repeat-x;
+    background-color: var(--background-color);
+    background-image:
+      linear-gradient(0deg, var(--background-color) 35%, transparent 35%),
+      linear-gradient(60deg, transparent 52.66%, var(--background-color) 52.66%),
+      linear-gradient(-240deg, transparent 47.33%, var(--text-color) 47.33%),
+      linear-gradient(0deg, var(--background-color) 30%, transparent 30%),
+      linear-gradient(60deg, transparent 55.66%, var(--background-color) 55.66%),
+      linear-gradient(-240deg, transparent 44.33%, var(--text-color) 44.33%),
+      linear-gradient(0deg, var(--background-color) 25%, transparent 25%),
+      linear-gradient(60deg, transparent 57.66%, var(--background-color) 57.66%),
+      linear-gradient(-240deg, transparent 42.33%, var(--text-color) 42.33%),
+      linear-gradient(0deg, var(--background-color) 17%, transparent 17%),
+      linear-gradient(60deg, transparent 60.66%, var(--background-color) 60.66%),
+      linear-gradient(-240deg, transparent 39.33%, var(--text-color) 39.33%),
+      linear-gradient(0deg, var(--background-color) 10%, transparent 10%),
+      linear-gradient(60deg, transparent 63.66%, var(--background-color) 63.66%),
+      linear-gradient(-240deg, transparent 36.33%, var(--text-color) 36.33%),
+      linear-gradient(60deg, transparent 66.66%, var(--background-color) 66.66%),
+      linear-gradient(-240deg, transparent 33.33%, var(--text-color) 33.33%);
+    background-size: $triangle-max-width $sin-60deg * $triangle-max-width;
+
+    background-position:
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 4 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 4 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 4 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 2 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 2 * $sin-60deg * $triangle-max-width,
+      left 50% bottom 2 * $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom $sin-60deg * $triangle-max-width,
+      left calc(50% - #{$triangle-max-width * 0.5}) bottom $sin-60deg * $triangle-max-width,
+      left 50% bottom 0px,
+      left 50% bottom 0px;
+  }
 
   .copyright {
     margin: 0 $gap-huge;
