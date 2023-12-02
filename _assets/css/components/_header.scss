@@ -14,11 +14,19 @@ $header-border-width: 5px;
   }
 
   .logo {
-    width: 5rem;
-    height: 5rem;
+    --logo-size: 2rem;
+    width: var(--logo-size);
+    height: var(--logo-size);
     display: flex;
     align-items: flex-end;
-    //transform: translateX(max(var(--page-margin-left) * -1, calc(-0.5 * (var(--page-margin-left) + var(--page-padding-left)) - 50%)));
+
+    @media #{$small} {
+      --logo-size: 3rem;
+    }
+
+    @media #{$medium} {
+      --logo-size: 5rem;
+    }
 
     svg {
       * {

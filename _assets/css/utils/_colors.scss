@@ -45,6 +45,7 @@ $secondary-background-color-dark: #444;
   --highlight: #{$yellow};
   --reverse-highlight: #{$purple};
   --accent-color: #{$orange};
+  --reverse-accent-color: #{$blue};
   --accent-color1: #{$yellow};
   --accent-color2: #{$orange};
   --accent-color3: #{$red};
@@ -74,6 +75,7 @@ html[data-dark] {
   --highlight: #{$purple};
   --reverse-highlight: #{$yellow};
   --accent-color: #{$blue};
+  --reverse-accent-color: #{$orange};
   --accent-color1: #{$purple};
   --accent-color2: #{$blue};
   --accent-color3: #{$green};

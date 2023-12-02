@@ -108,16 +108,27 @@ h4 { font-size: $font-size-h4; }
 h5 { font-size: $font-size-h5; }
 h6 { font-size: $font-size-h6; }
 
+ul, ol {
+  padding-left: 2em;
+
+  li::marker {
+    color: var(--secondary-text-color);
+  }
+}
+
 ul {
-  padding-left: 1em;
+  list-style-type: disc;
 }
 
 ol {
-  padding-left: 2em;
   list-style: decimal;
 
   ol {
     list-style: lower-alpha;
+  }
+
+  li::marker {
+    font-weight: bold;
   }
 }
 

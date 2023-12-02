@@ -47,23 +47,6 @@
     font-size: $font-size-small;
   }
 
-  .contact-email {
-    display: inline-block;
-
-    svg {
-      width: 200px;
-      vertical-align: middle;
-
-      path {
-        fill: var(--text-color);
-
-        &.at {
-          fill: var(--accent-color);
-        }
-      }
-    }
-  }
-
   .social-links {
     display: flex;
     justify-content: space-between;
