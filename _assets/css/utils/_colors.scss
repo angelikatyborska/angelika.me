@@ -54,14 +54,14 @@ $secondary-background-color-dark: #444;
   --shadow-color-transparent: rgba(0, 0, 0, 0);
 
   --syntax-purple: #{$syntax-purple};
-  --syntax-green: #{$syntax-green};
+  --syntax-green: #{darken($syntax-green, 5)};
   --syntax-red: #{$syntax-red};
   --syntax-salmon: #{$syntax-salmon};
   --syntax-red-error: #{$syntax-red-error};
   --syntax-teal: #{$syntax-teal};
   --syntax-teal-dark: #{$syntax-teal-dark};
   --syntax-navy: #{$syntax-navy};
-  --syntax-orange: #{$syntax-orange};
+  --syntax-orange: #{darken($syntax-orange, 5)};
 }
 
 html[data-dark] {

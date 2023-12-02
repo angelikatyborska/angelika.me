@@ -62,8 +62,28 @@
   }
 
   .coffee {
-    // TODO: style
-    // maybe something with colorful triangles and by pulling out the section left and right
+    @include reverse-section();
+    width: var(--pulled-out-block-width);
+    margin: $gap-huge var(--pulled-out-block-margin-right) $gap-huge var(--pulled-out-block-margin-left);
+    padding: $gap-big calc(-1 * var(--pulled-out-block-margin-right)) $gap-big calc(-1 * var(--pulled-out-block-margin-left));
+
+    h2 {
+      font-size: $font-size-h5;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: $font-size-h6;
+      margin-bottom: 0;
+    }
+
+    p .fas {
+      margin-left: 0.25em;
+    }
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
