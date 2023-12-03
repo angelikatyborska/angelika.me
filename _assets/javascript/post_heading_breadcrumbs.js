@@ -29,7 +29,7 @@ function headingBreadcrumbs(article, breadcrumbsContainer, options) {
     var headingsPerLevel =  [];
 
     for (var level = HIGHEST_LEVEL; level <= 6; level++) {
-      var headings = Array.prototype.slice.call(ARTICLE.querySelectorAll('h' + level));
+      var headings = Array.prototype.slice.call(document.querySelectorAll(`${article} > h` + level));
       headings = headings.sort(function(a, b) { return b.offsetTop - a.offsetTop });
       headingsPerLevel.push(headings);
     }
