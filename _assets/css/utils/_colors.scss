@@ -16,14 +16,14 @@ $shadow-1-color: rgba(0, 0, 0, 0.2);
 $shadow-2-color: rgba(0, 0, 0, 0.1);
 
 $syntax-purple: $purple;
-$syntax-green: darken($green, 10);
-$syntax-red: $red;
-$syntax-salmon: darken($orange, 10);
-$syntax-red-error: $red;
+$syntax-green: darken($green, 15);
+$syntax-red: darken($red, 10);
+$syntax-salmon: darken($blue, 25);
+$syntax-red-error: darken($red, 10);
 $syntax-teal: darken($teal, 10);
 $syntax-teal-dark: darken($teal, 20);
 $syntax-navy: $navy;
-$syntax-orange: darken($orange, 10);
+$syntax-orange: darken($blue, 25);
 
 $text-color-light: #222;
 $text-color-secondary-light: #666;
@@ -54,15 +54,19 @@ $secondary-background-color-dark: #444;
   --shadow-color-2: rgba(0, 0, 0, 0.1);
   --shadow-color-transparent: rgba(0, 0, 0, 0);
 
-  --syntax-purple: #{$syntax-purple};
-  --syntax-green: #{darken($syntax-green, 5)};
-  --syntax-red: #{$syntax-red};
-  --syntax-salmon: #{$syntax-salmon};
-  --syntax-red-error: #{$syntax-red-error};
-  --syntax-teal: #{$syntax-teal};
-  --syntax-teal-dark: #{$syntax-teal-dark};
-  --syntax-navy: #{$syntax-navy};
-  --syntax-orange: #{darken($syntax-orange, 5)};
+  // color names are mismatched on purpose
+  // I wanted yellow / orange / red in dark more
+  // and green / blue / purple in light mode
+  // but was too lazy to come up with semantic names
+  --syntax-purple: #{$purple};
+  --syntax-green: #{darken($green, 15)};
+  --syntax-red: #{darken($red, 10)};
+  --syntax-salmon: #{darken($blue, 25)};
+  --syntax-red-error: #{darken($red, 10)};
+  --syntax-teal: #{darken($green, 15)};
+  --syntax-teal-dark: #{darken($green, 25)};
+  --syntax-navy: #{$navy};
+  --syntax-orange: #{darken($blue, 30)};
 }
 
 html[data-dark] {
@@ -83,15 +87,15 @@ html[data-dark] {
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);
-  --syntax-purple: #{lighten($syntax-purple, 30)};
-  --syntax-green: #{lighten($syntax-green, 30)};
-  --syntax-red: #{lighten($syntax-red, 30)};
-  --syntax-salmon: #{lighten($syntax-salmon, 30)};
-  --syntax-red-error: #{lighten($syntax-red-error, 30)};
-  --syntax-teal: #{lighten($syntax-teal, 30)};
-  --syntax-teal-dark: #{lighten($syntax-teal-dark, 30)};
-  --syntax-navy: #{lighten($syntax-navy, 30)};
-  --syntax-orange: #{lighten($syntax-orange, 30)};
+  --syntax-purple: #{lighten($orange, 10)};
+  --syntax-green: #{lighten($yellow, 10)};
+  --syntax-red: #{lighten($red, 15)};
+  --syntax-salmon: #{lighten($red, 15)};
+  --syntax-red-error: #{lighten($red, 15)};
+  --syntax-teal: #{lighten($yellow, 15)};
+  --syntax-teal-dark: #{lighten($yellow, 25)};
+  --syntax-navy: #{lighten($navy, 35)};
+  --syntax-orange: #{lighten($red, 15)};
 }
 
 @mixin reverse-section() {
