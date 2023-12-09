@@ -33,7 +33,7 @@ $secondary-background-color-light: #eee;
 $text-color-dark: #eee;
 $text-color-secondary-dark: #bbb;
 $background-color-dark: #222;
-$secondary-background-color-dark: #444;
+$secondary-background-color-dark: #333;
 
 :root {
   --text-color: #{$text-color-light};
@@ -41,6 +41,10 @@ $secondary-background-color-dark: #444;
   --background-color: #{$background-color-light};
   --secondary-background-color: #{$secondary-background-color-light};
   --background-color-transparent: #{rgba($background-color-light, 0)};
+
+  --reverse-text-color: var(--background-color);
+  --reverse-secondary-text-color: var(--secondary-background-color);
+  --reverse-background-color: var(--text-color);
 
   --highlight: #{$yellow};
   --reverse-highlight: #{$purple};
@@ -76,6 +80,10 @@ html[data-dark] {
   --background-color-transparent: #{rgba($background-color-dark, 0)};
   --secondary-background-color: #{$secondary-background-color-dark};
 
+  --reverse-text-color: var(--text-color);
+  --reverse-secondary-text-color: var(--secondary-text-color);
+  --reverse-background-color: var(--secondary-background-color);
+
   --highlight: #{$purple};
   --reverse-highlight: #{$yellow};
   --accent-color: #{$blue};
@@ -99,7 +107,7 @@ html[data-dark] {
 }
 
 @mixin reverse-section() {
-  background: var(--text-color);
-  color: var(--background-color);
+  background-color: var(--reverse-background-color);
+  color: var(--reverse-text-color);
   --highlight: var(--reverse-highlight);
 }
