@@ -20,30 +20,30 @@
     background-image:
       linear-gradient(0deg, var(--background-color) 35%, transparent 35%),
       linear-gradient(60deg, transparent 52.66%, var(--background-color) 52.66%),
-      linear-gradient(-240deg, transparent 47.33%, var(--text-color) 47.33%),
+      linear-gradient(-240deg, transparent 47.33%, var(--reverse-background-color) 47.33%),
 
       linear-gradient(0deg, var(--background-color) 32%, transparent 35%),
       linear-gradient(60deg, transparent 54.66%, var(--background-color) 54.66%),
-      linear-gradient(-240deg, transparent 45.33%, var(--text-color) 45.33%),
+      linear-gradient(-240deg, transparent 45.33%, var(--reverse-background-color) 45.33%),
 
       linear-gradient(0deg, var(--background-color) 28%, transparent 30%),
       linear-gradient(60deg, transparent 56.66%, var(--background-color) 56.66%),
-      linear-gradient(-240deg, transparent 43.33%, var(--text-color) 43.33%),
+      linear-gradient(-240deg, transparent 43.33%, var(--reverse-background-color) 43.33%),
 
       linear-gradient(0deg, var(--background-color) 23%, transparent 25%),
       linear-gradient(60deg, transparent 58.66%, var(--background-color) 58.66%),
-      linear-gradient(-240deg, transparent 41.33%, var(--text-color) 41.33%),
+      linear-gradient(-240deg, transparent 41.33%, var(--reverse-background-color) 41.33%),
 
       linear-gradient(0deg, var(--background-color) 17%, transparent 17%),
       linear-gradient(60deg, transparent 61.66%, var(--background-color) 61.66%),
-      linear-gradient(-240deg, transparent 38.33%, var(--text-color) 38.33%),
+      linear-gradient(-240deg, transparent 38.33%, var(--reverse-background-color) 38.33%),
 
       linear-gradient(0deg, var(--background-color) 10%, transparent 10%),
       linear-gradient(60deg, transparent 63.66%, var(--background-color) 63.66%),
-      linear-gradient(-240deg, transparent 36.33%, var(--text-color) 36.33%),
+      linear-gradient(-240deg, transparent 36.33%, var(--reverse-background-color) 36.33%),
 
       linear-gradient(60deg, transparent 66.66%, var(--background-color) 66.66%),
-      linear-gradient(-240deg, transparent 33.33%, var(--text-color) 33.33%);
+      linear-gradient(-240deg, transparent 33.33%, var(--reverse-background-color) 33.33%);
     background-size: $triangle-max-width $sin-60deg * $triangle-max-width;
 
     background-position:
@@ -78,7 +78,7 @@
     grid-template-columns: 1fr 1fr;
     column-gap: $gap-big;
     row-gap: $gap-huge;
-    padding: $gap-big 0 $gap-huge;
+    padding: $gap-huge 0 $gap-huge;
     font-size: $font-size-small;
 
     @media #{$small} {
@@ -88,12 +88,12 @@
 
   h2 {
     font-size: $font-size-paragraph;
-    color: var(--background-color);
+    color: var(--reverse-text-color);
     margin-top: 0;
   }
 
   a, p {
-    color: var(--secondary-background-color);
+    color: var(--reverse-secondary-text-color);
   }
 
   nav {

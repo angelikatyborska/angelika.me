@@ -17,7 +17,17 @@ layout: default
     </div>
   </header>
 
-  {{ content }}
+  <div class="post-content" id="post-content">
+    <aside class="post-aside-wrapper">
+      <div class="post-aside" id="post-aside">
+        <div class="post-aside-box">
+          <h2><abbr title="Table of contents" aria-label="Table of contents">TOC</abbr></h2>
+          {% toc %}
+        </div>
+      </div>
+    </aside>
+    {{ content }}
+  </div>
 
   <footer>
     <div class="coffee">
@@ -38,8 +48,5 @@ layout: default
 
 </article>
 
-<aside aria-hidden="true">
-</aside>
-
 {% asset post_headers_anchors.js %}
-{% asset post_heading_breadcrumbs.js %}
+{% asset post_toc.js %}

@@ -5,9 +5,10 @@ $header-border-width: 5px;
 .header {
   position: relative;
   font-family: $header-font-family;
-  margin-top: var(--page-padding-left);
+  margin-top: $gap-big;
   margin-bottom: $gap-huge;
   border-bottom: $header-border-width solid var(--text-color);
+  align-items: end;
 
   a {
     text-decoration: none;
@@ -19,8 +20,12 @@ $header-border-width: 5px;
     height: var(--logo-size);
     display: flex;
     align-items: flex-end;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
 
     @media #{$small} {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
       --logo-size: 3rem;
     }
 
@@ -29,6 +34,8 @@ $header-border-width: 5px;
     }
 
     svg {
+      width: 100%;
+
       * {
         fill: var(--text-color);
       }
@@ -41,6 +48,14 @@ $header-border-width: 5px;
     align-items: flex-end;
     gap: $gap-small;
     justify-content: flex-end;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+
+    @media #{$small} {
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      --logo-size: 3rem;
+    }
 
     > * {
       padding: $gap-tiny $gap-small 0 $gap-small;

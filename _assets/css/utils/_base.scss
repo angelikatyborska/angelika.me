@@ -57,20 +57,20 @@ figure img {
   grid-template-rows: auto auto 1fr;
 
   @media #{$small} {
-    --page-margin-left: #{$gap-huge};
-    --page-padding-left: #{$gap-big};
+    --page-padding-left: #{$gap-medium};
+    --page-margin-left: calc(var(--page-padding-left) * 2);
   }
 
   @media #{$medium} {
-    --page-margin-left: #{$gap-huge * 2};
+    --page-padding-left: #{$gap-big};
   }
 
   @media #{$big} {
-    --page-margin-left: #{$gap-huge * 3};
+    --page-padding-left: #{$gap-huge};
   }
 
   @media #{$very-big} {
-    --page-margin-left: #{$gap-huge * 4};
+    --page-padding-left: #{$gap-huge * 1.5};
   }
 
   > * {

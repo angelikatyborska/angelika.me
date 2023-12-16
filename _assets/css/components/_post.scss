@@ -24,12 +24,13 @@
     display: none;
     position: absolute;
     right: 100%;
-    top: 0.7em; // can't be vertically centered due to multiline headers (must stick to first line)
-    font-size: 0.5em;
-    padding-right: $gap-medium;
+    top: 0; // can't be vertically centered due to multiline headers (must stick to first line)
+    padding-right: $gap-small;
     z-index: 10;
 
     a {
+      font-size: $font-size-small;
+      vertical-align: middle;
       padding: 0 $gap-small;
       opacity: 0;
       color: var(--accent-color);
@@ -60,14 +61,14 @@
 
   footer {
     @include reverse-section();
-    margin: 0 calc(-1 * var(--page-padding-left));
+    margin: $gap-huge calc(-1 * var(--page-padding-left));
     padding: 0 var(--page-padding-left);
   }
 
   .coffee {
     @include reverse-section();
     width: var(--pulled-out-block-width);
-    margin: $gap-huge var(--pulled-out-block-margin-right) $gap-huge var(--pulled-out-block-margin-left);
+    margin: 0 var(--pulled-out-block-margin-right) 0 var(--pulled-out-block-margin-left);
     padding: $gap-big calc(-1 * var(--pulled-out-block-margin-right)) $gap-big calc(-1 * var(--pulled-out-block-margin-left));
     position: relative;
 
@@ -125,6 +126,10 @@
         * { fill: var(--accent-color1); }
 
         @media #{$small} {
+          right: -0.25 * $gap-big;
+        }
+
+        @media #{$big} {
           right: -0.5 * $gap-huge;
         }
       }

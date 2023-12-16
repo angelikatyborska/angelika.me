@@ -1,54 +1,80 @@
-.post {
-  + aside {
-    display: none;
+.post-content {
+  position: relative;
+}
+
+.post-aside-wrapper {
+  @media #{$very-big} {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: calc(var(--page-padding-left) + var(--page-margin-left));
   }
 }
 
-@media #{$very-big} {
-  .post {
-    + aside {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      position: fixed;
-      top: 0;
-      width: calc(50% - #{$page-max-width/2});
-      transform: translateX(-100%);
-      text-align: right;
-      padding: $gap-small var(--page-padding-left) 0 0;
-      font-family: $paragraph-font-family;
+.post-aside {
+  background-color: var(--background-color);
+  font-family: $paragraph-font-family;
+  overflow: visible;
+  font-size: $font-size-small;
+  text-align: left;
+  margin-bottom: $gap-big;
 
-      span {
-        background-color: var(--background-color);
-        position: relative;
-        display: block;
-        overflow: hidden;
-        padding: $gap-tiny $gap-small $gap-tiny $gap-small;
-      }
+  @media #{$very-big} {
+    display: block;
+    position: sticky;
+    top: 0;
+    padding: $gap-small $gap-big $gap-small $gap-small;
+  }
 
-      a {
-        color: var(--secondary-text-color);
+  .post-aside-box {
+    border: 1px solid var(--shadow-color-2);
+    padding: $gap-tiny $gap-small;
+  }
 
-        &.h2 {
-          font-size: rem-calc(18);
-        }
+  h2 {
+    font-size: $font-size-paragraph;
+    margin-top: 0;
+  }
 
-        &.h3 {
-          font-size: rem-calc(16);
-        }
+  ul {
+    padding: 0 0 0 1em;
+    margin: 0;
+    list-style-type: circle;
+  }
 
-        &.h4 {
-          font-size: rem-calc(14);
-        }
+  ul ul {
+    margin-left: $gap-tiny;
+  }
 
-        &.h5 {
-          font-size: rem-calc(12);
-        }
+  li {
+    position: relative;
+    padding: 0 0 0 1em;
+    text-align: left;
 
-        &.h6 {
-          font-size: rem-calc(10);
-        }
-      }
+    // jekyll-toc randomly adds a space in front of some list items
+    // this is necessary to remove it
+    font-size: 0;
+
+    &::marker {
+      font-size: $font-size-small;
+    }
+
+    > * {
+      font-size: $font-size-small;
+    }
+  }
+
+  a {
+    color: var(--secondary-text-color);
+    white-space: normal;
+    word-break: break-word;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+
+    &.active {
+      --active-border-color: var(--accent-color);
+      border-color: var(--active-border-color);
     }
   }
 }
