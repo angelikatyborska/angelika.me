@@ -63,3 +63,8 @@ pagination:
   limit: 0
   sort_field: 'date'
   sort_reverse: true
+
+collections:
+  previews:
+    output: true
+    permalink: /previews/:slug/
