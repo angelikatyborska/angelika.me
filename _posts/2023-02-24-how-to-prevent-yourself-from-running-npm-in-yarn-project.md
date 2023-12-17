@@ -31,6 +31,6 @@ yarn() {
 }
 ```
 
-If you ever need to run `npm` or `yarn` bypassing this check, you can do so by prepending `command ` to the command.
+If you ever need to run `npm` or `yarn` bypassing this check, you can do so by prepending `command` to the command.
 
 Note that I have no experience with other package managers for JavaScript and I have no idea how my solution would interact with them.
