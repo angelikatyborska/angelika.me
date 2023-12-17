@@ -20,10 +20,10 @@ layout: default
   <div class="post-content" id="post-content">
     <aside class="post-aside-wrapper">
       <div class="post-aside" id="post-aside">
-        <div class="post-aside-box">
-          <h2><abbr title="Table of contents" aria-label="Table of contents">TOC</abbr></h2>
+        <details class="post-aside-box">
+          <summary class="toc-header">Table of contents</summary>
           {% toc %}
-        </div>
+        </details>
       </div>
     </aside>
     {{ content }}

@@ -30,11 +30,18 @@
   .post-aside-box {
     border: 1px solid var(--shadow-color-2);
     padding: $gap-tiny $gap-small;
+
+    @media #{$very-big} {
+      border: none;
+      padding: 0;
+    }
   }
 
-  h2 {
+  .toc-header {
     font-size: $font-size-paragraph;
     margin-top: 0;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   ul {
