@@ -1,5 +1,7 @@
 require 'fileutils'
 
+# The whole purpose of this plugin is to copy over post md files into previews
+
 module Filter
   def self.process(site, payload)
     site.collections['posts'].docs.each do |post|
@@ -35,11 +37,5 @@ Jekyll::Hooks.register :site, :post_read do |site, payload|
   # written and regenerated
   if !site.config['serving']
     Filter.process(site, payload)
-  end
-end
-
-module RemovePreviews
-  def self.process(site, payload)
-    FileUtils.rm_rf("./_previews/.", secure: true)
   end
 end

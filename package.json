@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "puppeteer": "^21.6.1"
+  },
+  "scripts": {
+    "previews": "node ./previews.js"
+  }
+}
