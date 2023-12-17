@@ -46,7 +46,8 @@ $secondary-background-color-dark: #333;
   --reverse-secondary-text-color: var(--secondary-background-color);
   --reverse-background-color: var(--text-color);
 
-  --highlight: #{$yellow};
+  --highlight: #{rgba($yellow, 0.5)};
+  --selection: #{rgba($orange, 0.5)};
   --reverse-highlight: #{$purple};
   --accent-color: #{$orange};
   --reverse-accent-color: #{$blue};
@@ -84,8 +85,9 @@ html[data-dark] {
   --reverse-secondary-text-color: var(--secondary-text-color);
   --reverse-background-color: var(--secondary-background-color);
 
-  --highlight: #{$purple};
-  --reverse-highlight: #{$yellow};
+  --highlight: #{rgba($purple, 0.5)};
+  --selection: #{rgba($blue, 0.5)};
+  --reverse-highlight: #{rgba($purple, 0.5)};
   --accent-color: #{$blue};
   --reverse-accent-color: #{$orange};
   --accent-color1: #{$purple};
