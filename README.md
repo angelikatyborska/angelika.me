@@ -7,4 +7,4 @@ Using Jekyll.
 
 1. Run build with `rake build`
 2. Start a server `cd _site && adsf -p 3333` 
-3. Run `npm run previews`
+3. Run `npm run screenshot_og_images`

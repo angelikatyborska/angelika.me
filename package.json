@@ -3,6 +3,6 @@
     "puppeteer": "^21.6.1"
   },
   "scripts": {
-    "previews": "node ./previews.js"
+    "screenshot_og_images": "node screenshot_og_images.js"
   }
 }

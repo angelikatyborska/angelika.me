@@ -4,6 +4,7 @@ ruby '2.7.2'
 gem 'jekyll', "~> 3.8"
 gem 'sprockets', "~> 3"
 gem 'rake'
+gem 'pry'
 
 group :jekyll_plugins do
   gem 'jekyll-paginate-v2'

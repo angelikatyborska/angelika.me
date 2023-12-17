@@ -65,6 +65,6 @@ pagination:
   sort_reverse: true
 
 collections:
-  previews:
+  og_images:
     output: true
-    permalink: /previews/:slug/
+    permalink: /og_images/:slug/
