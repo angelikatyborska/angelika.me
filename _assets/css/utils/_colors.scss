@@ -63,11 +63,11 @@ $secondary-background-color-dark: #333;
   // and green / blue / purple in light mode
   // but was too lazy to come up with semantic names
   --syntax-purple: #{$purple};
-  --syntax-green: #{darken($green, 15)};
+  --syntax-green: #{darken($green, 20)};
   --syntax-red: #{darken($red, 10)};
   --syntax-salmon: #{darken($blue, 25)};
   --syntax-red-error: #{darken($red, 10)};
-  --syntax-teal: #{darken($green, 15)};
+  --syntax-teal: #{darken($green, 20)};
   --syntax-teal-dark: #{darken($green, 25)};
   --syntax-navy: #{$navy};
   --syntax-orange: #{darken($blue, 30)};
