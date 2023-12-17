@@ -20,12 +20,12 @@ $step2: 21.6;
 $step1: 18;
 $step0: 15;
 
-$font-size-h1: clamp(rem-calc($step5), rem-calc($step5) + #{($step7 - $step5) * 0.1vw}, rem-calc($step7));
-$font-size-h2: clamp(rem-calc($step4), rem-calc($step4) + #{($step6 - $step4) * 0.1vw}, rem-calc($step6));
-$font-size-h3: clamp(rem-calc($step3), rem-calc($step3) + #{($step5 - $step3) * 0.1vw}, rem-calc($step5));
-$font-size-h4: clamp(rem-calc($step2), rem-calc($step2) + #{($step4 - $step2) * 0.1vw}, rem-calc($step4));
-$font-size-h5: clamp(rem-calc($step1), rem-calc($step1) + #{($step3 - $step1) * 0.1vw}, rem-calc($step3));
-$font-size-h6: clamp(rem-calc($step0), rem-calc($step0) + #{($step2 - $step0) * 0.1vw}, rem-calc($step2));
+$font-size-h1: clamp(rem-calc($step5), calc(#{rem-calc($step5)} + #{($step7 - $step5) * 0.1vw}), rem-calc($step7));
+$font-size-h2: clamp(rem-calc($step4), calc(#{rem-calc($step4)} + #{($step6 - $step4) * 0.1vw}), rem-calc($step6));
+$font-size-h3: clamp(rem-calc($step3), calc(#{rem-calc($step3)} + #{($step5 - $step3) * 0.1vw}), rem-calc($step5));
+$font-size-h4: clamp(rem-calc($step2), calc(#{rem-calc($step2)} + #{($step4 - $step2) * 0.1vw}), rem-calc($step4));
+$font-size-h5: clamp(rem-calc($step1), calc(#{rem-calc($step1)} + #{($step3 - $step1) * 0.1vw}), rem-calc($step3));
+$font-size-h6: clamp(rem-calc($step0), calc(#{rem-calc($step0)} + #{($step2 - $step0) * 0.1vw}), rem-calc($step2));
 $font-size-paragraph: rem-calc(18);
 $font-size-code: rem-calc(15);
 $font-size-small: rem-calc(15);
