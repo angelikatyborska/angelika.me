@@ -56,20 +56,8 @@
 
   li {
     position: relative;
-    padding: 0 0 0 1em;
+    padding: 0;
     text-align: left;
-
-    // jekyll-toc randomly adds a space in front of some list items
-    // this is necessary to remove it
-    font-size: 0;
-
-    &::marker {
-      font-size: $font-size-small;
-    }
-
-    > * {
-      font-size: $font-size-small;
-    }
   }
 
   a {
