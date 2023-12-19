@@ -45,15 +45,27 @@
   <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta property="og:description" content="{{ description | strip_html }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="{{ site.url }}{% asset avatar @path %}" />
-  <meta property="og:image:width" content="300" />
-  <meta property="og:image:height" content="300" />
 
-  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="{{ site.twitter_handler }}" />
   <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}{{ site.name }}" />
   <meta name="twitter:description" content="{{ description | strip_html }}" />
+
+  {% assign og_image_path = 'og_images/' | append: page.slug | append: '.png' %}
+
+  {% if assets[og_image_path] %}
+  <meta property="og:image" content="{{ site.url }}{% asset '{{og_image_path}}' @path %}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ site.url }}{% asset '{{og_image_path}}' @path %}" />
+  {% else %}
+  <!-- TODO: cool default OG image -->
+  <meta property="og:image" content="{{ site.url }}{% asset avatar @path %}" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="300" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="{{ site.url }}{% asset avatar @path %}" />
+  {% endif %}
 
   <script defer data-domain="angelika.me" src="https://plausible.io/js/script.js"></script>
 </head>
