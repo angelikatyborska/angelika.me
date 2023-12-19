@@ -70,7 +70,7 @@ $header-border-width: 5px;
         background: var(--accent-color);
         width: 100%;
         height: $header-border-width;
-        transition: all $transition-duration ease;
+        transition: transform $transition-duration ease;
         z-index: -1;
       }
 
