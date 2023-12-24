@@ -58,7 +58,6 @@ figure img {
 
   @media #{$small} {
     --page-padding-left: #{$gap-medium};
-    --page-margin-left: calc(var(--page-padding-left) * 2);
   }
 
   @media #{$medium} {
@@ -71,6 +70,7 @@ figure img {
 
   @media #{$very-big} {
     --page-padding-left: #{$gap-huge * 1.5};
+    --page-margin-left: calc(var(--page-padding-left) * 2);
   }
 
   > * {

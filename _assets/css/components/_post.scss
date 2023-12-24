@@ -99,7 +99,7 @@
         transform: rotate(15deg);
         * { fill: var(--accent-color2); }
 
-        @media #{$small} {
+        @media #{$medium} {
           left: -0.25 * $gap-huge;
         }
       }
@@ -112,7 +112,7 @@
         transform: rotate(-52deg);
         * { fill: var(--accent-color3); }
 
-        @media #{$small} {
+        @media #{$medium} {
           left: 0.5 * $gap-huge;
         }
       }
@@ -125,11 +125,15 @@
         transform: rotate(72deg);
         * { fill: var(--accent-color1); }
 
-        @media #{$small} {
+        @media #{$medium} {
           right: -0.25 * $gap-big;
         }
 
         @media #{$big} {
+          right: -1.5 * $gap-huge;
+        }
+
+        @media #{$very-big} {
           right: -0.5 * $gap-huge;
         }
       }
