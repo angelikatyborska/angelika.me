@@ -24,17 +24,12 @@
     display: block;
     position: sticky;
     top: 0;
-    padding: $gap-small $gap-big $gap-small $gap-small;
+    padding: $gap-small $gap-big $gap-small $gap-medium;
   }
 
   .post-aside-box {
-    border: 1px solid var(--shadow-color-2);
-    padding: $gap-tiny $gap-small;
-
-    @media #{$very-big} {
-      border: none;
-      padding: 0;
-    }
+    border: none;
+    padding: 0;
   }
 
   .toc-header {
@@ -44,20 +39,49 @@
     cursor: pointer;
   }
 
+  $ul-left-padding: 1.25em;
+
   ul {
-    padding: 0 0 0 1em;
+    padding: 0 0 0 $ul-left-padding;
     margin: 0;
-    list-style-type: circle;
+    list-style-type: none;
   }
 
-  ul ul {
-    margin-left: $gap-tiny;
-  }
+  // trying to center it with the ▼ char of the open details
+  $tree-left-offset: calc(#{-1 * $ul-left-padding} + 0.25em);
+  $tree-horizontal-line-length: calc(#{$ul-left-padding} - 0.25em * 2);
+  $tree-color: var(--shadow-color-2);
+  $tree-line-thickness: 1px;
 
   li {
     position: relative;
     padding: 0;
     text-align: left;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: $tree-left-offset;
+      width: $tree-line-thickness;
+      background-color: $tree-color;
+    }
+
+    &:last-child:before {
+      bottom: unset;
+      height: $line-height-default * 0.5em;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: $line-height-default * 0.5em;
+      left: calc(#{$tree-left-offset} + #{$tree-line-thickness});
+      height: 1px;
+      width: $tree-horizontal-line-length;
+      background-color: $tree-color;
+    }
   }
 
   a {
