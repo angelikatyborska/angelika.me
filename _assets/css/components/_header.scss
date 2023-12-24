@@ -3,42 +3,51 @@ $header-border-width: 5px;
 // TODO: fix on very narrow screens 320px
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $gap-medium;
+
   position: relative;
   font-family: $header-font-family;
   margin-top: $gap-big;
   margin-bottom: $gap-huge;
-  border-bottom: $header-border-width solid var(--text-color);
-  align-items: end;
+  border-bottom: $header-border-width solid transparent;
+
+  @media #{$small} {
+    display: inherit;
+    align-items: end;
+    gap: 0;
+  }
 
   a {
     text-decoration: none;
   }
 
   .logo {
-    --logo-size: 2rem;
+    --logo-size: 2.5rem;
     width: var(--logo-size);
     height: var(--logo-size);
     display: flex;
     align-items: flex-end;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
+    margin-bottom: -1 * $header-border-width;
 
     @media #{$small} {
-      grid-row: 1 / 2;
-      grid-column: 1 / 2;
       --logo-size: 3rem;
     }
 
     @media #{$medium} {
-      --logo-size: 5rem;
+      --logo-size: 3.5rem;
+    }
+
+    @media #{$big} {
+      --logo-size: 4rem;
     }
 
     svg {
       width: 100%;
-
-      * {
-        fill: var(--text-color);
-      }
     }
   }
 

@@ -36,9 +36,10 @@ code {
   }
 
   .rouge-gutter {
-    width: 42px;
+    width: 2em;
     text-align: right;
     border-right: 1px solid var(--shadow-color-2);
+    color: var(--secondary-text-color);
   }
 }
 

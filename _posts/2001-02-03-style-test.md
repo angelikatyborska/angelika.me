@@ -170,6 +170,31 @@ defmodule FileSniffer do
 end
 ```
 
+Nested in lists
+
+- One
+  - 1.2
+    - 1.3
+      - 1.35
+        - 1.356
+          - 1.3563
+            ```html
+              <header>
+                <h1>Style test</h1>
+                <div class="post-meta">
+                  <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
+                  <span class="time-estimate">
+            
+                    1 min read
+                  </span>
+                  <span class="tags"><span class="sr-only">Topics covered </span></span>
+                </div>
+              </header>
+            ```
+
+  - 1.4
+  - 1.5
+
 ## Keyboard shortcuts
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.

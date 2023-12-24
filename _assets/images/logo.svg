@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 300 259.80762113" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <polygon id="triangle" points="150,0 300,259.80762113 0,259.80762113" />
+    <clipPath id="insideTriangleOnly">
+      <use xlink:href="#triangle"/>
+    </clipPath>
+  </defs>
+
+  <use
+    xlink:href="#triangle"
+    stroke-width="50" stroke="var(--text-color)" fill="var(--text-color)"
+    clip-path="url(#insideTriangleOnly)"
+  />
+
+  <rect x="0" y="129.90381056" width="100%" height="25" fill="var(--background-color)" />
+  <rect x="0" y="179.90381056" width="100%" height="25" fill="var(--background-color)" />
+
+</svg>

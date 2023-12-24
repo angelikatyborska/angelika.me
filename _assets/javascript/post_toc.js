@@ -5,6 +5,8 @@ function postToc(article, tocContainer, options) {
 
   init();
 
+  // TODO: autoopen when floating and autoclose with inline?
+
   function init() {
     var headingsPerLevel = getHeadingsPerLevel();
     if (headingsPerLevel.flat().length > 0) {
