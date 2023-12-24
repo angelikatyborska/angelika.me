@@ -1,25 +1,24 @@
 $header-border-width: 5px;
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: $gap-medium;
-
   position: relative;
   font-family: $header-font-family;
   margin-top: $gap-big;
   margin-bottom: $gap-huge;
   border-bottom: $header-border-width solid transparent;
 
-  @media #{$small} {
-    display: inherit;
-    align-items: end;
-    gap: 0;
-  }
-
   a {
     text-decoration: none;
+  }
+
+  .header-inner-wrapper {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $gap-medium;
+    max-width: $page-max-width;
   }
 
   .logo {
@@ -28,8 +27,6 @@ $header-border-width: 5px;
     height: var(--logo-size);
     display: flex;
     align-items: flex-end;
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
     margin-bottom: -1 * $header-border-width;
 
     svg {
@@ -38,13 +35,10 @@ $header-border-width: 5px;
   }
 
   nav {
-    max-width: $page-max-width;
     display: flex;
     align-items: flex-end;
     gap: $gap-small;
     justify-content: flex-end;
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
 
     @media #{$small} {
       grid-row: 1 / 2;
