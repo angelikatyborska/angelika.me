@@ -3,11 +3,9 @@ code {
   font-size: $font-size-code;
 }
 
-// TODO: add scroll shadow to code block?
-
 *:not(.highlight) {
   > code {
-    border: 1px solid var(--shadow-color-2);
+    border: 1px solid var(--border-color);
     padding: 0 $gap-tiny;
     font-size: 0.9em;
     word-wrap: break-word;
@@ -16,7 +14,7 @@ code {
 
 .highlight {
   table {
-    @include shadow();
+    @include box();
     table-layout: fixed;
     width: var(--pulled-out-right-only-block-width);
     margin: $gap-medium 0 $gap-big 0;
@@ -30,16 +28,22 @@ code {
   }
 
   .rouge-code {
+    padding: 0;
+
     pre {
-      overflow-x: auto;
+      @include scroll-shadow();
     }
   }
 
   .rouge-gutter {
     width: 2em;
     text-align: right;
-    border-right: 1px solid var(--shadow-color-2);
+    border-right: 1px solid var(--border-color);
     color: var(--secondary-text-color);
+  }
+
+  .rouge-code pre, .rouge-gutter {
+    padding: $gap-tiny $gap-small;
   }
 }
 

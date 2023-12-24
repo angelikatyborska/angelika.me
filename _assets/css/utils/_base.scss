@@ -15,7 +15,7 @@ a {
 }
 
 figure img {
-  @include shadow();
+  @include box();
 }
 
 @mixin grid {

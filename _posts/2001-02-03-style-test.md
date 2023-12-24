@@ -170,6 +170,15 @@ defmodule FileSniffer do
 end
 ```
 
+very long lines
+
+```html
+<header>
+  <h1>Style test</h1>
+  <div class="post-meta"><span class="date"><span class="sr-only">Written on </span>03 February 2001</span><span class="time-estimate">1 min read</span><span class="tags"><span class="sr-only">Topics covered </span></span></div>
+</header>
+```
+
 Nested in lists
 
 - One
@@ -216,6 +225,15 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 | Hello | World |
 | ----- |-------|
 | :)    | (:    |
+
+Very long table with scroll shadows
+
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+|--------------------------------|--------------------------------|------------------------------|------------------------------------|-----------------------|-----------|
+| Pseudopseudohypoparathyroidism | Floccinaucinihilipilification  | Antidisestablishmentarianism | Supercalifragilisticexpialidocious | Incomprehensibilities | Strengths |
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
 

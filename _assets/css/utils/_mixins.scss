@@ -20,9 +20,8 @@
   }
 }
 
-@mixin shadow {
-  // TODO: rename to box?
-  border: 1px solid var(--shadow-color-2);
+@mixin box {
+  border: 1px solid var(--border-color);
 }
 
 @mixin button_reset {
@@ -51,4 +50,41 @@
       word-break: break-word;
     }
   }
+}
+
+@mixin scroll-shadow() {
+  overflow: hidden;
+  overflow-x: auto;
+  max-width: fit-content;
+
+  background:
+    // Shadow Cover LEFT
+    linear-gradient(to right,
+      var(--background-color) 30%,
+      var(--background-color-transparent)
+    ) left center,
+
+      // Shadow Cover RIGHT
+    linear-gradient(to right,
+      var(--background-color-transparent),
+      var(--background-color) 70%
+    ) right center,
+
+      // Shadow LEFT
+    radial-gradient(
+        farthest-side at 0 50%,
+        var(--shadow-color-1),
+        var(--shadow-color-transparent)
+    ) left center,
+
+      // Shadow right
+    radial-gradient(
+        farthest-side at 100% 50%,
+        var(--shadow-color-1),
+        var(--shadow-color-transparent)
+    ) right center;
+
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
 }

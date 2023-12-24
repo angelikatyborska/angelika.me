@@ -52,7 +52,7 @@ mark {
 }
 
 blockquote {
-  @include shadow();
+  @include box();
   position: relative;
   padding: $gap-tiny $gap-tiny $gap-tiny $gap-big + $gap-small;
   //width: var(--pulled-out-block-width);

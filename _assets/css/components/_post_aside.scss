@@ -50,7 +50,7 @@
   // trying to center it with the ▼ char of the open details
   $tree-left-offset: calc(#{-1 * $ul-left-padding} + 0.25em);
   $tree-horizontal-line-length: calc(#{$ul-left-padding} - 0.25em * 2);
-  $tree-color: var(--shadow-color-2);
+  $tree-color: var(--border-color);
   $tree-line-thickness: 1px;
 
   li {

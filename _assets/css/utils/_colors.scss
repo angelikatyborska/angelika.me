@@ -29,11 +29,13 @@ $text-color-light: #222;
 $text-color-secondary-light: #666;
 $background-color-light: $white;
 $secondary-background-color-light: #eee;
+$border-color-light: #ccc;
 
 $text-color-dark: #eee;
 $text-color-secondary-dark: #bbb;
 $background-color-dark: #222;
 $secondary-background-color-dark: #333;
+$border-color-dark: #555;
 
 :root {
   --text-color: #{$text-color-light};
@@ -55,6 +57,7 @@ $secondary-background-color-dark: #333;
   --accent-color2: #{$orange};
   --accent-color3: #{$red};
 
+  --border-color: #{$border-color-light};
   --shadow-color-1: rgba(0, 0, 0, 0.2);
   --shadow-color-2: rgba(0, 0, 0, 0.1);
   --shadow-color-transparent: rgba(0, 0, 0, 0);
@@ -94,6 +97,7 @@ html[data-dark] {
   --accent-color2: #{$blue};
   --accent-color3: #{$green};
 
+  --border-color: #{$border-color-dark};
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);

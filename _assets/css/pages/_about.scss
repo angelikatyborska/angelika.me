@@ -12,7 +12,7 @@
   }
 
   .column-image {
-    @include shadow();
+    @include box();
     grid-row: 2;
     background: $white;
     padding: $gap-medium;
