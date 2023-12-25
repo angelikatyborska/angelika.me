@@ -1,29 +1,24 @@
 <!doctype html>
 <html lang="en">
 {% include head.html title=page.title %}
-{% assign random = page.date | date: "%s" | divided_by: 100  | modulo: 24 %}
+{% assign random = 7 %}
 
 <body class="post-og-image post-og-image-variant-{{random}}">
 {% asset post_og_image %}
 <article class="post">
   <div class="logo">
-    <!-- TODO: exchange logo -->
     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
       <path d="M 200 0 L 325 250 L 75 250 Z M 350 300 L 50 300 L 62.5 275 L 337.5 275 Z M 400 400 L 0 400 L 37.5 325 L 362.5 325 Z M 125 221 L 275 221 L 200 71 Z" fill="black"/>
     </svg>
     <span class="page-title">angelika.me</span>
   </div>
   <header>
-    <time class="date" datetime="{{page.date}}">
-      {{ page.date | date: '%d %B %Y' }}
-    </time>
-    <h1>{{ page.title }}</h1>
+    <h1>Angelika Tyborska</h1>
     <div class="post-meta">
       <span class="time-estimate">
-        {% capture time %}{{ content | reading_time }}{% endcapture %}
-        {{ time }} min read
+        BAR
       </span>
-      <span class="tags">{{ page | tags }}</span>
+      <span class="tags">BAZ</span>
     </div>
   </header>
   <div class="triangles" aria-hidden="true">

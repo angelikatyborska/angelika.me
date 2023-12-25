@@ -39,7 +39,7 @@ Jekyll::Hooks.register :site, :post_read do |site, payload|
 
   # comment out the 'if' when developing the styles in dev
 
-  if !site.config['serving']
+  # if !site.config['serving']
     Filter.process(site, payload)
-  end
+  # end
 end
