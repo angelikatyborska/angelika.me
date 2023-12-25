@@ -30,6 +30,16 @@
     font-size: $font-size-paragraph;
   }
 
+  .portrait {
+    position: absolute;
+    bottom: $gap-big;
+    left: $gap-big;
+    img {
+      display: block;
+      border-radius: 50%;
+    }
+  }
+
   h1 {
     @include ellipsis_for_overflow(3);
     font-size: $font-size-h2;
