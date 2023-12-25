@@ -5,8 +5,6 @@ function postToc(article, tocContainer, options) {
 
   init();
 
-  // TODO: autoopen when floating and autoclose with inline?
-
   function init() {
     var headingsPerLevel = getHeadingsPerLevel();
     if (headingsPerLevel.flat().length > 0) {
@@ -18,6 +16,11 @@ function postToc(article, tocContainer, options) {
     } else {
       // completely clear container if would be empty
       CONTAINER.innerHTML = '';
+    }
+
+    if (window.innerWidth >= 1100) {
+      var details = ARTICLE.querySelector('details')
+      details && details.setAttribute("open", "")
     }
   }
 

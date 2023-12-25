@@ -89,11 +89,10 @@
     white-space: normal;
     word-break: break-word;
     text-decoration: none;
-    border-bottom: 3px solid transparent;
 
     &.active {
-      --active-border-color: var(--accent-color);
-      border-color: var(--active-border-color);
+      color: var(--text-color);
+      background-color: var(--highlight);
     }
   }
 }

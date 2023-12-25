@@ -3,15 +3,25 @@ $header-border-width: 5px;
 .header {
   position: relative;
   font-family: $header-font-family;
-  margin-top: $gap-big;
-  margin-bottom: $gap-huge;
   border-bottom: $header-border-width solid transparent;
+
+  &:before {
+    z-index: 1;
+    transform: rotate(180deg);
+    content: '';
+    top: 0;
+    @include triangle-gradient(var(--secondary-background-color));
+  }
 
   a {
     text-decoration: none;
   }
 
   .header-inner-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-top: $gap-big;
+    margin-bottom: $gap-huge;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     display: flex;

@@ -14,7 +14,17 @@
 .post-og-image {
   position: relative;
 
+  &:before {
+    z-index: 1;
+    transform: rotate(180deg);
+    content: '';
+    top: 0;
+    @include triangle-gradient($color: var(--secondary-background-color), $triangle-max-width: 22px);
+  }
+
   .post {
+    position: relative;
+    z-index: 2;
     padding: $gap-big;
     width: 1200px;
     height: 630px;
@@ -242,26 +252,6 @@
   }
 
   &.post-og-image-variant-13 {
-    --triangle-color-1: #{$yellow};
-    --triangle-color-2: #{$yellow};
-    --triangle-color-3: #{$yellow};
-
-    --triangle-rotation-1: 4deg;
-    --triangle-rotation-2: -50deg;
-    --triangle-rotation-3: -14deg;
-  }
-
-  &.post-og-image-variant-14 {
-    --triangle-color-1: #{$orange};
-    --triangle-color-2: #{$orange};
-    --triangle-color-3: #{$orange};
-
-    --triangle-rotation-1: 4deg;
-    --triangle-rotation-2: -50deg;
-    --triangle-rotation-3: -14deg;
-  }
-
-  &.post-og-image-variant-15 {
     --triangle-color-1: #{$orange};
     --triangle-color-2: #{$orange};
     --triangle-color-3: #{$orange};
@@ -272,6 +262,26 @@
   }
 
   // PAIRS ******************************************************************************************
+
+  &.post-og-image-variant-14 {
+    --triangle-color-1: #{$green};
+    --triangle-color-2: #{$yellow};
+    --triangle-color-3: #{$green};
+
+    --triangle-rotation-1: 13deg;
+    --triangle-rotation-2: -30deg;
+    --triangle-rotation-3: 78deg;
+  }
+
+  &.post-og-image-variant-15 {
+    --triangle-color-1: #{$red};
+    --triangle-color-2: #{$purple};
+    --triangle-color-3: #{$red};
+
+    --triangle-rotation-1: 13deg;
+    --triangle-rotation-2: -30deg;
+    --triangle-rotation-3: 78deg;
+  }
 
   &.post-og-image-variant-16 {
     --triangle-color-1: #{$orange};

@@ -111,11 +111,3 @@ figure img {
 *:focus-visible {
   @include focus()
 }
-
-// transition all for nicer theme change
-// TODO: maybe bring back, but only apply before theme change and then immediately remove?
-* {
-  //transition: all $transition-duration ease;
-}
-
-// TODO: fix epileptic-like flashes when navigating pages!!!

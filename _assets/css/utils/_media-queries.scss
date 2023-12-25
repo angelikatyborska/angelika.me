@@ -1,6 +1,7 @@
 $small-screen: 640px;
 $medium-screen: 780px;
 $big-screen: 900px;
+// note that this value has been copied into post_toc.js
 $very-big-screen: 1100px;
 
 $small: 'screen and (min-width: #{$small-screen})';
