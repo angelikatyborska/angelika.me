@@ -11,52 +11,85 @@ body {
 }
 
 a {
-  $size: 100%;
-  @include transition;
-
-  color: inherit;
-  text-decoration: none;
-  background-image: linear-gradient(var(--highlight), var(--highlight));
-  background-size: 0% $size;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-
-  &:active,
-  &:hover {
-    background-size: 100% $size;
-  }
-
-  p &, article ol &, article ul & {
-    @include fake-highlight-underline();
-  }
+  @include inline-link();
 }
 
 figure img {
-  @include shadow();
+  @include box();
 }
 
-$page-wrapper-left-padding-tiny-screen: $medium-gap;
-$page-wrapper-left-padding-small-screen: $big-gap;
+@mixin grid {
+  display: grid;
+  grid-template-columns: var(--page-margin-left) 1fr;
+  padding: 0 var(--page-padding-left);
+}
 
 .page-wrapper {
+  --page-margin-left: 0rem;
+  --page-padding-left: #{$gap-medium};
+  --pulled-out-block-margin-left: calc(-0.5 * (var(--page-margin-left)));
+  // need to randomly add 20px because for some reason the scrollbar counts into 100dvw :(
+  // (max expected scrollbar width is 20px)
+  --pulled-out-block-margin-right: min(
+    0px,
+    max(
+      var(--pulled-out-block-margin-left),
+      calc(-1 * (100dvw - #{$page-max-width} - var(--page-margin-left) - 2 * var(--page-padding-left) - 20px))
+    )
+  );
+  --pulled-out-block-width: calc(100% - var(--pulled-out-block-margin-left) - var(--pulled-out-block-margin-right));
+  // need to randomly add 20px because for some reason the scrollbar counts into 100dvw :(
+  // (max expected scrollbar width is 20px)
+  // also don't fill out _all_ the available space, only up to $max extra
+  $max: 20rem;
+  --pulled-out-right-only-block-margin-right: min(
+    0px,
+    max(
+      #{-1 * $max},
+      calc(-1 * (100dvw - #{$page-max-width} - var(--page-margin-left) - 2 * var(--page-padding-left) - 20px))
+    )
+  );
+  --pulled-out-right-only-block-width: calc(100% - var(--pulled-out-right-only-block-margin-right));
   position: relative;
-  max-width: $page-max-width;
   min-height: 100vh;
-  margin: 0 auto;
-  padding: $medium-gap $page-wrapper-left-padding-tiny-screen;
   background-color: var(--background-color);
   display: grid;
   grid-template-rows: auto auto 1fr;
 
   @media #{$small} {
-    padding: $medium-gap $page-wrapper-left-padding-small-screen;
+    --page-padding-left: #{$gap-medium};
+  }
+
+  @media #{$medium} {
+    --page-padding-left: #{$gap-big};
+  }
+
+  @media #{$big} {
+    --page-padding-left: #{$gap-huge};
+  }
+
+  @media #{$very-big} {
+    --page-padding-left: #{$gap-huge * 1.5};
+    --page-margin-left: calc(var(--page-padding-left) * 2);
   }
 
   > * {
+    @include grid();
     min-width: 0;
+
+    > * {
+      min-width: 0;
+    }
   }
 
-  footer {
+  .page-content, .footer {
+    > * {
+      grid-column: 2 / 3;
+      max-width: $page-max-width;
+    }
+  }
+
+  .footer {
     align-self: flex-end;
   }
 }
@@ -71,6 +104,10 @@ $page-wrapper-left-padding-small-screen: $big-gap;
   white-space: nowrap; /* added line */
 }
 
-*, *::before, *::after {
-  outline-color: var(--accent-color);
+@mixin focus {
+  outline: 2px solid var(--accent-color);
+}
+
+*:focus-visible {
+  @include focus()
 }

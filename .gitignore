@@ -1,5 +1,7 @@
+node_modules/
 _drafts/
 _site/
+_og_images/
 .sass-cache/
 .asset-cache/
 .jekyll-cache/

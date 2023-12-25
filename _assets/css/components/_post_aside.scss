@@ -1,54 +1,98 @@
-.post {
-  + aside {
-    display: none;
+.post-content {
+  position: relative;
+}
+
+.post-aside-wrapper {
+  @media #{$very-big} {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: calc(var(--page-padding-left) + var(--page-margin-left));
   }
 }
 
-@media #{$very-big} {
-  .post {
-    + aside {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      position: fixed;
+.post-aside {
+  background-color: var(--background-color);
+  font-family: $paragraph-font-family;
+  overflow: visible;
+  font-size: $font-size-small;
+  text-align: left;
+  margin-bottom: $gap-big;
+
+  @media #{$very-big} {
+    display: block;
+    position: sticky;
+    top: 0;
+    padding: $gap-small $gap-big $gap-small $gap-medium;
+  }
+
+  .post-aside-box {
+    border: none;
+    padding: 0;
+  }
+
+  .toc-header {
+    font-size: $font-size-paragraph;
+    margin-top: 0;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  $ul-left-padding: 1.25em;
+
+  ul {
+    padding: 0 0 0 $ul-left-padding;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  // trying to center it with the ▼ char of the open details
+  $tree-left-offset: calc(#{-1 * $ul-left-padding} + 0.25em);
+  $tree-horizontal-line-length: calc(#{$ul-left-padding} - 0.25em * 2);
+  $tree-color: var(--border-color);
+  $tree-line-thickness: 1px;
+
+  li {
+    position: relative;
+    padding: 0;
+    text-align: left;
+
+    &:before {
+      content: '';
+      position: absolute;
       top: 0;
-      width: calc(50% - #{$page-max-width/2});
-      transform: translateX(-100%);
-      text-align: right;
-      padding: $small-gap $page-wrapper-left-padding-small-screen 0 0;
-      font-family: $paragraph-font-family;
+      bottom: 0;
+      left: $tree-left-offset;
+      width: $tree-line-thickness;
+      background-color: $tree-color;
+    }
 
-      span {
-        background-color: var(--background-color);
-        position: relative;
-        display: block;
-        overflow: hidden;
-        padding: $tiny-gap $small-gap $tiny-gap $small-gap;
-      }
+    &:last-child:before {
+      bottom: unset;
+      height: $line-height-default * 0.5em;
+    }
 
-      a {
-        color: var(--secondary-text-color);
+    &:after {
+      content: '';
+      position: absolute;
+      top: $line-height-default * 0.5em;
+      left: calc(#{$tree-left-offset} + #{$tree-line-thickness});
+      height: 1px;
+      width: $tree-horizontal-line-length;
+      background-color: $tree-color;
+    }
+  }
 
-        &.h2 {
-          font-size: rem-calc(18);
-        }
+  a {
+    color: var(--secondary-text-color);
+    white-space: normal;
+    word-break: break-word;
+    text-decoration: none;
 
-        &.h3 {
-          font-size: rem-calc(16);
-        }
-
-        &.h4 {
-          font-size: rem-calc(14);
-        }
-
-        &.h5 {
-          font-size: rem-calc(12);
-        }
-
-        &.h6 {
-          font-size: rem-calc(10);
-        }
-      }
+    &.active {
+      color: var(--text-color);
+      background-color: var(--highlight);
     }
   }
 }

@@ -89,6 +89,13 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
 
+<figure>
+<a href='{% asset posts/colorizing-names/issues-sum @path %}'>
+{% asset posts/colorizing-names/issues-sum class='half-width' alt='Problems with summing character codes'%}
+</a>
+<figcaption>Problems with summing character codes</figcaption>
+</figure>
+
 ## Code
 
 ```html
@@ -96,12 +103,10 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
     <h1>Style test</h1>
     <div class="post-meta">
       <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
-      <span class="dot" aria-hidden="true">·</span>
       <span class="time-estimate">
         
         1 min read
       </span>
-      <span class="dot" aria-hidden="true">·</span>
       <span class="tags"><span class="sr-only">Topics covered </span></span>
     </div>
   </header>
@@ -165,6 +170,40 @@ defmodule FileSniffer do
 end
 ```
 
+very long lines
+
+```html
+<header>
+  <h1>Style test</h1>
+  <div class="post-meta"><span class="date"><span class="sr-only">Written on </span>03 February 2001</span><span class="time-estimate">1 min read</span><span class="tags"><span class="sr-only">Topics covered </span></span></div>
+</header>
+```
+
+Nested in lists
+
+- One
+  - 1.2
+    - 1.3
+      - 1.35
+        - 1.356
+          - 1.3563
+            ```html
+              <header>
+                <h1>Style test</h1>
+                <div class="post-meta">
+                  <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
+                  <span class="time-estimate">
+            
+                    1 min read
+                  </span>
+                  <span class="tags"><span class="sr-only">Topics covered </span></span>
+                </div>
+              </header>
+            ```
+
+  - 1.4
+  - 1.5
+
 ## Keyboard shortcuts
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
@@ -187,4 +226,31 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 | ----- |-------|
 | :)    | (:    |
 
+Very long table with scroll shadows
+
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+|--------------------------------|--------------------------------|------------------------------|------------------------------------|-----------------------|-----------|
+| Pseudopseudohypoparathyroidism | Floccinaucinihilipilification  | Antidisestablishmentarianism | Supercalifragilisticexpialidocious | Incomprehensibilities | Strengths |
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+| Foobar                         | Foobar                         | Foobar                       | Foobar                             | Foobar                | Foobar    |
+
+
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+### Heading 3
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+### Heading 3
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+### Heading 3
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+#### Heading 4
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+##### Heading 5
+Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
+
+###### Heading 6
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.

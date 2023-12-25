@@ -1,45 +1,12 @@
 .table-wrapper {
-  @include shadow();
-  overflow: hidden;
-  overflow-x: auto;
-  max-width: fit-content;
-  margin: 0 auto $medium-gap;
-
-  background:
-    // Shadow Cover LEFT
-    linear-gradient(to right,
-        var(--background-color) 30%,
-        var(--background-color-transparent)
-    ) left center,
-
-      // Shadow Cover RIGHT
-    linear-gradient(to right,
-        var(--background-color-transparent),
-        var(--background-color) 70%
-    ) right center,
-
-      // Shadow LEFT
-    radial-gradient(
-        farthest-side at 0 50%,
-        var(--shadow-color-1),
-        var(--shadow-color-transparent)
-    ) left center,
-
-      // Shadow right
-    radial-gradient(
-        farthest-side at 100% 50%,
-        var(--shadow-color-1),
-        var(--shadow-color-transparent)
-    ) right center;
-
-  background-repeat: no-repeat;
-  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-  background-attachment: local, local, scroll, scroll;
+  @include box();
+  @include scroll-shadow();
+  margin: 0 auto $gap-big;
 }
 
 table {
   font-family: $code-font-family;
-  font-size: $code-font-size;
+  font-size: $font-size-code;
   // no table background color so that the scroll shadow is visible
   // background-color: var(--background-color);
 
@@ -49,11 +16,11 @@ table {
 
   thead tr, tbody tr:not(:last-child) {
     td, th {
-      border-bottom: 1px solid var(--shadow-color-2);
+      border-bottom: 1px solid var(--border-color);
     }
   }
 
   td, th {
-    padding: $tiny-gap $small-gap;
+    padding: $gap-tiny $gap-small;
   }
 }

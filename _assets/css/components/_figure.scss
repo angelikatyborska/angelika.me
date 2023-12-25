@@ -1,10 +1,13 @@
 figure {
-  margin-bottom: $big-gap;
+  //width: var(--pulled-out-block-width);
+  //margin: 0 var(--pulled-out-block-margin-right) $gap-big var(--pulled-out-block-margin-left);
+  width: 100%;
+  margin: 0 0 $gap-big 0;
   text-align: center;
 
   figcaption {
     color: var(--secondary-text-color);
-    font-size: $small-font-size;
+    font-size: $font-size-small;
   }
 
   img, video {

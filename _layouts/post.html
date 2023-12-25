@@ -4,33 +4,49 @@ layout: default
 
 <article class="post">
   <header>
+    <time class="date" datetime="{{page.date}}">
+      {{ page.date | date: '%d %B %Y' }}
+    </time>
     <h1>{{ page.title }}</h1>
     <div class="post-meta">
-      <span class="date"><span class="sr-only">Written on </span>{{ page.date | date: '%d %B %Y' }}</span>
-      <span class="dot" aria-hidden="true">&middot;</span>
       <span class="time-estimate">
         {% capture time %}{{ content | reading_time }}{% endcapture %}
         {{ time }} min read
       </span>
-      <span class="dot" aria-hidden="true">&middot;</span>
-      <span class="tags"><span class="sr-only">Topics covered </span>{{ page | tags }}</span>
+      <span class="tags">{{ page | tags }}</span>
     </div>
   </header>
 
-  {{ content }}
+  <div class="post-content" id="post-content">
+    <aside class="post-aside-wrapper">
+      <div class="post-aside" id="post-aside">
+        <details class="post-aside-box">
+          <summary class="toc-header">Table of contents</summary>
+          {% toc %}
+        </details>
+      </div>
+    </aside>
+    {{ content }}
+  </div>
 
   <footer>
-    <p class="coffee">
-      Did you find this article useful? <a href="https://ko-fi.com/angelikatyborska">Buy me a coffee ☕️</a>.
-    </p>
+    <div class="coffee">
+      <h2>Did you find this article useful?</h2>
+      <p><a href="https://ko-fi.com/angelikatyborska">Buy me a coffee <i class="fas fa-mug-hot"></i>️</a>.</p>
+
+      <div class="triangles" aria-hidden="true">
+        {% asset design/triangle @inline %}
+        {% asset design/triangle @inline %}
+        {% asset design/triangle @inline %}
+      </div>
+    </div>
   </footer>
 
-  {% include comments.html url=page.url id=page.id %}
+  <div>
+    {% include comments.html url=page.url id=page.id %}
+  </div>
 
 </article>
 
-<aside aria-hidden="true">
-</aside>
-
 {% asset post_headers_anchors.js %}
-{% asset post_heading_breadcrumbs.js %}
+{% asset post_toc.js %}

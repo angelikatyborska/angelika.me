@@ -1,9 +1,38 @@
-<footer>
-  <div class="copyright">&copy; 2016-{{ site.time | date: '%Y' }} <span lang="pl">Angelika&nbsp;Tyborska</span></div>
-  <div class="side-links">
-    <a class="rss" title="RSS feed" href="/feed.xml">
-      <i class="fas fa-rss"></i>
-      <span class="sr-only">RSS feed</span>
-    </a>
+<footer class="footer">
+  <div class="footer-inner-wrapper">
+    <div class="social">
+      <h2>Social</h2>
+      <nav aria-label="social">
+        <a href="{{ site.about.github }}" rel="me">Github</a>
+        <a href="{{ site.about.mastodon }}" rel="me">Mastodon</a>
+        <a href="{{ site.about.linkedin }}">LinkedIn</a>
+        <a href="{{ site.about.exercism }}">Exercism</a>
+        <a href="{{ site.about.lastfm }}">LastFM</a>
+        <a href="{{ site.about.flickr }}">Flickr</a>
+      </nav>
+    </div>
+
+    <div class="technical">
+      <h2>Technical</h2>
+      <nav aria-label="secondary">
+        <a class="rss" href="/feed.xml">
+          RSS
+        </a>
+        <a href="https://github.com/angelikatyborska/angelika.me">View source</a>
+        <a href="https://github.com/angelikatyborska/angelika.me/issues">Report an issue</a>
+      </nav>
+    </div>
+
+    <div class="legal">
+      <h2>Legal</h2>
+      <p>&copy; 2016-{{ site.time | date: '%Y' }} <span lang="pl">Angelika&nbsp;Tyborska</span></p>
+      <p>Contact: <strong>hello@angelika.me</strong></p>
+    </div>
+  </div>
+
+  <div class="triangles" aria-hidden="true">
+    {% asset design/triangle @inline %}
+    {% asset design/triangle @inline %}
+    {% asset design/triangle @inline %}
   </div>
 </footer>

@@ -4,119 +4,18 @@
 <body>
 
 <div class="page-wrapper">
-  <nav aria-label="main">
-    {% include header.html %}
-    <ul>
-      <li>
-        <a href="/" {% if page.path == "about" %} aria-current="page" {% endif %}>
-          About
-        </a>
-      </li>
-      <li>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <a href="/blog" {% if page.path == "blog" %} aria-current="page" {% endif %}>
-          Blog
-        </a>
-      </li>
-      <li>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <a href="/bookmarks" {% if page.path == "bookmarks" %} aria-current="page" {% endif %}>
-          Bookmarks
-        </a>
-      </li>
-      <li>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <input type="checkbox" id="dark-mode" name="dark-mode" class="dark-mode-switch-input"/>
-        <label for="dark-mode" class="dark-mode-switch-label">
-          <span class="sr-only">Dark mode </span>☀️
-        </label>
-      </li>
-    </ul>
-  </nav>
+  {% include header.html %}
 
   <main class="page-content {{ page.title | slugify }}">
-    {{ content }}
+    <div>
+      {{ content }}
+    </div>
   </main>
 
   {% include footer.html %}
 </div>
 
-<div class="highlighters">
-  <fieldset>
-    <legend class="sr-only">Select a highlight color:</legend>
-
-    <input type="radio" id="magenta" name="highlight" value="magenta" />
-    <label class="highlighter magenta" for="magenta">
-      <span class="sr-only">Magenta</span>
-      <span class="highlighter-body"></span>
-      <span class="highlighter-tip"></span>
-    </label>
-
-    <input type="radio" id="cyan" name="highlight" value="cyan" />
-    <label class="highlighter cyan" for="cyan">
-      <span class="sr-only">Cyan</span>
-      <span class="highlighter-body"></span>
-      <span class="highlighter-tip"></span>
-    </label>
-
-    <input type="radio" id="green" name="highlight" value="green" />
-    <label class="highlighter green" for="green">
-      <span class="sr-only">Green</span>
-      <span class="highlighter-body"></span>
-      <span class="highlighter-tip"></span>
-    </label>
-
-    <input type="radio" id="yellow" name="highlight" value="yellow" />
-    <label class="highlighter yellow" for="yellow">
-      <span class="sr-only">Yellow</span>
-      <span class="highlighter-body"></span>
-      <span class="highlighter-tip"></span>
-    </label>
-  </fieldset>
-</div>
-
 {% asset dark_mode_switch.js %}
-{% asset highlighters.js %}
-
-<div class="decorative-scribbles">
-  <span class="sr-only">Below is a bunch of random links to things that I think are cool</span>
-
-  <span class="scribble flower">
-    <a href="https://www.youtube.com/watch?v=tbo5sH2dcJo" title="Moop Mama - Alle Kinder 🎧">
-      <span class="sr-only">
-         Moop Mama - Alle Kinder (YouTube Music Video)
-      </span>
-      {% asset design/flower alt='' aria-hidden='true' %}
-    </a>
-  </span>
-
-  <span class="scribble stick-figure">
-    <a href="https://www.youtube.com/watch?v=BBgPd7I8oSQ" title="The Correspondents - Finally 🎧">
-     <span class="sr-only">
-       The Correspondents - Finally (YouTube Music Video)
-     </span>
-      {% asset design/stick-figure alt='' aria-hidden='true' %}
-    </a>
-  </span>
-
-  <span class="scribble smiley-face">
-    <a href="https://www.youtube.com/watch?v=qRq_YZuDKhU" title="Cow Thinks She's A Dog 📺">
-      <span class="sr-only">
-        Cow Thinks She's A Dog (YouTube Video)
-      </span>
-      {% asset design/smiley-face alt='' aria-hidden='true' %}
-    </a>
-  </span>
-
-  <span class="scribble triangle">
-    <a href="https://css-art.angelika.me/sierpinski-triangle" title="Sierpinski Triangle - My CSS Art 🎨">
-      <span class="sr-only">
-        Sierpinski Triangle - My CSS Art
-      </span>
-      {% asset design/triangle alt='' aria-hidden='true' %}
-    </a>
-  </span>
-</div>
 
 <script id="dsq-count-scr" src="//angelikatyborska.disqus.com/count.js" async></script>
 

@@ -1,11 +1,13 @@
 var anchorForId = function (id) {
+  var anchorWrapper = document.createElement('span');
   var anchor = document.createElement('a');
-  anchor.className = 'header-link';
-  anchor.href      = '#' + id;
+  anchorWrapper.className = 'header-link';
+  anchor.href = '#' + id;
   anchor.innerHTML = '<i class=\'fas fa-link\'></i>';
   // I am imitating GitHub here, they hide those links too
   anchor.setAttribute('aria-hidden', 'true');
-  return anchor;
+  anchorWrapper.appendChild(anchor)
+  return anchorWrapper;
 };
 
 var linkifyAnchors = function (level, containingElement) {

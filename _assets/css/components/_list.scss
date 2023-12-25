@@ -1,11 +1,9 @@
 .list {
+  padding-left: 0;
+
   li {
     display: flex;
-    margin-bottom: $small-gap;
-  }
-
-  a {
-    @include fake-highlight-underline();
+    margin-bottom: $gap-medium;
   }
 
   .list-item {
@@ -21,6 +19,6 @@
     vertical-align: bottom;
     width: 1.44em;
     height: 1.44em;
-    margin-right: $tiny-gap;
+    margin-right: $gap-tiny;
   }
 }

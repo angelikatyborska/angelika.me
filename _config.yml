@@ -15,7 +15,6 @@ about:
   mastodon: https://mas.to/@angelikatyborska
   github: https://github.com/angelikatyborska
   exercism: https://exercism.io/profiles/angelikatyborska
-  dev: https://dev.to/atyborska93
   lastfm: https://www.last.fm/user/atyborska93
   flickr: https://www.flickr.com/photos/192384616@N03
 
@@ -29,6 +28,7 @@ assets:
     - "*.woff2"
   sources:
     - _assets/bower
+    - _assets/fonts
   defaults:
     img:
       integrity: false
@@ -40,6 +40,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      toc: true
 
 markdown: kramdown
 highlighter: rouge
@@ -56,9 +57,14 @@ kramdown:
 
 pagination:
   enabled: true
-  per_page: 5
+  per_page: 20
   permalink: '/page/:num/'
   title: ':title - page :num'
   limit: 0
   sort_field: 'date'
   sort_reverse: true
+
+collections:
+  og_images:
+    output: true
+    permalink: /og_images/:slug/

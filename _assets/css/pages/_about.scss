@@ -2,8 +2,8 @@
   .grid {
     display: grid;
     grid-template-columns: auto;
-    grid-row-gap: $medium-gap;
-    grid-column-gap: $medium-gap;
+    grid-row-gap: $gap-medium;
+    grid-column-gap: $gap-medium;
     align-items: start;
 
     @media #{$medium} {
@@ -12,18 +12,19 @@
   }
 
   .column-image {
-    @include shadow();
+    @include box();
     grid-row: 2;
     background: $white;
-    padding: $medium-gap;
+    padding: $gap-medium;
     margin: 0 auto;
-    --text-color: $light-mode-text-color;
-    color: $light-mode-text-color;
+    --text-color: $text-color-light;
+    color: $text-color-light;
 
     @media #{$medium} {
       grid-row: 1;
+      grid-column: 2;
       width: auto;
-      margin-right: $medium-gap;
+      margin-left: $gap-medium;
 
       img {
         width: 250px;
@@ -31,9 +32,8 @@
     }
 
     @media #{$big} {
-      margin-top: -1 * $medium-gap;
-      margin-left: -1 * 3 * $big-gap;
-      margin-right: $medium-gap;
+      margin-top: -1 * $gap-medium;
+      margin-left: $gap-medium;
       transform: rotate(-2deg);
     }
   }
@@ -44,21 +44,40 @@
 
   .date {
     @include delicate;
-    font-size: $small-font-size;
+    font-size: $font-size-small;
   }
 
-  .contact-email {
-    display: inline-block;
+  .social-links {
+    display: flex;
+    justify-content: space-between;
+    margin: $gap-small 0 0 0;
+    padding: 0;
 
-    svg {
-      width: 200px;
-      vertical-align: middle;
+    $link-size: $font-size-h5;
 
-      path {
-        fill: var(--text-color);
+    li {
+      display: inline-block;
 
-        &.at {
-          fill: var(--accent-color);
+      &:before {
+        content: none;
+      }
+    }
+
+    a {
+      padding: $gap-tiny;
+      font-size: $link-size;
+    }
+
+    .exercism svg {
+      margin-bottom: rem-calc(-2);
+    }
+
+    .exercism {
+      svg {
+        width: $link-size;
+
+        path {
+          fill: var(--text-color);
         }
       }
     }
