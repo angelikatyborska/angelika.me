@@ -45,6 +45,10 @@
   nav {
     display: flex;
     flex-direction: column;
+
+    a {
+      padding: $gap-tiny 0;
+    }
   }
 
   .legal {
