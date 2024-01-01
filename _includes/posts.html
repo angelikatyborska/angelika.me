@@ -6,7 +6,7 @@
 
 <div class="posts">
   {% for post in include.posts %}
-  <article class="post-preview">
+  <article class="post-preview" style="view-transition-name: post-{{ post.slug }}">
     <time class="date" datetime="{{post.date}}">
       {{ post.date | date: '%d %B %Y' }}
     </time>

@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article class="post">
-  <header>
+  <header style="view-transition-name: post-{{ page.slug }}">
     <time class="date" datetime="{{page.date}}">
       {{ page.date | date: '%d %B %Y' }}
     </time>
