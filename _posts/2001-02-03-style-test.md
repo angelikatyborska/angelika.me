@@ -204,6 +204,22 @@ Nested in lists
   - 1.4
   - 1.5
 
+Nested in block quotes
+
+> I'm writing a hangman game with German phrases. I'm trying to replace all letters in a string with an underscore. When I run
+> ```elixir
+> String.replace("Daumen drücken!", ~r/\p{L}/, "_")
+> ``` 
+> I get a bitstring that's not printable:
+> ```elixir
+> <<95, 95, 95, 95, 95, 95, 32, 95, 95, 95, 188, 95, 95, 95, 95, 33>>
+> ```
+> but I expected to get
+> ```elixir
+> "______ _______!"
+> ```
+> What am I doing wrong?
+
 ## Keyboard shortcuts
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.

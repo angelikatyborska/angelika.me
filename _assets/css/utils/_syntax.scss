@@ -21,6 +21,10 @@ code {
     padding: rem-calc(10);
     background-color: transparent;
 
+    blockquote & {
+      width: 100%;
+    }
+
     td, tr:nth-child(n), th {
       background-color: transparent;
       border: none;

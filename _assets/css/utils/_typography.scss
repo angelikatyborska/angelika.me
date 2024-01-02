@@ -54,9 +54,7 @@ mark {
 blockquote {
   @include box();
   position: relative;
-  padding: $gap-tiny $gap-tiny $gap-tiny $gap-big + $gap-small;
-  //width: var(--pulled-out-block-width);
-  //margin: 0 var(--pulled-out-block-margin-right) 0 var(--pulled-out-block-margin-left);
+  padding: $gap-small $gap-medium $gap-small $gap-big + $gap-small;
   width: 100%;
   margin: 0 0 $gap-big 0;
 
