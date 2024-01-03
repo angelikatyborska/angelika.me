@@ -1,7 +1,7 @@
 ---
 title: How to give great code reviews
 excerpt: If you think the only purpose of a code review is to catch bugs, read this.
-tags: [code reviews, teamwork]
+tags: [code reviews, communication, teamwork]
 date: 2019-05-19 16:44:00 +0200
 ---
 

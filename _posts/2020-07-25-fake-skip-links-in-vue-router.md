@@ -186,8 +186,6 @@ export default {}
 
 Note that a regular skip link would not cause its target to be focused if that target was a `div` or a heading, which could mean that it *might* be acceptable to remove the outline completely from our fake skip link targets. 
 
-## Notes
-
 <ul class="notes">
   <li id="note-1">
     Some people might not call a table of contents a good example of <em>skip links</em>. Some people might call it <em>anchor links</em> instead, or <em>same-page navigation</em>. For the purpose of this article, this distinction is irrelevant. I am using the term <em>skip links</em> to literally mean <em>links that skip part of the content</em>, and I chose to use it so that the article is easier to discover when looking for accessibility-related content.
