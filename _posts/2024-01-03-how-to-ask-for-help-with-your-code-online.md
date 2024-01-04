@@ -99,7 +99,7 @@ export const twoFer = (name = 'you') => {
 
 <figure>
 <a href='{% asset posts/how-to-ask-for-help-online/no-code-block.gif @path %}'>
-{% asset posts/how-to-ask-for-help-online/no-code-block.gif alt='Writing a Github comment, copy-pasting some code without a code block and then using the preview option to see how it looks broken. The backticks present in the code disappeared.' style='max-width: 500px;' %}
+{% asset posts/how-to-ask-for-help-online/no-code-block.gif alt='Writing a Github comment, copy-pasting some code without a code block and then using the preview option to see how it looks broken. The backticks present in the code disappeared.' style='width: 100%; max-width: 500px;' %}
 </a>
 <figcaption>Code not inside of a code block. Backticks in JavaScript template literals get interpreted as Markdown formatting, breaking the code.</figcaption>
 </figure>
@@ -108,7 +108,7 @@ export const twoFer = (name = 'you') => {
 
 <figure>
 <a href='{% asset posts/how-to-ask-for-help-online/code-block.gif @path %}'>
-{% asset posts/how-to-ask-for-help-online/code-block.gif alt='Writing a Github comment, copy-pasting some code inside a code block and then using the preview option to see how it looks good.' style='max-width: 500px;' %}
+{% asset posts/how-to-ask-for-help-online/code-block.gif alt='Writing a Github comment, copy-pasting some code inside a code block and then using the preview option to see how it looks good.' style='width: 100%; max-width: 500px;' %}
 </a>
 <figcaption>Code inside of a code block.</figcaption>
 </figure>
@@ -117,7 +117,7 @@ export const twoFer = (name = 'you') => {
 
 <figure>
 <a href='{% asset posts/how-to-ask-for-help-online/code-block-with-syntax-coloring.gif @path %}'>
-{% asset posts/how-to-ask-for-help-online/code-block-with-syntax-coloring.gif alt='Writing a Github comment, copy-pasting some code inside a code block with the word 'js' after the first three backticks, and then using the preview option to see how it looks good with syntax coloring.' style='max-width: 500px;' %}
+{% asset posts/how-to-ask-for-help-online/code-block-with-syntax-coloring.gif alt='Writing a Github comment, copy-pasting some code inside a code block with the word 'js' after the first three backticks, and then using the preview option to see how it looks good with syntax coloring.' style='width: 100%; max-width: 500px;' %}
 </a>f
 <figcaption>Code inside of a code block with the programming language specified, which gives us syntax coloring.</figcaption>
 </figure>
