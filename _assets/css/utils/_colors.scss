@@ -69,9 +69,9 @@ $border-color-dark: #555;
   // but was too lazy to come up with semantic names
   --syntax-purple: #{$purple};
   --syntax-green: #{darken($green, 20)};
-  --syntax-red: #{darken($red, 10)};
+  --syntax-red: #{darken($red, 15)};
   --syntax-salmon: #{darken($blue, 25)};
-  --syntax-red-error: #{darken($red, 10)};
+  --syntax-red-error: #{darken($red, 15)};
   --syntax-teal: #{darken($green, 20)};
   --syntax-teal-dark: #{darken($green, 25)};
   --syntax-navy: #{$navy};
@@ -103,7 +103,7 @@ html[data-dark] {
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);
   --syntax-purple: #{lighten($orange, 10)};
-  --syntax-green: #{lighten($yellow, 10)};
+  --syntax-green: #{lighten($green, 10)};
   --syntax-red: #{lighten($red, 15)};
   --syntax-salmon: #{lighten($red, 15)};
   --syntax-red-error: #{lighten($red, 15)};

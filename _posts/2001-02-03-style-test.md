@@ -220,6 +220,15 @@ Nested in block quotes
 > ```
 > What am I doing wrong?
 
+Diff view
+
+```diff
+   @spec hey(String.t()) :: String.t()
+-  def hey(utterance) do
++  def hey(utterance \\ "") do
+     utterance = String.trim(utterance)
+```
+
 ## Keyboard shortcuts
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
