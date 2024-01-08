@@ -29,4 +29,4 @@ The way to fix this problem is to check the exit codes of `mix test`. If compila
 mix test || if [[ $? = 2 ]]; then mix test --failed; else false; fi
 ```
 
-Thanks to [Michał Łępicki](https://github.com/michallepicki) for pointing me to the cleanest solution to this problem!
+Thanks to [Michał Łępicki](https://github.com/michallepicki) for pointing me to the cleanest solution to this problem ([found in this GitHub issue](https://github.com/elixir-lang/elixir/issues/11484)).
