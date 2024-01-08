@@ -1,0 +1,32 @@
+---
+title: Do not run `mix test || mix test --failed`
+excerpt: This popular way of retrying flaky tests on CI is a trap.
+tags: [Elixir, testing, CI]
+date: 2024-01-08 19:46:00 +0100
+---
+
+Flaky tests are the worst. They're hard to reproduce, hard to debug, and regardless of how many we remove,  they just keep coming back. Especially if we're writing browser-based tests with [Hound](https://hexdocs.pm/hound) or [Wallaby](https://hexdocs.pm/wallaby).
+
+Sometimes we just give up and slap this snippet of code in our CI:
+
+```bash
+# ⚠️ Warning: Do not copy-paste the code below
+mix test || mix test --failed
+```
+
+But this snippet contains a trap. 
+
+**If any of your `_test.exs` files does not compile during the first test run, the second test run will succeed**.
+
+During the first run, metadata will be written to disk stating that zero tests failed. Thus, the second run with the `--failed` flag will not even attempt to compile and run the tests, returning a success exit code.
+
+Note that this applies to you even if you're running a compile check before the tests run (e.g. `mix compile --force`), and then run the test with the `--no-compile` flag. That's because `mix compile` only compiles `.ex` files (produces `.beam` files for them), but it does not compile `.exs` files, and the `--no-compile` flag later only applies to `.ex` files too. The `_test.exs` files still always need to get compiled before the tests can run (in memory, they don't produce `.beam` files).
+
+The way to fix this problem is to check the exit codes of `mix test`. If compilation failed, the exit code is `1`. If tests were run and some of the tests failed, the exit code is `2` (or configurable with the `--exit-status` flag).
+
+```bash
+# ✅ The code below is safe to copy-paste
+mix test || if [[ $? = 2 ]]; then mix test --failed; else false; fi
+```
+
+Thanks to [Michał Łępicki](https://github.com/michallepicki) for pointing me to the cleanest solution to this problem!
