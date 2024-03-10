@@ -6,6 +6,15 @@
     <title>{{ site.name | xml_escape }}</title>
     <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
     <link>{{ site.url }}</link>
+    <image>
+      <url>
+        {% asset favicon-180 @path %}
+      </url>
+      <width>180</width>
+      <height>180</height>
+      <title>{{ site.name | xml_escape }}</title>
+      <link>{{ site.url }}</link>
+    </image>
     <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
     {% for post in site.posts limit:10 %}
     <item>
