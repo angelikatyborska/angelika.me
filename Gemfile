@@ -11,6 +11,7 @@ group :jekyll_plugins do
   gem 'jekyll-tagging'
   gem 'jekyll-assets', "~> 3.0"
   gem 'jekyll-toc'
+  gem 'jekyll-sitemap'
   gem 'sass'
   gem 'uglifier'
   gem 'autoprefixer-rails'

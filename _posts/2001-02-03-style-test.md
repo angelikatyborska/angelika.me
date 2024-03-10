@@ -4,6 +4,7 @@ excerpt: Test post containing all the possible styles and elements that I use on
 tags: []
 date: 2001-02-03 14:15:16 +0100
 hidden: true
+sitemap: false
 ---
 
 http://0.0.0.0:5500/2001/02/03/style-test/

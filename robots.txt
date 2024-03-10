@@ -1,3 +1,7 @@
+---
+layout: null
+sitemap: false
+---
 User-agent: GPTBot
 Disallow: /
 User-agent: ChatGPT-User
@@ -10,3 +14,5 @@ User-agent: PerplexityBot
 Disallow: /
 User-agent: anthropic-ai
 Disallow: /
+
+Sitemap: {{ "sitemap.xml" | absolute_url }}

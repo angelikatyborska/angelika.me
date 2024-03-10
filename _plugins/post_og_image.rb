@@ -24,6 +24,8 @@ module Filter
       # Set the layout to preview
       preview_doc.data['layout'] = 'post_og_image'
 
+      preview_doc.data['sitemap'] = false
+
       # Add document to the collection
       site.collections['og_images'].docs << preview_doc
 

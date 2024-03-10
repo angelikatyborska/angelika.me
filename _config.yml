@@ -1,4 +1,4 @@
-exclude: [Gemfile, bower.json, Rakefile, README, vendor]
+exclude: [Gemfile, bower.json, Rakefile, README, vendor, node_modules]
 
 name: Angelika.me
 description: Angelika Tyborska's personal blog about web development.
@@ -41,6 +41,16 @@ defaults:
     values:
       layout: "post"
       toc: true
+  -
+    scope:
+      path: "_og_images/**/*"
+    values:
+      sitemap: false
+  -
+    scope:
+      path: "default_og_image/**/*"
+    values:
+      sitemap: false
 
 markdown: kramdown
 highlighter: rouge

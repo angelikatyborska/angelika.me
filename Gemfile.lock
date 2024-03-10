@@ -61,6 +61,8 @@ GEM
       pathutil (~> 0.16)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-tagging (1.1.0)
       nuggets
     jekyll-toc (0.16.1)
@@ -127,6 +129,7 @@ DEPENDENCIES
   jekyll (~> 3.8)
   jekyll-assets (~> 3.0)
   jekyll-paginate-v2
+  jekyll-sitemap
   jekyll-tagging
   jekyll-toc
   jemoji
