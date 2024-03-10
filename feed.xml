@@ -17,6 +17,7 @@
     </image>
     <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
     {% for post in site.posts limit:10 %}
+    {% if post.hidden == null or post.hidden == false %}
     <item>
       <title>{{ post.title | xml_escape }}</title>
       {% if post.author.name %}
@@ -31,6 +32,7 @@
       <link>{{ site.url }}{{ post.url }}</link>
       <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
     </item>
+    {% endif %}
     {% endfor %}
   </channel>
 </rss>
