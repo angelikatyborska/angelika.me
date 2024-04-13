@@ -40,7 +40,8 @@ function postToc(article, tocContainer, options) {
     var headingsPerLevel =  [];
 
     for (var level = HIGHEST_LEVEL; level <= 6; level++) {
-      var headings = Array.prototype.slice.call(document.querySelectorAll(`${article} > h` + level));
+      var headings = Array.prototype.slice.call(document.querySelectorAll(`${article} > h` + level + ':not(.no_toc)'));
+      console.log(headings)
       // offset top will change after resizing but that doesn't matter
       // the order will remain the same
       headings = headings.sort(function(a, b) { return a.offsetTop - b.offsetTop });
