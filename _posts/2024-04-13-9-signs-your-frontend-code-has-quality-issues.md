@@ -260,7 +260,7 @@ Web performance is a complex topic. External dependency choices, implementation 
 
 <h3 class="no_toc">Why does this matter?</h3>
 
-The Core Web Vitals assessment is based on real visitor data. If you're failing the assessment, it means your visitors are actually having a less-than-ideal experience, and it also hurts your page's search engine rankings.
+The Core Web Vitals assessment reported by <a href="https://pagespeed.web.dev/">pagespeed.web.dev</a> is based on real visitor data. If you're failing the assessment, it means your visitors are actually having a less-than-ideal experience, and it also hurts your page's search engine rankings.
 
 <h3 class="no_toc">Learn more</h3>
 
