@@ -44,7 +44,7 @@ To find out your current timezone, run:
 sudo systemsetup -gettimezone
 ```
 
-## In which time zones to debug?
+## In which timezones to debug?
 
 There is no one correct answer to this question. It all depends on your specific situation.
 
