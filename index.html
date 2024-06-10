@@ -98,19 +98,19 @@ path: about
     <span class="list-item">
       <span>
         <picture>
-          <source srcset="{% asset about/css-art.webp @path %}" type="image/webp">
-          <img src="{% asset about/css-art.png @path %}"
+          <source srcset="{% asset about/github.webp @path %}" type="image/webp">
+          <img src="{% asset about/github.png @path %}"
                alt=""
                class="list-item-icon"
                aria-hidden="true"
-               width="{{ assets['about/css-art.png'].dimensions.width | divided_by: 2}}"
-               height="{{ assets['about/css-art.png'].dimensions.height | divided_by: 2}}"
+               width="{{ assets['about/github.png'].dimensions.width | divided_by: 2}}"
+               height="{{ assets['about/github.png'].dimensions.height | divided_by: 2}}"
           >
         </picture>
-        <a class="list-item-title" href="https://css-art.angelika.me/">CSS art</a>
+        <a class="list-item-title" href="https://github.com/angelikatyborska/a11y-audit-elixir">a11y-audit-elixir</a>
       </span>
-      <span>I make things with CSS that look cool.</span>
-      <span class="date"><span class="sr-only">created in </span>November 2019 - present</span>
+      <span>Automated accessibility testing for Elixir web applications using axe-core.</span>
+      <span class="date"><span class="sr-only">created in </span>June 2024</span>
     </span>
   </li>
   <li>
@@ -262,6 +262,25 @@ path: about
       </span>
       <span>An Elixir client for the Nu HTML Checker. I wrote it because I wanted to validate the HTML responses in my Phoenix controller tests.</span>
       <span class="date"><span class="sr-only">created in </span>April 2020</span>
+    </span>
+  </li>
+  <li>
+    <span class="list-item">
+      <span>
+        <picture>
+          <source srcset="{% asset about/css-art.webp @path %}" type="image/webp">
+          <img src="{% asset about/css-art.png @path %}"
+               alt=""
+               class="list-item-icon"
+               aria-hidden="true"
+               width="{{ assets['about/css-art.png'].dimensions.width | divided_by: 2}}"
+               height="{{ assets['about/css-art.png'].dimensions.height | divided_by: 2}}"
+          >
+        </picture>
+        <a class="list-item-title" href="https://css-art.angelika.me/">CSS art</a>
+      </span>
+      <span>I make things with CSS that look cool.</span>
+      <span class="date"><span class="sr-only">created in </span>November 2019 - present</span>
     </span>
   </li>
   <li>
