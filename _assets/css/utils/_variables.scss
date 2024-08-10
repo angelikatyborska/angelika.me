@@ -1,7 +1,13 @@
 $line-height-default: 1.5;
 $page-max-width: rem-calc(750);
 
-$gap-base: $line-height-default * 1rem;
+// some values in the stylesheets are randomly multiplied by 1.125
+// because I first styled the website with setting font-size
+// on the root element to 18px and later realized that the browser
+// from respecting the user's default font-size, so I removed that style
+// and had to adapt everything to work with the default 16px root font size
+// (18/16 = 1.125)
+$gap-base: $line-height-default * 1rem * 1.125;
 
 $gap-huge: $gap-base * 2;
 $gap-big: $gap-base * 1;

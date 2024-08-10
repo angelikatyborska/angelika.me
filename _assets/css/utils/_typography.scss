@@ -15,12 +15,9 @@ $code-font-family: 'Roboto Mono', Courier, monospace;
   background: var(--selection);
 }
 
-html {
-  font-size: $rem-base;
-}
-
 body {
   font-family: $paragraph-font-family;
+  font-size: $font-size-paragraph;
   line-height: $line-height-default;
 }
 

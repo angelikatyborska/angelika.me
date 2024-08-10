@@ -90,7 +90,7 @@
 }
 
 $sin-60deg: 0.866;
-$triangle-max-width: 1rem;
+$triangle-max-width: 1rem * 1.125;
 $triangle-max-height: $sin-60deg * $triangle-max-width;
 $triangle-background-height: #{7 * $triangle-max-height};
 

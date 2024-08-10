@@ -41,7 +41,7 @@ figure img {
   // need to randomly add 20px because for some reason the scrollbar counts into 100dvw :(
   // (max expected scrollbar width is 20px)
   // also don't fill out _all_ the available space, only up to $max extra
-  $max: 20rem;
+  $max: 20rem * 1.125;
   --pulled-out-right-only-block-margin-right: min(
     0px,
     max(

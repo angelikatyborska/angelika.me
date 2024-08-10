@@ -1,4 +1,5 @@
-$rem-base: 18px;
+// default font size in most browsers
+$rem-base: 16px;
 
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
