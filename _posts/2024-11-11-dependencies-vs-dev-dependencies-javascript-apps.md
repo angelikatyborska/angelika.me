@@ -58,9 +58,9 @@ Here's what I found trying to research the approach to dev dependencies of some 
 
 ## Practical differences between a regular dependency and a dev dependency
 
-Regular dependencies will always be installed. Dev dependencies will only be installed using specific install commands.
+Regular dependencies will always be installed. Dev dependencies will not be installed under certain conditions.
 
-As far as I know, there are no other practical differences. Dev dependencies can be `import`ed or `require`d from your app code. Regular dependencies can be imported Anything that's inside of `node_modules` can, even if it's not listed in your `package.json`.
+As far as I know, there are no other practical differences. Dev dependencies can be `import`ed or `require`d from your app code. Anything that's inside of `node_modules` can, even if it's not listed in your `package.json`.
 
 Below is an overview of different install commands and which dependencies they install.
 
@@ -89,8 +89,8 @@ We can see that setting `NODE_ENV` affects which dependencies get installed. Thi
 
 You have to check for yourself how `NODE_ENV` affects your project. Here are some examples:
 
-- Are you using `.env` files? Are you loading different `.env` files depending on the `NODE_ENV` variable? For example, [Next.js does](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#environment-variable-load-order).
-- Does your framework provide a `build` command? Does this command automatically set `NODE_ENV` to `production`? For example, [Nuxt.js does](https://nuxt.com/docs/api/commands/build).
+- Are you using `.env` files? Are you loading different `.env` files depending on the `NODE_ENV` variable? For example, [Next does](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#environment-variable-load-order).
+- Does your framework provide a `build` command? Does this command automatically set `NODE_ENV` to `production`? For example, [Nuxt does](https://nuxt.com/docs/api/commands/build).
 - Are you using Express.js? [In Express.js, it turns on caching and makes logging less verbose](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production).
 - Are you yourself reading `process.env.NODE_ENV` to decide which scripts to load in your app? For example, maybe you're only including an error tracker or analytics in production.
 
@@ -116,7 +116,7 @@ Just make sure to set `NODE_ENV=production` for production builds / running in p
 
 You will need to carefully consider each dependency when adding it, and you will not gain any automated assurances from this kind of approach. You'll have to run `npm install --include=dev` on your build servers (SSG) or deployment servers (SSR). 
 
-**Why you might want to choose this approach?** It will help you understand which code runs on the users' computers or your deployment server, and which code only ever runs on the developers' machines or build servers. You can use this split to decide which dependencies need more attention: more thorough security reviews, more often updates, and so on.
+**Why you might want to choose this approach?** It will help you understand which code runs on the users' computers or your deployment server, and which code only ever runs on the developers' machines or build servers. You can use this split to decide which dependencies need more attention: more thorough security reviews, more frequent updates, and so on.
 
 ### C. Pragmatic approach
 
