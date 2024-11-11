@@ -2,7 +2,7 @@
 title: Dependencies vs. devDependencies for JavaScript apps
 excerpt: "Whenever I'm adding a new dependency to a JavaScript app, or setting up the build process of a new app, I ask myself: what exactly are devDependencies? It's time to answer that question in depth."
 tags: [JavaScript]
-date: 2024-11-11 19:25:00 +0100
+date: 2024-11-11 20:15:00 +0100
 ---
 
 Whenever I'm adding a new dependency to a JavaScript app, or setting up the build process of a new app, I ask myself: what exactly are devDependencies? How do I decide whether to add a new dependency as a regular dependency or a dev dependency?
@@ -17,7 +17,7 @@ Searching for [other people's takes about this problem](https://medium.com/@ckek
 
 > Dependencies are the packages that your project needs to run in production, (...) devDependencies are the packages that are only needed during development and testing.
 
-But what does it mean to "run in production" if I'm building a static website?
+We can easily identify some dependency types that are needed during development and testing only: linters, formatters, testing frameworks. But what does it mean to "run in production" if I'm building a static website?
 
 ⚠️ ATTENTION: Let me reiterate - this blog post is about building apps and not libraries. ⚠️ 
 
@@ -102,9 +102,7 @@ Choose one and stick with it. And whatever you choose, don't forget to modify th
 
 ### A. Nihilistic approach
 
-**It doesn't matter**. Define everything as a regular dependency and be done with it. Or define everything as a dev dependency and always include `--include=dev` in your `npm install` command. It's all fine.
-
-As an app author, not a library author, you're not going to inconvenience any third-parties with this choice.
+**It doesn't matter**. Define everything as a regular dependency and be done with it. Or define everything as a dev dependency and always include `--include=dev` in your `npm install` command. You will end up installing your test framework to do a production deployment, but who cares? As an app author, not a library author, you're not going to inconvenience any third-parties with this choice.
 
 Just make sure to set `NODE_ENV=production` for production builds / running in production, that matters (depending on your framework).
 
@@ -114,7 +112,7 @@ Just make sure to set `NODE_ENV=production` for production builds / running in p
 
 **It matters because words have a specific meaning**. _Development_ dependencies are used by _developers_ to _develop_ the app. This means build tools are dev dependencies because the _development_ process isn't finished until the app is fully deployed and serving users.
 
-You will need to carefully consider each dependency when adding it, and you will not gain any automated assurances from this kind of approach. You'll have to run `npm install --include=dev` on your build servers (SSG) or deployment servers (SSR). 
+You will need to carefully consider each dependency when adding it, and you will not gain any automated assurances from this kind of approach. You'll have to run `npm install --include=dev` on your build servers (SSG) or deployment servers (SSR), which means that, similarly to the nihilistic approach, you will end up installing your test framework to do a production deployment.
 
 **Why you might want to choose this approach?** It will help you understand which code runs on the users' computers or your deployment server, and which code only ever runs on the developers' machines or build servers. You can use this split to decide which dependencies need more attention: more thorough security reviews, more frequent updates, and so on.
 
