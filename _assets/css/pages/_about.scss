@@ -68,13 +68,11 @@
       font-size: $link-size;
     }
 
-    .exercism svg {
-      margin-bottom: rem-calc(-2);
-    }
-
-    .exercism {
+    .exercism, .bluesky {
       svg {
+        margin-bottom: rem-calc(-2);
         width: $link-size;
+        height: auto;
 
         path {
           fill: var(--text-color);
