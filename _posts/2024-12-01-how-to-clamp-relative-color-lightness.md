@@ -30,7 +30,7 @@ background-color: hsl(from var(--custom-color) h s clamp(var(--min-lightness), l
 
 /* Use @supports to add in support for old syntax that requires % units to
  be specified in lightness calculations. This is required for
- Safari 16.4+ */
+ Safari >= 16.4+ and < 18.0 */
 @supports (color: hsl(from red h s calc(l - 20%))) {
   background-color: hsl(from var(--custom-color) h s clamp(calc(var(--min-lightness) * 1%), l, calc(var(--max-lightness) * 1%)));
 }
