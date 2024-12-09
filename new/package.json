@@ -3,17 +3,22 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro",
     "format": "prettier . --write"
   },
   "dependencies": {
+    "@astrojs/check": "^0.8.0",
     "@astrojs/mdx": "^4.0.2",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.0.4"
+    "@astrojs/ts-plugin": "^1.10.4",
+    "astro": "^5.0.4",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "prettier": "^3.4.2"

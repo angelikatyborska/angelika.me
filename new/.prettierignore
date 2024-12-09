@@ -1,4 +1,7 @@
 # Ignore artifacts:
-dist
 node_modules
+dist
+.astro
+
+# Ignore blog posts
 src/content/blog/**/*.md
