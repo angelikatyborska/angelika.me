@@ -1,6 +1,6 @@
 ---
 title: How to clamp the lightness of a relative color in CSS
-description: Let's say we have a color in a CSS variable and want to modify its lightness, but only if it's too dark or too light.
+excerpt: Let's say we have a color in a CSS variable and want to modify its lightness, but only if it's too dark or too light.
 tags: [CSS]
 pubDate: 2024-12-01 18:55:00 +0100
 ---

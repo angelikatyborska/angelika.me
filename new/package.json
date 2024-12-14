@@ -1,5 +1,5 @@
 {
-  "name": "angelika.me",
+  "name": "angelikame",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -12,7 +12,7 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "@astrojs/check": "^0.8.0",
+    "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.0.2",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
