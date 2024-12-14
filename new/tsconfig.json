@@ -7,7 +7,7 @@
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
-      },
+      }
     ]
   }
 }
