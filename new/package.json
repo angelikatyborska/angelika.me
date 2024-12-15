@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "MODE=draft astro dev",
+    "build": "MODE=published astro build",
     "preview": "astro preview",
-    "check": "astro check",
+    "check": "MODE=draft astro check",
     "astro": "astro",
     "lint": "npm run lint:js && npm run lint:css && lint:prettier",
     "lint:js": "eslint",

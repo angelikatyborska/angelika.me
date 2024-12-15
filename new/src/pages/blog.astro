@@ -1,14 +1,12 @@
 ---
-import { getPosts } from "../lib/posts";
+import { getPublishedPosts } from "../lib/posts";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import FormattedDate from "../components/FormattedDate.astro";
 
-const posts = (await getPosts()).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = await getPublishedPosts();
 ---
 
 <!doctype html>
