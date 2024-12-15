@@ -13,7 +13,8 @@
     "lint:js": "eslint",
     "lint:css": "stylelint **/*.astro",
     "lint:prettier": "prettier --check .",
-    "format": "prettier . --write && npm run lint:js -- --fix && npm run lint:css -- --fix"
+    "format": "prettier . --write && npm run lint:js -- --fix && npm run lint:css -- --fix",
+    "test": "vitest --no-watch"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -35,6 +36,10 @@
     "stylelint": "^16.11.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^36.0.1",
-    "typescript-eslint": "^8.18.0"
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^2.1.8"
+  },
+  "overrides": {
+    "vite": "6.0.2"
   }
 }
