@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  build: { assets: "_assets" },
   site: "https://angelika.me",
   integrations: [mdx(), sitemap()],
   env: {

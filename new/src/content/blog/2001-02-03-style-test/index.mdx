@@ -7,6 +7,9 @@ hidden: true
 sitemap: false
 ---
 
+import { Image } from "astro:assets";
+import Placeholder from "./placeholder.png";
+
 http://0.0.0.0:5500/2001/02/03/style-test/
 
 Odit `quibusdam` tempore deserunt. _Sapiente magni amet alias_ nostrum et maiores. Dolorum deleniti <mark>dolore fugiat</mark> dolorem quis.
@@ -82,19 +85,26 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 ## Figure with caption and link
 
 <figure>
-<a href='{% asset posts/how-to-add-editing-image-alt-text-tiptap/step-0 @path %}'>
-{% asset posts/how-to-add-editing-image-alt-text-tiptap/step-0 alt="TipTap editor with a paragraph and two images. The two images are black-and-white photos of a desert. The editor's UI does not show us which image has alt text." %}
-</a>
-<figcaption>One of those images has alt text, the other doesn't. But which one is which? Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.</figcaption>
+  <a href={Placeholder.src}>
+    <Image
+      src={Placeholder}
+      alt="TipTap editor with a paragraph and two images. The two images are black-and-white photos of a desert. The editor's UI does not show us which image has alt text."
+    />
+  </a>
+  <figcaption>
+    One of those images has alt text, the other doesn't. But which one is which? Odit quibusdam
+    tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat
+    dolorem quis.
+  </figcaption>
 </figure>
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
 
 <figure>
-<a href='{% asset posts/colorizing-names/issues-sum @path %}'>
-{% asset posts/colorizing-names/issues-sum class='half-width' alt='Problems with summing character codes'%}
-</a>
-<figcaption>Problems with summing character codes</figcaption>
+  <a href={Placeholder.src}>
+    <Image src={Placeholder} class="half-width" alt="Problems with summing character codes" />
+  </a>
+  <figcaption>Problems with summing character codes</figcaption>
 </figure>
 
 ## Code

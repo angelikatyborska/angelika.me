@@ -31,8 +31,6 @@ export const getPublishedPosts = (includeHidden: boolean = false) =>
       isPublished = true;
     }
 
-    console.log({ includeHidden });
-
     return isPublished && (includeHidden || !data.hidden);
   });
 
