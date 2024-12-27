@@ -8,6 +8,13 @@ export default defineConfig({
   build: { assets: "_assets" },
   site: "https://angelika.me",
   integrations: [mdx(), sitemap()],
+  image: {
+    // Used for all `<Image />` and `<Picture />` components unless overridden
+    experimentalLayout: 'responsive',
+  },
+  experimental: {
+    responsiveImages: true,
+  },
   env: {
     schema: {
       MODE: envField.enum({

@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+  image: ImageMetadata,
+  alt: string,
+  caption: string,
+  // TODO: rewrite halfWidth to something more flexible
+  halfWidth?: boolean,
+}
+
+const { image, alt, caption, halfWidth } = Astro.props
+console.log(image)
+---
+
+<figure>
+  <a href={image.src}>
+    <Image
+      width={halfWidth ? 375 : 750}
+      src={image}
+      alt={alt}
+      class:list={[halfWidth && 'half-width']}
+    />
+  </a>
+  <figcaption>
+    {caption}
+  </figcaption>
+</figure>

@@ -7,7 +7,7 @@ hidden: true
 sitemap: false
 ---
 
-import { Image } from "astro:assets";
+import BlogPostImage from "../../../components/BlogPostImage.astro"
 import Placeholder from "./placeholder.png";
 
 http://0.0.0.0:5500/2001/02/03/style-test/
@@ -84,28 +84,11 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 
 ## Figure with caption and link
 
-<figure>
-  <a href={Placeholder.src}>
-    <Image
-      src={Placeholder}
-      alt="TipTap editor with a paragraph and two images. The two images are black-and-white photos of a desert. The editor's UI does not show us which image has alt text."
-    />
-  </a>
-  <figcaption>
-    One of those images has alt text, the other doesn't. But which one is which? Odit quibusdam
-    tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat
-    dolorem quis.
-  </figcaption>
-</figure>
+<BlogPostImage image={Placeholder} alt={"TipTap editor with a paragraph and two images. The two images are black-and-white photos of a desert. The editor's UI does not show us which image has alt text."} caption={"One of those images has alt text, the other doesn't. But which one is which? Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis."} />
 
 Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. Dolorum deleniti dolore fugiat dolorem quis.
 
-<figure>
-  <a href={Placeholder.src}>
-    <Image src={Placeholder} class="half-width" alt="Problems with summing character codes" />
-  </a>
-  <figcaption>Problems with summing character codes</figcaption>
-</figure>
+<BlogPostImage image={Placeholder} alt={"Problems with summing character codes"} caption={"Problems with summing character codes"} halfWidth={true} />
 
 ## Code
 
