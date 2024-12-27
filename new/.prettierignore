@@ -4,4 +4,5 @@ dist
 .astro
 
 # Ignore blog posts
-src/content/blog/**/*.{md,mdx}
+src/content/blog/**/*.md
+src/content/blog/**/*.mdx
