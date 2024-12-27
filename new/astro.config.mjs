@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   image: {
     // Used for all `<Image />` and `<Picture />` components unless overridden
-    experimentalLayout: 'responsive',
+    experimentalLayout: "responsive",
   },
   experimental: {
     responsiveImages: true,

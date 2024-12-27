@@ -2,24 +2,23 @@
 import { Image } from "astro:assets";
 
 type Props = {
-  image: ImageMetadata,
-  alt: string,
-  caption: string,
-  // TODO: rewrite halfWidth to something more flexible
-  halfWidth?: boolean,
-}
+  image: ImageMetadata;
+  alt: string;
+  caption: string;
+  relativeMaxWidth: number;
+};
 
-const { image, alt, caption, halfWidth } = Astro.props
-console.log(image)
+const { image, alt, caption, relativeMaxWidth = 1 } = Astro.props;
+
+const contentMaxWidth = 750;
 ---
 
 <figure>
   <a href={image.src}>
     <Image
-      width={halfWidth ? 375 : 750}
+      width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
       src={image}
       alt={alt}
-      class:list={[halfWidth && 'half-width']}
     />
   </a>
   <figcaption>
