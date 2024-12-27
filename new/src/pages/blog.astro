@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import FormattedDate from "../components/FormattedDate.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 
 const posts = await getPublishedPosts();
 ---
@@ -101,6 +102,7 @@ const posts = await getPublishedPosts();
   </head>
   <body>
     <Header />
+    <SocialLinks />
     <main>
       <section>
         <ul>

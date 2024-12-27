@@ -22,6 +22,9 @@
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/ts-plugin": "^1.10.4",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "astro": "^5.0.4",
     "sass": "^1.83.0",
     "typescript": "^5.7.2"

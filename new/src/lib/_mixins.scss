@@ -1,0 +1,147 @@
+@use "./variables";
+
+@mixin delicate {
+  color: var(--secondary-text-color);
+}
+
+@mixin post-meta {
+  @include delicate;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: variables.$gap-small;
+  font-size: variables.$font-size-small;
+
+  .tags {
+    // cannot use flex and gap due to commas outside of links
+    a:not(:first-child) {
+      margin-left: 0.25em;
+    }
+  }
+}
+
+@mixin box {
+  border: 1px solid var(--border-color);
+}
+
+@mixin button_reset {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  padding: 0;
+
+  &:active {
+    color: inherit;
+  }
+}
+
+@mixin ellipsis_for_overflow($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @if ($lines > 1) {
+    @supports (-webkit-line-clamp: $lines) {
+      display: -webkit-box;
+      -webkit-line-clamp: $lines;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+}
+
+@mixin scroll-shadow() {
+  overflow: hidden;
+  overflow-x: auto;
+  max-width: fit-content;
+
+  background:
+    // Shadow Cover LEFT
+    linear-gradient(to right, var(--background-color) 30%, var(--background-color-transparent)) left
+      center,
+    // Shadow Cover RIGHT
+    linear-gradient(to right, var(--background-color-transparent), var(--background-color) 70%)
+      right center,
+    // Shadow LEFT
+    radial-gradient(farthest-side at 0 50%, var(--shadow-color-1), var(--shadow-color-transparent))
+      left center,
+    // Shadow right
+    radial-gradient(
+        farthest-side at 100% 50%,
+        var(--shadow-color-1),
+        var(--shadow-color-transparent)
+      )
+      right center;
+
+  background-repeat: no-repeat;
+  background-size:
+    40px 100%,
+    40px 100%,
+    14px 100%,
+    14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+$sin-60deg: 0.866;
+$triangle-max-width: 1rem * 1.125;
+$triangle-max-height: $sin-60deg * $triangle-max-width;
+$triangle-background-height: #{7 * $triangle-max-height};
+
+@mixin triangle-gradient($color, $triangle-max-width: 15px) {
+  $triangle-max-height: $sin-60deg * $triangle-max-width;
+  $triangle-background-height: #{7 * $triangle-max-height};
+
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: #{$triangle-background-height};
+  background-repeat: repeat-x;
+  background-color: var(--background-color);
+  background-image: linear-gradient(0deg, var(--background-color) 35%, transparent 35%),
+    linear-gradient(60deg, transparent 52.66%, var(--background-color) 52.66%),
+    linear-gradient(-240deg, transparent 47.33%, $color 47.33%),
+    linear-gradient(0deg, var(--background-color) 32%, transparent 35%),
+    linear-gradient(60deg, transparent 54.66%, var(--background-color) 54.66%),
+    linear-gradient(-240deg, transparent 45.33%, $color 45.33%),
+    linear-gradient(0deg, var(--background-color) 28%, transparent 30%),
+    linear-gradient(60deg, transparent 56.66%, var(--background-color) 56.66%),
+    linear-gradient(-240deg, transparent 43.33%, $color 43.33%),
+    linear-gradient(0deg, var(--background-color) 23%, transparent 25%),
+    linear-gradient(60deg, transparent 58.66%, var(--background-color) 58.66%),
+    linear-gradient(-240deg, transparent 41.33%, $color 41.33%),
+    linear-gradient(0deg, var(--background-color) 17%, transparent 17%),
+    linear-gradient(60deg, transparent 61.66%, var(--background-color) 61.66%),
+    linear-gradient(-240deg, transparent 38.33%, $color 38.33%),
+    linear-gradient(0deg, var(--background-color) 10%, transparent 10%),
+    linear-gradient(60deg, transparent 63.66%, var(--background-color) 63.66%),
+    linear-gradient(-240deg, transparent 36.33%, $color 36.33%),
+    linear-gradient(60deg, transparent 66.66%, var(--background-color) 66.66%),
+    linear-gradient(-240deg, transparent 33.33%, $color 33.33%);
+  background-size: $triangle-max-width $triangle-max-height;
+
+  background-position:
+    left 50% bottom 6 * $triangle-max-height,
+    left 50% bottom 6 * $triangle-max-height,
+    left 50% bottom 6 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 5 * $triangle-max-height,
+    left 50% bottom 4 * $triangle-max-height,
+    left 50% bottom 4 * $triangle-max-height,
+    left 50% bottom 4 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom 3 * $triangle-max-height,
+    left 50% bottom 2 * $triangle-max-height,
+    left 50% bottom 2 * $triangle-max-height,
+    left 50% bottom 2 * $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom $triangle-max-height,
+    left calc(50% - #{$triangle-max-width * 0.5}) bottom $triangle-max-height,
+    left 50% bottom 0px,
+    left 50% bottom 0px;
+}

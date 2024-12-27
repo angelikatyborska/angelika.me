@@ -1,0 +1,73 @@
+---
+import Icon from "../components/Icon.astro";
+import { GITHUB, MASTODON, BLUESKY, LINKEDIN, EXERCISM, LASTFM, FLICKR } from "../consts";
+---
+
+<ul class="social-links">
+  <li>
+    <a href={GITHUB} rel="me" class="github" aria-label="My profile on Github" title="Github"
+      ><Icon name="github" /></a
+    >
+  </li>
+  <li>
+    <a
+      href={MASTODON}
+      rel="me"
+      class="mastodon"
+      aria-label="My profile on Mastodon"
+      title="Mastodon"><Icon name="mastodon" /></a
+    >
+  </li>
+  <li>
+    <a href={BLUESKY} rel="me" class="bluesky" aria-label="My profile on Bluesky" title="Bluesky"
+      ><Icon name="bluesky" /></a
+    >
+  </li>
+  <li>
+    <a href={LINKEDIN} class="linkedin" aria-label="My profile on LinkedIn" title="LinkedIn"
+      ><Icon name="linkedin" /></a
+    >
+  </li>
+  <li>
+    <a href={EXERCISM} class="exercism" aria-label="My profile on Exercism" title="Exercism"
+      ><Icon name="exercism" /></a
+    >
+  </li>
+  <li>
+    <a href={LASTFM} class="lastfm" aria-label="My profile on Last.fm" title="Last.fm"
+      ><Icon name="lastfm" /></a
+    >
+  </li>
+  <li>
+    <a href={FLICKR} class="flickr" aria-label="My photos on Flickr" title="Flickr"
+      ><Icon name="flickr" /></a
+    >
+  </li>
+</ul>
+
+<style lang="scss">
+  @use "../lib/variables";
+  @use "../lib/functions";
+
+  .social-links {
+    display: flex;
+    justify-content: space-between;
+    margin: variables.$gap-small 0 0 0;
+    padding: 0;
+
+    $link-size: variables.$font-size-h5;
+
+    li {
+      display: inline-block;
+
+      &:before {
+        content: none;
+      }
+    }
+
+    a {
+      padding: variables.$gap-tiny;
+      font-size: $link-size;
+    }
+  }
+</style>

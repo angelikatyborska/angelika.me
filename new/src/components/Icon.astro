@@ -1,0 +1,51 @@
+---
+import { library, icon } from "@fortawesome/fontawesome-svg-core";
+import {
+  faGithub,
+  faMastodon,
+  faBluesky,
+  faLinkedin,
+  faLastfm,
+  faFlickr,
+} from "@fortawesome/free-brands-svg-icons";
+import Exercism from "./exercism.svg?raw";
+
+library.add(faGithub, faMastodon, faBluesky, faLinkedin, faLastfm, faFlickr);
+
+const GithubIcon = icon(faGithub);
+const MastodonIcon = icon(faMastodon);
+const BlueskyIcon = icon(faBluesky);
+const LinkedinIcon = icon(faLinkedin);
+const LastfmIcon = icon(faLastfm);
+const FlickrIcon = icon(faFlickr);
+
+const iconMap = {
+  github: GithubIcon,
+  mastodon: MastodonIcon,
+  bluesky: BlueskyIcon,
+  linkedin: LinkedinIcon,
+  lastfm: LastfmIcon,
+  flickr: FlickrIcon,
+  exercism: {
+    html: Exercism,
+  },
+};
+
+type Props = {
+  name: keyof typeof iconMap;
+};
+
+const { name } = Astro.props;
+---
+
+<span class="icon">
+  <Fragment set:html={iconMap[name].html} />
+</span>
+
+<style is:global>
+  .svg-inline--fa,
+  .exercism {
+    width: 1em;
+    height: auto;
+  }
+</style>
