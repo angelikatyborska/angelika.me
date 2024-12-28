@@ -1,6 +1,5 @@
 ---
 import { getPublishedPosts } from "@lib/posts";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@lib/consts";
 import BaseHead from "@components/BaseHead.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
@@ -13,7 +12,7 @@ const posts = await getPublishedPosts();
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead />
     <style>
       main {
         width: 960px;

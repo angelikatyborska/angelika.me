@@ -1,5 +1,5 @@
 ---
-import { GITHUB, MASTODON, BLUESKY, LINKEDIN, EXERCISM, LASTFM, FLICKR } from "@lib/consts";
+import { REPO, GITHUB, MASTODON, BLUESKY, LINKEDIN, EXERCISM, LASTFM, FLICKR } from "@lib/consts";
 import Triangle from "@assets/design/triangle.svg?raw";
 
 const today = new Date();
@@ -24,8 +24,8 @@ const today = new Date();
       <h2>Technical</h2>
       <nav aria-label="secondary">
         <a class="rss" href="/feed.xml"> RSS </a>
-        <a href="https://github.com/angelikatyborska/angelika.me">View source</a>
-        <a href="https://github.com/angelikatyborska/angelika.me/issues">Report an issue</a>
+        <a href={`${REPO}`}>View source</a>
+        <a href={`${REPO}/issues`}>Report an issue</a>
       </nav>
     </div>
 
@@ -47,11 +47,11 @@ const today = new Date();
 </footer>
 
 <style lang="scss">
-  @use "../lib/functions";
-  @use "../lib/variables";
-  @use "../lib/mixins";
-  @use "../lib/colors";
-  @use "../lib/media-queries";
+  @use "../styles/functions";
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/colors";
+  @use "../styles/media-queries";
 
   .footer {
     position: relative;

@@ -1,5 +1,9 @@
 @use "./variables";
 
+@mixin focus {
+  outline: 2px solid var(--accent-color);
+}
+
 @mixin delicate {
   color: var(--secondary-text-color);
 }
