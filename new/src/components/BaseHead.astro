@@ -1,4 +1,6 @@
 ---
+import { SITE_TITLE, SITE_DESCRIPTION } from "@lib/consts";
+
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.scss";
@@ -11,18 +13,42 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+// TODO: OG images
+const { image = "/blog-placeholder-1.jpg" } = Astro.props;
+
+const title = Astro.props.title ? `${Astro.props.title} | ${SITE_TITLE}` : SITE_TITLE;
+const description = Astro.props.description || SITE_DESCRIPTION;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="180x180" href="/favicon-180.png" />
+<link rel="icon" type="image/png" sizes="300x300" href="/favicon-300.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`RSS Feed for ${SITE_TITLE}`}
+  href="/feed.xml"
+/>
+
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&family=Roboto:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap"
+  rel="stylesheet"
+  type="text/css"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -45,3 +71,5 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script defer data-domain="angelika.me" src="https://plausible.io/js/script.js"></script>

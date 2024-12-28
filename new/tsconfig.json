@@ -12,6 +12,7 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"]
     }
