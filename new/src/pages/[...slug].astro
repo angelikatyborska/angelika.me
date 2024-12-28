@@ -1,8 +1,7 @@
 ---
-import { type CollectionEntry } from "astro:content";
-import BlogPost from "../layouts/BlogPost.astro";
-import { render } from "astro:content";
-import { getPublishedPostsIncludeHidden } from "../lib/posts";
+import { render, type CollectionEntry } from "astro:content";
+import { getPublishedPostsIncludeHidden } from "@lib/posts";
+import BlogPost from "@layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPostsIncludeHidden();
