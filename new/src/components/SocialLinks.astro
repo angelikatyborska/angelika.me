@@ -66,8 +66,13 @@ import { GITHUB, MASTODON, BLUESKY, LINKEDIN, EXERCISM, LASTFM, FLICKR } from "@
     }
 
     a {
+      display: block;
       padding: variables.$gap-tiny;
       font-size: $link-size;
+
+      :global(svg) {
+        display: block;
+      }
     }
   }
 </style>

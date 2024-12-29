@@ -1,0 +1,65 @@
+---
+export type Props = {
+  href?: string;
+  title?: string;
+};
+
+const { href, title } = Astro.props;
+const TitleTag = href ? "a" : "span";
+---
+
+<li>
+  <span class="list-item">
+    <span>
+      <slot name="image" />
+      {
+        title && (
+          <TitleTag class="list-item-title" {...(href && { href })}>
+            {title}
+          </TitleTag>
+        )
+      }
+      {!title && Astro.slots.has("description") && <slot name="description" />}
+    </span>
+    {
+      title && Astro.slots.has("description") && (
+        <span>
+          <slot name="description" />
+        </span>
+      )
+    }
+    {
+      Astro.slots.has("date") && (
+        <span class="list-item-date">
+          <slot name="date" />
+        </span>
+      )
+    }
+  </span>
+</li>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/mixins";
+
+  .list-item {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .list-item-title {
+    font-weight: bold;
+  }
+
+  .list-item :global(img) {
+    vertical-align: bottom;
+    width: 1.44em;
+    height: 1.44em;
+    margin-right: variables.$gap-tiny;
+  }
+
+  .list-item-date {
+    @include mixins.delicate;
+    font-size: variables.$font-size-small;
+  }
+</style>

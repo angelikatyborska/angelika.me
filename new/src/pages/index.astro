@@ -1,5 +1,252 @@
 ---
+import { Image } from "astro:assets";
 import Default from "@layouts/Default.astro";
+import SocialLinks from "@components/SocialLinks.astro";
+import List from "@components/List.astro";
+import ListItem from "@components/ListItem.astro";
+import Portrait from "@assets/about/portrait.png";
+import Exercism from "@assets/about/exercism.png";
+import TasteElixir from "@assets/about/taste-elixir.png";
+import Github from "@assets/about/github.png";
+import NonvisualWebsite from "@assets/about/nonvisualwebsite.png";
+import CssArt from "@assets/about/css-art.png";
+import CssColorQuiz from "@assets/about/css-color-quiz.png";
+import ElixirEnumCheatsheet from "@assets/about/elixir-enum-cheatsheet.png";
+import Mazes from "@assets/about/mazes.png";
+import FallingTiles from "@assets/about/falling-tiles.png";
+import ElixirConfEu from "@assets/about/elixir-conf-eu.png";
+import ThinkingElixir from "@assets/about/thinking-elixir.jpg";
 ---
 
-<Default> Hello, world </Default>
+<Default title="About">
+  <div class="grid">
+    <div>
+      <h1>Hi!&nbsp;👋</h1>
+
+      <p>
+        My name is <span lang="pl">Angelika Cathor</span> and I'm a full-stack web developer. I'm currently
+        located in Berlin, Germany&nbsp;🇩🇪, but I was born and grew up in <span lang="pl"
+          >Gorzów Wielkopolski</span
+        >, Poland&nbsp;🇵🇱.
+      </p>
+
+      <p>
+        I write backend code in Elixir&nbsp;💜. It's my favorite programming language because of its
+        human-friendly syntax, immutability, pattern matching, and performance.
+      </p>
+
+      <p>
+        I love making websites pretty with CSS&nbsp;🎨. Sometimes I do weird things with it just to
+        see if I can and I publish it on <a href="https://css-art.angelika.me"
+          >css-art.angelika.me</a
+        >.
+      </p>
+    </div>
+
+    <div class="column-image">
+      <Image src={Portrait} width={250} layout="responsive" alt="" aria-hidden="true" />
+      <SocialLinks />
+    </div>
+  </div>
+
+  <h2>Volunteering</h2>
+
+  <List>
+    <ListItem>
+      <Image src={Exercism} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >Maintaining the Elixir track on <a href="https://exercism.io/">Exercism</a>.</Fragment
+      >
+      <Fragment slot="date">May 2020 - Present</Fragment>
+    </ListItem>
+    <ListItem>
+      <Image src={Exercism} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >Mentoring Elixir learners on <a href="https://exercism.io/">Exercism</a>.</Fragment
+      >
+      <Fragment slot="date">July 2018 - October 2021</Fragment>
+    </ListItem>
+    <ListItem>
+      <Image src={TasteElixir} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >Mentoring at an Elixir beginners workshop organized by <a
+          href="https://www.facebook.com/taste.elixir">Taste Elixir</a
+        > in <span lang="pl">Poznań</span>.</Fragment
+      >
+      <Fragment slot="date">29-30 November 2019</Fragment>
+    </ListItem>
+  </List>
+
+  <h2>Projects</h2>
+
+  <List>
+    <ListItem href="https://github.com/angelikatyborska/a11y-audit-elixir" title="A11yAudit">
+      <Image src={Github} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >Automated accessibility testing for Elixir web applications using axe-core.</Fragment
+      >
+      <Fragment slot="date">June 2024</Fragment>
+    </ListItem>
+    <ListItem
+      href="https://github.com/angelikatyborska/doctest_formatter"
+      title="Doctest Formatter"
+    >
+      <Image src={Github} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description">An Elixir formatter for doctests.</Fragment>
+      <Fragment slot="date">February 2024</Fragment>
+    </ListItem>
+    <ListItem
+      href="https://github.com/angelikatyborska/markdown_code_block_formatter"
+      title="Markdown Code Block Formatter"
+    >
+      <Image src={Github} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >An Elixir formatter for Elixir code blocks in Markdown files and sigils.</Fragment
+      >
+      <Fragment slot="date">January 2024</Fragment>
+    </ListItem>
+    <ListItem href="https://nonvisualwebsite.com" title="The Nonvisual Website">
+      <Image src={NonvisualWebsite} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >Plenty of websites are inaccessible to screen readers. What if I made a website that is
+        accessible only to screen readers?</Fragment
+      >
+      <Fragment slot="date">October 2023</Fragment>
+    </ListItem>
+    <ListItem href="https://css-color-quiz.angelika.me/" title="CSS Color Quiz">
+      <Image src={CssColorQuiz} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >A quiz game about guessing color names based on the CSS color keywords.</Fragment
+      >
+      <Fragment slot="date">August 2022</Fragment>
+    </ListItem>
+    <ListItem href="https://github.com/marketplace/actions/pr-commenter" title="PR Commenter">
+      <Image src={Github} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >A GitHub action that can posts comments on your PR that can vary depending on which files
+        are being changed in the PR.</Fragment
+      >
+      <Fragment slot="date">April 2021</Fragment>
+    </ListItem>
+    <ListItem href="https://angelika.me/elixir-enum-cheatsheet/" title="Elixir Enum Cheatsheet">
+      <Image src={ElixirEnumCheatsheet} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description">A visual reference of Elixir Enum functions.</Fragment>
+      <Fragment slot="date">January 2021</Fragment>
+    </ListItem>
+    <ListItem href="https://mazes.angelika.me/" title="Mazes">
+      <Image src={Mazes} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >A maze generator written using Phoenix LiveView, for fun.</Fragment
+      >
+      <Fragment slot="date">December 2020</Fragment>
+    </ListItem>
+    <ListItem href="https://github.com/angelikatyborska/vnu-elixir" title="vnu-elixir">
+      <Image src={Github} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >An Elixir client for the Nu HTML Checker. I wrote it because I wanted to validate the HTML
+        responses in my Phoenix controller tests.</Fragment
+      >
+      <Fragment slot="date">April 2020</Fragment>
+    </ListItem>
+    <ListItem href="https://css-art.angelika.me/" title="CSS art">
+      <Image src={CssArt} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description">I make things with CSS that look cool.</Fragment>
+      <Fragment slot="date">November 2019 - present</Fragment>
+    </ListItem>
+    <ListItem href="https://falling-tiles.angelika.me/" title="Falling Tiles">
+      <Image src={FallingTiles} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description">A Tetris clone written using Phoenix LiveView, for fun.</Fragment
+      >
+      <Fragment slot="date">May 2019</Fragment>
+    </ListItem>
+  </List>
+
+  <h2>Talks and podcasts</h2>
+
+  <List>
+    <ListItem title="Exercism v3 (ElixirConfEU 2021)">
+      <Image src={ElixirConfEu} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >A presentation about the new features in Exercism v3 and how they solve problems that users
+        experienced in v2.
+        <a href="https://angelika.me/elixir-conf-eu-2021/">See slides</a> (press "s" for access to speaker
+        notes that contain the script), <a href="https://www.youtube.com/watch?v=mpOwAL7cAaE"
+          >watch a recording of the talk from the conf</a
+        >, or <a href="https://www.youtube.com/watch?v=ijQof_ASicw"
+          >watch a pre-recorded shorter version</a
+        >.</Fragment
+      >
+      <Fragment slot="date">September 2021</Fragment>
+    </ListItem>
+    <ListItem
+      href="https://thinkingelixir.com/podcast-episodes/050-exercism-io-and-elixir-with-angelika-tyborska/"
+      title="Thinking Elixir #050"
+    >
+      <Image src={ThinkingElixir} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description"
+        >A talk about my Elixir history, my involvement with Exercism.io, maintaining a track, and
+        changes planned for Exercism v3.</Fragment
+      >
+      <Fragment slot="date">June 2021</Fragment>
+    </ListItem>
+  </List>
+
+  <h2>Want to chat?</h2>
+
+  <p>
+    If you want to talk to me about ✨tech stuff✨, you can contact me on Mastodon <a
+      href="https://mas.to/@angelikatyborska">@angelikatyborska@mas.to</a
+    >
+    or write an email to <strong>hello at angelika.me</strong>.
+  </p>
+</Default>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/media-queries";
+  @use "../styles/colors";
+
+  .grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: variables.$gap-medium;
+    grid-column-gap: variables.$gap-medium;
+    align-items: start;
+
+    @media #{media-queries.$medium} {
+      grid-template-columns: auto auto;
+    }
+  }
+
+  .column-image {
+    @include mixins.box();
+    grid-row: 2;
+    background: colors.$white;
+    padding: variables.$gap-medium;
+    margin: 0 auto;
+    --text-color: colors.$text-color-light;
+    color: colors.$text-color-light;
+
+    @media #{media-queries.$medium} {
+      grid-row: 1;
+      grid-column: 2;
+      width: auto;
+      margin-left: variables.$gap-medium;
+
+      img {
+        width: 250px;
+      }
+    }
+
+    @media #{media-queries.$big} {
+      margin-top: -1 * variables.$gap-medium;
+      margin-left: variables.$gap-medium;
+      transform: rotate(-2deg);
+    }
+  }
+
+  .portrait {
+    display: block;
+  }
+</style>
