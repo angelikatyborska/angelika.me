@@ -70,6 +70,11 @@ const today = new Date();
       @include mixins.triangle-gradient(var(--reverse-background-color));
     }
 
+    > * {
+      grid-column: 2 / 3;
+      max-width: variables.$page-max-width;
+    }
+
     a {
       text-decoration: underline;
     }
@@ -125,26 +130,29 @@ const today = new Date();
       justify-content: flex-start;
       gap: variables.$gap-medium;
 
-      svg:nth-child(1) {
+      :global(svg:nth-child(1)) {
         width: variables.$gap-big;
         transform: rotate(10deg);
-        * {
+
+        :global(*) {
           fill: var(--accent-color1);
         }
       }
 
-      svg:nth-child(2) {
+      :global(svg:nth-child(2)) {
         width: variables.$gap-big * 0.75;
         transform: rotate(-75deg);
-        * {
+
+        :global(*) {
           fill: var(--accent-color2);
         }
       }
 
-      svg:nth-child(3) {
+      :global(svg:nth-child(3)) {
         width: variables.$gap-big * 0.5;
         transform: rotate(15deg);
-        * {
+
+        :global(*) {
           fill: var(--accent-color3);
         }
       }
