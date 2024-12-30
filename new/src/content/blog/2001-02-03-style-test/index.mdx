@@ -94,16 +94,16 @@ Odit quibusdam tempore deserunt. Sapiente magni amet alias nostrum et maiores. D
 
 ```html
 <header>
-    <h1>Style test</h1>
-    <div class="post-meta">
-      <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
-      <span class="time-estimate">
+  <h1>Style test</h1>
+  <div class="post-meta">
+    <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
+    <span class="time-estimate">
 
-        1 min read
-      </span>
-      <span class="tags"><span class="sr-only">Topics covered </span></span>
-    </div>
-  </header>
+      1 min read
+    </span>
+    <span class="tags"><span class="sr-only">Topics covered </span></span>
+  </div>
+</header>
 ```
 
 Eveniet quibusdam nemo eum. Perspiciatis labore et sit necessitatibus. Provident eum aut vel. Laborum dolor dolores doloribus repellendus illum et non. Qui culpa neque excepturi. Sed sint voluptates ipsam in velit possimus molestias.
@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ```elixir
 defmodule FileSniffer do
+  # comment
   def type_from_extension("bmp"), do: "image/bmp"
   def type_from_extension("png"), do: "image/png"
   def type_from_extension("jpg"), do: "image/jpg"
@@ -182,17 +183,17 @@ Nested in lists
         - 1.356
           - 1.3563
             ```html
-              <header>
-                <h1>Style test</h1>
-                <div class="post-meta">
-                  <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
-                  <span class="time-estimate">
+            <header>
+              <h1>Style test</h1>
+              <div class="post-meta">
+                <span class="date"><span class="sr-only">Written on </span>03 February 2001</span>
+                <span class="time-estimate">
 
-                    1 min read
-                  </span>
-                  <span class="tags"><span class="sr-only">Topics covered </span></span>
-                </div>
-              </header>
+                  1 min read
+                </span>
+                <span class="tags"><span class="sr-only">Topics covered </span></span>
+              </div>
+            </header>
             ```
 
   - 1.4
@@ -216,11 +217,18 @@ Nested in block quotes
 
 Diff view
 
-```diff
-   @spec hey(String.t()) :: String.t()
--  def hey(utterance) do
-+  def hey(utterance \\ "") do
+```elixir diff
+@spec hey(String.t()) :: String.t()
+  def hey(utterance) do # [!code --]
+  def hey(utterance \\ "") do # [!code ++]
      utterance = String.trim(utterance)
+```
+
+```ts diff
+console.log('foo') // [!code --]
+console.log('bar') // [!code --]
+console.log('hello') // [!code ++]
+console.log('world') // [!code ++]
 ```
 
 ## Keyboard shortcuts

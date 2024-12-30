@@ -65,19 +65,11 @@ $border-color-dark: #555;
   --shadow-color-2: rgba(0, 0, 0, 0.1);
   --shadow-color-transparent: rgba(0, 0, 0, 0);
 
-  // color names are mismatched on purpose
-  // I wanted yellow / orange / red in dark more
-  // and green / blue / purple in light mode
-  // but was too lazy to come up with semantic names
-  --syntax-purple: #{$purple};
+  --syntax-keyword: #{$purple};
+  --syntax-constant: #{color.adjust($green, $lightness: -20%)};
+  --syntax-string: #{color.adjust($blue, $lightness: -25%)};
   --syntax-green: #{color.adjust($green, $lightness: -20%)};
   --syntax-red: #{color.adjust($red, $lightness: -15%)};
-  --syntax-salmon: #{color.adjust($blue, $lightness: -25%)};
-  --syntax-red-error: #{color.adjust($red, $lightness: -15%)};
-  --syntax-teal: #{color.adjust($green, $lightness: -20%)};
-  --syntax-teal-dark: #{color.adjust($green, $lightness: -25%)};
-  --syntax-navy: #{$navy};
-  --syntax-orange: #{color.adjust($blue, $lightness: -30%)};
 }
 
 html[data-dark] {
@@ -104,15 +96,11 @@ html[data-dark] {
   --shadow-color-1: rgba(255, 255, 255, 0.3);
   --shadow-color-2: rgba(255, 255, 255, 0.2);
   --shadow-color-transparent: rgba(255, 255, 255, 0);
-  --syntax-purple: #{color.adjust($orange, $lightness: 10%)};
+  --syntax-keyword: #{color.adjust($orange, $lightness: 10%)};
+  --syntax-constant: #{color.adjust($yellow, $lightness: 10%)};
+  --syntax-string: #{color.adjust($red, $lightness: 15%)};
   --syntax-green: #{color.adjust($green, $lightness: 10%)};
   --syntax-red: #{color.adjust($red, $lightness: 15%)};
-  --syntax-salmon: #{color.adjust($red, $lightness: 15%)};
-  --syntax-red-error: #{color.adjust($red, $lightness: 15%)};
-  --syntax-teal: #{color.adjust($yellow, $lightness: 15%)};
-  --syntax-teal-dark: #{color.adjust($yellow, $lightness: 25%)};
-  --syntax-navy: #{color.adjust($navy, $lightness: 35%)};
-  --syntax-orange: #{color.adjust($red, $lightness: 15%)};
 }
 
 @mixin reverse-section() {

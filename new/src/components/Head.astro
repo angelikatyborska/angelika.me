@@ -73,4 +73,5 @@ const description = Astro.props.description || SITE_DESCRIPTION;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<script defer data-domain="angelika.me" src="https://plausible.io/js/script.js"></script>
+<script is:inline={true} defer data-domain="angelika.me" src="https://plausible.io/js/script.js"
+></script>

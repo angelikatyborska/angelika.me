@@ -2,6 +2,15 @@
 import { defineConfig, envField } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import { createCssVariablesTheme } from "shiki/core";
+import { transformerNotationDiff } from "@shikijs/transformers";
+// Create a custom CSS variables theme, the following are the default values
+const myShikiTheme = createCssVariablesTheme({
+  name: "css-variables",
+  variablePrefix: "--shiki-",
+  variableDefaults: {},
+  fontStyle: true,
+});
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +23,13 @@ export default defineConfig({
   },
   experimental: {
     responsiveImages: true,
+  },
+  markdown: {
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      theme: myShikiTheme,
+      transformers: [transformerNotationDiff()],
+    },
   },
   env: {
     schema: {

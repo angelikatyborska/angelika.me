@@ -1,0 +1,121 @@
+@use "./variables";
+@use "./mixins";
+@use "./typography";
+@use "./functions";
+
+:root {
+  --shiki-foreground: var(--text-color);
+  --shiki-background: var(--background-color);
+  --shiki-token-constant: var(--syntax-constant);
+  --shiki-token-string: var(--syntax-keyword);
+  --shiki-token-comment: var(--secondary-text-color);
+  --shiki-token-keyword: var(--syntax-keyword);
+  --shiki-token-parameter: var(--text-color);
+  --shiki-token-function: var(--text-color);
+  --shiki-token-string-expression: var(--syntax-string);
+  --shiki-token-punctuation: var(--text-color);
+  --shiki-token-link: var(--syntax-string);
+}
+
+code {
+  font-family: typography.$code-font-family;
+  font-size: variables.$font-size-code;
+}
+
+*:not(.astro-code) {
+  > code {
+    border: 1px solid var(--border-color);
+    padding: 0 variables.$gap-tiny;
+    font-size: 0.9em;
+    overflow-wrap: break-word;
+  }
+}
+
+.astro-code {
+  @include mixins.scroll-shadow();
+  @include mixins.box();
+  max-width: unset;
+  width: var(--pulled-out-right-only-block-width);
+  margin: variables.$gap-medium 0 variables.$gap-big 0;
+  background-color: transparent;
+  display: block;
+
+  blockquote & {
+    width: 100%;
+  }
+
+  code {
+    display: block;
+    counter-reset: step;
+    counter-increment: step 0;
+  }
+
+  .line {
+    --code-padding: #{functions.rem-calc(10)};
+    --line-number-block-padding: #{variables.$gap-tiny};
+
+    display: inline-block;
+    padding-inline-end: var(--code-padding);
+    width: 100%;
+
+    &:first-child {
+      background-image: linear-gradient(
+        to bottom,
+        var(--shiki-background) 0%,
+        var(--shiki-background) 100%
+      );
+      background-size: 1px var(--line-number-block-padding);
+      background-repeat: repeat-x;
+      background-position: center 0;
+
+      &:before {
+        padding-block-start: var(--line-number-block-padding);
+      }
+    }
+
+    &:last-child {
+      background-image: linear-gradient(
+        to bottom,
+        var(--shiki-background) 0%,
+        var(--shiki-background) 100%
+      );
+      background-size: 1px var(--line-number-block-padding);
+      background-repeat: repeat-x;
+      background-position: center 100%;
+
+      &:before {
+        padding-block-end: var(--line-number-block-padding);
+      }
+    }
+
+    &::before {
+      content: counter(step);
+      counter-increment: step;
+      display: inline-block;
+      width: 2em;
+      text-align: right;
+      border-inline-end: 1px solid var(--border-color);
+      margin-inline-end: var(--code-padding);
+      color: var(--secondary-text-color);
+      padding: 0 variables.$gap-small;
+    }
+
+    &.remove {
+      background-color: rgba(from var(--syntax-red) r g b / 15%);
+
+      &:before {
+        color: var(--syntax-red);
+        content: "-";
+      }
+    }
+
+    &.add {
+      background-color: rgba(from var(--syntax-green) r g b / 15%);
+
+      &:before {
+        color: var(--syntax-green);
+        content: "+";
+      }
+    }
+  }
+}
