@@ -1,5 +1,5 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
+import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 
@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <BaseHead title={title} description={description} />
+  <Head title={title} description={description} />
   <body>
     <div class="page-wrapper">
       <Header />
@@ -100,7 +100,7 @@ const { title, description } = Astro.props;
       --page-margin-left: calc(var(--page-padding-left) * 2);
     }
 
-    > :global(*) {
+    > :global(*:not(script)) {
       display: grid;
       grid-template-columns: var(--page-margin-left) 1fr;
       padding: 0 var(--page-padding-left);

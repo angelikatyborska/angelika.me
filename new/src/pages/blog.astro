@@ -1,6 +1,6 @@
 ---
 import { getPublishedPosts } from "@lib/posts";
-import BaseHead from "@components/BaseHead.astro";
+import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import FormattedDate from "@components/FormattedDate.astro";
@@ -12,7 +12,7 @@ const posts = await getPublishedPosts();
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead />
+    <Head />
     <style>
       main {
         width: 960px;

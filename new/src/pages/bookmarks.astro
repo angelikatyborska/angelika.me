@@ -1,0 +1,197 @@
+---
+import Default from "@layouts/Default.astro";
+import List from "@components/List.astro";
+import ListItem from "@components/ListItem.astro";
+---
+
+<Default title="Bookmarks">
+  <h1>Bookmarks</h1>
+
+  <p>
+    A collection of links to various pieces of content, apps, tools, platforms, and whatever else
+    that helps with web development.
+  </p>
+
+  <h2>Learning and references</h2>
+
+  <List>
+    <ListItem title="Exercism" href="https://exercism.io">
+      <Fragment slot="description"
+        >A platform for learning programming languages by solving small exercises. The process can
+        include getting feedback from mentors. My favorite feature of the platform is that after
+        solving an exercise you look at solutions submitted by other people.</Fragment
+      >
+    </ListItem>
+    <ListItem title="MDN web docs" href="https://developer.mozilla.org/en-US/docs/Web">
+      <Fragment slot="description"
+        >The first place I check when I have HTML, CSS, or JavaScript questions.</Fragment
+      >
+    </ListItem>
+    <ListItem title="CSS Tricks Almanac" href="https://css-tricks.com/almanac/">
+      <Fragment slot="description">The second place I check when I have CSS questions.</Fragment>
+    </ListItem>
+    <ListItem title="Can I use... ?" href="https://caniuse.com/">
+      <Fragment slot="description"
+        >I check there which browsers support which modern web technologies.</Fragment
+      >
+    </ListItem>
+    <ListItem title="CSS Triggers" href="https://csstriggers.com/">
+      <Fragment slot="description"
+        >A reference for how mutating CSS properties impacts rendering of the page.</Fragment
+      >
+    </ListItem>
+    <ListItem title="How to Meet WCAG" href="https://www.w3.org/WAI/WCAG21/quickref/?versions=2.0">
+      <Fragment slot="description"
+        >A quick reference how to meet Web Content Accessibility Standards.</Fragment
+      >
+    </ListItem>
+    <ListItem title="Accessibility Support" href="https://a11ysupport.io/">
+      <Fragment slot="description"
+        >I check there which browsers and screen readers support which web accessibility features.</Fragment
+      >
+    </ListItem>
+  </List>
+
+  <h2>Tools</h2>
+
+  <List>
+    <ListItem href="https://www.jetbrains.com/webstorm/" title="WebStorm">
+      <Fragment slot="description">My IDE of choice for web development.</Fragment>
+    </ListItem>
+    <ListItem href="https://gifox.io/" title="Gifox 2">
+      <Fragment slot="description">Records your screen straight into a gif (Mac).</Fragment>
+    </ListItem>
+    <ListItem href="https://wave.webaim.org/" title="WAVE by WAI">
+      <Fragment slot="description"
+        >Web accessibility evaluation tool, online or as a browser extension.</Fragment
+      >
+    </ListItem>
+    <ListItem href="https://rocketvalidator.com/" title="Rocket Validator">
+      <Fragment slot="description"
+        >Automated validation and accessibility checks for large websites.</Fragment
+      >
+    </ListItem>
+  </List>
+
+  <h2>Podcasts</h2>
+
+  <List>
+    <ListItem href="https://softskills.audio/" title="Soft Skills Engineering">
+      <Fragment slot="description"
+        >A weekly advice podcast about non-technical issues. Suitable for all experience levels,
+        informative, and funny.</Fragment
+      >
+    </ListItem>
+
+    <ListItem href="https://podcast.thinkingelixir.com/" title="Thinking Elixir">
+      <Fragment slot="description">A weekly podcast about the Elixir programming language.</Fragment
+      >
+    </ListItem>
+
+    <ListItem href="https://changelog.com/jsparty" title="JS Party">
+      <Fragment slot="description"
+        >A weekly podcast about the JavaScript programming language.</Fragment
+      >
+    </ListItem>
+
+    <ListItem href="https://syntax.fm/" title="Syntax">
+      <Fragment slot="description"
+        >A dive deep into web development topics with Wes Bos and Scott Tolinski, new episodes 3x a
+        week.</Fragment
+      >
+    </ListItem>
+
+    <ListItem href="https://shoptalkshow.com/" title="Shop Talk Show">
+      <Fragment slot="description"
+        >A weekly podcast about building websites from Dave Rupert and Chris Coyier.</Fragment
+      >
+    </ListItem>
+
+    <ListItem href="https://darknetdiaries.com/" title="Darknet Diaries">
+      <Fragment slot="description"
+        >A monthly podcast about hackers, penetration testers, breaches, and cybercrime.</Fragment
+      >
+    </ListItem>
+  </List>
+
+  <h2>Newsletters</h2>
+
+  <List>
+    <ListItem href="https://css-weekly.com/" title="CSS Weekly">
+      <Fragment slot="description"
+        >A weekly newsletter about CSS. Includes a collection of links to CSS news, deep-dives, and
+        cool projects.</Fragment
+      >
+    </ListItem>
+    <ListItem href="https://elixirweekly.net/" title="Elixir Weekly">
+      <Fragment slot="description"
+        >A weekly newsletter about Elixir. Includes a collection of links to Elixir news,
+        deep-dives, and videos.</Fragment
+      >
+    </ListItem>
+    <ListItem href="https://elixir-radar.com/" title="Elixir Radar">
+      <Fragment slot="description"
+        >A weekly newsletter about Elixir. Includes a collection of links to Elixir news,
+        deep-dives, job listings, and events.</Fragment
+      >
+    </ListItem>
+  </List>
+
+  <h2>Books</h2>
+
+  <List>
+    <ListItem
+      href="https://abookapart.com/products/accessibility-for-everyone"
+      title="Accessibility For Everyone by Laura Kalbag"
+    >
+      <Fragment slot="description"
+        >A great resource to start learning about web accessibility. It provides a wide,
+        beginner-friendly overview of the issue.</Fragment
+      >
+    </ListItem>
+    <ListItem
+      href="https://www.oreilly.com/library/view/web-accessibility-cookbook/9781098145590/"
+      title="Web Accessibility Cookbook by Manuel Matuzovic"
+    >
+      <Fragment slot="description"
+        >Comprehensive list of common UI patterns and how to implement them in an accessible way,
+        with code examples and explanations.</Fragment
+      >
+    </ListItem>
+    <ListItem
+      href="https://www.goodreads.com/book/show/38212110-technically-wrong"
+      title=" Technically Wrong: Sexist Apps, Biased Algorithms, and Other Threats of Toxic Tech by Sara Wachter-Boettcher"
+    >
+      <Fragment slot="description"
+        >A collection of interesting real-world examples of how the monoculture in tech led to
+        products that failed their users.</Fragment
+      >
+    </ListItem>
+    <ListItem
+      href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"
+      title="You Look Like a Thing and I Love You by Janelle Shane"
+    >
+      <Fragment slot="description"
+        >A good introduction to how AI works and what are its strengths and weaknesses, written for
+        everyone.</Fragment
+      >
+    </ListItem>
+  </List>
+
+  <h2>Fun</h2>
+
+  <List>
+    <ListItem href="https://cssbattle.dev/" title="CSSBattle">
+      <Fragment slot="description"
+        >A set of challenges to write HTML and CSS to replicate the given target image in the least
+        code possible.</Fragment
+      >
+    </ListItem>
+    <ListItem href="https://alexnisnevich.github.io/untrusted/" title="Untrusted">
+      <Fragment slot="description"
+        >A JavaScript game where your objective is to modify code to get out of a maze and reach the
+        exit.</Fragment
+      >
+    </ListItem>
+  </List>
+</Default>
