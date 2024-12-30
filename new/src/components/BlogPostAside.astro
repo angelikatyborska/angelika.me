@@ -1,0 +1,115 @@
+---
+
+---
+
+<aside class="post-aside-wrapper">
+  <div class="post-aside" id="post-aside">
+    <details class="post-aside-box">
+      <summary class="toc-header">Table of contents</summary>
+      TODO: TOC
+    </details>
+  </div>
+</aside>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/media-queries";
+  @use "../styles/mixins";
+  @use "../styles/typography";
+  @use "../styles/colors";
+
+  .post-aside-wrapper {
+    @media #{media-queries.$very-big} {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      width: calc(var(--page-padding-left) + var(--page-margin-left));
+    }
+  }
+
+  .post-aside {
+    background-color: var(--background-color);
+    font-family: typography.$paragraph-font-family;
+    overflow: visible;
+    font-size: variables.$font-size-small;
+    text-align: left;
+    margin-bottom: variables.$gap-big;
+
+    @media #{media-queries.$very-big} {
+      display: block;
+      position: sticky;
+      top: 0;
+      padding: variables.$gap-small variables.$gap-big variables.$gap-small variables.$gap-medium;
+    }
+
+    .post-aside-box {
+      border: none;
+      padding: 0;
+    }
+
+    .toc-header {
+      font-size: variables.$font-size-paragraph;
+      margin-top: 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    $ul-left-padding: 1.25em;
+
+    ul {
+      padding: 0 0 0 $ul-left-padding;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    // trying to center it with the ▼ char of the open details
+    $tree-left-offset: calc(#{-1 * $ul-left-padding} + 0.25em);
+    $tree-horizontal-line-length: calc(#{$ul-left-padding} - 0.25em * 2);
+    $tree-color: var(--border-color);
+    $tree-line-thickness: 1px;
+
+    li {
+      position: relative;
+      padding: 0;
+      text-align: left;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: $tree-left-offset;
+        width: $tree-line-thickness;
+        background-color: $tree-color;
+      }
+
+      &:last-child:before {
+        bottom: unset;
+        height: variables.$line-height-default * 0.5em;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: variables.$line-height-default * 0.5em;
+        left: calc(#{$tree-left-offset} + #{$tree-line-thickness});
+        height: 1px;
+        width: $tree-horizontal-line-length;
+        background-color: $tree-color;
+      }
+    }
+
+    a {
+      color: var(--secondary-text-color);
+      white-space: normal;
+      word-break: break-word;
+      text-decoration: none;
+
+      &.active {
+        color: var(--text-color);
+        background-color: var(--highlight);
+      }
+    }
+  }
+</style>

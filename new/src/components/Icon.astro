@@ -1,6 +1,6 @@
 ---
 import { library, icon } from "@fortawesome/fontawesome-svg-core";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon, faMugHot } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faMastodon,
@@ -11,8 +11,19 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import Exercism from "@assets/exercism.svg?raw";
 
-library.add(faSun, faMoon, faGithub, faMastodon, faBluesky, faLinkedin, faLastfm, faFlickr);
+library.add(
+  faMugHot,
+  faSun,
+  faMoon,
+  faGithub,
+  faMastodon,
+  faBluesky,
+  faLinkedin,
+  faLastfm,
+  faFlickr,
+);
 
+const MugHotIcon = icon(faMugHot);
 const SunIcon = icon(faSun);
 const MoonIcon = icon(faMoon);
 const GithubIcon = icon(faGithub);
@@ -23,6 +34,7 @@ const LastfmIcon = icon(faLastfm);
 const FlickrIcon = icon(faFlickr);
 
 const iconMap = {
+  mughot: MugHotIcon,
   sun: SunIcon,
   moon: MoonIcon,
   github: GithubIcon,
