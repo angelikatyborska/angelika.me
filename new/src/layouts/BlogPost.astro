@@ -15,6 +15,7 @@ type Props = CollectionEntry<"blog">["data"] & {
 
 const { title, excerpt, pubDate, id, tags, headings, minutesRead } = Astro.props;
 const formattedPubDate = format(pubDate, "dd MMMM yyyy");
+// TODO: fix view transition name
 ---
 
 <Default title={title} description={excerpt}>
@@ -41,8 +42,6 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
         times.
       </p>
     </div>
-
-    TODO: post_headers_anchors.js
 
     <BlogPostFooter />
     <BlogPostComments id={id} />
@@ -74,49 +73,36 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
       margin-top: variables.$gap-huge;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    :global(.anchor) {
       position: relative;
     }
 
-    .header-link {
+    :global(.anchor-link) {
       display: none;
       position: absolute;
       right: 100%;
-      top: 0; // can't be vertically centered due to multiline headers (must stick to first line)
-      padding-right: variables.$gap-small;
+      top: 0.2em; // can't be vertically centered due to multiline headers (must stick to first line)
       z-index: 10;
-
-      a {
-        font-size: variables.$font-size-small;
-        vertical-align: middle;
-        padding: 0 variables.$gap-small;
-        opacity: 0;
-        color: var(--accent-color);
-        transition: all variables.$transition-duration ease;
-      }
+      padding: 0 variables.$gap-small;
+      opacity: 0;
+      color: var(--accent-color);
+      transition: all variables.$transition-duration ease;
+      text-decoration: none;
+      font-size: 0.8em;
     }
 
     @media #{media-queries.$medium} {
-      .header-link {
+      :global(.anchor-link) {
         display: block;
-
-        a:focus {
-          opacity: 1;
-        }
       }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        &:hover .header-link a {
+      :global(.anchor-link):focus {
+        opacity: 1;
+      }
+
+      :global(.anchor):hover {
+        :global(.anchor-link) {
+          display: block;
           opacity: 1;
         }
       }

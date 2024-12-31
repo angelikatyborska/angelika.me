@@ -3,6 +3,8 @@ import { defineConfig, envField } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import rehypeWrapTables from "./src/lib/rehype-wrap-tables";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkReadingTime from "./src/lib/remark-reading-time";
 import { createCssVariablesTheme } from "shiki/core";
 import { transformerNotationDiff } from "@shikijs/transformers";
@@ -28,7 +30,26 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkReadingTime],
-    rehypePlugins: [rehypeWrapTables],
+    rehypePlugins: [
+      rehypeWrapTables,
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "prepend",
+          content: {
+            type: "text",
+            value: "#",
+          },
+          headingProperties: {
+            className: ["anchor"],
+          },
+          properties: {
+            className: ["anchor-link"],
+          },
+        },
+      ],
+    ],
     syntaxHighlight: "shiki",
     shikiConfig: {
       theme: myShikiTheme,

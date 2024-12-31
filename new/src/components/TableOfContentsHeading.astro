@@ -14,7 +14,7 @@ const { heading } = Astro.props;
 
 <li>
   <a href={"#" + heading.slug}>
-    {heading.text}
+    {heading.text?.replace(/^#/, "")}
   </a>
   {
     heading.subheadings.length > 0 && (
