@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import Default from "@layouts/Default.astro";
 import BlogPostAside from "@components/BlogPostAside.astro";
 import BlogPostFooter from "@components/BlogPostFooter.astro";
+import BlogPostComments from "@components/BlogPostComments.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   id: string;
@@ -41,12 +42,11 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
       </p>
     </div>
 
+    TODO: post_headers_anchors.js
+
     <BlogPostFooter />
-
-    <div>TODO: comments</div>
+    <BlogPostComments id={id} />
   </article>
-
-  TODO: post_headers_anchors.js
 </Default>
 
 <style lang="scss">
