@@ -2,6 +2,7 @@
 import { defineConfig, envField } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import rehypeWrapTables from "./src/lib/rehype-wrap-tables";
 import { createCssVariablesTheme } from "shiki/core";
 import { transformerNotationDiff } from "@shikijs/transformers";
 // Create a custom CSS variables theme, the following are the default values
@@ -25,6 +26,7 @@ export default defineConfig({
     responsiveImages: true,
   },
   markdown: {
+    rehypePlugins: [rehypeWrapTables],
     syntaxHighlight: "shiki",
     shikiConfig: {
       theme: myShikiTheme,

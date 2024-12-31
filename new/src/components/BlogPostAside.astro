@@ -144,10 +144,14 @@ const toc = buildToc(headings);
 </style>
 
 <script>
-  function postToc(article, tocContainer, options) {
-    const ARTICLE = document.querySelector(article);
+  function postToc(article: string, tocContainer: string, options: { highestLevel?: number }) {
+    const ARTICLE = document.querySelector<HTMLDivElement>(article)!;
     const HIGHEST_LEVEL = options.highestLevel || 2;
-    const CONTAINER = document.querySelector(tocContainer);
+    const CONTAINER = document.querySelector<HTMLDivElement>(tocContainer)!;
+
+    if (!CONTAINER || !ARTICLE) {
+      return;
+    }
 
     init();
 
@@ -184,7 +188,7 @@ const toc = buildToc(headings);
       return ARTICLE.offsetTop + ARTICLE.offsetHeight;
     }
 
-    function getHeadingsPerLevel() {
+    function getHeadingsPerLevel(): HTMLElement[][] {
       const headingsPerLevel = [];
 
       for (let level = HIGHEST_LEVEL; level <= 6; level++) {
@@ -202,7 +206,16 @@ const toc = buildToc(headings);
       return headingsPerLevel;
     }
 
-    function markCurrentLink(headingsPerLevel, scrollTop) {
+    type HeadingMeta = {
+      id: string;
+      tag: string;
+      text: string | null;
+      beginningOfScope: () => number;
+      endOfScope: () => number;
+      level: number;
+    };
+
+    function markCurrentLink(headingsPerLevel: HTMLElement[][], scrollTop: number) {
       const allArticleHeadings = findAllArticleHeadings(headingsPerLevel);
       allArticleHeadings.forEach(function (heading) {
         const isActive = isHeadingActive(
@@ -211,7 +224,7 @@ const toc = buildToc(headings);
           scrollTop,
         );
 
-        const headerLink = ARTICLE.querySelector(`*[href='#${heading.id}']`);
+        const headerLink = ARTICLE.querySelector(`*[href='#${heading.id}']`)!;
 
         if (isActive) {
           headerLink.classList.add("active");
@@ -223,14 +236,15 @@ const toc = buildToc(headings);
       });
     }
 
-    function findAllArticleHeadings(headingsPerLevel) {
-      const allArticleHeadings = [];
+    function findAllArticleHeadings(headingsPerLevel: HTMLElement[][]) {
+      const allArticleHeadings: HeadingMeta[] = [];
 
-      headingsPerLevel.forEach(function (headings, level) {
-        headings.forEach(function (heading) {
+      headingsPerLevel.forEach(function (headings: HTMLElement[], level: number) {
+        headings.forEach(function (heading: HTMLElement) {
           if (heading) {
             const beginningOfScope = () => heading.offsetTop;
             const nextHeadingOfSameLevel =
+              headingsPerLevel[level] &&
               headingsPerLevel[level][headingsPerLevel[level].indexOf(heading) + 1];
 
             const currentHeadingOfHigherLevel = allArticleHeadings.find(
@@ -257,7 +271,10 @@ const toc = buildToc(headings);
       return allArticleHeadings.sort((a, b) => a.beginningOfScope() - b.beginningOfScope());
     }
 
-    function calculateEndOfScope(nextHeadingOfSameLevel, currentHeadingOfHigherLevel) {
+    function calculateEndOfScope(
+      nextHeadingOfSameLevel: HTMLElement | undefined,
+      currentHeadingOfHigherLevel: HeadingMeta | undefined,
+    ) {
       let endOfScope;
 
       if (currentHeadingOfHigherLevel) {
@@ -280,7 +297,7 @@ const toc = buildToc(headings);
       return endOfScope;
     }
 
-    function isHeadingActive(top, bottom, scrollTop) {
+    function isHeadingActive(top: number, bottom: number, scrollTop: number) {
       const offsetForAnchorLinksToBeActiveAfterClicks = 30;
       const diffTop = scrollTop - top + offsetForAnchorLinksToBeActiveAfterClicks;
       const diffBottom = bottom - scrollTop - offsetForAnchorLinksToBeActiveAfterClicks;

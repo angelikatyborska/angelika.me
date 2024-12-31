@@ -1,0 +1,31 @@
+@use "./typography";
+@use "./variables";
+@use "./mixins";
+
+.table-wrapper {
+  @include mixins.box();
+  @include mixins.scroll-shadow();
+  margin: 0 auto variables.$gap-big;
+}
+
+table {
+  font-family: typography.$code-font-family;
+  font-size: variables.$font-size-code;
+
+  th {
+    font-weight: bold;
+  }
+
+  thead tr,
+  tbody tr:not(:last-child) {
+    td,
+    th {
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+
+  td,
+  th {
+    padding: variables.$gap-tiny variables.$gap-small;
+  }
+}
