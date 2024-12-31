@@ -8,10 +8,11 @@ import BlogPostFooter from "@components/BlogPostFooter.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   id: string;
+  minutesRead: string;
   headings: MarkdownHeading[];
 };
 
-const { title, excerpt, pubDate, id, tags, headings } = Astro.props;
+const { title, excerpt, pubDate, id, tags, headings, minutesRead } = Astro.props;
 const formattedPubDate = format(pubDate, "dd MMMM yyyy");
 ---
 
@@ -23,7 +24,7 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
       </time>
       <h1>{title}</h1>
       <div class="post-meta">
-        <span class="time-estimate"> 1 min read (TODO: real value) </span>
+        <span class="time-estimate">{minutesRead}</span>
         <span class="tags">{tags} (TODO: tag links)</span>
       </div>
     </header>
