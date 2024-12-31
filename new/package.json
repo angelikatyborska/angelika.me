@@ -28,6 +28,7 @@
     "@shikijs/transformers": "^1.24.4",
     "astro": "^5.0.4",
     "date-fns": "^4.1.0",
+    "remark-toc": "^9.0.0",
     "sass": "^1.83.0",
     "typescript": "^5.7.2"
   },

@@ -1,20 +1,22 @@
 ---
+import { type MarkdownHeading } from "astro";
 import { format } from "date-fns/format";
 import type { CollectionEntry } from "astro:content";
 import Default from "@layouts/Default.astro";
 import BlogPostAside from "@components/BlogPostAside.astro";
 import BlogPostFooter from "@components/BlogPostFooter.astro";
 
-type Props = CollectionEntry<"blog">["data"] & { slug: string };
+type Props = CollectionEntry<"blog">["data"] & {
+  headings: MarkdownHeading[];
+};
 
-const { title, excerpt, pubDate, slug, tags } = Astro.props;
-console.log({ tags });
+const { title, excerpt, pubDate, id, tags, headings } = Astro.props;
 const formattedPubDate = format(pubDate, "dd MMMM yyyy");
 ---
 
 <Default title={title} description={excerpt}>
   <article class="post">
-    <header style={`view-transition-name: post-${slug}`}>
+    <header style={`view-transition-name: post-${id}`}>
       <time class="date" datetime="{{page.date}}">
         {formattedPubDate}
       </time>
@@ -26,7 +28,7 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
     </header>
 
     <div class="post-content" id="post-content">
-      <BlogPostAside />
+      <BlogPostAside headings={headings} />
       <slot />
 
       <p class="sr-only" aria-hidden="true">
@@ -42,7 +44,7 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
     <div>TODO: comments</div>
   </article>
 
-  TODO: post_headers_anchors.js TODO: post_toc.js
+  TODO: post_headers_anchors.js
 </Default>
 
 <style lang="scss">

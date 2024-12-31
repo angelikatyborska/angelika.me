@@ -1,12 +1,41 @@
 ---
+import type { MarkdownHeading } from "astro";
+import TableOfContentsHeading, {
+  type MarkdownHeadingWithSubheadings,
+} from "./TableOfContentsHeading.astro";
 
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+
+function buildToc(headings: MarkdownHeading[]): MarkdownHeadingWithSubheadings[] {
+  const toc: MarkdownHeadingWithSubheadings[] = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    if (heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+
+  return toc;
+}
+
+const toc = buildToc(headings);
 ---
 
 <aside class="post-aside-wrapper">
   <div class="post-aside" id="post-aside">
     <details class="post-aside-box">
       <summary class="toc-header">Table of contents</summary>
-      TODO: TOC
+      <ul>
+        {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+      </ul>
     </details>
   </div>
 </aside>
@@ -57,7 +86,7 @@
 
     $ul-left-padding: 1.25em;
 
-    ul {
+    :global(ul) {
       padding: 0 0 0 $ul-left-padding;
       margin: 0;
       list-style-type: none;
@@ -69,7 +98,7 @@
     $tree-color: var(--border-color);
     $tree-line-thickness: 1px;
 
-    li {
+    :global(li) {
       position: relative;
       padding: 0;
       text-align: left;
@@ -100,7 +129,7 @@
       }
     }
 
-    a {
+    :global(a) {
       color: var(--secondary-text-color);
       white-space: normal;
       word-break: break-word;
@@ -113,3 +142,152 @@
     }
   }
 </style>
+
+<script>
+  function postToc(article, tocContainer, options) {
+    const ARTICLE = document.querySelector(article);
+    const HIGHEST_LEVEL = options.highestLevel || 2;
+    const CONTAINER = document.querySelector(tocContainer);
+
+    init();
+
+    function init() {
+      const headingsPerLevel = getHeadingsPerLevel();
+      if (headingsPerLevel.flat().length > 0) {
+        markCurrentLink(headingsPerLevel, scrollTop());
+
+        window.addEventListener("scroll", function () {
+          markCurrentLink(headingsPerLevel, scrollTop());
+        });
+      } else {
+        // completely clear container if would be empty
+        CONTAINER.innerHTML = "";
+      }
+
+      if (window.innerWidth >= 1100) {
+        const details = ARTICLE.querySelector("details");
+        if (details) {
+          details.setAttribute("open", "");
+        }
+      }
+    }
+
+    function scrollTop() {
+      return window.scrollY - startOfArticle();
+    }
+
+    function startOfArticle() {
+      return ARTICLE.offsetTop;
+    }
+
+    function endOfArticle() {
+      return ARTICLE.offsetTop + ARTICLE.offsetHeight;
+    }
+
+    function getHeadingsPerLevel() {
+      const headingsPerLevel = [];
+
+      for (let level = HIGHEST_LEVEL; level <= 6; level++) {
+        let headings = Array.prototype.slice.call(
+          document.querySelectorAll(`${article} > h` + level + ":not(.no_toc)"),
+        );
+        // offset top will change after resizing but that doesn't matter
+        // the order will remain the same
+        headings = headings.sort(function (a, b) {
+          return a.offsetTop - b.offsetTop;
+        });
+        headingsPerLevel.push(headings);
+      }
+
+      return headingsPerLevel;
+    }
+
+    function markCurrentLink(headingsPerLevel, scrollTop) {
+      const allArticleHeadings = findAllArticleHeadings(headingsPerLevel);
+      allArticleHeadings.forEach(function (heading) {
+        const isActive = isHeadingActive(
+          heading.beginningOfScope(),
+          heading.endOfScope(),
+          scrollTop,
+        );
+
+        const headerLink = ARTICLE.querySelector(`*[href='#${heading.id}']`);
+
+        if (isActive) {
+          headerLink.classList.add("active");
+          headerLink.setAttribute("aria-current", "location");
+        } else {
+          headerLink.classList.remove("active");
+          headerLink.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function findAllArticleHeadings(headingsPerLevel) {
+      const allArticleHeadings = [];
+
+      headingsPerLevel.forEach(function (headings, level) {
+        headings.forEach(function (heading) {
+          if (heading) {
+            const beginningOfScope = () => heading.offsetTop;
+            const nextHeadingOfSameLevel =
+              headingsPerLevel[level][headingsPerLevel[level].indexOf(heading) + 1];
+
+            const currentHeadingOfHigherLevel = allArticleHeadings.find(
+              (h) =>
+                h.level === level + 1 &&
+                h.endOfScope() > beginningOfScope() &&
+                h.beginningOfScope() < beginningOfScope(),
+            );
+            const endOfScope = () =>
+              calculateEndOfScope(nextHeadingOfSameLevel, currentHeadingOfHigherLevel);
+
+            allArticleHeadings.push({
+              id: heading.id,
+              tag: heading.tagName.toLowerCase(),
+              text: heading.textContent,
+              beginningOfScope: beginningOfScope,
+              endOfScope: endOfScope,
+              level: level + 2,
+            });
+          }
+        });
+      });
+
+      return allArticleHeadings.sort((a, b) => a.beginningOfScope() - b.beginningOfScope());
+    }
+
+    function calculateEndOfScope(nextHeadingOfSameLevel, currentHeadingOfHigherLevel) {
+      let endOfScope;
+
+      if (currentHeadingOfHigherLevel) {
+        if (nextHeadingOfSameLevel) {
+          endOfScope = Math.min(
+            nextHeadingOfSameLevel.offsetTop,
+            currentHeadingOfHigherLevel.endOfScope(),
+          );
+        } else {
+          endOfScope = currentHeadingOfHigherLevel.endOfScope();
+        }
+      } else {
+        if (nextHeadingOfSameLevel) {
+          endOfScope = nextHeadingOfSameLevel.offsetTop;
+        } else {
+          endOfScope = endOfArticle();
+        }
+      }
+
+      return endOfScope;
+    }
+
+    function isHeadingActive(top, bottom, scrollTop) {
+      const offsetForAnchorLinksToBeActiveAfterClicks = 30;
+      const diffTop = scrollTop - top + offsetForAnchorLinksToBeActiveAfterClicks;
+      const diffBottom = bottom - scrollTop - offsetForAnchorLinksToBeActiveAfterClicks;
+
+      return diffTop > 0 && diffBottom > 0;
+    }
+  }
+
+  postToc("#post-content", "#post-aside", {});
+</script>

@@ -1,0 +1,28 @@
+---
+import type { MarkdownHeading } from "astro";
+
+export type MarkdownHeadingWithSubheadings = MarkdownHeading & {
+  subheadings: MarkdownHeadingWithSubheadings[];
+};
+
+type Props = {
+  heading: MarkdownHeadingWithSubheadings;
+};
+
+const { heading } = Astro.props;
+---
+
+<li>
+  <a href={"#" + heading.slug}>
+    {heading.text}
+  </a>
+  {
+    heading.subheadings.length > 0 && (
+      <ul>
+        {heading.subheadings.map((subheading: MarkdownHeadingWithSubheadings) => (
+          <Astro.self heading={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>
