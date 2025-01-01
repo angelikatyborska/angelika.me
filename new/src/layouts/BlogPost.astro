@@ -1,34 +1,27 @@
 ---
 import { type MarkdownHeading } from "astro";
-import { format } from "date-fns/format";
-import type { CollectionEntry } from "astro:content";
+import { type Post } from "@lib/posts";
 import Default from "@layouts/Default.astro";
+import BlogPostHeader from "@components/BlogPostHeader.astro";
 import BlogPostAside from "@components/BlogPostAside.astro";
 import BlogPostFooter from "@components/BlogPostFooter.astro";
 import BlogPostComments from "@components/BlogPostComments.astro";
 
-type Props = CollectionEntry<"blog">["data"] & {
-  id: string;
-  minutesRead: string;
+type Props = {
+  post: Post;
   headings: MarkdownHeading[];
 };
 
-const { title, excerpt, pubDate, id, tags, headings, minutesRead } = Astro.props;
-const formattedPubDate = format(pubDate, "dd MMMM yyyy");
+const { post, headings } = Astro.props;
 // TODO: fix view transition name
 ---
 
-<Default title={title} description={excerpt}>
+<Default title={post.data.title} description={post.data.excerpt}>
   <article class="post">
-    <header style={`view-transition-name: post-${id}`}>
-      <time class="date" datetime="{{page.date}}">
-        {formattedPubDate}
-      </time>
-      <h1>{title}</h1>
-      <div class="post-meta">
-        <span class="time-estimate">{minutesRead}</span>
-        <span class="tags">{tags} (TODO: tag links)</span>
-      </div>
+    <header style={`view-transition-name: post-${post.id}`}>
+      <BlogPostHeader {...Astro.props}>
+        <h1>{post.data.title}</h1>
+      </BlogPostHeader>
     </header>
 
     <div class="post-content" id="post-content">
@@ -44,7 +37,7 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
     </div>
 
     <BlogPostFooter />
-    <BlogPostComments id={id} />
+    <BlogPostComments id={post.id} />
   </article>
 </Default>
 
@@ -56,10 +49,6 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
   @use "../styles/colors";
 
   .post {
-    time {
-      @include mixins.delicate;
-    }
-
     header {
       margin-bottom: variables.$gap-big;
 
@@ -113,10 +102,6 @@ const formattedPubDate = format(pubDate, "dd MMMM yyyy");
       list-style: decimal;
       font-size: 80%;
     }
-  }
-
-  .post-meta {
-    @include mixins.post-meta;
   }
 
   .disqus-info {

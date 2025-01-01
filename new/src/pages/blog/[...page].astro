@@ -1,0 +1,75 @@
+---
+import { type Page, type PaginateFunction, type PaginateOptions, type Params } from "astro";
+import { getPublishedPosts, type Post } from "@lib/posts";
+import Default from "@layouts/Default.astro";
+import BlogPagination from "@components/BlogPagination.astro";
+import BlogPostHeader from "@components/BlogPostHeader.astro";
+
+type Props = {
+  page: Page<Post>;
+};
+
+type Paginate = (
+  data: Post[],
+  args?: PaginateOptions<Props, Params>,
+) => ReturnType<PaginateFunction>;
+
+export async function getStaticPaths({ paginate }: { paginate: Paginate }) {
+  const posts = await getPublishedPosts();
+
+  return paginate(posts, { pageSize: 1 });
+}
+
+const { page } = Astro.props;
+
+// TODO: urls should be like this:
+// - blog
+// - blog/page/2
+// - blog/page/3
+---
+
+<Default title="Blog">
+  <h1>Blog</h1>
+
+  <div class="posts">
+    {
+      page.data.map((post: Post) => (
+        <article class="post-preview" style={`view-transition-name: post-${post.id}`}>
+          <BlogPostHeader post={post}>
+            <h2>
+              <a href={`/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p class="post-preview-description">{post.data.excerpt}</p>
+          </BlogPostHeader>
+        </article>
+      ))
+    }
+  </div>
+
+  <BlogPagination page={page} />
+</Default>
+
+<style lang="scss">
+  @use "../../styles/variables";
+
+  .posts {
+    margin-top: variables.$gap-huge;
+  }
+
+  .post-preview {
+    margin: 0 auto variables.$gap-huge auto;
+
+    h2 {
+      font-size: variables.$font-size-h3;
+      margin-top: 0;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .post-preview-description {
+      margin-bottom: variables.$gap-medium;
+    }
+  }
+</style>

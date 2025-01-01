@@ -1,0 +1,68 @@
+---
+type Props = {
+  page: {
+    total: number;
+    currentPage: number;
+    lastPage: number;
+    url: {
+      current: string | undefined;
+      next: string | undefined;
+      prev: string | undefined;
+      first: string | undefined;
+      last: string | undefined;
+    };
+  };
+};
+
+const { currentPage, lastPage, url } = Astro.props.page;
+---
+
+{
+  lastPage > 1 && (
+    <nav aria-label="pagination" class="pagination">
+      {url.prev && (
+        <a class="pagination-prev" href={url.prev}>
+          Previous page
+        </a>
+      )}
+
+      <span class="pagination-current">
+        Page {currentPage} out of {lastPage}
+      </span>
+
+      {url.next && (
+        <a class="pagination-next" href={url.next}>
+          Next page
+        </a>
+      )}
+    </nav>
+  )
+}
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/typography";
+
+  .pagination {
+    font-family: typography.$paragraph-font-family;
+    margin: variables.$gap-huge 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+
+    .pagination-prev {
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    .pagination-current {
+      grid-column: 2;
+      justify-self: center;
+    }
+
+    .pagination-next {
+      grid-column: 3;
+      justify-self: end;
+    }
+  }
+</style>

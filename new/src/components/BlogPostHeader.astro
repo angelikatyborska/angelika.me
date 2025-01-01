@@ -1,0 +1,32 @@
+---
+import { format } from "date-fns/format";
+import { type Post } from "@lib/posts";
+
+type Props = {
+  post: Post;
+};
+
+const { post } = Astro.props;
+const formattedPubDate = format(post.data.pubDate, "dd MMMM yyyy");
+---
+
+<time class="date" datetime={post.data.pubDate.getTime().toString()}>
+  {formattedPubDate}
+</time>
+<slot />
+<div class="post-meta">
+  <span class="time-estimate">{post.readingTime}</span>
+  <span class="tags">{post.data.tags} (TODO: tag links)</span>
+</div>
+
+<style lang="scss">
+  @use "../styles/mixins";
+
+  .date {
+    @include mixins.delicate;
+  }
+
+  .post-meta {
+    @include mixins.post-meta;
+  }
+</style>
