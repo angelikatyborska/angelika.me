@@ -1,8 +1,9 @@
 ---
+import Avatar from "@assets/avatar.jpg";
 import { Image } from "astro:assets";
 
 type Props = {
-  image: ImageMetadata;
+  image: typeof Avatar;
   alt: string;
   caption: string;
   relativeMaxWidth: number;

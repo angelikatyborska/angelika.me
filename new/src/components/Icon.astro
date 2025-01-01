@@ -58,6 +58,7 @@ const { name } = Astro.props;
 <Fragment set:html={iconMap[name].html} />
 
 <style is:global>
+  /* stylelint-disable-next-line selector-class-pattern */
   svg.svg-inline--fa,
   svg.exercism {
     width: 1em;
