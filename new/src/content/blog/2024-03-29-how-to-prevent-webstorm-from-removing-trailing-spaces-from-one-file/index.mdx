@@ -5,7 +5,7 @@ tags: [editor, IDE, WebStorm]
 pubDate: 2024-03-29 13:32:00 +0100
 ---
 import BlogPostImage from "@components/BlogPostImage.astro";
-import OnSaveOptions from "./on-save-options.gif";
+import OnSaveOptions from "./on-save-options.png";
 
 I love my IDE's option "on save, remove all trailing spaces on all lines". 99% of the time, I didn't mean to end a line with a space. It's meaningless, it's trash, so let's remove it.
 
@@ -18,13 +18,6 @@ However, sometimes, **I need the trailing spaces**.
 For example, in my recent project, I wrote a smoke test. The smoke test would run the tool under test in a specific directory, and then compare the output of running `git diff` in that directory with an expected diff. The expected diff was stored in a `.diff` file, and its trailing spaces were significant because the real output of `git diff` has trailing spaces.
 
 I didn't want to change my IDE settings for the whole project, but I also didn't find an IDE-specific way to exclude a single file from the "on save" transformations. Luckily, there's a tool that could help.
-
-<figure>
-<a href='{% asset posts/how-to-prevent-webstorm-from-removing-trailing-spaces-from-one-file/on-save-options @path %}'>
-{% asset posts/how-to-prevent-webstorm-from-removing-trailing-spaces-from-one-file/on-save-options style='width: 100%; max-width: 500px;' alt="On save: remove trailing spaces on all lines and ensure every saved file ends with a line break." %}
-</a>
-<figcaption>My WebStorm "on save" options</figcaption>
-</figure>
 
 <BlogPostImage
   image={OnSaveOptions}
