@@ -10,3 +10,5 @@ export const GITHUB = "https://github.com/angelikatyborska";
 export const EXERCISM = "https://exercism.io/profiles/angelikatyborska";
 export const LASTFM = "https://www.last.fm/user/atyborska93";
 export const FLICKR = "https://www.flickr.com/photos/192384616@N03";
+
+export const POSTS_PER_PAGE = 3;

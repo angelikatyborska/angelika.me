@@ -64,4 +64,7 @@ export default defineConfig({
       }),
     },
   },
+  redirects: {
+    "/blog/page/[...page]": "/blog/[...page]",
+  },
 });
