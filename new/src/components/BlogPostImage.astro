@@ -5,8 +5,8 @@ import { Image } from "astro:assets";
 type Props = {
   image: typeof Avatar;
   alt: string;
-  caption: string;
-  relativeMaxWidth: number;
+  caption?: string;
+  relativeMaxWidth?: number;
 };
 
 const { image, alt, caption, relativeMaxWidth = 1 } = Astro.props;
@@ -23,6 +23,7 @@ const contentMaxWidth = 750;
     />
   </a>
   <figcaption>
-    {caption}
+    {!caption && Astro.slots.has("caption") && <slot name="caption" />}
+    {!Astro.slots.has("caption") && caption}
   </figcaption>
 </figure>
