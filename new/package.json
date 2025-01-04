@@ -14,7 +14,7 @@
     "lint:css": "stylelint **/*.astro",
     "lint:prettier": "prettier --check .",
     "format": "prettier . --write && npm run lint:js -- --fix && npm run lint:css -- --fix",
-    "test": "vitest --no-watch"
+    "test": "MODE=published vitest --no-watch"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

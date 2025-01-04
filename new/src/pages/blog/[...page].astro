@@ -34,7 +34,7 @@ const { page } = Astro.props;
   <div class="posts">
     {
       page.data.map((post: Post) => (
-        <article class="post-preview" style={`view-transition-name: post-${post.id}`}>
+        <article class="post-preview" style={`view-transition-name: post-${post.cssFriendlyId}`}>
           <BlogPostHeader post={post}>
             <h2>
               <a href={`/${post.id}/`}>{post.data.title}</a>

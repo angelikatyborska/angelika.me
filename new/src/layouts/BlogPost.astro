@@ -13,12 +13,11 @@ type Props = {
 };
 
 const { post, headings } = Astro.props;
-// TODO: fix view transition name
 ---
 
 <Default title={post.data.title} description={post.data.excerpt}>
   <article class="post">
-    <header style={`view-transition-name: post-${post.id}`}>
+    <header style={`view-transition-name: post-${post.cssFriendlyId}`}>
       <BlogPostHeader {...Astro.props}>
         <h1>{post.data.title}</h1>
       </BlogPostHeader>

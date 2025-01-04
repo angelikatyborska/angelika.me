@@ -5,6 +5,10 @@
 @use "./syntax";
 @use "./table";
 
+@view-transition {
+  navigation: auto;
+}
+
 * {
   &,
   &:before,
