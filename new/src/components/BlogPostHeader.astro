@@ -1,6 +1,6 @@
 ---
 import { format } from "date-fns/format";
-import { type Post } from "@lib/posts";
+import { prepareTags, type Post } from "@lib/posts";
 
 type Props = {
   post: Post;
@@ -16,7 +16,16 @@ const formattedPubDate = format(post.data.pubDate, "dd MMMM yyyy");
 <slot />
 <div class="post-meta">
   <span class="time-estimate">{post.readingTime}</span>
-  <span class="tags">{post.data.tags} (TODO: tag links)</span>
+  <span class="tags">
+    {
+      prepareTags(post.data.tags).map((tag, index) => (
+        <Fragment>
+          {index > 0 && ", "}
+          <a href={`/tag/${tag.tag}`}>{tag.tagTitle}</a>
+        </Fragment>
+      ))
+    }
+  </span>
 </div>
 
 <style lang="scss">

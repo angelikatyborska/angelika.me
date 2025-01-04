@@ -6,11 +6,12 @@ import BlogPagination from "@components/BlogPagination.astro";
 import BlogPostHeader from "@components/BlogPostHeader.astro";
 
 type Props = {
-  page: Page<Post>;
+  page?: Page<Post>;
+  posts?: Post[];
   title: string;
 };
 
-const { page, title } = Astro.props;
+const { page, posts, title } = Astro.props;
 ---
 
 <Default title={title}>
@@ -18,7 +19,7 @@ const { page, title } = Astro.props;
 
   <div class="posts">
     {
-      page.data.map((post: Post) => (
+      (page?.data || posts || []).map((post: Post) => (
         <article class="post-preview" style={`view-transition-name: post-${post.cssFriendlyId}`}>
           <BlogPostHeader post={post}>
             <h2>
@@ -31,7 +32,7 @@ const { page, title } = Astro.props;
     }
   </div>
 
-  <BlogPagination page={page} />
+  {page && <BlogPagination page={page} />}
 </Default>
 
 <style lang="scss">

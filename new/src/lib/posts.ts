@@ -40,3 +40,15 @@ export const getPublishedPosts = (includeHidden: boolean = false) =>
   });
 
 export const getPublishedPostsIncludeHidden = () => getPublishedPosts(true);
+
+export const prepareTags = (rawTags: string[]) => {
+  const tags = rawTags.map((tag) => ({
+    tag: tag.toLowerCase().replaceAll(" ", "-"),
+    tagTitle: tag,
+  }));
+
+  return tags.filter((tag, index) => {
+    const i = tags.findIndex((x) => x.tag === tag.tag);
+    return i === index;
+  });
+};

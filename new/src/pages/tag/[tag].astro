@@ -1,0 +1,27 @@
+---
+import { getPublishedPosts, prepareTags } from "@lib/posts";
+import BlogPosts from "@layouts/BlogPosts.astro";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  const tags = prepareTags(posts.flatMap((post) => post.data.tags));
+
+  return tags.map((tag) => ({
+    params: { tag: tag.tag },
+    props: { tagTitle: tag.tagTitle },
+  }));
+}
+
+const { tag } = Astro.params;
+const { tagTitle } = Astro.props;
+
+const posts = await getPublishedPosts();
+
+const postsForTag = posts.filter((post) => {
+  const postTags = prepareTags(post.data.tags).map((x) => x.tag);
+  return postTags.indexOf(tag) >= 0;
+});
+---
+
+<BlogPosts title={`Topic: ${tagTitle}`} posts={postsForTag} />
