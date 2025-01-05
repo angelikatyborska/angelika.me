@@ -2,7 +2,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { MODE } from "astro:env/server";
 import getReadingTime from "reading-time";
 
-export type Post = CollectionEntry<"blog"> & { cssFriendlyId: string; readingTime: string };
+export type Post = CollectionEntry<"blog"> & { originalId: string; readingTime: string };
 
 export const reformatDateInId = (postId: string) => {
   return postId.replace(
@@ -19,7 +19,7 @@ export const getPosts = async (filter: blogFilter = undefined) => {
     .map((post) => ({
       ...post,
       id: reformatDateInId(post.id),
-      cssFriendlyId: post.id,
+      originalId: post.id,
       readingTime: getReadingTime(post.body || "", { wordsPerMinute: 300 }).text,
     }))
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());

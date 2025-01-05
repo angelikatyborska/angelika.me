@@ -13,8 +13,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// TODO: OG images
-const { image = "/blog-placeholder-1.jpg" } = Astro.props;
+const { image = "/og/default.png" } = Astro.props;
 
 const title = Astro.props.title ? `${Astro.props.title} | ${SITE_TITLE}` : SITE_TITLE;
 const description = Astro.props.description || SITE_DESCRIPTION;

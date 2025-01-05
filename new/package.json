@@ -10,11 +10,12 @@
     "check": "MODE=draft astro check",
     "astro": "astro",
     "lint": "npm run lint:js && npm run lint:css && lint:prettier",
-    "lint:js": "eslint",
+    "lint:js": "eslint --ignore-pattern **/*.cjs",
     "lint:css": "stylelint **/*.astro",
     "lint:prettier": "prettier --check .",
     "format": "prettier . --write && npm run lint:js -- --fix && npm run lint:css -- --fix",
-    "test": "MODE=published vitest --no-watch"
+    "test": "MODE=published vitest --no-watch",
+    "screenshot_og_images": "node bin/screenshot_og_images.cjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -29,6 +30,7 @@
     "astro": "^5.1.2",
     "date-fns": "^4.1.0",
     "mdast-util-to-string": "^4.0.0",
+    "puppeteer": "^23.11.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",

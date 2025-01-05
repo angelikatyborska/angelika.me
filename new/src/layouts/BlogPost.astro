@@ -15,9 +15,13 @@ type Props = {
 const { post, headings } = Astro.props;
 ---
 
-<Default title={post.data.title} description={post.data.excerpt}>
+<Default
+  title={post.data.title}
+  description={post.data.excerpt}
+  ogImage={`/og/${post.originalId}.png`}
+>
   <article class="post">
-    <header style={`view-transition-name: post-${post.cssFriendlyId}`}>
+    <header style={`view-transition-name: post-${post.originalId}`}>
       <BlogPostHeader {...Astro.props}>
         <h1>{post.data.title}</h1>
       </BlogPostHeader>

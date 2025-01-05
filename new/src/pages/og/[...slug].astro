@@ -1,0 +1,34 @@
+---
+import { MODE } from "astro:env/server";
+import { getPublishedPostsIncludeHidden, type Post } from "@lib/posts";
+import DefaultOgImage from "@layouts/DefaultOgImage.astro";
+import BlogPostOgImage from "@layouts/BlogPostOgImage.astro";
+
+export async function getStaticPaths() {
+  if (MODE === "draft") {
+    const posts = await getPublishedPostsIncludeHidden();
+
+    const routes = posts.map((post) => ({
+      params: { slug: post.originalId },
+      props: post,
+    }));
+
+    return [
+      ...routes,
+      {
+        params: { slug: "default" },
+        props: undefined,
+      },
+    ];
+  } else {
+    return [];
+  }
+}
+
+type Props = Post;
+
+const { slug } = Astro.params;
+const post = Astro.props;
+---
+
+{slug === "default" ? <DefaultOgImage /> : <BlogPostOgImage post={post} />}

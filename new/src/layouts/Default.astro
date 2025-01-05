@@ -6,14 +6,15 @@ import Footer from "@components/Footer.astro";
 type Props = {
   title?: string | undefined;
   description?: string | undefined;
+  ogImage?: string | undefined;
 };
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <Head title={title} description={description} />
+  <Head title={title} description={description} image={ogImage} />
   <body>
     <div class="page-wrapper">
       <Header />
