@@ -7,20 +7,38 @@ type Props = {
   alt: string;
   caption?: string;
   relativeMaxWidth?: number;
+  // sometimes needs to be turned off because sharp crashes on big gifs
+  experimentalResponsiveImage?: boolean;
 };
 
-const { image, alt, caption, relativeMaxWidth = 1 } = Astro.props;
+const {
+  image,
+  alt,
+  caption,
+  relativeMaxWidth = 1,
+  experimentalResponsiveImage = true,
+} = Astro.props;
 
 const contentMaxWidth = 750;
 ---
 
 <figure>
   <a href={image.src}>
-    <Image
-      width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
-      src={image}
-      alt={alt}
-    />
+    {
+      experimentalResponsiveImage ? (
+        <Image
+          width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
+          src={image}
+          alt={alt}
+        />
+      ) : (
+        <img
+          width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
+          src={image.src}
+          alt={alt}
+        />
+      )
+    }
   </a>
   <figcaption>
     {!caption && Astro.slots.has("caption") && <slot name="caption" />}
