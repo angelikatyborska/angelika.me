@@ -2,7 +2,6 @@ import rss from "@astrojs/rss";
 import { getPublishedPosts } from "@lib/posts.ts";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@lib/consts";
 
-// TODO: channel image
 export async function GET(context) {
   const posts = await getPublishedPosts();
   return rss({
