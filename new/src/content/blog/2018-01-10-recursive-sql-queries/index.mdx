@@ -1,0 +1,315 @@
+---
+title: Recursive SQL queries
+excerpt: A few examples of recursive queries for PostgreSQL using WITH RECURSIVE.
+tags: [SQL]
+pubDate: 2018-01-10 07:35:00 +0100
+---
+
+All the below examples were written for PostgreSQL.
+
+Let's say I want to model a directory structure like this one:
+
+```
+.
+└── Angelika
+    ├── .vim
+    │   └── bundle
+    ├── Documents
+    └── Pictures
+```
+
+The directory `.vim` is a hidden directory. For the sake of this example, I will mark that with a `hidden` flag instead of assuming the naming convention with the dot.
+
+I create this table for directories:
+
+```sql
+CREATE TABLE directories (
+  id serial NOT NULL,
+  name varchar(255) NOT NULL,
+  parent_id int,
+  hidden bool NOT NUlL,
+  PRIMARY KEY(id),
+  CONSTRAINT fk_parent_id
+    FOREIGN KEY (parent_id)
+    REFERENCES directories (id)
+);
+```
+
+I insert data representing the directory tree from above:
+
+```sql
+INSERT INTO
+  directories (id, name, hidden, parent_id)
+VALUES
+  (1, 'Angelika', false, null),
+  (2, '.vim', true, 1),
+  (3, 'bundle', false, 2),
+  (4, 'Documents', false, 1),
+  (5, 'Pictures', false, 1);
+```
+
+## Read a recursive property
+
+Let's say I need to display a tree of directories but exclude the hidden ones and their children.
+
+I am going to define a `show` property. I want to show a directory only if it is not hidden and all of its ancestors are not hidden. Below this definition as a Ruby method:
+
+```ruby
+def show?(directory)
+  !directory.hidden &&
+    (directory.parent == nil || show?(directory.parent))
+end
+```
+
+It is also possible to define exactly the same logic in a SQL query.
+
+```sql
+WITH RECURSIVE tree AS
+(
+  SELECT
+    id,
+    name,
+    parent_id,
+    NOT hidden AS show
+  FROM
+    directories
+  WHERE
+    parent_id IS NULL
+  UNION ALL
+  SELECT
+    directory.id,
+    directory.name,
+    directory.parent_id,
+    (
+      NOT(directory.hidden)
+      AND parent.show
+    )
+  FROM
+    directories directory
+    JOIN
+      tree parent
+      ON directory.parent_id = parent.id
+)
+SELECT
+  id,
+  name,
+  parent_id
+FROM
+  tree
+WHERE
+  show = TRUE;
+```
+
+### Explanation
+
+The query is split into two parts. The first part is a `WITH RECURSIVE` statement that builds a temporary results table for further use with the (arbitrarily chosen) name `tree`. This first part is split into two sub-parts, a non-recursive term, and a recursive term. The second part is an ordinary `SELECT` statement using the result produced by the first part.
+
+```sql
+-- general shape
+WITH RECURSIVE tree AS
+(
+  -- (...) - non-recursive term
+  UNION ALL
+  -- (...) -recursive term
+)
+SELECT
+  -- (...) - your typical select
+;
+```
+
+#### Non-recursive term
+
+The terminal condition, in this case, is when a directory has no parent (`parent_id IS NULL`). `show` is then simply equal to `NOT hidden`.
+
+```sql
+SELECT
+  id,
+  name,
+  parent_id,
+  NOT hidden AS show
+FROM
+  directories
+WHERE
+  parent_id IS NULL
+```
+
+I need to select all other columns that I might want to use later, but the minimum, in this case, is the `id`, as it's needed to join on in the recursive term.
+
+#### Recursive term
+
+In this part, I select from the original `directories` table joined with the recursive temporary `tree` result on the parent-child relation (`directory.parent_id = parent.id`). The order of selected columns needs to be the same as in the non-recursive part. The recursion is in the `NOT(directory.hidden) AND parent.show` statement.
+
+```sql
+SELECT
+  directory.id,
+  directory.name,
+  directory.parent_id,
+  (
+    NOT(directory.hidden)
+    AND parent.show
+  )
+FROM
+  directories directory
+  JOIN
+    tree parent
+    ON directory.parent_id = parent.id
+```
+
+### SQL Fiddle with this example
+
+[Here](http://sqlfiddle.com/#!17/a8322/1).
+
+## Update a node and its ancestors
+
+Let's say I keep a timestamp of when a directory was last updated in a column called `updated_at`, and I define it as the last time when the directory was updated or any of its children were updated.
+
+```sql
+CREATE TABLE directories (
+  id serial NOT NULL,
+  name varchar(255) NOT NULL,
+  parent_id int,
+  updated_at timestamp NOT NUlL,
+  PRIMARY KEY(id),
+  CONSTRAINT fk_parent_id
+    FOREIGN KEY (parent_id)
+    REFERENCES directories (id)
+);
+
+INSERT INTO directories (id, name, updated_at, parent_id)
+VALUES
+  (1, 'Angelika', timestamp '2000-01-01T12:00:00Z', null),
+  (2, '.vim', timestamp '2000-01-01T12:00:00Z', 1),
+  (3, 'bundle', timestamp '2000-01-01T12:00:00Z', 2),
+  (4, 'Documents', timestamp '2000-01-01T12:00:00Z', 1),
+  (5, 'Pictures', timestamp '2000-01-01T12:00:00Z', 1);
+```
+
+If I want to update the timestamp for `Angelika/.vim/bundle` (`id = 3`), I need to update `Angelika/.vim` and `Angelika` as well.
+
+It would be very easy to achieve that if I could get a list of the ids of all ancestors of `Angelika/.vim/bundle`:
+
+```sql
+UPDATE
+  directories
+SET
+  updated_at = TIMESTAMP '2018-08-01T14:45:00Z'
+WHERE
+  id = 3 OR id IN -- ???
+;
+```
+
+Here is how to produce a column with a list of all ancestor ids for directories:
+
+```sql
+WITH RECURSIVE tree AS
+(
+  SELECT
+    id,
+    ARRAY[]::INT[] AS ancestor_ids
+  FROM
+    directories
+  WHERE
+    parent_id IS NULL
+  UNION ALL
+  SELECT
+    directory.id,
+    parent.ancestor_ids || directory.parent_id
+  FROM
+    directories directory
+    JOIN
+      tree parent
+      ON directory.parent_id = parent.id
+)
+```
+
+The terminal condition is, for every directory that has no parent, its `ancestor_ids` is an empty array of integers (`ARRAY[]::INT[] AS ancestor_ids`).
+
+The recursive term is, for every directory, its `ancestor_ids` are its parent's `ancestor_ids` appended with its `parent_id`.
+
+And the full query to recursively update `inserted_at` for the directory `/Angelika/.vim/bundle` (`id = 3`) is:
+```sql
+WITH RECURSIVE tree AS
+(
+  SELECT
+    id,
+    ARRAY[]::INT[] AS ancestor_ids
+  FROM
+    directories
+  WHERE
+    parent_id IS NULL
+  UNION ALL
+  SELECT
+    directory.id,
+    parent.ancestor_ids || directory.parent_id
+  FROM
+    directories directory
+    JOIN
+      tree parent
+      ON directory.parent_id = parent.id
+)
+UPDATE
+  directories
+SET
+  updated_at = TIMESTAMP '2018-08-01T14:45:00Z'
+WHERE
+  id = 3
+  OR id IN
+  (
+    SELECT
+      UNNEST(ancestor_ids)
+    FROM
+      tree
+    WHERE
+      id = 3
+  )
+;
+```
+
+### SQL Fiddle with this example
+
+[Here](http://sqlfiddle.com/#!17/4c44c/1).
+
+## Update a node and its children
+
+Let's say I want to do soft deletes for my directories. This means flagging a record as deleted instead of actually deleting it. I'll do that with a `deleted_at` timestamp.
+
+If I did regular deletes, I could rely on a foreign key constraint to do cascading deletes for me (SQL Fiddle with an example [here](http://sqlfiddle.com/#!17/3a99c/1)). With soft deletes, it's not as easy.
+
+Let's say I'm deleting `/Angelika/.vim` (`id = 2`). I need to update `deleted_at` for all directories whose `id` is `2` or any of its ancestor ids is `2`. This means I am only interested in a subtree whose root node is the directory with `id = 2`, so my terminal condition is not `parent_id IS NULL`, but `id = 2`.
+
+```sql
+WITH RECURSIVE tree AS
+(
+  SELECT
+    id
+  FROM
+    directories
+  WHERE
+    id = 2
+  UNION ALL
+  SELECT
+    directory.id
+  FROM
+    directories directory
+    JOIN
+      tree parent
+      ON directory.parent_id = parent.id
+)
+UPDATE
+  directories
+SET
+  deleted_at = TIMESTAMP '2018-08-01T14:45:00Z'
+WHERE
+  id IN
+  (
+    SELECT
+      id
+    FROM
+      tree
+  )
+;
+```
+
+### SQL Fiddle with this example
+
+[Here](http://sqlfiddle.com/#!17/e3fb4/1).
