@@ -18,12 +18,10 @@ const formattedPubDate = format(post.data.pubDate, "dd MMMM yyyy");
   <span class="time-estimate">{post.readingTime}</span>
   <span class="tags">
     {
-      prepareTags(post.data.tags).map((tag, index) => (
-        <Fragment>
-          {index > 0 && ", "}
-          <a href={`/tag/${tag.tag}`}>{tag.tagTitle}</a>
-        </Fragment>
-      ))
+      prepareTags(post.data.tags).map((tag, index) =>
+        // prettier-ignore
+        <Fragment>{index > 0 && ", "}<a href={`/tag/${tag.tag}`}>{tag.tagTitle}</a></Fragment>,
+      )
     }
   </span>
 </div>
