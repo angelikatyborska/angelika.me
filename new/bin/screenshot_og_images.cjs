@@ -15,7 +15,9 @@ const fs = require("fs");
   for (let i = 0; i < slugs.length; i++) {
     const slug = slugs[i];
 
-    if (slug.startsWith('.')) { continue; }
+    if (slug.startsWith(".")) {
+      continue;
+    }
 
     console.log(`visiting ${slug}`);
     await page.goto(`http://localhost:4321/og/${slug}`);

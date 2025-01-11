@@ -4,7 +4,7 @@ const slugs = fs.readdirSync("src/content/blog/");
 const paths = [`public/og/default.png`, ...slugs.map((slug) => `public/og/${slug}.png`)];
 
 const missingImages = paths.filter((path) => {
-  return !fs.statSync(path, { throwIfNoEntry: false }) && !path.startsWith('.');
+  return !fs.statSync(path, { throwIfNoEntry: false }) && !path.startsWith(".");
 });
 
 if (missingImages.length > 0) {
