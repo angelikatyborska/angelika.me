@@ -12,10 +12,11 @@ const fs = require("fs");
 
   const slugs = fs.readdirSync("src/content/blog/");
 
-  console.log(slugs);
-
   for (let i = 0; i < slugs.length; i++) {
     const slug = slugs[i];
+
+    if (slug.startsWith('.')) { continue; }
+
     console.log(`visiting ${slug}`);
     await page.goto(`http://localhost:4321/og/${slug}`);
     await page.screenshot({ path: `public/og/${slug}.png` });
