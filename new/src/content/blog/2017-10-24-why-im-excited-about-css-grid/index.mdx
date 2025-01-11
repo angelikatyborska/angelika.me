@@ -1,0 +1,95 @@
+---
+title: Why I'm excited about CSS Grid
+excerpt: I just got myself familiar with the specification of CSS Grid and cried a single tear of joy. Here's why.
+tags: [CSS]
+pubDate: 2017-10-24 13:03:00 +0200
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro"
+import CaniuseCssGrid20171024 from "caniuse-css-grid-2017-10-24.png"
+import GridCreative from "grid-creative.png"
+import GridEqualHeights from "grid-equal-heights.png"
+import GridReordering from "grid-reordering.gif"
+
+I started learning CSS as a kid in the early '00s, in the dark times of laying out content with tables. Today, in October 2017, we arrived at the situation where 70% of used browsers support CSS Grid, including the newest versions of all major desktop browsers.
+
+<BlogPostImage
+  image={CaniuseCssGrid20171024}
+  alt={'A screenshot of CSS Grid support on caniuse.com'}
+>
+  <Fragment slot="caption">CSS Grid support according to <a href="https://caniuse.com/#feat=css-grid">caniuse.com</a> on 24 Oct 2017.</Fragment>
+</BlogPostImage>
+
+Here are 3 reasons why I am excited about CSS Grid.
+
+## 1. Equal-height columns
+
+With just those two rules, I can create three equal-height equal-width columns whose heights depends on their content.
+
+```css
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+```html
+<main>
+  <article id="article1">...</article>
+  <article id="article2">...</article>
+  <article id="article3">...</article>
+</main>
+```
+
+<BlogPostImage
+  image={GridEqualHeights}
+  alt="A three column grid layout"
+  href={"/blog/why-im-excited-about-css-grid/grid-equal-heights.html"}
+  caption={"Click image for the HTML file"}
+/>
+
+No JavaScript, no hardcoded heights, no gradient backgrounds on `main`, no hacks.
+
+## 2. Reordering of content with CSS
+
+```css
+main {
+  display: grid;
+  grid: "C D"
+        "B A"
+        "B E";
+}
+
+@media (min-width: 1000px) {
+  main {
+    grid: "A B C"
+          "D B E";
+  }
+}
+
+#article1 { grid-area: A; }
+#article2 { grid-area: B; }
+#article3 { grid-area: C; }
+#article4 { grid-area: D; }
+#article5 { grid-area: E; }
+```
+
+<BlogPostImage
+  image={GridReordering}
+  alt="A gif of a two row three column grid layout changing order on window resolution change"
+  href={"/blog/why-im-excited-about-css-grid/grid-reordering.html"}
+  caption={"Click image for the HTML file"}
+/>
+
+No JavaScript, no negative margins, no hacks.
+
+## 3. Creative possibilities
+
+The simplicity of defining a grid together with the power of it will allow everyone to spend more time coming up with creative designs and less time implementing those designs.
+
+<BlogPostImage
+  image={GridCreative}
+  alt="A screenshot of a website with CSS grid that forms the content to look like the letter A"
+  href={"/blog/why-im-excited-about-css-grid/grid-creative.html"}
+  caption={"A-shaped layout. Click image for the HTML file."}
+/>

@@ -6,6 +6,7 @@ type Props = {
   image: typeof Avatar;
   alt: string;
   caption?: string;
+  href?: string;
   relativeMaxWidth?: number;
   // sometimes needs to be turned off because sharp crashes on big gifs
   experimentalResponsiveImage?: boolean;
@@ -15,6 +16,7 @@ const {
   image,
   alt,
   caption,
+  href,
   relativeMaxWidth = 1,
   experimentalResponsiveImage = true,
 } = Astro.props;
@@ -23,7 +25,7 @@ const contentMaxWidth = 750;
 ---
 
 <figure>
-  <a href={image.src}>
+  <a href={href || image.src}>
     {
       experimentalResponsiveImage ? (
         <Image

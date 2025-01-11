@@ -43,7 +43,7 @@ export const getPublishedPostsIncludeHidden = () => getPublishedPosts(true);
 
 export const prepareTags = (rawTags: string[]) => {
   const tags = rawTags.map((tag) => ({
-    tag: tag.toLowerCase().replaceAll(" ", "-"),
+    tag: tag.toLowerCase().replace(/[\s/]/g, "-"),
     tagTitle: tag,
   }));
 

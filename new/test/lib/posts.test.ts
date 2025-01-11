@@ -25,6 +25,8 @@ describe("prepareTags", () => {
     expect(prepareTags([])).toEqual([]);
     expect(prepareTags(["Foo Bar"])).toEqual([{ tag: "foo-bar", tagTitle: "Foo Bar" }]);
 
+    expect(prepareTags(["UI/UX"])).toEqual([{ tag: "ui-ux", tagTitle: "UI/UX" }]);
+
     expect(prepareTags(["Foo Bar", "Bar", "Foo Bar Baz"])).toEqual([
       { tag: "foo-bar", tagTitle: "Foo Bar" },
       { tag: "bar", tagTitle: "Bar" },
