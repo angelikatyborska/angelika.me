@@ -21,3 +21,4 @@ jobs:
       - run: npm run lint
       - run: npm run verify_og_images
       - run: npm run build
+      - run: npm run test
