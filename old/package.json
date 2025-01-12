@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "puppeteer": "^21.6.1"
-  },
-  "scripts": {
-    "screenshot_og_images": "node screenshot_og_images.js"
-  }
-}
