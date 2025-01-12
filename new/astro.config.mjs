@@ -19,7 +19,38 @@ const myShikiTheme = createCssVariablesTheme({
 export default defineConfig({
   build: { assets: "_assets" },
   site: "https://angelika.me",
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      serialize(item) {
+        // exclude style test page
+        if (/\/style-test/.test(item.url)) {
+          return undefined;
+        }
+
+        // exclude blog paginated pages
+        const blogPage = /blog\/(\d+)\/$/;
+
+        if (blogPage.test(item.url)) {
+          return undefined;
+        }
+
+        // Code for setting lastmod - I'm not sure I want to use it
+        // if (item.url === "https://angelika.me/blog/") {
+        //   item.lastmod = new Date().toUTCString();
+        // }
+        //
+        // const blogPostDate = /\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)/;
+        // const blogPostDateMatch = item.url.match(blogPostDate)
+        //
+        // if (blogPostDateMatch) {
+        //   const [, year, month, day] = blogPostDateMatch;
+        //   item.lastmod = [year, month, day].join("-");
+        // }
+        return item;
+      },
+    }),
+  ],
   image: {
     // Used for all `<Image />` and `<Picture />` components unless overridden
     experimentalLayout: "responsive",
