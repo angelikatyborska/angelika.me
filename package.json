@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "check": "MODE=draft astro check",
     "astro": "astro",
-    "lint": "npm run lint:js && npm run lint:css && lint:prettier",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:prettier",
     "lint:js": "eslint --ignore-pattern '**/*.cjs'",
     "lint:css": "stylelint **/*.astro",
     "lint:prettier": "prettier --check .",
