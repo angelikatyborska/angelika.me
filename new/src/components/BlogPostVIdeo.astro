@@ -1,0 +1,20 @@
+---
+type Props = {
+  src: string;
+  caption?: string;
+};
+
+const {
+  src,
+  caption,
+} = Astro.props;
+
+---
+
+<figure>
+  <video src={src} controls></video>
+  <figcaption>
+    {!caption && Astro.slots.has("caption") && <slot name="caption" />}
+    {!Astro.slots.has("caption") && caption}
+  </figcaption>
+</figure>
