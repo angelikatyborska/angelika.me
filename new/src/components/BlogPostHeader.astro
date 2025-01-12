@@ -10,7 +10,7 @@ const { post } = Astro.props;
 const formattedPubDate = format(post.data.pubDate, "dd MMMM yyyy");
 ---
 
-<time class="date" datetime={post.data.pubDate.getTime().toString()}>
+<time class="date" datetime={post.data.pubDate.toISOString()}>
   {formattedPubDate}
 </time>
 <slot />
