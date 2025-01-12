@@ -116,7 +116,7 @@ $ lauchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 ### What's up with lunchy?
 
-What that Postgres installation tutorial actually mentioned about `launchclt load` is **not** using it directly, but rather installing [lunchy](https://github.com/eddiezane/lunchy). Lunchy seems like sorcery at first, but what it really does is just matching a pattern (eg. "postgres") against the list of files from [the directories that `launchd` recognizes](https://github.com/eddiezane/lunchy/blob/v0.10.4/lib/lunchy.rb#L168-L169). No magic, just :sparkles: regular expressions :sparkles:.
+What that Postgres installation tutorial actually mentioned about `launchclt load` is **not** using it directly, but rather installing [lunchy](https://github.com/eddiezane/lunchy). Lunchy seems like sorcery at first, but what it really does is just matching a pattern (eg. "postgres") against the list of files from [the directories that `launchd` recognizes](https://github.com/eddiezane/lunchy/blob/v0.10.4/lib/lunchy.rb#L168-L169). No magic, just ✨ regular expressions ✨.
 
 ## Property list files
 
@@ -353,7 +353,7 @@ New command:
 $ launchctl bootstrap gui/$UID /Users/angelika/Library/LaunchAgents/me.angelika.work.plist
 ```
 
-:tada: Voila! :tada:
+🎉 Voila! 🎉
 
 Please note, again, that *loading*/*bootstrapping* usually does not mean *starting*, except that in this case it does - I defined the agent to run at load.
 
