@@ -1,0 +1,412 @@
+---
+import Head from "@components/Head.astro";
+import Logo from "@assets/logo.svg?raw";
+import Triangle from "@assets/design/triangle.svg?raw";
+
+type Props = {
+  random: number;
+};
+
+const { random } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head />
+  <body class:list={["post-og-image", `post-og-image-variant-${random}`]}>
+    <article class="post">
+      <div class="logo">
+        <Fragment set:html={Logo} />
+        <span class="page-title">angelika.me</span>
+      </div>
+      <header>
+        <slot />
+      </header>
+      <div class="triangles" aria-hidden="true">
+        <Fragment set:html={Triangle} />
+        <Fragment set:html={Triangle} />
+        <Fragment set:html={Triangle} />
+      </div>
+    </article>
+  </body>
+</html>
+
+<style lang="scss">
+  @use "../styles/reset";
+  @use "../styles/media-queries";
+  @use "../styles/functions";
+  @use "../styles/colors";
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/typography";
+  :root,
+  :global(body),
+  .post-og-image {
+    font-size: 26.6px;
+  }
+
+  .post-og-image {
+    position: relative;
+
+    :global(> astro-dev-toolbar) {
+      display: none;
+    }
+
+    &:before {
+      z-index: 1;
+      transform: rotate(180deg);
+      content: "";
+      top: 0;
+      @include mixins.triangle-gradient(
+        $color: var(--secondary-background-color),
+        $triangle-max-width: 22px
+      );
+    }
+
+    .post {
+      position: relative;
+      z-index: 2;
+      padding: variables.$gap-big;
+      width: 1200px;
+      height: 630px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+    }
+
+    .date {
+      font-size: variables.$font-size-h6;
+    }
+
+    .post-meta {
+      font-size: variables.$font-size-paragraph;
+      color: var(--secondary-text-color);
+    }
+
+    .portrait {
+      position: absolute;
+      bottom: variables.$gap-big;
+      left: variables.$gap-big;
+
+      :global(img) {
+        display: block;
+        border-radius: 50%;
+      }
+    }
+
+    :global(h1) {
+      font-size: variables.$font-size-h2;
+      margin-top: 0;
+      margin-bottom: variables.$gap-small;
+
+      @include mixins.ellipsis_for_overflow(3);
+    }
+
+    .logo {
+      display: flex;
+      width: calc(100% + #{2 * variables.$gap-big});
+      padding-left: variables.$gap-big;
+      margin-left: -1 * variables.$gap-big;
+      padding-right: variables.$gap-big;
+      margin-right: -1 * variables.$gap-big;
+      margin-bottom: variables.$gap-medium;
+      gap: variables.$gap-big;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      :global(svg) {
+        display: block;
+        width: 2rem * 1.125;
+      }
+    }
+
+    .page-title {
+      font-size: variables.$font-size-h6;
+      font-weight: bold;
+      font-family: typography.$header-font-family;
+    }
+
+    :global(header) {
+      margin-bottom: variables.$gap-big;
+    }
+
+    .triangles {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: variables.$gap-medium;
+      align-self: flex-end;
+      align-items: flex-end;
+
+      :global(svg:nth-child(1)) {
+        width: variables.$gap-huge * 0.75;
+        transform: rotate(var(--triangle-rotation-1));
+
+        :global(*) {
+          fill: var(--triangle-color-1);
+        }
+      }
+
+      :global(svg:nth-child(2)) {
+        width: variables.$gap-huge * 0.5;
+        transform: rotate(var(--triangle-rotation-2));
+
+        :global(*) {
+          fill: var(--triangle-color-2);
+        }
+      }
+
+      :global(svg:nth-child(3)) {
+        width: variables.$gap-huge * 0.25;
+        transform: rotate(var(--triangle-rotation-3));
+
+        :global(*) {
+          fill: var(--triangle-color-3);
+        }
+      }
+    }
+
+    &.post-og-image-variant-0 {
+      --triangle-color-1: #{colors.$yellow};
+      --triangle-color-2: #{colors.$orange};
+      --triangle-color-3: #{colors.$red};
+
+      --triangle-rotation-1: 10deg;
+      --triangle-rotation-2: -27deg;
+      --triangle-rotation-3: 72deg;
+    }
+
+    &.post-og-image-variant-1 {
+      --triangle-color-1: #{colors.$yellow};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 34deg;
+      --triangle-rotation-2: 10deg;
+      --triangle-rotation-3: -33deg;
+    }
+
+    &.post-og-image-variant-2 {
+      --triangle-color-1: #{colors.$purple};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 56deg;
+      --triangle-rotation-2: 23deg;
+      --triangle-rotation-3: -4deg;
+    }
+
+    &.post-og-image-variant-3 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$purple};
+
+      --triangle-rotation-1: 0deg;
+      --triangle-rotation-2: -45deg;
+      --triangle-rotation-3: 76deg;
+    }
+
+    &.post-og-image-variant-4 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$red};
+
+      --triangle-rotation-1: 20deg;
+      --triangle-rotation-2: -56deg;
+      --triangle-rotation-3: 0deg;
+    }
+
+    &.post-og-image-variant-5 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: -30deg;
+      --triangle-rotation-2: 13deg;
+      --triangle-rotation-3: -33deg;
+    }
+
+    &.post-og-image-variant-6 {
+      --triangle-color-1: #{colors.$blue};
+      --triangle-color-2: #{colors.$yellow};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-7 {
+      --triangle-color-1: #{colors.$orange};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$yellow};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    &.post-og-image-variant-8 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 15deg;
+      --triangle-rotation-2: 30deg;
+      --triangle-rotation-3: 45deg;
+    }
+
+    // MONOCOLORS ******************************************************************************************
+
+    &.post-og-image-variant-9 {
+      --triangle-color-1: #{colors.$purple};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$purple};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    &.post-og-image-variant-10 {
+      --triangle-color-1: #{colors.$blue};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$blue};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    &.post-og-image-variant-11 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$green};
+      --triangle-color-3: #{colors.$green};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    &.post-og-image-variant-12 {
+      --triangle-color-1: #{colors.$yellow};
+      --triangle-color-2: #{colors.$yellow};
+      --triangle-color-3: #{colors.$yellow};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    &.post-og-image-variant-13 {
+      --triangle-color-1: #{colors.$orange};
+      --triangle-color-2: #{colors.$orange};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 4deg;
+      --triangle-rotation-2: -50deg;
+      --triangle-rotation-3: -14deg;
+    }
+
+    // PAIRS ******************************************************************************************
+
+    &.post-og-image-variant-14 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$yellow};
+      --triangle-color-3: #{colors.$green};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-15 {
+      --triangle-color-1: #{colors.$red};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$red};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-16 {
+      --triangle-color-1: #{colors.$orange};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-17 {
+      --triangle-color-1: #{colors.$yellow};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$yellow};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-18 {
+      --triangle-color-1: #{colors.$green};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$green};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-19 {
+      --triangle-color-1: #{colors.$blue};
+      --triangle-color-2: #{colors.$purple};
+      --triangle-color-3: #{colors.$blue};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-20 {
+      --triangle-color-1: #{colors.$purple};
+      --triangle-color-2: #{colors.$blue};
+      --triangle-color-3: #{colors.$purple};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-21 {
+      --triangle-color-1: #{colors.$blue};
+      --triangle-color-2: #{colors.$red};
+      --triangle-color-3: #{colors.$blue};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-22 {
+      --triangle-color-1: #{colors.$orange};
+      --triangle-color-2: #{colors.$red};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+
+    &.post-og-image-variant-23 {
+      --triangle-color-1: #{colors.$orange};
+      --triangle-color-2: #{colors.$green};
+      --triangle-color-3: #{colors.$orange};
+
+      --triangle-rotation-1: 13deg;
+      --triangle-rotation-2: -30deg;
+      --triangle-rotation-3: 78deg;
+    }
+  }
+</style>

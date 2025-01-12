@@ -1,0 +1,204 @@
+---
+title: "How to ask for help with your code online"
+excerpt: Do you often get ignored when you ask people online to help you with your coding problems? Make sure you're not breaking any of those 7 rules.
+tags: [communication, career]
+pubDate: 2024-01-03 20:13:00 +0100
+---
+import BlogPostImage from "@components/BlogPostImage.astro";
+import BlogPostNotes from "@components/BlogPostNotes.astro";
+import CodeBlock from "./code-block.gif";
+import NoCodeBlock from "./no-code-block.gif";
+import CodeBlockWithSyntaxColoring from "./code-block-with-syntax-coloring.gif";
+
+The software development world is full of online communities. Your favorite programming language probably has its own forum, Discord server, and Slack workspace. Your favorite open-source tools have public issue trackers on GitHub. Many programming podcasts and YouTube channels have a place for paying fans to hang out. StackOverflow exists. The list goes on and on.
+
+Those online communities are an invaluable source of support. I can reach out at any time of day or night to a pool of experienced developers with any of my coding problems, and there's somebody out there who might just have the time and knowledge to help me. For free and independent of my current employment status. Amazing!
+
+But asking for help is a skill in itself.
+
+In this post, I'll try to summarize my experience as both an online **help seeker** and online **help giver**, and give you a set of rules that can help you make asking for help online go smoother and faster for everyone involved.
+
+## 1. Write a distinct post title
+
+When choosing a post title, you want it to be **concise** (one sentence), but also **distinct and specific**.
+
+A good post title will attract the person with the right knowledge necessary to help you. It will also help other people experiencing the same issue find your post.
+
+To choose a good post title, you need to consider what kind of community you find yourself in. What do you all have in common that can be left unsaid, and what sets you and your problem apart that needs to be mentioned?
+
+For example, on the [Exercism](https://exercism.org/dashboard) Discord server, you're in a space where each person knows a different programming language. This means your post title must mention which programming language you're using.
+
+❌ A bad post title in this context would be:
+
+> It's failing two tests, I don't why
+
+✅ A good post title would be:
+
+> JavaScript freelancer-rates exercise: tests failing for `priceWithMonthlyDiscount`
+
+## 2. State expectations
+
+**Don't just say "it doesn't work"**.
+
+Make sure your help request always answers the following questions:
+- What are you trying to achieve?
+- What action are you taking to achieve it?
+- **What did you expect to happen** as a result of this action?
+- What _actually_ happens as a result of this action?
+
+❌ A bad problem description would be:
+
+> My code doesn't work:
+> ```elixir
+> String.replace("Daumen drücken!", ~r/\p{L}/, "_")
+> ```
+>  What am I doing wrong?
+
+✅ A good problem description would be:
+
+> I'm writing a hangman game with German phrases. I'm trying to replace each letter in a string with an underscore. When I run:
+> ```elixir
+> String.replace("Daumen drücken!", ~r/\p{L}/, "_")
+> ```
+> I get a bitstring that's not printable:
+> ```elixir
+> <<95, 95, 95, 95, 95, 95, 32, 95, 95, 95, 188, 95, 95, 95, 95, 33>>
+> ```
+> but I expected to get:
+> ```elixir
+> "______ _______!"
+> ```
+> What am I doing wrong?
+
+(PS: [See answer](#answer-1) if you're curious.)
+
+## 3. Include all code snippets as text, not screenshots
+
+Software developers solve problems by writing code, running it, analyzing the results, making some changes to the code, and running it again. Software developers usually do not solve problems by staring at the code with their hands tied behind their backs.
+
+The same process applies when somebody is helping you with your code online. To help you debug your code, the volunteer needs to be able to copy-paste and run it themselves. **You don't expect people to rewrite your solution letter by letter from a screenshot**, do you?
+
+Screenshots can be immensely helpful with providing additional context to your problem or communicating ideas for which you don't know the right vocabulary, so don't hesitate to add some. Just make sure that all relevant code snippets are always included as text.
+
+## 4. Put all code snippets in code blocks
+
+Most platforms where software developers hang out support [Markdown](https://www.markdownguide.org/getting-started/). This includes GitHub, Slack, Discord, and various forum software.
+
+This is both a blessing and a curse. If you know how to use Markdown, you can make your post more readable with the right formatting. But if you don't, you might accidentally post broken code snippets! Some syntax in your programming language might also be valid Markdown syntax.
+
+For example, the backtick (\`) is used in JavaScript for template literals. In Markdown, it's used to format inline code. If you copy-paste JavaScript code into a post without using a Markdown code block, you will get unexpected formatting. Even worse, certain characters will "disappear" from your code, so **if somebody copy-pastes your code from your post, it will contain syntax errors!**
+
+Make sure to **always wrap your code in a Markdown code block**. Before your code starts, you need a line that contains three backticks, and after your code ends, you need another line that contains three backticks. Like this:
+
+````
+This is my code:
+
+```
+export const twoFer = (name = 'you') => {
+  return `One for ${name}, one for me.`;
+};
+```
+````
+
+❌ A bad way to include your code snippets:
+
+<BlogPostImage
+  image={NoCodeBlock}
+  relativeMaxWidth={0.66}
+  alt="Writing a Github comment, copy-pasting some code without a code block and then using the preview option to see how it looks broken. The backticks present in the code disappeared."
+  caption="Code not inside of a code block. Backticks in JavaScript template literals get interpreted as Markdown formatting, breaking the code."
+/>
+
+✅ A good way to include your code snippets:
+
+<BlogPostImage
+  image={CodeBlock}
+  relativeMaxWidth={0.66}
+  alt="Writing a Github comment, copy-pasting some code inside a code block and then using the preview option to see how it looks good."
+  caption="Code inside of a code block."
+/>
+
+✅✅✅ An even better way to include your code snippets - specifying the programming language, to get syntax coloring:
+
+<BlogPostImage
+  image={CodeBlockWithSyntaxColoring}
+  relativeMaxWidth={0.66}
+  alt="Writing a Github comment, copy-pasting some code inside a code block with the word 'js' after the first three backticks, and then using the preview option to see how it looks good with syntax coloring."
+  caption="Code inside of a code block with the programming language specified, which gives us syntax coloring."
+/>
+
+## 5. Include all relevant details upfront
+
+Written communication online is asynchronous. To communicate effectively asynchronously, make sure that your request for help contains all the relevant details upfront. If it doesn't, somebody will need to ask you for those details before they can attempt to solve your problem. This is not a big deal if you're talking with somebody in person. But if you're writing online, it significantly increases the time and effort necessary to continue the conversation, which in turn makes it less likely that anyone will volunteer to help you.
+
+Knowing which details are relevant can be tricky. It gets easier with more experience. If you're unsure if something is relevant, include it. Don't be afraid to write "I don't know if this is relevant, but ...".
+
+Here are some general rules. If you need help with an issue...
+
+- ... With any type of code that you have written, always include that code in your request. Ideally what you copy-paste could be copy-pasted further and ran without any additional setup steps.
+    - If many additional setup steps would be needed to run your code (e.g. installing 10 other libraries), you should create a new open-source project that can serve as a [minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example). Code playground tools like [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), or [StackBlitz](https://stackblitz.com/) are great for this.
+- ... That affects a whole project and not just a small snippet of code, you should share a link to that project's source code.
+    - If you cannot share your project because it's not open-source, you should create a new open-source project that can serve as a [minimal reproducible example](https://en.wikipedia.org/wiki/Minimal_reproducible_example).
+- ... With code that runs in the browser (HTML, CSS, JavaScript), always mention your browser version and operating system version.
+- ... With code that runs on your computer, always mention your operating system version, as well as the version of the environment where this code runs. For example, if you're running Elixir code, include your Elixir and Erlang versions.
+- ... With code that uses a specific library, always mention which version of the library you're using.
+
+❌ A request missing relevant details would be:
+
+> I'm trying to run `document.startViewTransition(() => {})` in my React app and I'm getting this error:
+> ```
+> Uncaught TypeError: document.startViewTransition is not a function
+> ```
+> What's wrong?
+
+✅ A request containing relevant details would be:
+
+> I'm trying to run `document.startViewTransition(() => {})` in my React app and I'm getting this error:
+> ```
+> Uncaught TypeError: document.startViewTransition is not a function
+> ```
+> What's wrong?
+> I'm using React v18.1.0, Firefox Developer Edition 122.0b4, and macOS 14.1.
+
+(PS: [See answer](#answer-2) if you're curious.)
+
+## 6. Be responsive
+
+If somebody tries to help you, get back to them and let them know if their advice worked. Why?
+
+- If it worked, they deserve a thank you.
+- If it worked, and somebody else has the same problem later, they will know which solution to try.
+- If it didn't work, you can help them learn something as well.
+- If it didn't work, and somebody else tries to help you later, that other person will know which advice not to give you.
+
+## 7. Be kind
+
+People who volunteer their time to help you for free usually do it because they feel fulfilled by helping others, and because they want to be in communities where everyone is kind and helpful.
+
+Make sure to be kind to them. **If interactions with you become unpleasant, people will stop helping you**.
+
+Solving your coding problems is probably frustrating to you, but you can't take it out on other people. **If you get frustrated, deal with your emotions first, then reply calmly**.
+
+❌ A rude comment would be:
+
+> Ugh, this is still not working. Is there anyone else who has a better idea of what to do? Which idiot designed this library like that?!
+
+It shows frustration. It's attacking the person who is trying to help you. It's also attacking the library in question, which, if somebody is trying to help you with using that specific library, chances are they are a fan of that library, so it's attacking the person who is trying to help you again!
+
+✅ A similar but kinder comment would be:
+
+> Thank you! But I'm afraid I still cannot get my code to work. What else could I try? I have to admit I don't fully understand the API of this library, it's much different than that other library that I used in the past. Is there maybe a good tutorial somewhere that could help me understand it better?
+
+
+## Conclusion
+
+**Time and goodwill are limited resources**. You want to make sure that your request uses up as little of those as possible. The easier your request is to fulfill, the more likely somebody will volunteer to help you.
+
+<BlogPostNotes>
+  <li id="answer-1">
+    The regular expression needs the unicode flag to work with German characters: `~r/\p{L}/u`.
+  </li>
+  <li id="answer-2">
+    View Transitions API is not supported in Firefox Developer Edition 122, which proves why it's important to mention the browser version with such issues.
+  </li>
+</BlogPostNotes>

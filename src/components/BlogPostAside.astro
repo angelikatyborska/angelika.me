@@ -1,0 +1,310 @@
+---
+import type { MarkdownHeading } from "astro";
+import TableOfContentsHeading, {
+  type MarkdownHeadingWithSubheadings,
+} from "./TableOfContentsHeading.astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+
+function buildToc(headings: MarkdownHeading[]): MarkdownHeadingWithSubheadings[] {
+  const toc: MarkdownHeadingWithSubheadings[] = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    if (heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+
+  return toc;
+}
+
+const toc = buildToc(headings);
+---
+
+<aside class="post-aside-wrapper">
+  <div class="post-aside" id="post-aside">
+    <details class="post-aside-box">
+      <summary class="toc-header">Table of contents</summary>
+      <ul>
+        {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+      </ul>
+    </details>
+  </div>
+</aside>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/media-queries";
+  @use "../styles/mixins";
+  @use "../styles/typography";
+  @use "../styles/colors";
+
+  .post-aside-wrapper {
+    @media #{media-queries.$very-big} {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      width: calc(var(--page-padding-left) + var(--page-margin-left));
+    }
+  }
+
+  .post-aside {
+    background-color: var(--background-color);
+    font-family: typography.$paragraph-font-family;
+    overflow: visible;
+    font-size: variables.$font-size-small;
+    text-align: left;
+    margin-bottom: variables.$gap-big;
+
+    @media #{media-queries.$very-big} {
+      display: block;
+      position: sticky;
+      top: 0;
+      padding: variables.$gap-small variables.$gap-big variables.$gap-small variables.$gap-medium;
+    }
+
+    .post-aside-box {
+      border: none;
+      padding: 0;
+    }
+
+    .toc-header {
+      font-size: variables.$font-size-paragraph;
+      margin-top: 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    $ul-left-padding: 1.25em;
+
+    :global(ul) {
+      padding: 0 0 0 $ul-left-padding;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    // trying to center it with the ▼ char of the open details
+    $tree-left-offset: calc(#{-1 * $ul-left-padding} + 0.25em);
+    $tree-horizontal-line-length: calc(#{$ul-left-padding} - 0.25em * 2);
+    $tree-color: var(--border-color);
+    $tree-line-thickness: 1px;
+
+    :global(li) {
+      position: relative;
+      padding: 0;
+      text-align: left;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: $tree-left-offset;
+        width: $tree-line-thickness;
+        background-color: $tree-color;
+      }
+
+      &:last-child:before {
+        bottom: unset;
+        height: variables.$line-height-default * 0.5em;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: variables.$line-height-default * 0.5em;
+        left: calc(#{$tree-left-offset} + #{$tree-line-thickness});
+        height: 1px;
+        width: $tree-horizontal-line-length;
+        background-color: $tree-color;
+      }
+    }
+
+    :global(a) {
+      color: var(--secondary-text-color);
+      white-space: normal;
+      word-break: break-word;
+      text-decoration: none;
+
+      &.active {
+        color: var(--text-color);
+        background-color: var(--highlight);
+      }
+    }
+  }
+</style>
+
+<script>
+  function postToc(article: string, tocContainer: string, options: { highestLevel?: number }) {
+    const ARTICLE = document.querySelector<HTMLDivElement>(article)!;
+    const HIGHEST_LEVEL = options.highestLevel || 2;
+    const CONTAINER = document.querySelector<HTMLDivElement>(tocContainer)!;
+
+    if (!CONTAINER || !ARTICLE) {
+      return;
+    }
+
+    init();
+
+    function init() {
+      const headingsPerLevel = getHeadingsPerLevel();
+      if (headingsPerLevel.flat().length > 0) {
+        markCurrentLink(headingsPerLevel, scrollTop());
+
+        window.addEventListener("scroll", function () {
+          markCurrentLink(headingsPerLevel, scrollTop());
+        });
+      } else {
+        // completely clear container if would be empty
+        CONTAINER.innerHTML = "";
+      }
+
+      if (window.innerWidth >= 1100) {
+        const details = ARTICLE.querySelector("details");
+        if (details) {
+          details.setAttribute("open", "");
+        }
+      }
+    }
+
+    function scrollTop() {
+      return window.scrollY - startOfArticle();
+    }
+
+    function startOfArticle() {
+      return ARTICLE.offsetTop;
+    }
+
+    function endOfArticle() {
+      return ARTICLE.offsetTop + ARTICLE.offsetHeight;
+    }
+
+    function getHeadingsPerLevel(): HTMLElement[][] {
+      const headingsPerLevel = [];
+
+      for (let level = HIGHEST_LEVEL; level <= 6; level++) {
+        let headings = Array.prototype.slice.call(
+          document.querySelectorAll(`${article} > h` + level + ":not(.no_toc)"),
+        );
+        // offset top will change after resizing but that doesn't matter
+        // the order will remain the same
+        headings = headings.sort(function (a, b) {
+          return a.offsetTop - b.offsetTop;
+        });
+        headingsPerLevel.push(headings);
+      }
+
+      return headingsPerLevel;
+    }
+
+    type HeadingMeta = {
+      id: string;
+      tag: string;
+      text: string | null;
+      beginningOfScope: () => number;
+      endOfScope: () => number;
+      level: number;
+    };
+
+    function markCurrentLink(headingsPerLevel: HTMLElement[][], scrollTop: number) {
+      const allArticleHeadings = findAllArticleHeadings(headingsPerLevel);
+      allArticleHeadings.forEach(function (heading) {
+        const isActive = isHeadingActive(
+          heading.beginningOfScope(),
+          heading.endOfScope(),
+          scrollTop,
+        );
+
+        const headerLink = ARTICLE.querySelector(`*[href='#${heading.id}']`)!;
+
+        if (isActive) {
+          headerLink.classList.add("active");
+          headerLink.setAttribute("aria-current", "location");
+        } else {
+          headerLink.classList.remove("active");
+          headerLink.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function findAllArticleHeadings(headingsPerLevel: HTMLElement[][]) {
+      const allArticleHeadings: HeadingMeta[] = [];
+
+      headingsPerLevel.forEach(function (headings: HTMLElement[], level: number) {
+        headings.forEach(function (heading: HTMLElement) {
+          if (heading) {
+            const beginningOfScope = () => heading.offsetTop;
+            const nextHeadingOfSameLevel =
+              headingsPerLevel[level] &&
+              headingsPerLevel[level][headingsPerLevel[level].indexOf(heading) + 1];
+
+            const currentHeadingOfHigherLevel = allArticleHeadings.find(
+              (h) =>
+                h.level === level + 1 &&
+                h.endOfScope() > beginningOfScope() &&
+                h.beginningOfScope() < beginningOfScope(),
+            );
+            const endOfScope = () =>
+              calculateEndOfScope(nextHeadingOfSameLevel, currentHeadingOfHigherLevel);
+
+            allArticleHeadings.push({
+              id: heading.id,
+              tag: heading.tagName.toLowerCase(),
+              text: heading.textContent,
+              beginningOfScope: beginningOfScope,
+              endOfScope: endOfScope,
+              level: level + 2,
+            });
+          }
+        });
+      });
+
+      return allArticleHeadings.sort((a, b) => a.beginningOfScope() - b.beginningOfScope());
+    }
+
+    function calculateEndOfScope(
+      nextHeadingOfSameLevel: HTMLElement | undefined,
+      currentHeadingOfHigherLevel: HeadingMeta | undefined,
+    ) {
+      let endOfScope;
+
+      if (currentHeadingOfHigherLevel) {
+        if (nextHeadingOfSameLevel) {
+          endOfScope = Math.min(
+            nextHeadingOfSameLevel.offsetTop,
+            currentHeadingOfHigherLevel.endOfScope(),
+          );
+        } else {
+          endOfScope = currentHeadingOfHigherLevel.endOfScope();
+        }
+      } else {
+        if (nextHeadingOfSameLevel) {
+          endOfScope = nextHeadingOfSameLevel.offsetTop;
+        } else {
+          endOfScope = endOfArticle();
+        }
+      }
+
+      return endOfScope;
+    }
+
+    function isHeadingActive(top: number, bottom: number, scrollTop: number) {
+      const offsetForAnchorLinksToBeActiveAfterClicks = 30;
+      const diffTop = scrollTop - top + offsetForAnchorLinksToBeActiveAfterClicks;
+      const diffBottom = bottom - scrollTop - offsetForAnchorLinksToBeActiveAfterClicks;
+
+      return diffTop > 0 && diffBottom > 0;
+    }
+  }
+
+  postToc("#post-content", "#post-aside", {});
+</script>

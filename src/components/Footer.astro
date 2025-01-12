@@ -1,0 +1,161 @@
+---
+import { REPO, GITHUB, MASTODON, BLUESKY, LINKEDIN, EXERCISM, LASTFM, FLICKR } from "@lib/consts";
+import Triangle from "@assets/design/triangle.svg?raw";
+
+const today = new Date();
+---
+
+<footer class="footer">
+  <div class="footer-inner-wrapper">
+    <div class="social">
+      <h2>Social</h2>
+      <nav aria-label="social">
+        <a href={GITHUB} rel="me">Github</a>
+        <a href={MASTODON} rel="me">Mastodon</a>
+        <a href={BLUESKY} rel="me">Bluesky</a>
+        <a href={LINKEDIN}>LinkedIn</a>
+        <a href={EXERCISM}>Exercism</a>
+        <a href={LASTFM}>LastFM</a>
+        <a href={FLICKR}>Flickr</a>
+      </nav>
+    </div>
+
+    <div class="technical">
+      <h2>Technical</h2>
+      <nav aria-label="secondary">
+        <a class="rss" href="/feed.xml"> RSS </a>
+        <a href={`${REPO}`}>View source</a>
+        <a href={`${REPO}/issues`}>Report an issue</a>
+      </nav>
+    </div>
+
+    <div class="legal">
+      <h2>Legal</h2>
+      <p>
+        &copy; 2016-{today.getFullYear()}
+        <span lang="pl">Angelika</span>&nbsp;<span lang="de">Cathor</span>
+      </p>
+      <p>Contact: <strong>hello at angelika.me</strong></p>
+    </div>
+  </div>
+
+  <div class="triangles" aria-hidden="true">
+    <Fragment set:html={Triangle} />
+    <Fragment set:html={Triangle} />
+    <Fragment set:html={Triangle} />
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "../styles/functions";
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/colors";
+  @use "../styles/media-queries";
+
+  .footer {
+    position: relative;
+    @include colors.reverse-section();
+
+    $sin-60deg: 0.866;
+    $triangle-max-width: 15px;
+    $triangle-max-height: $sin-60deg * $triangle-max-width;
+    $triangle-background-height: #{7 * $triangle-max-height};
+
+    margin-top: calc(#{2 * variables.$gap-huge} + #{$triangle-background-height});
+
+    &:before {
+      content: "";
+      bottom: 100%;
+      @include mixins.triangle-gradient(var(--reverse-background-color));
+    }
+
+    > * {
+      grid-column: 2 / 3;
+      max-width: variables.$page-max-width;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    .footer-inner-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: variables.$gap-big;
+      row-gap: variables.$gap-huge;
+      padding: variables.$gap-huge 0 variables.$gap-huge;
+      font-size: variables.$font-size-small;
+
+      @media #{media-queries.$small} {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    h2 {
+      font-size: variables.$font-size-paragraph;
+      color: var(--reverse-text-color);
+      margin-top: 0;
+    }
+
+    a,
+    p {
+      color: var(--reverse-secondary-text-color);
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        padding: variables.$gap-tiny 0;
+      }
+    }
+
+    .legal {
+      grid-column: 1 / 3;
+
+      @media #{media-queries.$small} {
+        grid-column: 3 / 4;
+      }
+    }
+
+    .triangles {
+      padding: variables.$gap-small 0 variables.$gap-medium 0;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: variables.$gap-medium;
+
+      :global(svg:nth-child(1)) {
+        width: variables.$gap-big;
+        transform: rotate(10deg);
+
+        :global(*) {
+          fill: var(--accent-color1);
+        }
+      }
+
+      :global(svg:nth-child(2)) {
+        width: variables.$gap-big * 0.75;
+        transform: rotate(-75deg);
+
+        :global(*) {
+          fill: var(--accent-color2);
+        }
+      }
+
+      :global(svg:nth-child(3)) {
+        width: variables.$gap-big * 0.5;
+        transform: rotate(15deg);
+
+        :global(*) {
+          fill: var(--accent-color3);
+        }
+      }
+    }
+  }
+</style>

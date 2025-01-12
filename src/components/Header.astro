@@ -1,0 +1,235 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "@lib/consts";
+import Logo from "@assets/logo.svg?raw";
+import Icon from "./Icon.astro";
+---
+
+<header class="header">
+  <div class="header-inner-wrapper">
+    <HeaderLink class="logo" href="/" title={SITE_TITLE} aria-label="Home">
+      <Fragment set:html={Logo} />
+    </HeaderLink>
+
+    <nav aria-label="primary">
+      <HeaderLink href="/">About</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/bookmarks">Bookmarks</HeaderLink>
+      <span>
+        <input type="checkbox" id="dark-mode" name="dark-mode" class="dark-mode-switch-input" />
+        <label for="dark-mode" class="dark-mode-switch-label">
+          <span class="sr-only">Dark mode </span>
+          <span class="dark-mode-icons"
+            ><Icon data-sun name="sun" /><Icon data-moon name="moon" /></span
+          >
+        </label>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<style lang="scss">
+  @use "../styles/functions";
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/colors";
+  @use "../styles/media-queries";
+  @use "../styles/typography";
+
+  $header-border-width: 5px;
+
+  .header {
+    position: relative;
+    font-family: typography.$header-font-family;
+    border-bottom: $header-border-width solid transparent;
+
+    &:before {
+      z-index: 1;
+      transform: rotate(180deg);
+      content: "";
+      top: 0;
+      @include mixins.triangle-gradient(var(--secondary-background-color));
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .header-inner-wrapper {
+      position: relative;
+      z-index: 2;
+      margin-top: variables.$gap-big;
+      margin-bottom: variables.$gap-huge;
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: variables.$gap-medium;
+      max-width: variables.$page-max-width;
+    }
+
+    .logo {
+      --logo-size: clamp(2.5rem * 1.125, calc(2rem * 1.125 + 3vw), 4rem * 1.125);
+      width: var(--logo-size);
+      height: var(--logo-size);
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: -1 * $header-border-width;
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: flex-end;
+      gap: variables.$gap-small;
+      justify-content: flex-end;
+
+      @media #{media-queries.$small} {
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        --logo-size: 3rem * 1.125;
+      }
+
+      > * {
+        padding: variables.$gap-tiny variables.$gap-small 0 variables.$gap-small;
+        position: relative;
+        z-index: 1;
+        font-weight: 900;
+
+        &:before {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: var(--accent-color);
+          width: 100%;
+          height: $header-border-width;
+          transition: transform variables.$transition-duration ease;
+          z-index: -1;
+        }
+
+        &:hover,
+        &[aria-current="page"] {
+          &:before {
+            $zoom: 2.3;
+            transform: translateY(($zoom - 1) * -50%) scaleY(100% * $zoom);
+          }
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          &::before {
+            content: "";
+          }
+        }
+
+        &:nth-child(1) {
+          --accent-color: var(--accent-color1);
+        }
+        &:nth-child(2) {
+          --accent-color: var(--accent-color2);
+        }
+        &:nth-child(3) {
+          --accent-color: var(--accent-color3);
+        }
+      }
+
+      a {
+        color: var(--text-color);
+      }
+
+      .dark-mode-switch-input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        line-height: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+
+        &:focus-visible {
+          outline: 0;
+
+          & + label {
+            @include mixins.focus();
+          }
+        }
+
+        & + label {
+          .dark-mode-icons :global([data-icon="moon"]) {
+            display: none;
+          }
+        }
+
+        &:checked + label {
+          .dark-mode-icons :global([data-icon="sun"]) {
+            display: none;
+          }
+
+          .dark-mode-icons :global([data-icon="moon"]) {
+            display: block;
+          }
+        }
+      }
+
+      .dark-mode-switch-label {
+        @include mixins.button_reset();
+        cursor: pointer;
+        font-size: 1.3em;
+        line-height: 1.3em;
+        color: var(--text-color);
+        padding-bottom: 0.2em;
+        display: block;
+
+        .dark-mode-icons {
+          display: block;
+
+          & :global(svg) {
+            display: block;
+            transition: all variables.$transition-duration ease;
+          }
+        }
+
+        &:hover {
+          .dark-mode-icons :global(svg) {
+            transform: rotate(30deg);
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  const html = document.querySelector<HTMLElement>("html");
+  const input = document.querySelector<HTMLInputElement>(".dark-mode-switch-input");
+  const label = document.querySelector<HTMLLabelElement>(".dark-mode-switch-label");
+  const savedMode = window.localStorage.getItem("dark");
+
+  function toggleMode() {
+    if (html && input && label) {
+      if (html.hasAttribute("data-dark")) {
+        html.removeAttribute("data-dark");
+        window.localStorage.setItem("dark", "false");
+        input.checked = false;
+      } else {
+        html.setAttribute("data-dark", "true");
+        window.localStorage.setItem("dark", "true");
+        input.checked = true;
+      }
+    }
+  }
+
+  if (input) {
+    if (savedMode === "true") {
+      toggleMode();
+    }
+
+    input.addEventListener("click", toggleMode);
+  }
+</script>

@@ -1,0 +1,258 @@
+---
+title: Scroll spy - heading breadcrumbs
+excerpt: Keep track of the headings that describe the current paragraph of a long article.
+tags: [JavaScript, blogging]
+pubDate: 2016-05-03 19:52:00 +0200
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro"
+import Concept from "concept.svg"
+import Opacity from "opacity.svg"
+import Result from "result.gif"
+import Scope from "scope.svg"
+
+My previous post was way too long. I have had problems keeping track of the context when re-reading it multiple times before publishing. I could, and should, be writing shorter posts. Or! Or I could add a feature that would help readers keep track of the context.
+
+## Concept
+
+I, as a reader, want to be able to quickly check all the headings that describe the paragraph I'm currently reading and navigate to those headings. I couldn't find if it's *a thing* already, so I came up with a name myself. I call it "scroll spy - heading breadcrumbs", because it follows the offset from the top of the document and assembles anchors for navigating the article.
+
+It's very similar to what popular front-end frameworks offer, except that it doesn't use an existing navigational element to highlight  current sections, but rather creates one. It's not supposed to be the whole table of contents either, just a quick reminder of the current context.
+
+<BlogPostImage
+  image={Concept}
+  alt={'scroll spy heading breadcrumbs concept'}
+  caption={"A fixed container with anchors to headings that describe the paragraph at the eye level of the reader"}
+/>
+
+## Assumptions
+
+- Instead of using an existing scroll spy, I wanted to implement it myself. Firstly, it's fun. Secondly, I'm not using any front-end frameworks on my blog.
+- It's a small feature. I don't want to have to load a big library just for this little thing, so I'm just using Vanilla JS.
+- It isn't crucial. It doesn't have to work on every browser from the past 10 years.
+- My heading structure will always be consistent: no skipped levels, a single `h1` for the title that shouldn't be included in the breadcrumbs.
+- To make everything prettier, I want the anchors to headings to fade in and out as they appear and disappear from the breadcrumbs, but not with a CSS  transition. I want their opacity to change as I scroll.
+
+## Execution
+
+### Base
+
+```js
+function headingBreadcrumbs(article,
+  breadcrumbsContainer, options) {
+  var ARTICLE = document.querySelector(article);
+  var CONTAINER = document.querySelector(breadcrumbsContainer);
+
+  // the rest of code will go here
+}
+
+// usage
+document.addEventListener('DOMContentLoaded', function() {
+  headingBreadcrumbs('.post', '.post + aside', {});
+});
+
+```
+
+### Find all headings per level
+
+```js
+var HIGHEST_LEVEL = options.highestLevel || 2;
+
+function getHeadingsPerLevel() {
+  var headingsPerLevel =  [];
+
+  for (var level = HIGHEST_LEVEL; level <= 6; level++) {
+    var headings = Array.prototype.slice
+      .call(ARTICLE.querySelectorAll('h' + level));
+
+    headings = headings.sort(function(a, b) {
+      return b.offsetTop - a.offsetTop
+    });
+
+    headingsPerLevel.push(headings);
+  }
+
+  return headingsPerLevel;
+}
+```
+
+I want to skip searching for level 1 headings because there will always be only one, the post title.
+
+The `querySelectorAll` method returns a `NodeList`. To be able to use any array methods on that object, I need to convert it to an array. I want to sort the headings by their offset from the top of the document in a **descending order**. It's needed in the next step.
+
+### Find all headings that describe the current paragraph
+
+Basing on the assumption that there will be no levels skipped, I know that a heading describes the current paragraph if, **starting from the bottom**, it is the first heading of its level whose offset from the top of the document is smaller than that of the paragraph, but larger than that of the one-lever-higher heading describing the current paragraph.
+
+In other words: The scope of a heading is a group of paragraphs that the heading describes. It begins just after the heading. It ends in three cases (whichever comes first). Firstly, if a next heading of the same level appears. Secondly, if the scope of the current      one-level-higher heading ends. Thirdly, if the article ends.
+
+<BlogPostImage
+  image={Scope}
+  alt={'Heading scopes'}
+  caption={"Headings and scopes of text which they describe"}
+/>
+
+```js
+var END_OF_ARTICLE = ARTICLE.offsetTop + ARTICLE.offsetHeight;
+
+function findHeadingsInScope(headingsPerLevel, scrollTop) {
+  var headingsInScope = [];
+  var previousHeadingOffset = 0;
+
+  headingsPerLevel.forEach(function(headings, level) {
+    var heading = headings.find(function(node) {
+      return (node.offsetTop < scrollTop) &&
+        (node.offsetTop > previousHeadingOffset)
+    });
+
+    if (heading) {
+      var nextHeadingOfSameLevel = headingsPerLevel[level][
+        headingsPerLevel[level].indexOf(heading) - 1
+      ];
+
+      var currentHeadingOfHigherLevel =
+        headingsInScope[headingsInScope.length - 1];
+
+      var endOfScope = calculateEndOfScope(nextHeadingOfSameLevel,
+        currentHeadingOfHigherLevel);
+
+      headingsInScope.push({
+        id: heading.id,
+        // used as a class for styling
+        tag: heading.tagName.toLowerCase(),
+        text: heading.textContent,
+        beginningOfScope: heading.offsetTop + heading.offsetHeight,
+        endOfScope: endOfScope
+      });
+
+      previousHeadingOffset = heading.offsetTop;
+    }
+    else {
+      previousHeadingOffset = END_OF_ARTICLE;
+    }
+  });
+
+  return headingsInScope;
+}
+```
+
+#### Calculate the end of the scope for each heading
+
+```js
+function calculateEndOfScope(nextHeadingOfSameLevel,
+  currentHeadingOfHigherLevel) {
+  var endOfScope;
+
+  if (currentHeadingOfHigherLevel) {
+    if (nextHeadingOfSameLevel) {
+      endOfScope = Math.min(nextHeadingOfSameLevel.offsetTop,
+        currentHeadingOfHigherLevel.endOfScope);
+    }
+    else {
+      endOfScope = currentHeadingOfHigherLevel.endOfScope;
+    }
+  }
+  else {
+    if (nextHeadingOfSameLevel) {
+      endOfScope = nextHeadingOfSameLevel.offsetTop
+    }
+    else {
+      endOfScope = END_OF_ARTICLE;
+    }
+  }
+
+  return endOfScope;
+}
+```
+
+### Calculate the opacity of a breadcrumb
+
+To prevent sharp, sudden appearances of new breadcrumbs, I want them to fade in and out smoothly. A breadcrumb should **begin** fading **in** when its heading gets scrolled out of view. It should **end** fading **out** a little bit before the end of its heading's scope reaches the top of the window. The reader usually moves their eyes up and down, and I don't want them to see a breadcrumb for a heading when they're reading the next one already.
+
+<BlogPostImage
+  image={Opacity}
+  alt={'Opacity of breadcrumb'}
+  caption={"Opacity of a breadcrumb at a given distance from its heading"}
+/>
+
+```js
+var FADING_DISTANCE = options.fadingDistance || 100;
+var OFFSET_END_OF_SCOPE = options.offsetEndOfScope || 100;
+
+function calculateOpacity(top, bottom, scrollTop) {
+  var diffTop = scrollTop - top;
+  var opacityTop = diffTop > FADING_DISTANCE ?
+    1 : diffTop / FADING_DISTANCE;
+
+  var diffBottom = bottom - scrollTop - OFFSET_END_OF_SCOPE;
+  var opacityBottom = diffBottom > FADING_DISTANCE ?
+    1 : diffBottom / FADING_DISTANCE;
+
+  return Math.min(opacityTop, opacityBottom);
+}
+```
+
+### Build the HTML
+
+The hard part is over. Now, to actually do something with those tedious calculations, I will build the markup for the breadcrumbs. They should serve a navigational purpose as well, so I'm using anchors that will link to corresponding headings. I want the anchors to have classes indicating the levels of their headings so that I can style them accordingly. Lastly, I want to disable clicking on anchors that are barely visible.
+
+```js
+function getBreadcrumbs(headingsPerLevel, scrollTop) {
+  var breadcrumbs = [];
+  var headingsInScope =
+    findHeadingsInScope(headingsPerLevel, scrollTop);
+
+  headingsInScope.forEach(function(heading) {
+    var opacity = calculateOpacity(heading.beginningOfScope,
+      heading.endOfScope, scrollTop);
+
+    var html = '<a href="#' + heading.id
+      + '" class="' + heading.tag
+      + '" style="opacity:' + opacity
+      + '; pointer-events: ' + (opacity > 0.5 ? 'auto' : 'none')
+      + '">' + heading.text
+      + '</a>';
+
+    breadcrumbs.push(html);
+  });
+
+  return breadcrumbs.join('');
+}
+```
+
+### Initialize and listen to the scroll event
+
+```js
+init();
+
+function init() {
+  var headingsPerLevel = getHeadingsPerLevel();
+  makeBreadcrumbs(headingsPerLevel);
+
+  window.addEventListener('scroll', function() {
+    makeBreadcrumbs(headingsPerLevel);
+  });
+}
+
+function makeBreadcrumbs(headingsPerLevel) {
+  CONTAINER.innerHTML =
+    getBreadcrumbs(headingsPerLevel, offsetTop());
+}
+
+function offsetTop() {
+  return window.scrollY;
+}
+```
+
+## Result
+
+With some styling (which I leave to your imagination):
+
+
+<BlogPostImage
+  image={Result}
+  alt={'scroll spy heading breadcrumbs'}
+  caption={"The result of all that code above"}
+/>
+
+You can find [the whole thing on Github](https://github.com/angelikatyborska/angelika.me/blob/3223c941351fc35b070c4167f00df6ae80f328a9/_assets/javascripts/post_heading_breadcrumbs.js).

@@ -1,0 +1,9 @@
+# Ignore artifacts:
+node_modules
+dist
+.astro
+
+# Ignore blog posts
+src/content/blog/**/*.md
+src/content/blog/**/*.mdx
+public/**/*.html

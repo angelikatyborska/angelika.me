@@ -1,0 +1,116 @@
+---
+import Icon from "@components/Icon.astro";
+import Triangle from "@assets/design/triangle.svg?raw";
+---
+
+<footer>
+  <div class="coffee">
+    <h2>Did you find this article useful?</h2>
+    <p>
+      <a href="https://ko-fi.com/angelikatyborska">Buy me a coffee <Icon name="mughot" /></a>.
+    </p>
+
+    <div class="triangles" aria-hidden="true">
+      <Fragment set:html={Triangle} />
+      <Fragment set:html={Triangle} />
+      <Fragment set:html={Triangle} />
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/media-queries";
+  @use "../styles/mixins";
+  @use "../styles/typography";
+  @use "../styles/colors";
+
+  footer {
+    @include colors.reverse-section();
+    margin: variables.$gap-huge calc(-1 * var(--page-padding-left));
+    padding: 0 var(--page-padding-left);
+  }
+
+  .coffee {
+    @include colors.reverse-section();
+    width: var(--pulled-out-block-width);
+    margin: 0 var(--pulled-out-block-margin-right) 0 var(--pulled-out-block-margin-left);
+    padding: variables.$gap-big calc(-1 * var(--pulled-out-block-margin-right)) variables.$gap-big
+      calc(-1 * var(--pulled-out-block-margin-left));
+    position: relative;
+
+    h2 {
+      font-size: variables.$font-size-h5;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: variables.$font-size-h6;
+      margin-bottom: 0;
+
+      :global(svg) {
+        margin-left: 0.25em;
+      }
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    .triangles {
+      :global(svg:nth-child(1)) {
+        position: absolute;
+        top: -0.5 * variables.$gap-huge * 0.75;
+        left: 0;
+        width: variables.$gap-huge * 0.75;
+        transform: rotate(15deg);
+
+        :global(*) {
+          fill: var(--accent-color2);
+        }
+
+        @media #{media-queries.$medium} {
+          left: -0.25 * variables.$gap-huge;
+        }
+      }
+
+      :global(svg:nth-child(2)) {
+        position: absolute;
+        top: -0.5 * variables.$gap-huge * 0.5;
+        left: variables.$gap-huge;
+        width: variables.$gap-huge * 0.5;
+        transform: rotate(-52deg);
+        :global(*) {
+          fill: var(--accent-color3);
+        }
+
+        @media #{media-queries.$medium} {
+          left: 0.5 * variables.$gap-huge;
+        }
+      }
+
+      :global(svg:nth-child(3)) {
+        position: absolute;
+        bottom: -0.25 * variables.$gap-huge;
+        right: -0.25 * variables.$gap-big;
+        width: variables.$gap-huge;
+        transform: rotate(72deg);
+        :global(*) {
+          fill: var(--accent-color1);
+        }
+
+        @media #{media-queries.$medium} {
+          right: -0.25 * variables.$gap-big;
+        }
+
+        @media #{media-queries.$big} {
+          right: -1.5 * variables.$gap-huge;
+        }
+
+        @media #{media-queries.$very-big} {
+          right: -0.5 * variables.$gap-huge;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+import { library, icon } from "@fortawesome/fontawesome-svg-core";
+import { faSun, faMoon, faMugHot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faMastodon,
+  faBluesky,
+  faLinkedin,
+  faLastfm,
+  faFlickr,
+} from "@fortawesome/free-brands-svg-icons";
+import Exercism from "@assets/exercism.svg?raw";
+
+library.add(
+  faMugHot,
+  faSun,
+  faMoon,
+  faGithub,
+  faMastodon,
+  faBluesky,
+  faLinkedin,
+  faLastfm,
+  faFlickr,
+);
+
+const MugHotIcon = icon(faMugHot);
+const SunIcon = icon(faSun);
+const MoonIcon = icon(faMoon);
+const GithubIcon = icon(faGithub);
+const MastodonIcon = icon(faMastodon);
+const BlueskyIcon = icon(faBluesky);
+const LinkedinIcon = icon(faLinkedin);
+const LastfmIcon = icon(faLastfm);
+const FlickrIcon = icon(faFlickr);
+
+const iconMap = {
+  mughot: MugHotIcon,
+  sun: SunIcon,
+  moon: MoonIcon,
+  github: GithubIcon,
+  mastodon: MastodonIcon,
+  bluesky: BlueskyIcon,
+  linkedin: LinkedinIcon,
+  lastfm: LastfmIcon,
+  flickr: FlickrIcon,
+  exercism: {
+    html: Exercism,
+  },
+};
+
+type Props = {
+  name: keyof typeof iconMap;
+};
+
+const { name } = Astro.props;
+---
+
+<Fragment set:html={iconMap[name].html} />
+
+<style is:global>
+  /* stylelint-disable-next-line selector-class-pattern */
+  svg.svg-inline--fa,
+  svg.exercism {
+    width: 1em;
+    height: 1em;
+  }
+</style>

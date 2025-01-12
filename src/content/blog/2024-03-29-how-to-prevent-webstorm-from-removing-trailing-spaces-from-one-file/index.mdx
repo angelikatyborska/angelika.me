@@ -1,0 +1,44 @@
+---
+title: How to prevent WebStorm from removing trailing spaces from one specific file?
+excerpt: I love WebStorm's "on save" formatting options, but from time to time, they get in my way.
+tags: [editor, IDE, WebStorm]
+pubDate: 2024-03-29 13:32:00 +0100
+---
+import BlogPostImage from "@components/BlogPostImage.astro";
+import OnSaveOptions from "./on-save-options.png";
+
+I love my IDE's option "on save, remove all trailing spaces on all lines". 99% of the time, I didn't mean to end a line with a space. It's meaningless, it's trash, so let's remove it.
+
+A lot of language-specific formatters like [Elixir's formatter](https://hexdocs.pm/mix/Mix.Tasks.Format.html) or [Prettier](https://prettier.io/) remove trailing spaces as well. Even when I use them in a project, I still like to keep this setting on in my IDE. There are always a few files of a different format that do not have a dedicated formatter tool set up.
+
+I happen to use WebStorm, but I'm sure your IDE/editor has a similar configuration option.
+
+However, sometimes, **I need the trailing spaces**.
+
+For example, in my recent project, I wrote a smoke test. The smoke test would run the tool under test in a specific directory, and then compare the output of running `git diff` in that directory with an expected diff. The expected diff was stored in a `.diff` file, and its trailing spaces were significant because the real output of `git diff` has trailing spaces.
+
+I didn't want to change my IDE settings for the whole project, but I also didn't find an IDE-specific way to exclude a single file from the "on save" transformations. Luckily, there's a tool that could help.
+
+<BlogPostImage
+  image={OnSaveOptions}
+  alt="On save: remove trailing spaces on all lines and ensure every saved file ends with a line break."
+  relativeMaxWidth={0.66}
+  caption={'My WebStorm "on save" options'}
+/>
+
+## The solution - EditorConfig
+
+[EditorConfig](https://editorconfig.org/) is a tool that helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. It is supported by many different IDEs and editors out of the box, including WebStorm, and even more via plugins.
+
+WebStorm always chooses the EditorConfig configuration over its own configuration, and EditorConfig supports a `trim_trailing_whitespace` setting 🎉.
+
+To solve my problem, I added a `.editorconfig` file like this:
+
+```
+[*.diff]
+trim_trailing_whitespace=false
+```
+
+With this config file in my projects, WebStorm wouldn't remove trailing spaces from `.diff` files anymore, but would still remove them from all other files. Exactly what I needed!
+
+Note that if you're working on a project in a team, it's a good idea to create a more extensive `.editorconfig` than the example I showed here. [Explore all possible EditorConfig properties](https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties).

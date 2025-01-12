@@ -1,0 +1,219 @@
+---
+title: 13 tips for junior developers on how to make a great impression with your take-home coding task
+excerpt: Finding your first job can be very hard, and making a great impression with the take-home coding task can make the difference between getting hired or not.
+tags: [recruitment, career]
+pubDate: 2022-03-20 19:21:13 +0100
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro"
+import MisformattedJson from "./misformatted-json.png"
+import StagedChangesVSC from "./staged-changes-vsc.png"
+
+Take-home coding tasks are prevalent in the industry, albeit controversial. Some people think they're a great tool for assessing the skills of a potential hire, others think it's a waste of everyone's time and go as far as avoiding companies that use them when looking for a new job.
+
+As a junior developer, you might not have the luxury of making such a choice. Finding your first job can be very hard, and making a great impression with the take-home coding task can make the difference between getting hired or not.
+
+## Disclaimer
+
+This advice is based on my own experience as a developer, looking for new jobs for myself and looking for new devs for my teams. My experience is limited to web development and small companies in Europe.
+
+This advice applies to tasks that can be done on your own computer using your own tools. Usually, this means creating a new project according to specifications or extending an existing project given to you.
+
+This advice might not apply to coding platforms that involve solving riddles or implementing tricky algorithms. I have no experience with such platforms.
+
+My personal opinion about take-home coding tasks is somewhere in the middle. There can be tasks so bad that you should consider them a red flag, for example when the task has nothing to do with the job itself or looks suspiciously like an attempt to make you do _real work_ for the company for free.
+
+## 1. Understand the expectations
+
+Coding tasks often include creating a new small project that fulfills given requirements. For web development jobs, it's usually a small web app, e.g. a JSON API in Ruby on Rails for a backend position, or a static HTML & CSS page created according to a given design for a frontend position. Sometimes you might also be given an existing project and asked to extend with a new feature or fix it. Sometimes you might be asked to work with a technology that you haven't ever used before.
+
+Giving general advice about expectations is hard because of how different tasks can be. Read the instructions that you have been given well and look for subtle hints. For example:
+
+- Coding tasks for junior positions usually involve solving well-known problems in the industry, the kind for which you will find a lot of tutorials and existing solutions.
+- Before you start solving the task, make sure that it's clear for you which programming language and tools the company expects you to use, or if they're giving you a choice in this regard.
+- Phrases like "write production-ready code" might mean that you should write a lot of tests and make it configurable for production use, e.g. in production, the database server usually is available under a different hostname than `localhost`.
+- Phrases like "don't reinvent the wheel" might mean that you're supposed to find existing libraries that solve part of the requirements instead of coming up with your own code.
+- If you're given a visual design for the app, pay attention to every detail on the design.
+
+## 2. Read everything twice
+
+This is common test-taking advice at school, but it also holds true when doing coding tasks to get a job. Read everything twice to make sure you didn't miss any requirements. Read everything _again_ after finishing the task. Read your own code twice too!
+
+## 3. Do research first
+
+If you're about to use a new tool to solve the coding task that you didn't use before, do research first. Read its documentation, try it out in a throw-away code first. Discovering how a new tool works can lead to easily-avoidable beginner mistakes, and you don't want to make those in a high-stakes project.
+
+> "Weeks of coding can save you hours of planning" - Unknown
+
+## 4. Be communicative
+
+Writing working code is only a part of a software developer's job. Another big part of the job is to communicate with your team, to know which code to write, when, and why, and to explain what you did and why.
+
+Depending on the type of the task and the way you're supposed to deliver it, it might be easier or harder to show off this skill. If you can deliver your task as a pull request on GitHub, you can use a pull request description or comments to communicate. If not, you can include this information in a `README.md` file (continue reading to find out what else should be in this file).
+
+Try to communicate:
+
+1. A summary of your changes.
+    - If you created a new project, what is this? A web app? A command-line script? A NodeJS library?
+    - Where to start reviewing the code?
+2. Decisions that you made, but aren't sure about.
+3. Bugs and corner cases that you discovered, but didn't fix, and why.
+
+A good interviewing process would include not only making you do a coding task, but having a discussion about it with one of your future coworkers, either in GitHub comments or in person in the next interview.
+
+## 5. Write a `README.md`
+
+If you're creating a new project, writing a good `README.md` is a must. It should contain instructions on:
+
+1. How to set up the app:
+    - Which external dependencies are needed (e.g. a specific database server, programming language version)?
+    - How to install internal dependencies (e.g. should I run `npm install` or `yarn install`)?
+    - Which config files need to be created or edited to match my environment, e.g. if the project uses a database server, how do I specify a custom hostname and port?
+    - If the project uses a database, how do I create it and run database migrations?
+2. How to start the app?
+3. How to run the tests?
+
+You can also use the `README.md` file to document any technical decisions that you have made about the project.
+
+## 6. Consider corner cases
+
+Let's say you were given the task of creating a simple login form with an email address and a password. It sounds straightforward, but there are a lot of corner cases:
+
+- What should happen when trying to log in without filling out the inputs?
+- What kind of email address validation is needed?
+- What should happen if the email and password didn't match?
+- How many failed login attempts should be allowed within one hour?
+
+Try to come up with those corner cases for your specific task and make a decision about whether to handle them and how.
+
+Note that not every corner case needs to be handled in a recruitment task. Remember to be communicative. You can make a great impression by simply communicating that you thought of a corner case that might happen in a real product but decided not to handle it due to the limited scope of the task.
+
+## 7. DRY, KISS, etc.
+
+Remember all of those "good practices" you learned about? Don't repeat yourself, keep it simple, give your variables a descriptive name, write short functions, and so on? Now is the time to put them to practice. When solving a recruitment task, you want to be more pedantic with your code than at any other time.
+
+## 8. Write tests
+
+[Unit testing](https://en.wikipedia.org/wiki/Unit_testing) is another industry standard that you want to follow. Unless the requirements specifically tell you not to bother writing tests, make sure to write tests, and make sure that they all pass. Don't forget to add the instructions on how to run the tests to the `README.md`.
+
+## 9. Do cross-browser testing
+
+If your task involves creating a website or a web app, you need to test it in a few different browsers that you have access to on your devices. It's a step necessary for every website and web app. Besides, you never know which browser the person reviewing your task will use.
+
+If your task involves writing CSS, testing if it's responsive is also a must. Use your browsers responsive testing tools, e.g. [responsive design mode in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_Mode) or [device mode in Chrome](https://developer.chrome.com/docs/devtools/device-mode/).
+
+## 10. Use validators
+
+If your task includes writing any HTML, CSS, or XML, pass it through a [validator](https://validator.w3.org/nu/).
+
+Remember that browsers are very forgiving when it comes to invalid HTML and CSS. They will try to make guesses about what you really meant just to make your page work. Just because it works, doesn't mean it's _correct_.
+
+## 11. Create a clean git history
+
+Using version control for code is an industry standard, and git is the most widely used version control system. You may have to deliver your task as a git repository (e.g. hosted on [GitHub](https://github.com/) or [GitLab](https://gitlab.com/gitlab-com)).
+
+If that's the case, pay attention to the kind of git history you're creating.
+
+- Split your work into a few smaller independent chunks and [make a commit for each chunk separately](https://betterprogramming.pub/why-you-should-write-small-git-commits-c9a042737aa6).
+- [Write well-formed meaningful commit messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/).
+- If you were given an existing project to work on and it already has some commits, try to match the format of the existing commit messages.
+- If you were told to open a pull request with your task, pay attention to its title and description.
+
+Even if you are supposed to deliver your coding task in some other way, e.g. as a `.zip` file with the project files, you can still show off your git skills.
+
+If you initialize a git repository in the project, a `.git` directory will appear in that project. As long as you don't delete this directory, whoever checks your coding task will be able to see that you used git and will be able to read your commit history.
+
+Using git with a clean history for your coding task is also very useful because it can get you out of trouble if you make the wrong change to the project and need to revert it.
+
+## 12. Use a `.gitignore` file
+
+On the topic of clean git history - make sure to only commit the necessary files. Before committing, review which changes are in the [staging area](https://git-scm.com/about/staging-area). Or even better, create a `.gitignore` file that will prevent ever committing unwanted files.
+
+<BlogPostImage
+  image={StagedChangesVSC}
+  alt={'A screenshot of Visual Studio Code and its source control tool. It shows that the file description.md has both staged and unstaged changes, and that the file .DS_Store is a new staged file.'}
+  caption={"Modern code editors like Visual Studio Code and JetBrains IDEs come with built-in git tools that allow you to more easily review staged changes. Stand-alone git GUI apps also exist."}
+/>
+
+As a rule of thumb, you want to avoid committing temporary files, files specific to your own work environment, dependencies that can be easily installed based on a dependency lock file, and the output of a build process.
+
+**Do not commit**, for example:
+
+- `.DS_Store` files. Those are macOS-specific files with folder options for the Finder app. Your Linux coworkers do not need it, and your macOS coworkers want to have their own, not yours.
+- `.idea` or `.vscode` directories. Those contain settings for [JetBrains IDEs](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/). Every dev has their own, if they even use that specific IDE.
+- `.swp` files. Those are temporary files created by the text editor [vim](https://en.wikipedia.org/wiki/Vim_(text_editor)).
+- [The `node_modules` directory](https://flaviocopes.com/should-commit-node-modules-git/). This directory contains npm dependencies that can be reliably recreated if you commit the `package-lock.json` or `yarn.lock` file. Similarly, in an Elixir project, you would not commit the `deps` directory.
+
+**Do commit**:
+
+- Dependency lock files, e.g. `Gemfile.lock` (Ruby), `mix.lock` (Elixir), `package-lock.json` (JavaScript) etc.
+- Configuration files for common developer tools that each developer should have configured in the same way within one project, e.g. [`.editorconfig`](https://editorconfig.org/) that defines how to format files, or `.tool-versions` that tells the [asdf version manager](https://asdf-vm.com/) which programming language versions to install.
+
+### Local vs global `.gitignore`
+
+A local `.gitignore` file belongs to the project. It's located in the project's directory. It should list all files that need to be ignored because of the tools used in the project, e.g. `node_modules/` and `npm-debug.log` in a NodeJS project.
+
+A global `.gitignore` file belongs to your operating system user and applies to all projects. It's located in your user's home directory. It should list all files that need to be ignored because of your personal tooling choices, e.g. based on the operating system, your IDE, and so on.
+
+If you don't have one, [set up a global `.gitignore` file now](https://gist.github.com/subfuzion/db7f57fff2fb6998a16c). [GitHub offers a nice list of global `.gitignore` file templates](https://github.com/github/gitignore/tree/main/Global).
+
+## 13. Avoid code formatting mistakes
+
+Sloppy code formatting is a clear sign of a developer with little experience. Formatting is something that doesn't immediately seem very important because it doesn't affect how the code works. But the more time one had to spend reading other people's code, the more value one places on well-formatted code.
+
+Make sure to follow those formatting rules:
+
+- Always indent your code.
+- Be consistent - always format the same expressions in the same way.
+- Use only one style of indentation per file type (e.g. if one `.css` file uses 2 spaces, do not use tabs in another `.css` file).
+- Do not leave trailing whitespace (spaces or tabs at the end of the line).
+- When editing somebody else's code, match its formatting style instead of enforcing your own.
+- Use autoformatters and linters where possible.
+
+### Tabs versus spaces?
+
+How to decide whether to use tabs or spaces for indentation, and if spaces - how many? Follow those rules:
+
+1. Use the same indentation style that was already used in this project for this type of file.
+2. Use the same indentation style that the majority of your teammates also want to use.
+3. Use the same indentation style that the majority of projects of this type also use. For example, in the Ruby and Elixir community, we always use 2 spaces.
+4. Use the same indentation style that is configured by default in your autoformatter or linter.
+
+Only when none of those rules apply, you're free to make your own choice. In the end, which specific indentation style you choose doesn't matter that much, and most modern tools can be configured to work with either.
+
+For example, as an Elixir developer, I always indent everything with 2 spaces, but I insert them by pressing the tab key once because my IDE transforms that to 2 spaces based on the configuration for `.ex` files.
+
+### Make your tools work for you
+
+In reality, experienced devs rarely have to _think_ about formatting. The trick is to use the correct tools that do the formatting for you.
+
+Take some time to discover your code editor's settings. Here's what I would recommend:
+
+- Make sure that whitespace characters are **always** visible to you. The only way to detect formatting mistakes is to see them!
+  - For example, in Visual Studio Code, find the setting "Editor: Render Whitespace" and set it to "all", and in a JetBrains IDE (e.g. WebStorm or RubyMine), find the setting "Show Whitespaces", and make sure that all "Leading", "Inner", and "Trailing" are checked.
+- Remove all trailing whitespace automatically.
+  - For example, in Visual Studio code, enable the setting "Files: Trim Trailing Whitespace", and in a JetBrains IDE, enable "On Save: Remove trailing spaces on all lines".
+- Ensure [every file ends with a single new line](https://thoughtbot.com/blog/no-newline-at-end-of-file).
+  - In Visual Studio Code, check "Files: Insert Final Newline" and "Files: Trim Final Newlines", and in a JetBrains IDE, enable "On Save: Ensure every line ends with a line break" and "On Save: Remove trailing blank lines at the end of saved files".
+
+The below JSON file looks correctly indented at a first glance, but when we make all whitespace visible, we can notice that line 4 actually contains 2 formatting mistakes. Firstly, it uses tabs to indent the line instead of spaces like the rest of the file, and secondly, it has 5 completely unnecessary trailing spaces.
+
+<BlogPostImage
+  image={MisformattedJson}
+  alt={'A screenshot of a short JSON file with whitespace characters rendered. One of the lines is formatted with tabs instead of spaces, and contains trailing spaces.'}
+  caption={"Many editors visualize whitespace in the same way: a dot means a space, a right arrow means a tab."}
+/>
+
+Another type of tool that helps with this is an autoformatter or a linter.
+
+### Autoformatters and linters
+
+Many programming languages either have a built-in code formatter or have a popular library that serves this purpose. If your task is to create a new project from scratch, you can consider adding one. If your task is to work on an existing project, check if it has one already and use it if it does.
+
+To check if a project has an autoformatter or a linter, you need to look out for hints in its `README.md`, task runner configuration, and in its config files. For example:
+
+- Elixir has a built-in autoformatter. You can run `mix format` in any Elixir project that has a `.formatter.exs` file.
+- NodeJS projects can have [custom scripts defined in the `package.json` file](https://discordjs.guide/improving-dev-environment/package-json-scripts.html#adding-your-first-script), Ruby projects in a [`Rakefile`](https://ruby.github.io/rake/doc/rakefile_rdoc.html#label-Tasks), and Elixir projects in [the `mix.exs` file as "aliases"](https://www.germanvelasco.com/blog/using-mix-aliases-to-improve-your-workflow). Look out for anything called "lint" or "format".
+- Popular tools and their config files include: `.editorconfig` ([EditorConfig](https://editorconfig.org/)), `.prettierrc` ([Prettier](https://prettier.io/)), `.eslintrc` ([ESLint](https://eslint.org/)), `.stylelintrc` ([StyleLint](https://stylelint.io/)), or `.rubocop.yml` ([RuboCop](https://rubocop.org/)). If you find any of those files in the project, you might be able to configure your code editor to integrate with those tools and give you formatting hints, or find a way to run them from the command line.
+
+Beware of adding an autoformatter to an existing project. It can either be seen as a good proactive step or as a faux pas (if you attempt to reformat all of the existing code to match your own preferences).

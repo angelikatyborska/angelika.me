@@ -1,0 +1,20 @@
+---
+
+---
+
+<ul class="list">
+  <slot />
+</ul>
+
+<style lang="scss">
+  @use "../styles/variables";
+
+  .list {
+    padding-left: 0;
+
+    :global(li) {
+      display: flex;
+      margin-bottom: variables.$gap-medium;
+    }
+  }
+</style>

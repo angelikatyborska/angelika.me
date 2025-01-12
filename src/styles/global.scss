@@ -1,0 +1,79 @@
+@use "./reset";
+@use "./typography";
+@use "./variables";
+@use "./mixins";
+@use "./syntax";
+@use "./table";
+
+@view-transition {
+  navigation: auto;
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  overflow-y: scroll;
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+a {
+  @include typography.inline-link();
+}
+
+figure {
+  width: 100%;
+  margin: 0 0 variables.$gap-big 0;
+  text-align: center;
+
+  figcaption {
+    color: var(--secondary-text-color);
+    font-size: variables.$font-size-small;
+  }
+
+  img,
+  video {
+    @include mixins.box();
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+kbd {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 2px variables.$gap-tiny;
+  font-family: typography.$code-font-family;
+  font-size: 0.75em;
+  color: var(--text-color);
+  background-color: var(--secondary-background-color);
+  border: 1px solid var(--shadow-color-2);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 var(--shadow-color-1),
+    0 0 0 3px rgba(255, 255, 255, 0.3) inset;
+  white-space: nowrap;
+}
+
+*:focus-visible {
+  @include mixins.focus();
+}
+
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* added line */
+}

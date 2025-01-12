@@ -1,0 +1,168 @@
+---
+title: How to format Elixir code in Markdown code blocks?
+excerpt: I wrote a Markdown code block formatter plugin to help you with that.
+tags: [Elixir]
+pubDate: 2024-01-27 16:03:00 +0100
+---
+import BlogPostImage from "@components/BlogPostImage.astro";
+import MixFormat from "./mix-format.gif";
+
+As a maintainer of the Elixir track on the learning platform [Exercism](https://exercism.org/), I get to write and review a lot of Markdown files with Elixir code blocks. There are Markdown files with [exercise introductions](https://github.com/exercism/elixir/blob/d6aafb919af6debfcfcdce64db4c54def535a3f6/exercises/concept/bird-count/.docs/introduction.md), [exercise instructions](https://github.com/exercism/elixir/blob/d6aafb919af6debfcfcdce64db4c54def535a3f6/exercises/concept/bird-count/.docs/instructions.md), [concept instructions](https://github.com/exercism/elixir/blob/d6aafb919af6debfcfcdce64db4c54def535a3f6/concepts/lists/introduction.md), or track-wide documentation about, for example, [how to run the tests](https://github.com/exercism/elixir/blob/d6aafb919af6debfcfcdce64db4c54def535a3f6/exercises/shared/.docs/tests.md).
+
+Because all of that content is aimed at Elixir beginners, it would be great if it were formatted consistently. Unfortunately, I sometimes forget to format my code before pasting it to a Markdown file, and I'm not the only one contributing to that code base.
+
+It's 2024, surely we can format code automatically? And block merging PRs with unformatted code? Right?
+
+I researched and asked around, and I didn't find an existing tool that could do that with Elixir code that's in Markdown code blocks.
+
+So I wrote my own! It's called **[Markdown Code Block Formatter](https://hex.pm/packages/markdown_code_block_formatter)**, and it's a plugin for the Elixir formatter. Check out [its documentation on HexDocs](https://hexdocs.pm/markdown_code_block_formatter/readme.html) and [its source on GitHub](https://github.com/angelikatyborska/markdown_code_block_formatter/).
+
+## Installation
+
+The package can be installed by adding `markdown_code_block_formatter` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:markdown_code_block_formatter, "~> 0.1.0", runtime: false}
+  ]
+end
+```
+
+Then, extend your `.formatter.exs` config file by adding the plugin and inputs matching the location of your Markdown files.
+
+```elixir
+# .formatter.exs
+[
+  plugins: [MarkdownCodeBlockFormatter],
+  inputs: [
+    # modify the line below to match the locations of your Markdown files
+    "{docs,help}/*.{md,markdown}",
+    # other files ...
+  ]
+]
+```
+
+Elixir 1.13 or up is required because lower versions do not support formatter plugins.
+
+## Usage
+
+Run `mix format`. Now, this command will not only format your `.ex(s)` files but also the Elixir code in code blocks (```` ```elixir ````) inside Markdown files.
+
+Note that the plugin will not modify code blocks without syntax specified, inline code, or any other part of the Markdown file.
+
+<BlogPostImage
+  image={MixFormat}
+  alt="Running mix format in the terminal formats Elixir code that's inside a Markdown file"
+  caption="The formatter in action."
+/>
+
+### Disabling the formatter for specific code blocks
+
+If you want some of the Elixir code blocks to remain unformatted, you can precede the code block with a special ["comment"](https://www.jamestharpe.com/markdown-comments/):
+
+````markdown
+[//]: # (elixir-formatter-disable-next-block)
+
+```elixir
+# the two calls below are equivalent:
+my_function(opt1: true, opt2: 60)
+my_function([opt1: true, opt2: 60])
+```
+````
+
+Note that Markdown does not have a syntax for comments, and the above is just a [reference-style link syntax](https://www.markdownguide.org/basic-syntax/#reference-style-links).
+
+I chose this style of "comment" instead of relying on HTML comments (`<!-- ->`) because they do not pollute the HTML output of the Markdown document. [Please open an issue](https://github.com/angelikatyborska/markdown_code_block_formatter/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) if you need this plugin to support ignore comments as HTML comments or generally are missing some other functionality.
+
+## How it's built
+
+To build this project, I had to figure out those 3 steps:
+
+1. How to write a formatter plugin
+2. How to format Elixir code
+3. How to parse and update Markdown content
+
+Steps 1 and 2 turned out to be easy. Step 3 took a little bit of work and might hide some bugs and corner cases that didn't occur to me. [Please open an issue if you find any bugs](https://github.com/angelikatyborska/markdown_code_block_formatter/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
+
+### 1. `Mix.Tasks.Format` behaviour
+
+Building a formatter plugin is relatively easy and [well-documented](https://hexdocs.pm/mix/Mix.Tasks.Format.html#module-plugins). All you need to do is create a module with two functions, a module that implements the `Mix.Tasks.Format` behaviour.
+
+Here's an example of a valid formatter plugin that doesn't do anything:
+
+```elixir
+defmodule MyMarkdownFormatter do
+  @behaviour Mix.Tasks.Format
+
+  def features(_opts) do
+    [sigils: [:M], extensions: [".md", ".markdown"]]
+  end
+
+  def format(contents, _opts) do
+    # do something with contents and return them changed:
+    contents
+  end
+end
+```
+
+The `features/1` function specifies which content will be passed on to your plugin. Note how in your `.formatter.exs` config you don't need to match file paths to plugins - the plugins do it for you, via the `features/1` callback. In this example, all Markdown files, as well as the contents of hypothetical `~M` sigils from `.ex(s)` files would be passed to this plugin.
+
+The `opts` argument in both callbacks comes partially from the `.formatter.exs` config. It is important to my plugin because it can contain options that modify the desired output of the Elixir code formatter, like `:locals_without_parens` or `:normalize_charlists_as_sigils` (see [code formatting options](https://hexdocs.pm/elixir/Code.html#format_string!/2-options)).
+
+### 2. Code formatting
+
+Code formatting is part of the Elixir standard library. How awesome is that?
+
+```elixir
+"   def my_function(a,b,c), do: a+b+c"
+|> Code.format_string!()
+|> IO.iodata_to_binary()
+# => "def my_function(a, b, c), do: a + b + c"
+```
+
+### 3. Markdown parsing
+
+I tried the available Markdown parsers (Earmark Parser, Pandox, Cmark), but they didn't fit my needs. Markdown parsers were meant for changing Markdown into a different well-known format (e.g. Markdown to HTML), or to an AST to extract information from it and discard the rest.
+
+What I needed was different. I needed:
+
+- To exchange only the Elixir code in the Markdown file, and nothing else.
+- To know the indentation of the code block opening tag (how many spaces), so that I can then add the same level of indentation to the formatted Elixir code.
+
+I had to write my own parser. Luckily it didn't need many features. It only had to detect code blocks, detect their indentation level and language, and ignore everything else.
+
+You can [browse the source code on GitHub](https://github.com/angelikatyborska/markdown_code_block_formatter/blob/10102078105c939bd12483c0725b21bf4785dbfc/lib/markdown_code_block_formatter.ex).
+
+**TL;DR:** I split the Markdown content into lines, and [parse it line by line using regular expressions](https://github.com/angelikatyborska/markdown_code_block_formatter/blob/10102078105c939bd12483c0725b21bf4785dbfc/lib/markdown_code_block_formatter/parser.ex#L100-L141) to split the file into chunks of Elixir code and chunks of other content. For lines that start Elixir code blocks (```` ```elixir ````), I [detect how much they're indented](https://github.com/angelikatyborska/markdown_code_block_formatter/blob/10102078105c939bd12483c0725b21bf4785dbfc/lib/markdown_code_block_formatter/indentation.ex#L7-L20). I then take the Elixir code content, [format it and add extra indentation to match the indentation of the opening of its code block](https://github.com/angelikatyborska/markdown_code_block_formatter/blob/10102078105c939bd12483c0725b21bf4785dbfc/lib/markdown_code_block_formatter/formatter.ex#L18-L25), and reassemble the whole Markdown file with only Elixir code content modified.
+
+## Known limitations
+
+I took some shortcuts to get this project running and serve my formatting needs faster, which led to the below limitations.
+
+### Whitespace stripping on empty lines
+
+Imagine your Elixir code blocks are indented in your Markdown file. Like this:
+
+````markdown
+- This code block is part of the list item:
+  ```elixir
+  a = rem(x, 2)
+
+  a * 10
+  ```
+````
+
+On line nr 4, you could either have no characters, or have 2 spaces. This formatter will always strip all of your whitespaces from empty lines in Elixir code, forcing you into option 1.
+
+This is my preferred behavior, but it should be possible to extend the formatter to accept an option that lets you choose either of the two. Let me know if you need that by [opening a GitHub issue](https://github.com/angelikatyborska/markdown_code_block_formatter/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
+
+### Indented (not fenced) code blocks
+
+TL;DR: This formatter doesn't work well with indented code blocks. Use fenced code blocks instead.
+
+Generally, this formatter will only format code blocks annotated as Elixir code, and only fenced code blocks can specify their syntax. But that's not what this limitation is about.
+
+Parsing indented code blocks is not implemented at all, which means all content inside an indented code block will be further parsed as Markdown. If your indented code block contains a fenced Elixir code block as content, that Elixir code block will get formatted even though it shouldn't.
+
+I decided to ignore indented code blocks to simplify the parser implementation and save time.

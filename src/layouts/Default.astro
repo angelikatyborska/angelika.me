@@ -1,0 +1,128 @@
+---
+import Head from "@components/Head.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+type Props = {
+  title?: string | undefined;
+  description?: string | undefined;
+  ogImage?: string | undefined;
+};
+
+const { title, description, ogImage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head title={title} description={description} image={ogImage} />
+  <body>
+    <div class="page-wrapper">
+      <Header />
+
+      <main class="page-content">
+        <div>
+          <slot />
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+
+    <script is:inline={true} id="dsq-count-scr" src="//angelikatyborska.disqus.com/count.js" async
+    ></script>
+  </body>
+</html>
+
+<style lang="scss">
+  @use "../styles/variables";
+  @use "../styles/media-queries";
+
+  .page-wrapper {
+    --page-margin-left: 0rem;
+    --page-padding-left: #{variables.$gap-medium};
+    --pulled-out-block-margin-left: calc(-0.5 * (var(--page-margin-left)));
+    // need to randomly add 20px because for some reason the scrollbar counts into 100dvw :(
+    // (max expected scrollbar width is 20px)
+    --pulled-out-block-margin-right: min(
+      0px,
+      max(
+        var(--pulled-out-block-margin-left),
+        calc(
+          -1 *
+            (
+              100dvw - #{variables.$page-max-width} - var(--page-margin-left) - 2 *
+                var(--page-padding-left) - 20px
+            )
+        )
+      )
+    );
+    --pulled-out-block-width: calc(
+      100% - var(--pulled-out-block-margin-left) - var(--pulled-out-block-margin-right)
+    );
+    // need to randomly add 20px because for some reason the scrollbar counts into 100dvw :(
+    // (max expected scrollbar width is 20px)
+    // also don't fill out _all_ the available space, only up to $max extra
+    $max: 20rem * 1.125;
+    --pulled-out-right-only-block-margin-right: min(
+      0px,
+      max(
+        #{-1 * $max},
+        calc(
+          -1 *
+            (
+              100dvw - #{variables.$page-max-width} - var(--page-margin-left) - 2 *
+                var(--page-padding-left) - 20px
+            )
+        )
+      )
+    );
+    --pulled-out-right-only-block-width: calc(
+      100% - var(--pulled-out-right-only-block-margin-right)
+    );
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+
+    @media #{media-queries.$small} {
+      --page-padding-left: #{variables.$gap-medium};
+    }
+
+    @media #{media-queries.$medium} {
+      --page-padding-left: #{variables.$gap-big};
+    }
+
+    @media #{media-queries.$big} {
+      --page-padding-left: #{variables.$gap-huge};
+    }
+
+    @media #{media-queries.$very-big} {
+      --page-padding-left: #{variables.$gap-huge * 1.5};
+      --page-margin-left: calc(var(--page-padding-left) * 2);
+    }
+
+    > :global(*:not(script)) {
+      display: grid;
+      grid-template-columns: var(--page-margin-left) 1fr;
+      padding: 0 var(--page-padding-left);
+      min-width: 0;
+
+      > :global(*) {
+        min-width: 0;
+      }
+    }
+
+    .page-content,
+    .footer {
+      > * {
+        grid-column: 2 / 3;
+        max-width: variables.$page-max-width;
+      }
+    }
+
+    .footer {
+      align-self: flex-end;
+    }
+  }
+</style>

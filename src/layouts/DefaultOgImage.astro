@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import OgImage from "@layouts/OgImage.astro";
+import Avatar from "@assets/avatar.jpg";
+---
+
+<OgImage random={0}>
+  <h1>Angelika Cathor</h1>
+  <div class="post-meta">
+    <span class="tags">
+      <span>HTML</span>,
+      <span>CSS</span>,
+      <span>JavaScript</span>,
+      <span>Elixir</span>
+    </span>
+  </div>
+
+  <div class="portrait">
+    <Image src={Avatar} alt="" aria-hidden="true" width="250" height="250" />
+  </div>
+</OgImage>
+
+<style lang="scss">
+  @use "../styles/reset";
+  @use "../styles/media-queries";
+  @use "../styles/functions";
+  @use "../styles/colors";
+  @use "../styles/variables";
+  @use "../styles/mixins";
+  @use "../styles/typography";
+
+  .date {
+    font-size: variables.$font-size-h6;
+  }
+
+  .post-meta {
+    font-size: variables.$font-size-paragraph;
+    color: var(--secondary-text-color);
+  }
+
+  .portrait {
+    position: absolute;
+    bottom: variables.$gap-big;
+    left: variables.$gap-big;
+
+    :global(img) {
+      display: block;
+      border-radius: 50%;
+    }
+  }
+</style>

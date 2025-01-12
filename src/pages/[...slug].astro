@@ -1,0 +1,23 @@
+---
+import { render } from "astro:content";
+import { getPublishedPostsIncludeHidden, type Post } from "@lib/posts";
+import BlogPost from "@layouts/BlogPost.astro";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPostsIncludeHidden();
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+type Props = Post;
+
+const post = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<BlogPost post={post} headings={headings}>
+  <Content />
+</BlogPost>

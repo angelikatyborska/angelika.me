@@ -1,0 +1,49 @@
+---
+import Avatar from "@assets/avatar.jpg";
+import { Image } from "astro:assets";
+
+type Props = {
+  image: typeof Avatar;
+  alt: string;
+  caption?: string;
+  href?: string;
+  relativeMaxWidth?: number;
+  // sometimes needs to be turned off because sharp crashes on big gifs
+  experimentalResponsiveImage?: boolean;
+};
+
+const {
+  image,
+  alt,
+  caption,
+  href,
+  relativeMaxWidth = 1,
+  experimentalResponsiveImage = true,
+} = Astro.props;
+
+const contentMaxWidth = 750;
+---
+
+<figure>
+  <a href={href || image.src}>
+    {
+      experimentalResponsiveImage ? (
+        <Image
+          width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
+          src={image}
+          alt={alt}
+        />
+      ) : (
+        <img
+          width={Math.min(image.width * relativeMaxWidth, contentMaxWidth * relativeMaxWidth)}
+          src={image.src}
+          alt={alt}
+        />
+      )
+    }
+  </a>
+  <figcaption>
+    {!caption && Astro.slots.has("caption") && <slot name="caption" />}
+    {!Astro.slots.has("caption") && caption}
+  </figcaption>
+</figure>
