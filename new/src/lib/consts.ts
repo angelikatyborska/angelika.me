@@ -12,3 +12,4 @@ export const LASTFM = "https://www.last.fm/user/atyborska93";
 export const FLICKR = "https://www.flickr.com/photos/192384616@N03";
 
 export const POSTS_PER_PAGE = 20;
+export const ITEMS_IN_RSS_FEED = 10;
