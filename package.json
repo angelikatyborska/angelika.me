@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "dev": "MODE=draft astro dev",
+    "dev": "MODE=draft astro dev --port 5000",
     "build": "MODE=published astro build",
     "preview": "astro preview",
     "check": "MODE=draft astro check",
