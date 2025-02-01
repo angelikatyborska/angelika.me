@@ -7,7 +7,7 @@ const fs = require("fs");
   await page.setViewport({ width: 1200, height: 630 });
 
   console.log(`visiting /`);
-  await page.goto(`http://localhost:4321/og/default`);
+  await page.goto(`http://localhost:5000/og/default`);
   await page.screenshot({ path: `public/og/default.png` });
 
   const slugs = fs.readdirSync("src/content/blog/");
@@ -20,7 +20,7 @@ const fs = require("fs");
     }
 
     console.log(`visiting ${slug}`);
-    await page.goto(`http://localhost:4321/og/${slug}`);
+    await page.goto(`http://localhost:5000/og/${slug}`);
     await page.screenshot({ path: `public/og/${slug}.png` });
   }
 
