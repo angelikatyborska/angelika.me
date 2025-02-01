@@ -1,0 +1,282 @@
+---
+title: How to set up unit tests for Astro components
+excerpt: Improve your Astro unit testing experience by adding happy-dom and DOM Testing Library to your setup.
+tags: [Astro, JavaScript, testing]
+pubDate: 2025-02-01 12:12:00 +0100
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro";
+import Typecheck from "./typecheck.png";
+
+Astro's own [testing guide](https://docs.astro.build/en/guides/testing/#unit-and-integration-tests) tells us how to render an Astro component to a string for unit testing. This is a good start, but writing assertions on an HTML string that looks like this is not nice:
+
+```html
+<div
+  class="wrapper"
+  data-astro-cid-x63rdsgb
+  data-astro-source-file="/Users/angelika/Documents/code/cyan-cloud/src/components/Counter.astro"
+  data-astro-source-loc="10:22"
+>
+  <button
+    data-subtract
+    data-astro-cid-x63rdsgb
+    data-astro-source-file="/Users/angelika/Documents/code/cyan-cloud/src/components/Counter.astro"
+    data-astro-source-loc="11:25"
+  >
+    -1
+  </button>
+  ...
+</div>
+```
+
+We can improve this situation by **rendering the string to a DOM**. This will allow us write tests using functions like `querySelector`, `getAttribute`, `textContent` and so on.
+
+⚠️ Warning: we will be using [Astro's Container API](https://docs.astro.build/en/reference/container-reference/). At the time of writing this blog post, it is experimental and subject to breaking changes, even in minor or patch releases. It is also the only way to render Astro components in a test environment.
+
+**TL;DR: Here’s [the repository with the full example](https://github.com/angelikatyborska/astro-component-unit-tests)** from this blog post.
+
+## Starting point
+
+I'm assuming we already have an Astro 5 project with Vitest set up.
+
+[See example code for this step](https://github.com/angelikatyborska/astro-component-unit-tests/tree/bebdf59a810d192dbdcfbd44f2646c3c9fe6717d).
+
+## Step 1: DOM library
+
+We're going to need a DOM library. Two popular choices are [jsdom](https://www.npmjs.com/package/jsdom) and [happy-dom](https://www.npmjs.com/package/happy-dom). In my example, I will be using happy-dom:
+
+```bash
+npm install --save-dev happy-dom
+```
+
+In the Vitest config, [specify your test environment](https://vitest.dev/guide/environment.html#test-environment). Is the majority of your unit tests testing server-side code? If yes, set your default test environment to `"node"`.
+
+```ts
+// vitest.config.ts
+export default getViteConfig({
+  test: {
+    environment: "node"
+  },
+});
+```
+
+However, if you plan to write unit tests only for your Astro components, set the default test environment to `"js-dom"` or `"happy-dom"`, whichever DOM library you have chosen.
+
+Later, we can [override this setting per each test file](https://vitest.dev/guide/environment.html#environments-for-specific-files) using a special `// @vitest-environment` comment.
+
+## Step 2: render component
+
+Let's create a helper function that can render an Astro component. First, we will follow the instructions from [Astro's testing guide about using the Container API](https://docs.astro.build/en/guides/testing/#vitest-and-container-api) to render a component to a string.
+
+Once we have our component's HTML in a string, we can use that string as the `innerHTML` of a `HTMLElement` object. To create a new `HTMLElement` object, we can use the `document.createElement` function, available thanks to DOM library.
+
+[The best element for this purpose is a `template` element](https://stackoverflow.com/a/35385518/5726486) because it allows all kinds of child elements inside of it. Other elements, like `div`s, have some restrictions.
+
+We can name our render helper `renderAstroComponent` and put it in a `src/test/helpers.ts` file.
+
+Here's the result:
+
+```ts
+// src/test/helpers.ts
+import { experimental_AstroContainer as AstroContainer, type ContainerRenderOptions } from "astro/container";
+type AstroComponentFactory = Parameters<AstroContainer["renderToString"]>[0];
+
+export async function renderAstroComponent(Component: AstroComponentFactory, options: ContainerRenderOptions = {}) {
+  const container = await AstroContainer.create();
+  const result = await container.renderToString(Component, options);
+
+  const template = document.createElement("template");
+  template.innerHTML = result;
+  return template.content;
+}
+```
+
+## Step 3: write a test
+
+In my example project, I have a [Counter component](https://github.com/angelikatyborska/astro-component-unit-tests/blob/5059879ac72e50f3530202b451f6899c249ea933/src/components/Counter.astro). It's a typical counter with two buttons, "+1" and "-1", that accepts an optional initial value of the counter.
+
+```astro
+---
+// src/components/Counter.ts
+interface Props {
+  initialCount?: number;
+}
+
+const { initialCount = 0 } = Astro.props
+
+---
+
+<div class="wrapper">
+  <button data-subtract>-1</button>
+  <span data-current-count>{initialCount}</span>
+  <button data-add>+1</button>
+</div>
+```
+
+For such a component, we could write some simple tests checking that it has a default initial count, but also accepts a custom initial count.
+
+The tests rely on the DOM library, so we need to set the right test environment for the test file by starting it with the comment `@vitest-environment happy-dom`.
+
+```ts
+// src/components/Counter.test.ts
+
+// @vitest-environment happy-dom
+import { describe, test, expect } from 'vitest';
+import Counter from "./Counter.astro";
+import { renderAstroComponent } from "../test/helpers.ts";
+
+describe("Counter", () => {
+  test("has default initial count", async () => {
+    const result = await renderAstroComponent(Counter)
+    const currentCount = result.querySelector('[data-current-count]')
+
+    expect(currentCount).not.toBeNull();
+    expect(currentCount!.textContent).toEqual("0")
+  })
+
+  test("accepts a custom initial count", async () => {
+    const result = await renderAstroComponent(
+      Counter,
+      { props: { initialCount: "4" } }
+    );
+    const currentCount = result.querySelector('[data-current-count]')
+
+    expect(currentCount).not.toBeNull();
+    expect(currentCount!.textContent).toEqual("4")
+  })
+})
+```
+
+[See example code for steps 1, 2, and 3](https://github.com/angelikatyborska/astro-component-unit-tests/commit/5059879ac72e50f3530202b451f6899c249ea933).
+
+### Caveat: no client-side behavior
+
+⚠️ Warning: As far as I know, **it is not possible to test client-side behaviors** of an Astro component in unit tests.
+
+The contents of the component's script tag are not included in the output of `renderToString`. Instead, a `script` with a `src` with a local file path is included:
+
+```html
+<script
+  type="module"
+  src="/Users/angelika/Documents/code/cyan-cloud/src/components/Counter.astro?astro&type=script&index=0&lang.ts"
+>
+</script>
+```
+
+Maybe this will change in the future.
+
+For now, if you want to test the client-side code of your Astro components, you need to write end-to-end tests. For example with [Playwright](https://playwright.dev/) or [Cypress](https://www.cypress.io/).
+
+## Step 4: type checks for props
+
+If you're observant, you might have noticed that the example test from the previous step contains a type error. The prop `initialCount` was supposed to be of type `number`, but I passed in a `string`.
+
+To be notified of such errors by our IDE's typechecking process, as well as Astro's `check` task, we can improve the type definitions of render helper.
+
+Right now, the second argument to `renderAstroComponent` is of type `ContainerRenderOptions`, which doesn't hold any specific information about the type of the props. It will accept any props of type ` Record<string, unknown>`.
+
+We can create a more specialized type, based on `ContainerRenderOptions`. That type, let's call it `ComponentContainerRenderOptions`, would be a generic type, with one argument - the type of the Astro component. If we know the type of the Astro component, we can use [Astro's `ComponentProps` helper](https://docs.astro.build/en/basics/astro-components/#component-props) to get the type of that component's props.
+
+Let's put it all together and get our improved render helper function:
+
+```ts
+// src/test/helpers.ts
+import type { ComponentProps } from "astro/types";
+import { experimental_AstroContainer as AstroContainer, type ContainerRenderOptions } from "astro/container";
+
+type AstroComponentFactory = Parameters<AstroContainer["renderToString"]>[0];
+
+type ComponentContainerRenderOptions<T extends AstroComponentFactory> = ContainerRenderOptions & {
+  // @ts-expect-error ComponentProps expects a type that extends a function of arity 1, but
+  // AstroComponentFactory is a function of arity 3. Either this is an internal mix up in Astro,
+  // or I'm missing something.
+  props?: ComponentProps<T>;
+};
+
+export async function renderAstroComponent<T extends AstroComponentFactory>(Component: T, options: ComponentContainerRenderOptions<T> = {}) {
+  const container = await AstroContainer.create();
+  const result = await container.renderToString(Component, options);
+
+  const template = document.createElement("template");
+  template.innerHTML = result;
+
+  return template.content;
+}
+```
+
+With this improvement, my IDE is now informing me about my type error.
+
+<BlogPostImage
+  image={Typecheck}
+  alt={'Typescript error hint in Webstorm telling me that the prop initialCount was supposed to be of type number'}
+  caption="Type error hint in Webstorm."
+/>
+
+[See example code for step 4](https://github.com/angelikatyborska/astro-component-unit-tests/commit/7b4b44d196912ea5a6540dbb62a3dc0b45d40ab1).
+
+## Step 5: optionally, use DOM Testing Library
+
+If you have written tests for React/Vue/Svelte apps before, you might be familiar with [Testing Library](https://testing-library.com/docs/). If you wish so, yuo can also use it for testing Astro components. It is however optional.
+
+The package `@testing-library/dom` provides query methods like `getByText`, `getByTestId`, `getByRole`, while the package `@testing-library/jest-dom` contains assertions like `toBeDisabled`, `toBeVisible`, `toHaveTextContent` and so on.
+
+`@testing-library/jest-dom` was written for a completely different test runner - Jest - and we're using Vitest. Luckily for us, [it's compatible with Vitest](https://www.npmjs.com/package/@testing-library/jest-dom#with-vitest), so we can still use it.
+
+First, let's install both dependencies:
+
+```
+npm install --save-dev @testing-library/dom @testing-library/jest-dom
+```
+
+Then, we need to import `@testing-library/jest-dom`, to make the new assertions available. You can either import it from every test file where it's needed, or you can import it once in Vitest's setup file.
+
+If you don't have a setup file yet, create a new file, for example, `src/test/setup.ts`, and import `@testing-library/jest-dom` there.
+
+```ts
+// src/test/setup.ts
+import '@testing-library/jest-dom/vitest'
+```
+
+Then, update your Vitest config with the new setup file:
+
+```ts
+// vitest.config.ts
+export default getViteConfig({
+  test: {
+    environment: "node",
+    setupFiles: ['./src/test/setup.ts']
+  },
+});
+```
+
+Earlier, we created a `renderAstroComponent` function. It returns the `content` field of a template element, which is of type `DocumentFragment`. This type is not compatible with Testing Library's query methods. They expect a `HTMLElement` object instead.
+
+We need to modify the `renderAstroComponent` function to use a `div` element instead. Note that this can cause problems if you need to test components whose root elements cannot be children of a `div`, like a `td`.
+
+```ts
+const div = document.createElement("div");
+div.innerHTML = result;
+
+return div;
+```
+
+Now, we can use Testing Library to write another test for the example [Counter component](https://github.com/angelikatyborska/astro-component-unit-tests/blob/5059879ac72e50f3530202b451f6899c249ea933/src/components/Counter.astro):
+
+```ts
+test("has two buttons", async () => {
+  const result = await renderAstroComponent(Counter)
+
+  const buttons = getAllByRole(result, "button")
+  expect(buttons.length).toEqual(2)
+  expect(buttons[0]).toHaveAccessibleName("-1")
+  expect(buttons[1]).toHaveAccessibleName("+1")
+})
+```
+
+[See example code for step 5](https://github.com/angelikatyborska/astro-component-unit-tests/commit/2ca9daabf11fc04b24fd6f9a907f5c63e4ac850d).
+
+## Your experiences?
+
+What are your experiences with writing unit tests for Astro components? Did you find any other helpful tools? Did you notice any flaws with my approach?
+
+I feel like the topic of unit testing Astro components is very niche, so I'm curious to learn how other people approach it. Let me know what you think!
