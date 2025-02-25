@@ -186,7 +186,7 @@ import { experimental_AstroContainer as AstroContainer, type ContainerRenderOpti
 
 type AstroComponentFactory = Parameters<AstroContainer["renderToString"]>[0];
 
-type ComponentContainerRenderOptions<T extends AstroComponentFactory> = ContainerRenderOptions & {
+type ComponentContainerRenderOptions<T extends AstroComponentFactory> = Omit<ContainerRenderOptions, 'props'> & {
   // @ts-expect-error ComponentProps expects a type that extends a function of arity 1, but
   // AstroComponentFactory is a function of arity 3. Either this is an internal mix up in Astro,
   // or I'm missing something.
