@@ -1,0 +1,132 @@
+---
+title: The implications of Astro's HTML streaming
+excerpt: Read this if you care about accurate HTTP response status codes and error tracking.
+tags: [Astro]
+pubDate: 2025-03-16 15:17:00 +0100
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro";
+import Streaming from "./streaming.gif";
+import StreamingText from "./streaming-text.gif";
+import InternalServerError from "./internal-server-error.gif";
+
+If you're using Astro's server-side rendering, you are using [HTML streaming](https://docs.astro.build/en/guides/on-demand-rendering/#html-streaming). How does that work? Astro uses [chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) to send components to the browser one by one, as it renders them. Thanks to this, the user can see the top of the page (navigation, first headline, and so on) while the bottom of the page is still rendering.
+
+I have created a simple "rainbow" website ([see source code](https://github.com/angelikatyborska/astro-streaming-rainbow/blob/main/src/pages/index.astro)) to demonstrate how that looks like. I added an arbitrary sleep duration to some of the colors to simulate variable rendering times.
+
+```jsx
+<Layout>
+  <Stripe color="red" sleep={0} />
+  <Stripe color="orange" sleep={500} />
+  <Stripe color="yellow" sleep={2000} />
+  <Stripe color="green" sleep={0} />
+  <Stripe color="blue" sleep={0} />
+  <Stripe color="purple" sleep={4000} />
+</Layout>
+```
+
+If you visit this page in the browser, you can see that the top part of the page renders first, before the whole page is available. All of this happens server-side.
+
+<BlogPostImage
+  experimentalResponsiveImage={false}
+  image={Streaming}
+  alt={"A website consisting of 8 stripes, 6 rainbow stripes surrounded by a white header and footer stripes. It renders stripe by stripe, pausing at yellow, orange, and pausing even longer at purple."}
+  caption={"The website renders chunk by chunk."}
+/>
+
+If you want to see in your terminal how the response arrives chunk by chunk, run the command `nc -c localhost 4321` (substitute the port if necessary) and type:
+```plaintext
+GET / HTTP/1.1
+Host: localhost
+```
+
+Then press enter twice.
+
+<BlogPostImage
+  experimentalResponsiveImage={false}
+  image={StreamingText}
+  alt={"Executing the nc command described in the paragraph above. Chunks of HTML responses arrive one by one, starting with their size expressed in hexadecimal, followed by HTML markup."}
+  caption={"Each HTML chunk starts with its size in hexadecimal."}
+/>
+
+## The implications
+
+HTML streaming can give your website an amazing performance gain. But it has some implications for your website's observability and SEO that might surprise you.
+
+I come from a background of full-stack web development with frameworks like Ruby on Rails and Elixir Phoenix, and all the below facts were surprising to me.
+
+### 1. You cannot respond with a 404 from a component
+
+In Astro SSR, the response status code is sent after the frontmatter of the page has been executed, and notably before any of the components on the page start rendering. This means that the response status code cannot be changed from a component's frontmatter. [Astro's documentation warns you about this](https://docs.astro.build/en/guides/on-demand-rendering/#html-streaming).
+
+If you try to use `return new Response(null, { status: 404 });` or `Astro.redirect("404")` in a component, you'll get a `ResponseSentError` error.
+
+### 2. Response status code 200 when errors thrown
+
+Since the response status code can only be modified by the page's frontmatter and not any of the components' frontmatter, you can encounter responses with partially broken pages whose status code was 200 (OK). You cannot rely on the status code alone to know whether your pages render correctly. Errors thrown in components will not affect the response status code.
+
+### 3. Errors thrown in components won't render the 500 error page
+
+Since errors thrown in components will not affect the response status code, they will also not cause the 500 error page to render. Astro offers a way of [customizing the 500 error page](https://docs.astro.build/en/basics/astro-pages/#custom-500-error-page), but it only works when the error is thrown when executing a page's frontmatter.
+
+What happens when one of the components throws an error? Well, then the component gets replaced by the text "Internal Server Error" and the HTML stream closes. Whatever HTML managed to get sent to the browser up until this point will be visible, and everything else will be missing.
+
+<BlogPostImage
+  experimentalResponsiveImage={false}
+  image={InternalServerError}
+  alt={"The same website as on the first picture. This time, it only renders up to the blue stripe. Instead of the purple stripe, we see the words 'Internal Server Error'."}
+  caption={"Rendering the purple stripe crashes. The text 'Internal Server Error' is rendered instead. No more chunks arrive after that."}
+/>
+
+### 4. Errors thrown in components won't be sent to your error tracker
+
+I'm using [@sentry/astro](https://www.npmjs.com/package/@sentry/astro) to add client-side and server-side error tracking to my SSR Astro project. It does not report errors thrown in components. It only reports errors thrown in a page's frontmatter.
+
+I don't understand Astro's internals well enough to say why this problem exists. But unlike the previous three problems, I think this one could potentially be solved without getting rid of HTML streaming. I could imagine Astro exposing a callback that allows for middleware that could react to all thrown exceptions. Currently, this is not possible.
+
+#### Workaround
+
+I am a huge fan of observability and error trackers, and I find it very hard to accept that I can't collect errors thrown when rendering components. I'm working on an Astro project with 3000 pages and 200 components, and it's not possible for me to test all of them manually.
+
+Thankfully there is a way to opt out of the performance benefits of HTML streaming in favor of observability. I have found this workaround in [a blog post by Toby Rushton](https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors).
+
+We can leverage [Astro's API for rendering slots](https://docs.astro.build/en/reference/astro-syntax/#astroslotsrender) to create a sort of `ErrorBoundary` component. It will attempt to render its default slot and catch any errors thrown during the rendering. Then, it can react to the errors by reporting them to the error tracker and rendering a fallback `InternalServerError` component. For this method to work, you will need to include the `ErrorBoundary` component as the top-level component on every single page.
+
+Note: using this method will cause the whole page to be sent in the response in one big chunk. It also does not address the problem of a 200 response status code.
+
+```astro
+---
+import * as Sentry from "@sentry/astro";
+import InternalServerError from "../layouts/InternalServerError.astro";
+
+// This component should be used as the top-level component of every page,
+// to ensure that all errors are caught and reported to Sentry.
+
+// Inspired by https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors
+// Necessary because of https://github.com/withastro/astro/issues/12383
+
+let html;
+
+try {
+  if (Astro.slots.has("default")) {
+    html = await Astro.slots.render("default");
+  }
+} catch (e) {
+  if (import.meta.env.DEV) {
+    throw e;
+  } else {
+    Sentry.captureException(e);
+  }
+}
+---
+
+{html ? <Fragment set:html={html} /> : <InternalServerError />}
+```
+
+## Relevant resources
+
+- [Astro guide: "HTML streaming"](https://docs.astro.build/en/guides/on-demand-rendering/#html-streaming)
+- [Astro recipe: "Using streaming to improve page performance"](https://docs.astro.build/en/recipes/streaming-improve-page-performance/)
+- [GitHub issue: "Errors thrown from components return 200 and are uncatchable in middleware"](https://github.com/withastro/astro/issues/12383)
+- [Blog post: "How to catch Astro SSR errors during render" by Toby Rushton](https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors)
+- [My "rainbow" test project source code](https://github.com/angelikatyborska/astro-streaming-rainbow)
