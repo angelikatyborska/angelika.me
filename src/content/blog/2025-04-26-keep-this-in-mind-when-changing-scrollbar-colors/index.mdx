@@ -1,0 +1,38 @@
+---
+title: Keep this in mind when changing scrollbar colors
+excerpt: "TL;DR: always choose a scrollbar thumb color that makes it visible both against the container background and the scrollbar track."
+tags: [CSS]
+pubDate: 2025-04-26 17:16:00 +0200
+---
+
+import BlogPostImage from "@components/BlogPostImage.astro";
+import ScrollbarAnatomy from "./scrollbar-anatomy.png";
+import DisappearingScrollbar from "./disappearing-scrollbar.gif"
+
+While changing scrollbar colors on your website is nowhere as popular as it was in the 2000s, it is still [somewhat possible](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color) (except for Safari).
+
+A modern scrollbar consists of two parts, a **thumb** (the moving part) and a **track** (the static part). You can change the colors of both.
+
+<BlogPostImage
+  image={ScrollbarAnatomy}
+  alt={'A vertical scrollbar consisting of a light gray track with a medium gray thumb.'}
+  caption="The default scrollbar on a Mac in Firefox."
+/>
+
+Additionally, there are two different styles of scrollbars. I'm going to call them "permanent" scrollbars and "disappearing" scrollbars.
+
+**Permanent scrollbars** are always visible and take up space. You usually encounter them on desktop computers.
+
+**Disappearing scrollbars** are only visible while scrolling and don't take up any space. You see them on mobile devices, and sometimes on laptops when using a trackpad instead of a mouse. You can also see them when using "responsive design mode" in Firefox's web developer tools.
+
+<BlogPostImage
+  image={DisappearingScrollbar}
+  alt={'Scrolling vertically through wikipedia.org'}
+  caption="The thumb is only visible while scrolling. The track is only visible while hovering over it."
+/>
+
+As a web developer, it's important for me to know exactly when the containers on my website are overflowing. For this reason, I prefer permanent scrollbars and I changed my system settings to "always show scrollbars".
+
+But it's also important to keep the disappearing scrollbars in mind, especially when choosing scrollbar colors. Scrollbars need to meet minimum contrast requirements to be accessible, just like any other part of your website.
+
+**To choose good custom scrollbar colors, keep in mind that the thumb color needs to have a high contrast both against the track color and against the scrollable container's background** because the track is not always shown.
