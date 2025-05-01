@@ -1,6 +1,6 @@
 ---
 title: The implications of Astro's HTML streaming
-excerpt: Read this if you care about accurate HTTP response status codes and error tracking.
+excerpt: Read this if you care about accurate HTTP response status codes.
 tags: [Astro]
 pubDate: 2025-03-16 15:17:00 +0100
 ---
@@ -9,6 +9,8 @@ import BlogPostImage from "@components/BlogPostImage.astro";
 import Streaming from "./streaming.gif";
 import StreamingText from "./streaming-text.gif";
 import InternalServerError from "./internal-server-error.gif";
+
+_May 2025 update: `@sentry/astro` v9.12.0 [added tracking of errors thrown during HTML streaming](https://github.com/getsentry/sentry-javascript/pull/15995)._
 
 If you're using Astro's server-side rendering, you are using [HTML streaming](https://docs.astro.build/en/guides/on-demand-rendering/#html-streaming). How does that work? Astro uses [chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) to send components to the browser one by one, as it renders them. Thanks to this, the user can see the top of the page (navigation, first headline, and so on) while the bottom of the page is still rendering.
 
@@ -78,21 +80,25 @@ What happens when one of the components throws an error? Well, then the componen
   caption={"Rendering the purple stripe crashes. The text 'Internal Server Error' is rendered instead. No more chunks arrive after that."}
 />
 
-### 4. Errors thrown in components won't be sent to your error tracker
+### ~4. Errors thrown in components won't be sent to your error tracker~ (outdated)
 
-I'm using [@sentry/astro](https://www.npmjs.com/package/@sentry/astro) to add client-side and server-side error tracking to my SSR Astro project. It does not report errors thrown in components. It only reports errors thrown in a page's frontmatter.
+In April 2025, `@sentry/astro` released v9.12.0 which [added tracking of errors thrown during HTML streaming](https://github.com/getsentry/sentry-javascript/pull/15995), thus invalidating this argument 🥳. Below you'll find the original paragraphs, crossed out.
 
-I don't understand Astro's internals well enough to say why this problem exists. But unlike the previous three problems, I think this one could potentially be solved without getting rid of HTML streaming. I could imagine Astro exposing a callback that allows for middleware that could react to all thrown exceptions. Currently, this is not possible.
+~I'm using [@sentry/astro](https://www.npmjs.com/package/@sentry/astro) to add client-side and server-side error tracking to my SSR Astro project. It does not report errors thrown in components. It only reports errors thrown in a page's frontmatter.~
 
-#### Workaround
+~I don't understand Astro's internals well enough to say why this problem exists. But unlike the previous three problems, I think this one could potentially be solved without getting rid of HTML streaming. I could imagine Astro exposing a callback that allows for middleware that could react to all thrown exceptions. Currently, this is not possible.~
 
-I am a huge fan of observability and error trackers, and I find it very hard to accept that I can't collect errors thrown when rendering components. I'm working on an Astro project with 3000 pages and 200 components, and it's not possible for me to test all of them manually.
+#### ~Workaround~ (do not use)
 
-Thankfully there is a way to opt out of the performance benefits of HTML streaming in favor of observability. I have found this workaround in [a blog post by Toby Rushton](https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors).
+_May 2025 update: I realized that the below pattern has serious unforeseen consequences. It messes up Astro's asset insertion, resulting in an invalid document with `<style>` and `<script>` tags before the opening `<html>` tag. Don't use this pattern!_
 
-We can leverage [Astro's API for rendering slots](https://docs.astro.build/en/reference/astro-syntax/#astroslotsrender) to create a sort of `ErrorBoundary` component. It will attempt to render its default slot and catch any errors thrown during the rendering. Then, it can react to the errors by reporting them to the error tracker and rendering a fallback `InternalServerError` component. For this method to work, you will need to include the `ErrorBoundary` component as the top-level component on every single page.
+~I am a huge fan of observability and error trackers, and I find it very hard to accept that I can't collect errors thrown when rendering components. I'm working on an Astro project with 3000 pages and 200 components, and it's not possible for me to test all of them manually.~
 
-Note: using this method will cause the whole page to be sent in the response in one big chunk. It also does not address the problem of a 200 response status code.
+~Thankfully there is a way to opt out of the performance benefits of HTML streaming in favor of observability. I have found this workaround in [a blog post by Toby Rushton](https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors).~
+
+~We can leverage [Astro's API for rendering slots](https://docs.astro.build/en/reference/astro-syntax/#astroslotsrender) to create a sort of `ErrorBoundary` component. It will attempt to render its default slot and catch any errors thrown during the rendering. Then, it can react to the errors by reporting them to the error tracker and rendering a fallback `InternalServerError` component. For this method to work, you will need to include the `ErrorBoundary` component as the top-level component on every single page.~
+
+~Note: using this method will cause the whole page to be sent in the response in one big chunk. It also does not address the problem of a 200 response status code.~
 
 ```astro
 ---
@@ -130,3 +136,5 @@ try {
 - [GitHub issue: "Errors thrown from components return 200 and are uncatchable in middleware"](https://github.com/withastro/astro/issues/12383)
 - [Blog post: "How to catch Astro SSR errors during render" by Toby Rushton](https://tobyrushton.com/blog/how-to-catch-astro-ssr-errors)
 - [My "rainbow" test project source code](https://github.com/angelikatyborska/astro-streaming-rainbow)
+
+_Edited on 01.05.2025: Deprecated the 4th point about errors not being sent to error tackers and added a warning against my previous advice to use an `ErrorBoundary`._
