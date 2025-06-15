@@ -1,0 +1,437 @@
+---
+title: How to work with XML documents in Elixir using xmerl
+excerpt: I want to parse an XML document, find an element by id, add an attribute, and export the document back to a string.
+tags: [Elixir, Erlang]
+pubDate: 2025-06-15 19:14:00 +0200
+---
+
+I am currently working on a project that needs to process a bunch of SVG files by applying a few predefined operations on them, for example:
+- Find an element with id `door` and set its `fill` attribute to `black`,
+- Find an element with id `roof` and set its `class` attribute to `on-fire`,
+- Change the `width`, `height`, and `viewport` attributes of the root `svg` element to shrink the image on the x-axis by 50%,
+- ...and so on.
+
+Afterward, I need to export the data back to a string representing a valid SVG document.
+
+The Erlang [xmerl](https://www.erlang.org/doc/apps/xmerl/xmerl.html) library is capable of doing all of those operations. Unfortunately, it's not that easy for an Elixir developer without a solid Erlang background to use.
+
+Today I'm sharing with you what learned about **using xmerl in your Elixir project**: how to parse strings containing XML documents, modify them, and export back to string.
+
+## Step 1: add `:xmerl` to your project
+
+Edit `extra_applications` in `mix.exs` to add `:xmerl`:
+
+```elixir
+def application do
+  [
+    extra_applications: [:logger, :xmerl]
+  ]
+end
+```
+
+## Step 2: add record definitions
+
+Create a module for operating on XML documents, e.g. `MyApp.Xml`. In that document, define records `:xmlElement` and `:xmlAttribute`.
+
+```elixir
+defmodule MyApp.Xml do
+  require Record
+
+  Record.defrecord(:xmlElement, Record.extract(:xmlElement, from_lib: "xmerl/include/xmerl.hrl"))
+  Record.defrecord(:xmlAttribute, Record.extract(:xmlAttribute, from_lib: "xmerl/include/xmerl.hrl"))
+end
+```
+
+**Note**: xmerl defines a few other record types, see [xmerl/types](https://www.erlang.org/doc/apps/xmerl/xmerl.html#types). Depending on your use case, you might need some or all of them. In this blog post, I will only be using `xmlElement` and `xmlAttribute`.
+
+But what exactly is going on in that code snippet? Using xmerl was the first time I encountered records in Elixir.
+
+### What is a record?
+
+[A record](https://hexdocs.pm/elixir/Record.html) is a tuple of an arbitrary length. Its first element is an atom - the record's name. All other elements can be values of any type. Without a record definition, you don't know what the values represent. For example, below is a `:user` record with two values, `13` and `false`.
+
+```elixir
+{:user, 13, false}
+```
+
+To work efficiently with data in this format, you need a record definition. For example:
+
+```elixir
+Record.defrecord(:user, comment_count: 0, wants_newsletter: nil)
+```
+
+Using [`Record.defrecord/2`](https://hexdocs.pm/elixir/Record.html#defrecord/2) adds meaning to the position of the elements in the record tuple. It also defines macros, named after the record, that allow you to create, update, and pattern match on the record.
+
+```elixir
+# new user
+some_user = user(comment_count: 13, wants_newsletter: false)
+# => {:user, 13, false}
+
+# update user with one more comment
+user(comment_count: current_comment_count) = some_user
+some_user = user(some_user, comment_count: current_comment_count + 1)
+# => {:user, 14, false}
+```
+
+### Extracting xmerl record definitions
+
+The xmerl library contains record definitions for the record types that it uses. You don't have to copy-paste them into your Elixir code. You can extract them from the Erlang files like this:
+
+```elixir
+Record.extract(:xmlAttribute, from_lib: "xmerl/include/xmerl.hrl")
+```
+
+It's useful to actually read through the output of those macro calls. You will need to know the field names to read and modify them.
+
+```elixir
+# xmlElement
+[
+  name: :undefined, # <-- attribute name, in SVGs e.g. 'circle', 'path', 'g'
+  expanded_name: [],
+  nsinfo: [],
+  namespace: {:xmlNamespace, [], []},
+  parents: [],
+  pos: :undefined,
+  attributes: [],
+  content: [], # <-- field relevant for accessing nested elements
+  language: [],
+  xmlbase: [],
+  elementdef: :undeclared
+]
+
+# xmlAttribute
+[
+  name: :undefined, # <-- attribute name, in SVGs e.g. 'id', 'fill', 'stroke'
+  expanded_name: [],
+  nsinfo: [],
+  namespace: [],
+  parents: [],
+  pos: :undefined,
+  language: [],
+  value: :undefined, # <-- attribute value
+  normalized: :undefined
+]
+```
+
+## Step 3: parse a string to `xmlElement`
+
+To parse a string containing an XML document to an `xmlElement` record, use the [`:xmerl_scan.string/1`](https://www.erlang.org/doc/apps/xmerl/xmerl_scan.html#string/1) function.
+
+```elixir
+@spec parse_string(String.t()) :: record(:xmlElement)
+def parse_string(content) do
+  content = to_charlist(content)
+  {doc, _rest} = :xmerl_scan.string(content)
+  doc
+end
+```
+
+**Note**: Erlang libraries often operate on charlists, not binaries.
+
+This implementation assumes that the string will always contain a valid XML document. If this is not the case for you, you will need to [catch `:exit`s](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#try/1-catching-values-of-any-kind) when calling `:xmerl_scan.string/1`.
+
+### `xmlElement` or `xmlDocument`?
+
+By default, the function [`:xmerl_scan.string/1`](https://www.erlang.org/doc/apps/xmerl/xmerl_scan.html#string/1) uses the `xmlElement` record for the root element of the XML document. However, an `xmlDocument` record also exists.
+
+If you want to use the `xmlDocument` record type for the root element of the XML document, pass the `document` option:
+
+```elixir
+:xmerl_scan.string(content, document: true)
+```
+
+I don't really know why you might need this - let me know if you know 🙂.
+
+This blog post assumes that the root element of the document is a `xmlElement` record (the default behavior).
+
+## Step 4: export the `xmlElement` back to a string
+
+To turn an `xmlElement` back to a string, you can use the [:xmerl.export_simple/1](https://www.erlang.org/doc/apps/xmerl/xmerl.html#export_simple/2) function.
+
+```elixir
+@spec export_string(record(:xmlElement)) :: String.t()
+def export_string(doc) do
+  [doc]
+  |> :xmerl.export_simple(:xmerl_xml)
+  |> to_string()
+  |> Kernel.<>("\n")
+end
+```
+
+I'm annoyed by the lack of a trailing newline, so I'm adding one.
+
+## Step 5: modify the document
+
+To figure out how to modify the XML document, let's first see what a simple SVG file looks like after parsing to `xmlElement`:
+
+```elixir
+"""
+<?xml version="1.0"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle id="circle-1" cx="50" cy="50" r="50" fill="red"/>
+  <circle id="circle-2" cx="50" cy="50" r="30" fill="orange"/>
+  <circle id="circle-3" cx="50" cy="50" r="10" fill="yellow"/>
+</svg>
+"""
+
+# becomes
+
+{:xmlElement, :svg, :svg, [], {:xmlNamespace, :"http://www.w3.org/2000/svg", []}, [], 1,
+    # the list of attributes of the <svg> element starts here
+    [
+      {:xmlAttribute, :viewBox, [], [], [], [svg: 1], 1, [], ~c"0 0 100 100", false},
+      {:xmlAttribute, :xmlns, [], [], [], [svg: 1], 2, [], ~c"http://www.w3.org/2000/svg", false}
+    ],
+    # the content of the <svg> element starts here
+    [
+      {:xmlText, [svg: 1], 1, [], ~c"\n  ", :text},
+
+      # first <circle> element
+      {:xmlElement, :circle, :circle, [], {:xmlNamespace, :"http://www.w3.org/2000/svg", []}, [svg: 1], 2,
+        # the list of attributes of the first <circle> element starts here
+        [
+          {:xmlAttribute, :id, [], [], [], [circle: 2, svg: 1], 1, [], ~c"circle-1", false},
+          {:xmlAttribute, :cx, [], [], [], [circle: 2, svg: 1], 2, [], ~c"50", false},
+          {:xmlAttribute, :cy, [], [], [], [circle: 2, svg: 1], 3, [], ~c"50", false},
+          {:xmlAttribute, :r, [], [], [], [circle: 2, svg: 1], 4, [], ~c"50", false},
+          {:xmlAttribute, :fill, [], [], [], [circle: 2, svg: 1], 5, [], ~c"red", false}
+        ], [], [], ~c"", :undeclared},
+
+      {:xmlText, [svg: 1], 3, [], ~c"\n  ", :text},
+
+      # second <circle> element
+      {:xmlElement, :circle, :circle, [], {:xmlNamespace, :"http://www.w3.org/2000/svg", []}, [svg: 1], 4,
+        # the list of attributes of the second <circle> element starts here
+        [
+          {:xmlAttribute, :id, [], [], [], [circle: 4, svg: 1], 1, [], ~c"circle-2", false},
+          {:xmlAttribute, :cx, [], [], [], [circle: 4, svg: 1], 2, [], ~c"50", false},
+          {:xmlAttribute, :cy, [], [], [], [circle: 4, svg: 1], 3, [], ~c"50", false},
+          {:xmlAttribute, :r, [], [], [], [circle: 4, svg: 1], 4, [], ~c"30", false},
+          {:xmlAttribute, :fill, [], [], [], [circle: 4, svg: 1], 5, [], ~c"orange", false}
+        ], [], [], ~c"", :undeclared},
+
+      {:xmlText, [svg: 1], 5, [], ~c"\n  ", :text},
+
+      # third <circle> element
+      {:xmlElement, :circle, :circle, [], {:xmlNamespace, :"http://www.w3.org/2000/svg", []}, [svg: 1], 6,
+        # the list of attributes of the third <circle> element starts here
+        [
+          {:xmlAttribute, :id, [], [], [], [circle: 6, svg: 1], 1, [], ~c"circle-3", false},
+          {:xmlAttribute, :cx, [], [], [], [circle: 6, svg: 1], 2, [], ~c"50", false},
+          {:xmlAttribute, :cy, [], [], [], [circle: 6, svg: 1], 3, [], ~c"50", false},
+          {:xmlAttribute, :r, [], [], [], [circle: 6, svg: 1], 4, [], ~c"10", false},
+          {:xmlAttribute, :fill, [], [], [], [circle: 6, svg: 1], 5, [], ~c"yellow", false}
+        ], [], [], ~c"", :undeclared},
+
+      {:xmlText, [svg: 1], 7, [], ~c"\n", :text}
+    ], [], ~c"", :undeclared}
+```
+
+The output is pretty long and hard to read. To read a record, you need to remember which position represents which value. For example, the 7th element of an `xmlElement` is its attributes, and the 8th element its content.
+
+You can see that attributes are represented as lists of records, which poses a challenge with regard to setting an attribute on an element. Adding a new attribute to an element is a different operation than updating the value of an existing attribute. If you want to set attributes on elements without having to worry whether they already exist or not, you'll have to write an "update or add" function yourself.
+
+### Traversing and updating elements
+
+`xmlElement` is a recursive record that contains a list of other `xmlElement`s in its `content` field. To traverse and update elements in an XML document, you'll need a function like this:
+
+```elixir
+@typep mapper :: (:xmerl.element() -> :xmerl.element())
+@spec traverse_and_update_elements(:xmerl.element(), mapper) :: :xmerl.element()
+def traverse_and_update_elements(element, func) do
+  updated_element = func.(element)
+
+  case updated_element do
+    xmlElement(content: content) ->
+      updated_content =
+        Enum.map(content, fn child -> traverse_and_update_elements(child, func) end)
+
+      xmlElement(updated_element, content: updated_content)
+
+    other ->
+      other
+  end
+end
+```
+
+It runs a given mapper function on the current element and then recursively calls itself on all child elements.
+
+**Note**: there is a difference between the `record(:xmlElement)` type and the [`:xmerl.element`](https://www.erlang.org/doc/apps/xmerl/xmerl.html#t:element/0) type. `record(:xmlElement)` is a subtype of `:xmerl.element`. `:xmerl.element` also includes text nodes, comment nodes, and a few other things. If you only need to add/remove attributes to XML elements, you can ignore all the other element types (return them unchanged).
+
+### Finding attribute values
+
+To write a useful mapper function, you need to be able to target the right elements that need updating.
+
+I intend to target elements by id, so I wrote a function for finding the value of a specific attribute on an element.
+
+```elixir
+@spec find_attribute_value(record(:xmlElement), atom) :: charlist | nil
+def find_attribute_value(element, name) do
+  xmlElement(attributes: attributes) = element
+
+  attributes
+  |> Enum.find_value(fn
+    xmlAttribute(name: ^name, value: value) -> value
+    _ -> nil
+  end)
+end
+```
+
+### Modifying attributes
+
+When working with attributes, keep in mind that attribute names are atoms, and attribute values are charlists.
+
+Below is the implementation of a few common operations on attributes that you might want.
+
+#### Add attribute
+
+```elixir
+@spec add_attribute(record(:xmlElement), atom, charlist) :: record(:xmlElement)
+def add_attribute(element, name, value) do
+  xmlElement(attributes: attributes) = element
+
+  new_attribute = xmlAttribute(name: name, value: value)
+  updated_attributes = [new_attribute | attributes]
+
+  xmlElement(element, attributes: updated_attributes)
+end
+```
+
+#### Update attribute
+
+```elixir
+@spec update_attribute(record(:xmlElement), atom, charlist) :: record(:xmlElement)
+def update_attribute(element, name, value) do
+  xmlElement(attributes: attributes) = element
+
+  updated_attributes =
+    attributes
+    |> Enum.map(fn
+      xmlAttribute(name: ^name) = attribute -> xmlAttribute(attribute, value: value)
+      attribute -> attribute
+    end)
+
+  xmlElement(element, attributes: updated_attributes)
+end
+```
+
+#### Update or add attribute
+
+If you want to be able to set attributes on elements without worrying whether they already exist, you need something like this:
+
+```elixir
+@spec has_attribute?(record(:xmlElement), atom) :: boolean
+def has_attribute?(element, name) do
+  xmlElement(attributes: attributes) = element
+
+  attributes
+  |> Enum.any?(fn
+    xmlAttribute(name: ^name) -> true
+    _ -> false
+  end)
+end
+
+@spec update_or_add_attribute(record(:xmlElement), atom, charlist) :: record(:xmlElement)
+def update_or_add_attribute(element, name, value) do
+  if has_attribute?(element, name) do
+    update_attribute(element, name, value)
+  else
+    add_attribute(element, name, value)
+  end
+end
+```
+
+#### Working with numerical values
+
+Numerical values can be a bit annoying to work with. All attribute values returned by xmerl are charlists, so you need to transform them to numbers and back to charlists yourself.
+
+Beware of calling `to_string()` on floats - it might format them in a scientific notation!
+
+```elixir
+to_string(1000000.00)
+# => "1.0e6"
+```
+
+I needed to read the width of the `svg` element, scale it by some number, and then set that new value as the width. I didn't care if I turn integers into floats. I was also fine with a hardcoded precision of 2 decimal places.
+
+Here's the code that I used to transform charlists to numbers and back:
+
+```elixir
+@spec charlist_to_number(charlist) :: float
+def charlist_to_number(x) do
+  x |> to_string() |> Float.parse() |> elem(0)
+end
+
+@spec number_to_charlist(integer | float) :: charlist
+def number_to_charlist(x) do
+  if is_float(x) do
+    :erlang.float_to_binary(x, decimals: 2) |> to_charlist()
+  else
+    Integer.to_string(x) |> to_charlist()
+  end
+end
+```
+
+### Combining things together
+
+Here's an example that takes my test image of 3 circles and changes warm colors (red, orange, yellow) to cold colors (green, blue, purple). It also decreases the radius of the last circle by half.
+
+```elixir
+input = """
+<?xml version="1.0"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle id="circle-1" cx="50" cy="50" r="50" fill="red"/>
+  <circle id="circle-2" cx="50" cy="50" r="30" fill="orange"/>
+  <circle id="circle-3" cx="50" cy="50" r="10" fill="yellow"/>
+</svg>
+"""
+
+mapper = fn
+  xmlElement() = element ->
+    case Xml.find_attribute_value(element, :id) do
+      nil ->
+        element
+
+      ~c"circle-1" ->
+        Xml.update_or_add_attribute(element, :fill, "green")
+
+      ~c"circle-2" ->
+        Xml.update_or_add_attribute(element, :fill, "blue")
+
+      ~c"circle-3" ->
+        element = Xml.update_or_add_attribute(element, :fill, "purple")
+
+        current_radius =
+          element |> Xml.find_attribute_value(:r) |> Xml.charlist_to_number()
+
+        new_radius = Xml.number_to_charlist(0.5 * current_radius)
+        Xml.update_attribute(element, :r, new_radius)
+    end
+
+  other ->
+    other
+end
+
+input
+|> Xml.parse_string()
+|> Xml.traverse_and_update_elements(mapper)
+|> Xml.export_string()
+
+# returns:
+"""
+<?xml version="1.0"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle id="circle-1" cx="50" cy="50" r="50" fill="green"/>
+  <circle id="circle-2" cx="50" cy="50" r="30" fill="blue"/>
+  <circle id="circle-3" cx="50" cy="50" r="5.00" fill="purple"/>
+</svg>
+"""
+```
+
+## Example repository
+
+**TL;DR**: Here’s [the repository with the full example](https://github.com/angelikatyborska/elixir-xmerl-examples) from this blog post.
+
+## What could be improved?
+
+Working with xmerl still feels a bit clumsy to me. Did I miss anything that would make it easier? Did I get something wrong? Let me know!
