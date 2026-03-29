@@ -275,6 +275,41 @@ test("has two buttons", async () => {
 
 [See example code for step 5](https://github.com/angelikatyborska/astro-component-unit-tests/commit/2ca9daabf11fc04b24fd6f9a907f5c63e4ac850d).
 
+## 2026 update: Astro 5.15.6 and up
+
+In [Astro 5.15.6](https://github.com/withastro/astro/releases/tag/astro@5.15.6), it [became impossible to render Astro components "in the browser"](https://github.com/withastro/astro/pull/14751), including happy-dom.
+
+To solve this problem, I switched from using happy-dom "as an environment" to just using its APIs to render a string into a DOM and return a DocumentFragment. That's the main difference - the return type is now a `DocumentFragment` and not an `HTMLElement`, which complicates using `@testing-library/jest-dom`.
+
+```ts
+export async function renderAstroComponent<T extends AstroComponentFactory>(Component: T, options: ComponentContainerRenderOptions<T> = {}) {
+  const container = await AstroContainer.create();
+  const result = await container.renderToString(Component, options);
+
+  const window = new Window({
+    innerHeight: 768,
+    innerWidth: 1024,
+    url: "http://localhost:4321",
+  });
+
+  window.document.write(`<html><head><title>Test page</title></head><body></body></html>`);
+
+  await window.happyDOM.waitUntilComplete();
+
+  const template = window.document.createElement("template");
+  template.innerHTML = result;
+
+  await window.happyDOM.close();
+
+  // Overwriting happy-dom DocumentFragment type with the TS DOM DocumentFragment type.
+  // happy-dom types for DocumentFragment.querySelector are completely illogical.
+  // They expect the selector to be the element name, e.g. querySelector<'span'>('.line') is a type error.
+  return template.content as unknown as DocumentFragment;
+}
+```
+
+[See example code](https://github.com/angelikatyborska/astro-component-unit-tests/commit/ff55d65d629eb10ee8f3139e7af6762ce6243527).
+
 ## Your experiences?
 
 What are your experiences with writing unit tests for Astro components? Did you find any other helpful tools? Did you notice any flaws with my approach?
@@ -282,3 +317,5 @@ What are your experiences with writing unit tests for Astro components? Did you 
 I feel like the topic of unit testing Astro components is very niche, so I'm curious to learn how other people approach it. Let me know what you think!
 
 _Edited on 25.02.2025: added `Omit` to `ContainerRenderOptions`._
+
+_Edited on 29.03.2026: added solution for Astro 5.15.6._
