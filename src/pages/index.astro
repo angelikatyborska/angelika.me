@@ -11,6 +11,7 @@ import Github from "@assets/about/github.png";
 import NonvisualWebsite from "@assets/about/nonvisualwebsite.png";
 import CssArt from "@assets/about/css-art.png";
 import GenArt from "@assets/about/gen-art.png";
+import BulkColorPreview from "@assets/about/bulk-color-preview.png";
 import CssColorQuiz from "@assets/about/css-color-quiz.png";
 import ElixirEnumCheatsheet from "@assets/about/elixir-enum-cheatsheet.png";
 import Mazes from "@assets/about/mazes.png";
@@ -88,6 +89,11 @@ import ThinkingElixir from "@assets/about/thinking-elixir.jpg";
   <h2>Projects</h2>
 
   <List>
+    <ListItem href="https://bulk-color-preview.angelika.me/" title="Bulk Color Preview">
+      <Image src={BulkColorPreview} width={26} alt="" aria-hidden="true" slot="image" />
+      <Fragment slot="description">Preview many CSS colors in different formats at once.</Fragment>
+      <Fragment slot="date">May 2026</Fragment>
+    </ListItem>
     <ListItem href="https://gen-art.angelika.me/" title="Gen art">
       <Image src={GenArt} width={26} alt="" aria-hidden="true" slot="image" />
       <Fragment slot="description"
